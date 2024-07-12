@@ -8,6 +8,6 @@
         mc:Ignorable="d"
         Title="Software Assurance Navigator" Height="450" Width="800">
     <Grid>
-        <views:DashboardView/>
+        <views:ScaffoldView/>
     </Grid>
 </Window>

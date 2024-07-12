@@ -10,7 +10,19 @@
     <Compile Update="Components\DashboardNavigationBar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\DashboardView.xaml.cs">
+    <Compile Update="Views\HistoryView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\IndexView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\RiskScoreView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\RMFDashboardView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ScaffoldView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -21,7 +33,19 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\DashboardView.xaml">
+    <Page Update="Views\HistoryView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\IndexView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\RiskScoreView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\RMFDashboardView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ScaffoldView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
