@@ -13,6 +13,8 @@ namespace SWAN
         protected override void OnStartup(StartupEventArgs e)
         {
             MainWindow = new MainWindow();
+            ScaffoldViewModel viewModel = new ScaffoldViewModel();
+            MainWindow.DataContext = viewModel;
             MainWindow.Show();
 
             base.OnStartup(e);

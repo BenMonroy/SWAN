@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -9,6 +10,7 @@ namespace SWAN.ViewModels
 {
     public class ScaffoldViewModel : ObservableObject
     {
+
        private PageId _pageId;
 
         public PageId PageId
@@ -28,10 +30,7 @@ namespace SWAN.ViewModels
         {
             // Sets the dashboard view as the default view
             PageId = PageId.RMFDashboardView;
-
             
         }
-
-        
     }
 }

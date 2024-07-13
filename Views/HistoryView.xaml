@@ -13,5 +13,4 @@
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="0" Text="History Page" FontSize="50"/>
     </Grid>
-    
 </UserControl>
