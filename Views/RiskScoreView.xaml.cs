@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace SWAN.Views
 {
     /// <summary>
-    /// Interaction logic for DashboardView.xaml
+    /// Interaction logic for RiskScoreView.xaml
     /// </summary>
-    public partial class DashboardView : UserControl
+    public partial class RiskScoreView : UserControl
     {
-        public DashboardView()
+        public RiskScoreView()
         {
             InitializeComponent();
         }
