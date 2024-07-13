@@ -20,6 +20,7 @@ namespace SWAN
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = new ScaffoldViewModel();
         }
     }
 }

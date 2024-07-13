@@ -8,6 +8,9 @@
              d:DesignHeight="450" d:DesignWidth="800"
              Background="DarkSeaGreen">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Text="History Page" FontSize="50"/>
     </Grid>
 </UserControl>

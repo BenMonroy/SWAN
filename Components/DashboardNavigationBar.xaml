@@ -3,17 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SWAN.Components"
+
+             xmlns:local="clr-namespace:SWAN"
+
              xmlns:viewmodels="clr-namespace:SWAN.ViewModels"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=viewmodels:ScaffoldViewModel}"
              d:DesignHeight="80" d:DesignWidth="800"
              Background="LightBlue">
-
-    <!-- Set DataContext to ScaffoldViewModel -->
-    <UserControl.DataContext>
-        <viewmodels:ScaffoldViewModel />
-    </UserControl.DataContext>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -30,9 +27,10 @@
         </Grid.ColumnDefinitions>
 
         <!-- Buttons bound to commands in ScaffoldViewModel -->
-        <Button Grid.Column="1" Content="Index" Width="90" Height="40" Command="{Binding NavigateToIndexCommand}"/>
-        <Button Grid.Column="2" Content="Dashboard" Width="90" Height="40" Command="{Binding NavigateToDashboardCommand}"/>
-        <Button Grid.Column="3" Content="Risk Score" Width="90" Height="40" Command="{Binding NavigateToRiskScoreCommand}"/>
-        <Button Grid.Column="4" Content="History" Width="90" Height="40" Command="{Binding NavigateToHistoryCommand}"/>
+
+        <Button Grid.Column="1" Content="Index" Width="90" Height="40" Command="{Binding ChangePageCommand}" CommandParameter="{x:Static local:PageId.IndexView}"/>
+        <Button Grid.Column="2" Content="Dashboard" Width="90" Height="40" Command="{Binding ChangePageCommand}" CommandParameter="{x:Static local:PageId.RMFDashboardView}"/>
+        <Button Grid.Column="3" Content="Risk Score" Width="90" Height="40" Command="{Binding ChangePageCommand}" CommandParameter="{x:Static local:PageId.RiskScoreView}"/>
+        <Button Grid.Column="4" Content="History" Width="90" Height="40" Command="{Binding ChangePageCommand}" CommandParameter="{x:Static local:PageId.HistoryView}"/>
     </Grid>
 </UserControl>
