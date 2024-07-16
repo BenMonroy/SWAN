@@ -24,8 +24,6 @@
         </DataTemplate>
     </ResourceDictionary>
     </UserControl.Resources>
-
-
     <Grid>
         <Grid.RowDefinitions>
             <!-- TODO Put the 20 border around whole screen -->
