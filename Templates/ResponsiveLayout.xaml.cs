@@ -1,7 +1,18 @@
-﻿private void ResponsiveLayout(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
+﻿using System.Windows; // Ensure using WPF namespaces
+using System.Windows.Controls;
+
+namespace SWAN
 {
-    if (e.Size.Width > 640)
-        VisualStateManager.GoToState(this, "WideState", false);
-    else
-        VisualStateManager.GoToState(this, "DefaultState", false);
+    public partial class ResponsiveLayout : Page
+    {
+        public ResponsiveLayout()
+        {
+            InitializeComponent();
+        }
+
+        private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            // Handle size changes if needed
+        }
+    }
 }
