@@ -22,5 +22,32 @@ namespace SWAN
             InitializeComponent();
             this.DataContext = new ScaffoldViewModel();
         }
+
+        private void CloseOnClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void MinimizeOnClick(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void MaximizeOnClick(object sender, RoutedEventArgs e)
+        {
+            if (this.WindowState == WindowState.Maximized)
+            {
+                this.WindowState = WindowState.Normal;
+            }
+            else
+            {
+                this.WindowState = WindowState.Maximized;
+            }
+        }
+
+        private void ScaffoldView_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
