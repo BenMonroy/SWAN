@@ -1,0 +1,41 @@
+﻿<Page ...
+    SizeChanged="ResponsiveLayout">
+    <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="DefaultState">
+                    <Storyboard>
+                    </Storyboard>
+                </VisualState>
+
+                <VisualState x:Name="WideState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames
+                            Storyboard.TargetProperty="SplitView.DisplayMode"
+                            Storyboard.TargetName="mySplitView">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <SplitViewDisplayMode>Inline</SplitViewDisplayMode>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames
+                            Storyboard.TargetProperty="SplitView.IsPaneOpen"
+                            Storyboard.TargetName="mySplitView">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="True"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <SplitView x:Name="mySplitView" DisplayMode="CompactInline"
+                   IsPaneOpen="False" CompactPaneLength="20">
+            <!-- SplitView content -->
+
+            <SplitView.Pane>
+                <!-- Pane content -->
+            </SplitView.Pane>
+        </SplitView>
+    </Grid>
+</Page>
