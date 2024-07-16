@@ -1,15 +1,13 @@
 ﻿using System.Collections.Generic;
-using Windows.UI.Xaml.Controls;
+using System.Windows.Controls;
 
-//thinking this can be used to list the users file hierarchy 
-
-namespace UWPTest
+namespace SWAN
 {
-    public sealed partial class HierarchialData : Page
+    public partial class HierarchialData : UserControl
     {
         public HierarchialData()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             LoadData();
         }
 
@@ -33,13 +31,8 @@ namespace UWPTest
                 }
             };
 
-            List<Parent> parents = new List<Parent>
-            {
-                parent1,
-                parent2
-            };
-
-            this.treeView.ItemsSource = parents;
+            List<Parent> parents = new List<Parent> { parent1, parent2 };
+            treeView.ItemsSource = parents;
         }
     }
 
@@ -49,7 +42,6 @@ namespace UWPTest
         {
             Title = title;
         }
-
         public string Title { get; set; }
     }
 
@@ -60,7 +52,6 @@ namespace UWPTest
             Title = title;
             ChildItems = new List<Child>();
         }
-
         public string Title { get; set; }
         public List<Child> ChildItems { get; set; }
     }

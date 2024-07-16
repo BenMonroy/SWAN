@@ -1,37 +1,30 @@
-﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+﻿using System.Windows.Controls;
 
-namespace UWPTest
+namespace SWAN
 {
-    public sealed partial class HorizontalSections : UserControl
+    public partial class HorizontalSections : UserControl
     {
         public HorizontalSections()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
-        public static readonly DependencyProperty TitleProperty = DependencyProperty.Register("Title", typeof(object), typeof(HorizontalSections), new PropertyMetadata(null));
-
-        public object Title
+        public string Title
         {
-            get { return GetValue(TitleProperty); }
-            set { SetValue(TitleProperty, value); }
+            get => (string)TitlePresenter.Content;
+            set => TitlePresenter.Content = value;
         }
-
-        public static readonly DependencyProperty MainProperty = DependencyProperty.Register("Main", typeof(object), typeof(HorizontalSections), new PropertyMetadata(null));
 
         public object Main
         {
-            get { return GetValue(MainProperty); }
-            set { SetValue(MainProperty, value); }
+            get => MainPresenter.Content;
+            set => MainPresenter.Content = value;
         }
-
-        public static readonly DependencyProperty StuffProperty = DependencyProperty.Register("Stuff", typeof(object), typeof(HorizontalSections), new PropertyMetadata(null));
 
         public object Stuff
         {
-            get { return GetValue(StuffProperty); }
-            set { SetValue(StuffProperty, value); }
+            get => StuffPresenter.Content;
+            set => StuffPresenter.Content = value;
         }
     }
 }
