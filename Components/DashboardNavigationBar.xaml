@@ -56,11 +56,7 @@
         </Grid.ColumnDefinitions>
 
        <!--Buttons, title, and icon-->
-        <Image Width="70" VerticalAlignment="Center">
-            <Image.Source>
-                <BitmapImage DecodePixelWidth="300" UriSource="/Images/swan.png" />
-            </Image.Source>
-        </Image>
+        
         <TextBlock Grid.Column="1" Text="SWAN" VerticalAlignment="Center" Foreground="WhiteSmoke" FontFamily="Baskerville, Georgia" FontSize="45"/>
         <Button Grid.Column="3" Content="Index" Style="{StaticResource btn}" Command="{Binding ChangePageCommand}" CommandParameter="{x:Static local:PageId.IndexView}"/>
         <Button Grid.Column="4" Content="Dashboard" Style="{StaticResource btn}" Command="{Binding ChangePageCommand}" CommandParameter="{x:Static local:PageId.RMFDashboardView}"/>

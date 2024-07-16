@@ -4,10 +4,85 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SWAN" 
-        xmlns:components="clr-namespace:SWAN.Components" xmlns:views="clr-namespace:SWAN.Views"
+        xmlns:components="clr-namespace:SWAN.Components" 
+        xmlns:views="clr-namespace:SWAN.Views"
         mc:Ignorable="d"
-        Title="Software Assurance Navigator" Height="450" Width="800">
+        WindowStyle="None"
+        Title="Software Assurance Navigator" 
+        Height="450" 
+        Width="800"
+        Background="#17191D">
+ 
+    <Window.Resources>
+        <!-- Defines a style for buttons with a MouseOver trigger -->
+        <Style x:Key="TitleBarButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="WhiteSmoke"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="btnBorder" Background="{TemplateBinding Background}" BorderBrush="Transparent" BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="btnBorder" Property="Background" Value="Gray"/>
+                            </Trigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Name, RelativeSource={RelativeSource Self}}" Value="CloseButton"/>
+                                    <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter TargetName="btnBorder" Property="Background" Value="Red"/>
+                            </MultiDataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="0" CornerRadius="0" CaptionHeight="0"/>
+    </WindowChrome.WindowChrome>
+
     <Grid>
-        <views:ScaffoldView/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Custom Title Bar -->
+        <Grid Grid.Row="0">
+            <!--Column Definitions to split title bar into 3 sections-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--  Icon and left buttons  -->
+            <WrapPanel Grid.Column="0">
+                <Image Width="30" VerticalAlignment="Center" Margin="5,0">
+                    <Image.Source>
+                        <BitmapImage DecodePixelWidth="300" UriSource="/Images/swan.png" />
+                    </Image.Source>
+                </Image>
+                <Button Content="File" Width="35" Height="30"  Style="{StaticResource TitleBarButtonStyle}" />
+                <Button Content="Edit" Width="35" Height="30"  Style="{StaticResource TitleBarButtonStyle}" />
+                <Button Content="View" Width="35" Height="30"  Style="{StaticResource TitleBarButtonStyle}" />
+                <Button Content="Help" Width="35" Height="30"  Style="{StaticResource TitleBarButtonStyle}" />
+            </WrapPanel>
+            <!-- Title -->
+                <TextBlock Grid.Column="1" Text="Software Assurance Navigator" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="WhiteSmoke"  FontSize="14" Width="auto"/>
+            <!-- Right side buttons, TODO fix margin for close button-->
+            <StackPanel Grid.Column="2" Background="#17191D" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="-" Width="30" Height="30" Click="MinimizeOnClick" Style="{StaticResource TitleBarButtonStyle}"/>
+                <Button Content="🗖" Width="30" Height="30" Click="MaximizeOnClick" Style="{StaticResource TitleBarButtonStyle}"/>
+                <Button Content="X" Width="30" Name="CloseButton" Height="30" Click="CloseOnClick" Style="{StaticResource TitleBarButtonStyle}"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- ScaffoldView in the second row -->
+        <views:ScaffoldView Grid.Row="1" Loaded="ScaffoldView_Loaded"/>
     </Grid>
 </Window>
