@@ -1,28 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Collections.Generic;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SWAN.Views
 {
-    /// <summary>
-    /// Interaction logic for IndexView.xaml
-    /// </summary>
     public partial class IndexView : UserControl
     {
         public IndexView()
         {
             InitializeComponent();
+            LoadData();
         }
+
+        private void LoadData()
+        {
+            var parent1 = new Parent("Parent #1")
+            {
+                ChildItems = {
+                    new Child("Child Item #1.1"),
+                    new Child("Child Item #1.2"),
+                    new Child("Child Item #1.3")
+                }
+            };
+
+            var parent2 = new Parent("Parent #2")
+            {
+                ChildItems = {
+                    new Child("Child Item #2.1"),
+                    new Child("Child Item #2.2"),
+                    new Child("Child Item #2.3")
+                }
+            };
+
+            List<Parent> parents = new List<Parent> { parent1, parent2 };
+            treeView.ItemsSource = parents;
+        }
+    }
+
+    public class Child
+    {
+        public Child(string title)
+        {
+            Title = title;
+        }
+        public string Title { get; set; }
+    }
+
+    public class Parent
+    {
+        public Parent(string title)
+        {
+            Title = title;
+            ChildItems = new List<Child>();
+        }
+        public string Title { get; set; }
+        public List<Child> ChildItems { get; set; }
     }
 }
