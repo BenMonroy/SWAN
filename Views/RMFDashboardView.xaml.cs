@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,9 @@ namespace SWAN.Views
     /// </summary>
     public partial class RMFDashboardView : UserControl
     {
+
+        
+
         public RMFDashboardView()
         {
             InitializeComponent();
