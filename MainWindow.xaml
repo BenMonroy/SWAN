@@ -41,6 +41,61 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <!-- Menu for the file button-->
+        <ContextMenu x:Key="FileContextMenu">
+            <MenuItem Header="New File" Click="NewFile_Click"/>
+            <MenuItem Header="Open File" Click="OpenFile_Click"/>
+            <MenuItem Header="Save" Click="SaveFile_Click"/>
+            <MenuItem Header="Save As" Click="SaveAs_Click" />
+            <MenuItem Header="Print" Click="PrintFile_Click" />
+            <Separator/>
+            <MenuItem Header="Exit" Click="Exit_Click"/>
+        </ContextMenu>
+        
+        <!-- Menu for the edit button-->
+        <ContextMenu x:Key="EditContextMenu">
+            <MenuItem Header="Undo" Click="Todo_Click" />
+            <MenuItem Header="Redo" Click="Todo_Click" />
+            <Separator/>
+            <MenuItem Header="Cut" Click="Todo_Click"/>
+            <MenuItem Header="Copy" Click="Todo_Click"/>
+            <MenuItem Header="Paste" Click="Todo_Click"/>
+        </ContextMenu>
+        <!-- Menu for the view button-->
+        <ContextMenu x:Key="ViewContextMenu">
+            <MenuItem Header="Appearance" Click="Todo_Click" />
+            <MenuItem Header="Layout" Click="Todo_Click" />
+        </ContextMenu>
+        <!-- Menu for the help button-->
+        <ContextMenu x:Key="HelpContextMenu">
+            <MenuItem Header="Getting Started" Click="Todo_Click" />
+            <MenuItem Header="Tips and Tricks" Click="Todo_Click" />
+            <Separator/>
+            <MenuItem Header="Keyboard Shortcut Reference" Click="Todo_Click"/>
+            <MenuItem Header="Documentation" Click="Todo_Click"/>
+        </ContextMenu>
+        <!--  Stylinf for the context menus (file,help,edit dropdown box)  -->
+        <Style TargetType="ContextMenu">
+            <Setter Property="Background" Value="#333"/>
+            <Setter Property="BorderBrush" Value="#444"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ContextMenu">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" CornerRadius="5">
+                            <StackPanel IsItemsHost="True" Margin="2"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--Styling for context menu items-->
+        <Style TargetType="MenuItem" x:Key="titleBarContextMenuItem">
+            <Setter Property="Padding" Value="0,0"/>
+        </Style>
+
     </Window.Resources>
     <WindowChrome.WindowChrome>
         <WindowChrome GlassFrameThickness="0" CornerRadius="0" CaptionHeight="0"/>
@@ -60,17 +115,21 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <!--  Icon and left buttons  -->
+            <!--  Icon and file,edit,help buttons  -->
             <WrapPanel Grid.Column="0">
                 <Image Width="30" VerticalAlignment="Center" Margin="5,0">
                     <Image.Source>
                         <BitmapImage DecodePixelWidth="300" UriSource="/Images/swan.png" />
                     </Image.Source>
                 </Image>
-                <Button Content="File" Width="35" Height="30"  Style="{StaticResource TitleBarButtonStyle}" />
-                <Button Content="Edit" Width="35" Height="30"  Style="{StaticResource TitleBarButtonStyle}" />
-                <Button Content="View" Width="35" Height="30"  Style="{StaticResource TitleBarButtonStyle}" />
-                <Button Content="Help" Width="35" Height="30"  Style="{StaticResource TitleBarButtonStyle}" />
+                <Button Content="File" Width="35" Height="30"  Style="{StaticResource TitleBarButtonStyle}" 
+                        ContextMenu="{StaticResource FileContextMenu}" Click="TitleBarButton_Click"/>
+                <Button Content="Edit" Width="35" Height="30"  Style="{StaticResource TitleBarButtonStyle}" 
+                        ContextMenu="{StaticResource EditContextMenu}" Click="TitleBarButton_Click"/>
+                <Button Content="View" Width="35" Height="30"  Style="{StaticResource TitleBarButtonStyle}" 
+                         ContextMenu="{StaticResource ViewContextMenu}" Click="TitleBarButton_Click"/>
+                <Button Content="Help" Width="35" Height="30"  Style="{StaticResource TitleBarButtonStyle}" 
+                         ContextMenu="{StaticResource HelpContextMenu}" Click="TitleBarButton_Click"/>
             </WrapPanel>
             <!-- Title -->
                 <TextBlock Grid.Column="1" Text="Software Assurance Navigator" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="WhiteSmoke"  FontSize="14" Width="auto"/>
@@ -83,6 +142,6 @@
         </Grid>
 
         <!-- ScaffoldView in the second row -->
-        <views:ScaffoldView Grid.Row="1" Loaded="ScaffoldView_Loaded"/>
+        <views:ScaffoldView Grid.Row="1" />
     </Grid>
 </Window>
