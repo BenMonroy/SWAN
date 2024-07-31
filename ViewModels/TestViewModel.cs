@@ -1,78 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SWAN.ViewModels
 {
-    public class TestViewModel : INotifyPropertyChanged
+    public class TestViewModel : ObservableObject
     {
-        private ObservableCollection<TestViewModel> children { get; set; }
+        private ObservableCollection<TestViewModel> _children;
         public ObservableCollection<TestViewModel> Children
         {
-            get
-            {
-                return children;
-            }
-            set
-            {
-                children = value;
-                OnPropertyChanged("Children");
-            }
+            get => _children;
+            set => SetProperty(ref _children, value);
         }
 
-        private string label;
+        private string _label;
         public string Label
         {
-            get { return label; }
-            set
-            {
-                label = value;
-                OnPropertyChanged("Label");
-            }
+            get => _label;
+            set => SetProperty(ref _label, value);
         }
 
-        private bool isSelected;
+        private bool _isSelected;
         public bool IsSelected
         {
-            get { return isSelected; }
+            get => _isSelected;
             set
             {
-                isSelected = value;
-                OnPropertyChanged("IsSelected");
-                CheckChildSelected(value);
+                if (SetProperty(ref _isSelected, value))
+                {
+                    CheckChildSelected(value);
+                }
             }
         }
 
-        //private bool isExpanded;
-        //public bool IsExpanded
-        //{
-        //    get { return isExpanded; }
-        //    set
-        //    {
-        //        isExpanded = value;
-        //        OnPropertyChanged("IsExpanded");
-        //    }
-        //}
-
-        public TestViewModel(string label, bool isSelected)
+        public TestViewModel(string label, bool isSelected = false)
         {
             Children = new ObservableCollection<TestViewModel>();
             Label = label;
             IsSelected = isSelected;
         }
 
-        public TestViewModel(string label)
-            : this(label, false)
+        public TestViewModel() : this(string.Empty)
         {
-        }
-
-        public TestViewModel()
-        {
-            Children = new ObservableCollection<TestViewModel>();
         }
 
         public void AddChild(TestViewModel child)
@@ -80,16 +48,12 @@ namespace SWAN.ViewModels
             Children.Add(child);
         }
 
-        public void CheckChildSelected(bool value)
+        private void CheckChildSelected(bool value)
         {
-            foreach (TestViewModel m in children)
+            foreach (var child in Children)
             {
-                m.IsSelected = value;
+                child.IsSelected = value;
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(string propertyName) =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
