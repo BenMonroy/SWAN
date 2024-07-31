@@ -1,5 +1,7 @@
-﻿using System;
+﻿using SWAN.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +22,87 @@ namespace SWAN.Views
     /// </summary>
     public partial class RMFDashboardView : UserControl
     {
+        public ChkBoxViewModel MainViewModellInstance { get; set; }
+        public ObservableCollection<TestViewModel> testViewCollection = new ObservableCollection<TestViewModel>();
         public RMFDashboardView()
         {
+            MainViewModellInstance = new ChkBoxViewModel();
+            testViewCollection = MainViewModellInstance.TestsCollection;
+            this.DataContext = MainViewModellInstance;
             InitializeComponent();
         }
+
+        public void OnClickExpand(object sender, RoutedEventArgs e)
+        {
+            foreach (object item in this.TreeView1.Items)
+            {
+                TreeViewItem trItem = this.TreeView1.ItemContainerGenerator.ContainerFromItem(item) as TreeViewItem;
+                if (trItem != null)
+                {
+                    ToggleAll(trItem, true);
+                }
+                trItem.IsExpanded = true;
+            }
+        }
+
+        public void OnClickCollapse(object sender, RoutedEventArgs e)
+        {
+            foreach (object item in this.TreeView1.Items)
+            {
+                TreeViewItem trItem = this.TreeView1.ItemContainerGenerator.ContainerFromItem(item) as TreeViewItem;
+                if (trItem != null)
+                {
+                    ToggleAll(trItem, false);
+                }
+                trItem.IsExpanded = false;
+            }
+        }
+
+        public void ToggleAll(ItemsControl items, bool expand)
+        {
+            foreach (object obj in items.Items)
+            {
+                ItemsControl childControl = items.ItemContainerGenerator.ContainerFromItem(obj) as ItemsControl;
+                if (childControl != null)
+                {
+                    ToggleAll(childControl, expand);
+                }
+                TreeViewItem item = childControl as TreeViewItem;
+                if (item != null)
+                    item.IsExpanded = expand;
+            }
+        }
+
+        public void CheckBoxClick(object sender, RoutedEventArgs e)
+{
+    // Assuming MainViewModelInstance.TestsCollection holds your parent items
+    // and each parent item has a Children collection and an IsSelected property.
+    
+    foreach (var parent in this.testViewCollection)
+    {
+            int totalChildren = parent.Children.Count;
+            int selectedChildren = 0;
+            foreach (var child in parent.Children)
+            {
+                if (child.IsSelected == true)
+                {
+                    selectedChildren++;
+                }
+            }
+
+            // Set the parent's IsSelected to true only if all children are selected
+            if (selectedChildren == totalChildren)
+            {
+                    parent.IsSelected = true;
+
+            }
+            if(selectedChildren == 0)
+                {
+                    parent.IsSelected = false;
+                }
+    }
+}
+
+
     }
 }

@@ -18,32 +18,25 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="RMF Dashboard Page" FontSize="50"/>
-
-        <!--TODO: -Jake
-            Allow Checkboxes to be passed in as children to the expanders.
-            Allow for easier reusability
-            Allow for values of the checkboxes to be referenced and sustained across pages
-        -->
-
-        <components:ExpanderComponent Grid.Row="1"
-                                 ColumnTitle="EXPANDER 1"
-                                 ExpanderHeader="My Expander"
-                                 ExpanderContent="THIS IS A TEST 1"
-                                 HorizontalAlignment="Stretch"
-                                 VerticalAlignment="Top"
-                                 Margin="10"/>
-
-        <components:ExpanderComponent Grid.Row="2"
-                         ColumnTitle="EXPANDER 2"
-                         ExpanderHeader="My Expander"
-                         HorizontalAlignment="Stretch"
-                         VerticalAlignment="Top"
-                         Margin="10"/>
-
-        <components:CheckboxComponent CheckboxLabel="Label 1" ThreeState="True" Grid.Row="3"/>
-
+        <TreeView x:Name="TreeView1" ItemsSource="{Binding TestsCollection}" BorderThickness="0" Grid.Row="1" Grid.Column="0" >
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                    <StackPanel x:Name="CheckBoxesPanel" Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                          Content="{Binding Label, Mode=OneWay}"
+                          Click="CheckBoxClick"
+                          />
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="TreeViewItem">
+                    <Setter Property="IsExpanded" Value="{Binding IsExpanded}" />
+                </Style>
+            </TreeView.ItemContainerStyle>
+        </TreeView>
     </Grid>
 </UserControl>
