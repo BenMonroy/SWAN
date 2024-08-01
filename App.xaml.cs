@@ -20,7 +20,7 @@ namespace SWAN
             AppHost = Host.CreateDefaultBuilder()
              .ConfigureServices((hostContext, services) => {
                  services.AddSingleton<MainWindow>();
-
+                 services.AddSingleton<ScaffoldViewModel>();
              }).Build();
 
         }

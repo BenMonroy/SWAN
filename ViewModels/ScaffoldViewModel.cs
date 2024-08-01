@@ -11,7 +11,7 @@ namespace SWAN.ViewModels
     public class ScaffoldViewModel : ObservableObject
     {
         private PageId _pageId;
-        private CheckBoxViewModel _chkBoxViewModel;
+        private RMFDashboardViewModel _chkBoxViewModel;
         private string CurrentFilePath = string.Empty;
 
         public PageId PageId
@@ -20,7 +20,7 @@ namespace SWAN.ViewModels
             set { SetProperty(ref _pageId, value); }
         }
 
-        public CheckBoxViewModel ChkBoxViewModel
+        public RMFDashboardViewModel ChkBoxViewModel
         {
             get => _chkBoxViewModel;
             set => SetProperty(ref _chkBoxViewModel, value);
@@ -94,7 +94,7 @@ namespace SWAN.ViewModels
         public ScaffoldViewModel()
         {
             PageId = PageId.RMFDashboardView;
-            ChkBoxViewModel = new CheckBoxViewModel();
+            ChkBoxViewModel = new RMFDashboardViewModel();
         }
     }
 }

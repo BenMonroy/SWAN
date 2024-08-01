@@ -22,10 +22,10 @@ namespace SWAN
         // Change this when choosing a file
         private string currentFilePath = string.Empty;
 
-        public MainWindow()
+        public MainWindow(ScaffoldViewModel viewModel)
         {
             InitializeComponent();
-            this.DataContext = new ScaffoldViewModel();
+            this.DataContext = viewModel;
         }
 
         private void CloseOnClick(object sender, RoutedEventArgs e)

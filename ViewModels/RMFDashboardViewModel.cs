@@ -7,11 +7,12 @@ using System.Text;
 
 namespace SWAN.ViewModels
 {
-    public class CheckBoxViewModel
+    public class RMFDashboardViewModel
+
     {
         public ObservableCollection<CheckBoxItem> TestsCollection { get; set; }
 
-        public CheckBoxViewModel()
+        public RMFDashboardViewModel()
         {
             LoadTestsCollection();
         }
