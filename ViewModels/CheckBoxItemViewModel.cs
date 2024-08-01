@@ -5,10 +5,10 @@ using System.Text;
 
 namespace SWAN.ViewModels
 {
-    public class TestViewModel : ObservableObject
+    public class CheckBoxItem  : ObservableObject
     {
-        private ObservableCollection<TestViewModel> _children;
-        public ObservableCollection<TestViewModel> Children
+        private ObservableCollection<CheckBoxItem> _children;
+        public ObservableCollection<CheckBoxItem> Children
         {
             get => _children;
             set => SetProperty(ref _children, value);
@@ -34,18 +34,18 @@ namespace SWAN.ViewModels
             }
         }
 
-        public TestViewModel(string label, bool isSelected = false)
+        public CheckBoxItem(string label, bool isSelected = false)
         {
-            Children = new ObservableCollection<TestViewModel>();
+            Children = new ObservableCollection<CheckBoxItem>();
             Label = label;
             IsSelected = isSelected;
         }
 
-        public TestViewModel() : this(string.Empty)
+        public CheckBoxItem() : this(string.Empty)
         {
         }
 
-        public void AddChild(TestViewModel child)
+        public void AddChild(CheckBoxItem child)
         {
             Children.Add(child);
         }

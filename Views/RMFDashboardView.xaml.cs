@@ -22,7 +22,7 @@ namespace SWAN.Views
     /// </summary>
     public partial class RMFDashboardView : UserControl
     {
-        public ObservableCollection<TestViewModel> testViewCollection = new ObservableCollection<TestViewModel>();
+        public ObservableCollection<CheckBoxItem> testViewCollection = new ObservableCollection<CheckBoxItem>();
         public RMFDashboardView()
         {
             InitializeComponent();

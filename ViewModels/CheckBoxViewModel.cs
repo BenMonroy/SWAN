@@ -7,11 +7,11 @@ using System.Text;
 
 namespace SWAN.ViewModels
 {
-    public class ChkBoxViewModel
+    public class CheckBoxViewModel
     {
-        public ObservableCollection<TestViewModel> TestsCollection { get; set; }
+        public ObservableCollection<CheckBoxItem> TestsCollection { get; set; }
 
-        public ChkBoxViewModel()
+        public CheckBoxViewModel()
         {
             LoadTestsCollection();
         }
@@ -122,16 +122,16 @@ namespace SWAN.ViewModels
 };
 
 
-            TestsCollection = new ObservableCollection<TestViewModel>();
+            TestsCollection = new ObservableCollection<CheckBoxItem>();
 
             var groupedTests = testList.GroupBy(t => t.Major);
 
             foreach (var group in groupedTests)
             {
-                var parent = new TestViewModel(group.Key);
+                var parent = new CheckBoxItem(group.Key);
                 foreach (var minorTest in group)
                 {
-                    parent.AddChild(new TestViewModel(minorTest.Minor));
+                    parent.AddChild(new CheckBoxItem(minorTest.Minor));
                 }
                 TestsCollection.Add(parent);
             }
@@ -149,7 +149,7 @@ namespace SWAN.ViewModels
             File.WriteAllText(filePath, sb.ToString());
         }
 
-        private void SaveTestToCsv(TestViewModel test, StringBuilder sb)
+        private void SaveTestToCsv(CheckBoxItem test, StringBuilder sb)
         {
             sb.AppendLine($"{test.Label},{test.IsSelected}");
             foreach (var child in test.Children)
@@ -164,7 +164,7 @@ namespace SWAN.ViewModels
                 return;
 
             var lines = File.ReadAllLines(filePath);
-            var testMap = new Dictionary<string, TestViewModel>();
+            var testMap = new Dictionary<string, CheckBoxItem>();
 
             foreach (var line in lines.Skip(1)) // Skip header line
             {
@@ -174,7 +174,7 @@ namespace SWAN.ViewModels
 
                 if (!testMap.ContainsKey(label))
                 {
-                    var test = new TestViewModel(label, isSelected);
+                    var test = new CheckBoxItem(label, isSelected);
                     testMap[label] = test;
                 }
                 else
@@ -184,7 +184,7 @@ namespace SWAN.ViewModels
             }
 
             // Rebuild the TestsCollection from the map
-            TestsCollection = new ObservableCollection<TestViewModel>(testMap.Values);
+            TestsCollection = new ObservableCollection<CheckBoxItem>(testMap.Values);
         }
     }
 }
