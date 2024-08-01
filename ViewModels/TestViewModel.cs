@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
+using System.IO;
+using System.Text;
 
 namespace SWAN.ViewModels
 {

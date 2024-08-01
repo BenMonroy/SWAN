@@ -1,7 +1,9 @@
 ﻿using SWAN.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace SWAN.ViewModels
 {
@@ -40,6 +42,56 @@ namespace SWAN.ViewModels
                 }
                 TestsCollection.Add(parent);
             }
+        }
+        public void SaveStateToCsv(string filePath)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine("Label,IsSelected");
+
+            foreach (var test in TestsCollection)
+            {
+                SaveTestToCsv(test, sb);
+            }
+
+            File.WriteAllText(filePath, sb.ToString());
+        }
+
+        private void SaveTestToCsv(TestViewModel test, StringBuilder sb)
+        {
+            sb.AppendLine($"{test.Label},{test.IsSelected}");
+            foreach (var child in test.Children)
+            {
+                SaveTestToCsv(child, sb);
+            }
+        }
+
+        public void LoadStateFromCsv(string filePath)
+        {
+            if (!File.Exists(filePath))
+                return;
+
+            var lines = File.ReadAllLines(filePath);
+            var testMap = new Dictionary<string, TestViewModel>();
+
+            foreach (var line in lines.Skip(1)) // Skip header line
+            {
+                var parts = line.Split(',');
+                var label = parts[0];
+                var isSelected = bool.Parse(parts[1]);
+
+                if (!testMap.ContainsKey(label))
+                {
+                    var test = new TestViewModel(label, isSelected);
+                    testMap[label] = test;
+                }
+                else
+                {
+                    testMap[label].IsSelected = isSelected;
+                }
+            }
+
+            // Rebuild the TestsCollection from the map
+            TestsCollection = new ObservableCollection<TestViewModel>(testMap.Values);
         }
     }
 }
