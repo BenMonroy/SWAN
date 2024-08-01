@@ -135,9 +135,9 @@
             <TextBlock Grid.Column="1" Text="Software Assurance Navigator" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="WhiteSmoke"  FontSize="14" Width="auto"/>
             <!-- Right side buttons -->
             <StackPanel Grid.Column="2" Background="#17191D" Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Content="-" Width="30" Height="30" Command="{Binding MinimizeCommand}" Style="{StaticResource TitleBarButtonStyle}"/>
-                <Button Content="🗖" Width="30" Height="30" Command="{Binding MaximizeCommand}" Style="{StaticResource TitleBarButtonStyle}"/>
-                <Button Content="X" Width="30" Name="CloseButton" Height="30" Command="{Binding CloseCommand}" Style="{StaticResource TitleBarButtonStyle}"/>
+                <Button Content="-" Width="30" Height="30" Click="MinimizeOnClick" Style="{StaticResource TitleBarButtonStyle}"/>
+                <Button Content="🗖" Width="30" Height="30" Click="MaximizeOnClick" Style="{StaticResource TitleBarButtonStyle}"/>
+                <Button Content="X" Width="30" Name="CloseButton" Height="30" Click="CloseOnClick" Style="{StaticResource TitleBarButtonStyle}"/>
             </StackPanel>
         </Grid>
 
