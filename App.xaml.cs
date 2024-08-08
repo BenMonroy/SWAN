@@ -21,6 +21,7 @@ namespace SWAN
              .ConfigureServices((hostContext, services) => {
                  services.AddSingleton<MainWindow>();
                  services.AddSingleton<ScaffoldViewModel>();
+                 services.AddSingleton<RMFDashboardViewModel>();
              }).Build();
 
         }

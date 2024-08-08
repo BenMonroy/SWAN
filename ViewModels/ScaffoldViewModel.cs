@@ -11,7 +11,8 @@ namespace SWAN.ViewModels
     public class ScaffoldViewModel : ObservableObject
     {
         private PageId _pageId;
-        private RMFDashboardViewModel _chkBoxViewModel;
+        private RMFDashboardViewModel _dashboardViewModel;
+
         private string CurrentFilePath = string.Empty;
 
         public PageId PageId
@@ -20,10 +21,10 @@ namespace SWAN.ViewModels
             set { SetProperty(ref _pageId, value); }
         }
 
-        public RMFDashboardViewModel ChkBoxViewModel
+        public RMFDashboardViewModel DashboardViewModel
         {
-            get => _chkBoxViewModel;
-            set => SetProperty(ref _chkBoxViewModel, value);
+            get => _dashboardViewModel;
+            set => SetProperty(ref _dashboardViewModel, value);
         }
 
         public ICommand ChangePageCommand => new RelayCommand<PageId>(ChangePage);
@@ -40,7 +41,7 @@ namespace SWAN.ViewModels
         {
             if (!string.IsNullOrEmpty(CurrentFilePath))
             {
-                ChkBoxViewModel.SaveStateToCsv(CurrentFilePath);
+                DashboardViewModel.SaveStateToCsv(CurrentFilePath);
                 MessageBox.Show("File saved successfully.");
             }
             else
@@ -63,7 +64,7 @@ namespace SWAN.ViewModels
             if (result == true)
             {
                 CurrentFilePath = dialog.FileName;
-                ChkBoxViewModel.SaveStateToCsv(CurrentFilePath);
+                DashboardViewModel.SaveStateToCsv(CurrentFilePath);
                 MessageBox.Show("File Saved");
             }
             else
@@ -94,7 +95,7 @@ namespace SWAN.ViewModels
         public ScaffoldViewModel()
         {
             PageId = PageId.RMFDashboardView;
-            ChkBoxViewModel = new RMFDashboardViewModel();
+            _dashboardViewModel = new RMFDashboardViewModel();
         }
     }
 }

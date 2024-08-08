@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:SWAN" 
         xmlns:components="clr-namespace:SWAN.Components" 
         xmlns:views="clr-namespace:SWAN.Views"
+         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         mc:Ignorable="d"
         WindowStyle="None"
         Title="Software Assurance Navigator" 

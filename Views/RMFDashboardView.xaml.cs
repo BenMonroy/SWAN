@@ -27,7 +27,7 @@ namespace SWAN.Views
         {
             InitializeComponent();
             var viewModel = (ScaffoldViewModel)this.DataContext;
-            var chkBoxViewModel = viewModel.ChkBoxViewModel;
+            var chkBoxViewModel = viewModel.DashboardViewModel;
             testViewCollection = chkBoxViewModel.TestsCollection;
             this.DataContext = chkBoxViewModel;
             

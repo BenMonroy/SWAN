@@ -1,4 +1,5 @@
-﻿using SWAN.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using SWAN.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -7,13 +8,14 @@ using System.Text;
 
 namespace SWAN.ViewModels
 {
-    public class RMFDashboardViewModel
+    public class RMFDashboardViewModel : ObservableObject
 
     {
         public ObservableCollection<CheckBoxItem> TestsCollection { get; set; }
 
         public RMFDashboardViewModel()
         {
+            TestsCollection = new ObservableCollection<CheckBoxItem>();
             LoadTestsCollection();
         }
 
@@ -122,8 +124,6 @@ namespace SWAN.ViewModels
     new Test { Major = "SI-7 - Software, Firmware, and Information Integrity", Minor = "The developer shall document the use of integrity verification processes directly or by reference in a SDP, FDP, PPIP, or equivalent documents. Maps to CCI-002703, CCI-002704." }
 };
 
-
-            TestsCollection = new ObservableCollection<CheckBoxItem>();
 
             var groupedTests = testList.GroupBy(t => t.Major);
 
