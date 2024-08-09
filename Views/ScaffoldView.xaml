@@ -35,30 +35,6 @@
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 		<components:DashboardNavigationBar Grid.Row="0"/>
-		<ContentControl Grid.Row="1">
-			<ContentControl.Style>
-				<Style TargetType="ContentControl">
-					<Style.Triggers>
-						<DataTrigger Binding="{Binding PageId, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"
-                                     Value="{x:Static pages:PageId.HistoryView}">
-							<Setter Property="ContentTemplate" Value="{StaticResource History}"/>
-						</DataTrigger>
-						<DataTrigger Binding="{Binding PageId, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"
-                                     Value="{x:Static pages:PageId.RiskScoreView}">
-							<Setter Property="ContentTemplate" Value="{StaticResource RiskScore}"/>
-						</DataTrigger>
-						<DataTrigger Binding="{Binding PageId, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"
-                                     Value="{x:Static pages:PageId.IndexView}">
-							<Setter Property="ContentTemplate" Value="{StaticResource Index}"/>
-						</DataTrigger>
-						<DataTrigger Binding="{Binding PageId, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"
-                                     Value="{x:Static pages:PageId.RMFDashboardView}">
-							<Setter Property="ContentTemplate" Value="{StaticResource Dashboard}"/>
-						</DataTrigger>
-					</Style.Triggers>
-					<Setter Property="ContentTemplate" Value="{StaticResource History}"/>
-				</Style>
-			</ContentControl.Style>
-		</ContentControl>
-	</Grid>
+        <ContentControl Grid.Row="1" Content="{Binding CurrentView}"/>
+    </Grid>
 </UserControl>

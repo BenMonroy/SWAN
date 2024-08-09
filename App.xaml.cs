@@ -1,8 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SWAN.ViewModels;
-using System.Configuration;
-using System.Data;
+using SWAN.Views;
 using System.Windows;
 
 namespace SWAN
@@ -22,6 +21,11 @@ namespace SWAN
                  services.AddSingleton<MainWindow>();
                  services.AddSingleton<ScaffoldViewModel>();
                  services.AddSingleton<RMFDashboardViewModel>();
+                 services.AddSingleton<HistoryView>();
+                 services.AddSingleton<IndexView>();
+                 services.AddSingleton<RiskScoreView>();
+                 services.AddSingleton<RMFDashboardView>(); 
+    
              }).Build();
 
         }

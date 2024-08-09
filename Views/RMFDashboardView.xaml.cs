@@ -23,14 +23,12 @@ namespace SWAN.Views
     public partial class RMFDashboardView : UserControl
     {
         public ObservableCollection<CheckBoxItem> testViewCollection = new ObservableCollection<CheckBoxItem>();
-        public RMFDashboardView()
+        public RMFDashboardView(RMFDashboardViewModel viewModel)
         {
             InitializeComponent();
-            var viewModel = (ScaffoldViewModel)this.DataContext;
-            var chkBoxViewModel = viewModel.DashboardViewModel;
-            testViewCollection = chkBoxViewModel.TestsCollection;
-            this.DataContext = chkBoxViewModel;
-            
+            this.DataContext = viewModel;
+            testViewCollection = viewModel.TestsCollection;
+
         }
 
         public void OnClickExpand(object sender, RoutedEventArgs e)
