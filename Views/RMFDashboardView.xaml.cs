@@ -22,13 +22,13 @@ namespace SWAN.Views
     /// </summary>
     public partial class RMFDashboardView : UserControl
     {
-        public ObservableCollection<CheckBoxItem> testViewCollection = new ObservableCollection<CheckBoxItem>();
+        private RMFDashboardViewModel _viewModel;
         public RMFDashboardView(RMFDashboardViewModel viewModel)
         {
             InitializeComponent();
             this.DataContext = viewModel;
-            testViewCollection = viewModel.TestsCollection;
-
+            //only mapping to the DoD RMF right now
+            _viewModel = viewModel; 
         }
 
         public void OnClickExpand(object sender, RoutedEventArgs e)
@@ -61,12 +61,12 @@ namespace SWAN.Views
         {
             foreach (object obj in items.Items)
             {
-                ItemsControl childControl = items.ItemContainerGenerator.ContainerFromItem(obj) as ItemsControl;
+                ItemsControl? childControl = items.ItemContainerGenerator.ContainerFromItem(obj) as ItemsControl;
                 if (childControl != null)
                 {
                     ToggleAll(childControl, expand);
                 }
-                TreeViewItem item = childControl as TreeViewItem;
+                TreeViewItem? item = childControl as TreeViewItem;
                 if (item != null)
                     item.IsExpanded = expand;
             }
@@ -77,7 +77,7 @@ namespace SWAN.Views
     // Assuming MainViewModelInstance.TestsCollection holds your parent items
     // and each parent item has a Children collection and an IsSelected property.
     
-    foreach (var parent in this.testViewCollection)
+    foreach (var parent in _viewModel.CheckBoxCollection)
     {
             int totalChildren = parent.Children.Count;
             int selectedChildren = 0;

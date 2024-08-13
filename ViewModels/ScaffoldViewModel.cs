@@ -26,14 +26,14 @@ namespace SWAN.ViewModels
             set => SetProperty(ref _currentView, value);
         }
 
-        private string CurrentFilePath = string.Empty;
-
+        private string _currentFilePath = string.Empty;
         public PageId PageId
         {
             get { return _pageId; }
             set { SetProperty(ref _pageId, value); }
         }
 
+        
         public RMFDashboardViewModel DashboardViewModel
         {
             get => _dashboardViewModel;
@@ -44,6 +44,7 @@ namespace SWAN.ViewModels
         public ICommand SaveCommand => new RelayCommand(Save);
         public ICommand SaveAsCommand => new RelayCommand(SaveAs);
         public ICommand OpenFileCommand => new RelayCommand(OpenFile);
+        public static ICommand TodoCommand => new RelayCommand(() => MessageBox.Show("not implemented!"));
 
         private void ChangePage(PageId nextPage)
         {
@@ -62,16 +63,17 @@ namespace SWAN.ViewModels
                     CurrentView = _rmfDashboardView;
                     break;
                 default:
-                    CurrentView = _historyView; // Fallback to HistoryView
+                    CurrentView = _historyView; 
                     break;
             }
         }
 
         private void Save()
         {
-            if (!string.IsNullOrEmpty(CurrentFilePath))
+            //checks to see if previously saved, if not do saveAs
+            if (!string.IsNullOrEmpty(_currentFilePath))
             {
-                DashboardViewModel.SaveStateToCsv(CurrentFilePath);
+                DashboardViewModel.SaveStateToCsv(_currentFilePath);
                 MessageBox.Show("File saved successfully.");
             }
             else
@@ -80,11 +82,49 @@ namespace SWAN.ViewModels
             }
         }
 
+
         private void SaveAs()
         {
             var dialog = new Microsoft.Win32.SaveFileDialog
             {
-                FileName = "Document",
+                FileName = string.IsNullOrEmpty(_currentFilePath) ? "" : System.IO.Path.GetFileName(_currentFilePath),
+                DefaultExt = ".csv",
+                Filter = "CSV files (.csv)|*.csv"
+            };
+
+            if (!string.IsNullOrEmpty(_currentFilePath) && System.IO.File.Exists(_currentFilePath))
+            {
+                dialog.InitialDirectory = System.IO.Path.GetDirectoryName(_currentFilePath);
+            }
+
+            bool? result = dialog.ShowDialog();
+
+            if (result == true)
+            {
+                _currentFilePath = dialog.FileName;
+                try
+                {
+                    DashboardViewModel.SaveStateToCsv(_currentFilePath);
+                    MessageBox.Show("File saved successfully.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: Could not save file. {ex.Message}");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Operation cancelled.");
+            }
+        }
+
+
+
+        private void OpenFile()
+        {
+            var dialog = new Microsoft.Win32.OpenFileDialog
+            {
+                FileName = "",
                 DefaultExt = ".csv",
                 Filter = "CSV files (.csv)|*.csv"
             };
@@ -93,32 +133,20 @@ namespace SWAN.ViewModels
 
             if (result == true)
             {
-                CurrentFilePath = dialog.FileName;
-                DashboardViewModel.SaveStateToCsv(CurrentFilePath);
-                MessageBox.Show("File Saved");
+                _currentFilePath = dialog.FileName;
+                try
+                {
+                    DashboardViewModel.LoadStateFromCsv(_currentFilePath);
+                    MessageBox.Show("File loaded successfully.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: Could not open file. {ex.Message}");
+                }
             }
             else
             {
-                MessageBox.Show("Error: Could Not Save File");
-            }
-        }
-
-        private void OpenFile()
-        {
-            var dialog = new Microsoft.Win32.OpenFileDialog
-            {
-                FileName = "Document",
-                DefaultExt = ".txt",
-                Filter = "Text documents (.txt)|*.txt"
-            };
-
-            bool? result = dialog.ShowDialog();
-
-            if (result == true)
-            {
-                // Handle opening the file
-                string filename = dialog.FileName;
-                // Implement file loading logic here
+                MessageBox.Show("Operation cancelled.");
             }
         }
 
@@ -134,7 +162,7 @@ namespace SWAN.ViewModels
             _indexView = indexView;
             _riskScoreView = riskScoreView;
             _rmfDashboardView = rmfDashboardView;
-            CurrentView = _rmfDashboardView;
+            _currentView = _rmfDashboardView;
         }
     }
 }

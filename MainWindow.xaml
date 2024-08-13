@@ -12,7 +12,7 @@
         Title="Software Assurance Navigator" 
         Height="450" 
         Width="800"
-        Background="#17191D">
+        Background="{StaticResource WindowBackgroundColor}">
 
     <Window.Resources>
         <!-- Defines a style for buttons with a MouseOver trigger -->
@@ -31,6 +31,7 @@
                                 <Setter TargetName="btnBorder" Property="Background" Value="Gray"/>
                             </Trigger>
                             <MultiDataTrigger>
+                                <!-- Style for close button-->
                                 <MultiDataTrigger.Conditions>
                                     <Condition Binding="{Binding Name, RelativeSource={RelativeSource Self}}" Value="CloseButton"/>
                                     <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True"/>
@@ -45,13 +46,13 @@
 
         <!-- Menu for the file button-->
         <ContextMenu x:Key="FileContextMenu">
-            <MenuItem Header="New File" Command="{Binding NewFileCommand}"/>
+            <MenuItem Header="New File" Command="{Binding TodoCommand}"/>
             <MenuItem Header="Open File" Command="{Binding OpenFileCommand}"/>
             <MenuItem Header="Save" Command="{Binding SaveCommand}"/>
-            <MenuItem Header="Save As" Command="{Binding SaveAsCommand}" />
-            <MenuItem Header="Print" Command="{Binding PrintCommand}" />
+            <MenuItem Header="Save As" Command="{Binding SaveAsCommand}"/>
+            <MenuItem Header="Print" Command="{Binding TodoCommand}"/>
             <Separator/>
-            <MenuItem Header="Exit" Command="{Binding ExitCommand}"/>
+            <MenuItem Header="Exit" Command="{Binding TodoCommand}"/>
         </ContextMenu>
 
         <!-- Menu for the edit button-->
@@ -135,7 +136,7 @@
             <!-- Title -->
             <TextBlock Grid.Column="1" Text="Software Assurance Navigator" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="WhiteSmoke"  FontSize="14" Width="auto"/>
             <!-- Right side buttons -->
-            <StackPanel Grid.Column="2" Background="#17191D" Orientation="Horizontal" HorizontalAlignment="Right">
+            <StackPanel Grid.Column="2" Background="{StaticResource WindowBackgroundColor}" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Content="-" Width="30" Height="30" Click="MinimizeOnClick" Style="{StaticResource TitleBarButtonStyle}"/>
                 <Button Content="🗖" Width="30" Height="30" Click="MaximizeOnClick" Style="{StaticResource TitleBarButtonStyle}"/>
                 <Button Content="X" Width="30" Name="CloseButton" Height="30" Click="CloseOnClick" Style="{StaticResource TitleBarButtonStyle}"/>

@@ -7,7 +7,7 @@
              xmlns:viewmodels="clr-namespace:SWAN.ViewModels"
              mc:Ignorable="d"
              d:DesignHeight="80" d:DesignWidth="800"
-             Background="#2E333A">
+             Background="{StaticResource CardBackgroundColor}">
     <UserControl.Resources>
         <ResourceDictionary>
             <Style x:Key="btn" TargetType="{x:Type Button}">
@@ -16,12 +16,12 @@
                 <Setter Property="Border.CornerRadius" Value="10,10,0,0"/>
                 <Setter Property="VerticalAlignment" Value="Bottom"/>
                 <Setter Property="Foreground" Value= "WhiteSmoke" />
-                <Setter Property="FontFamily" Value="Baskerville,Georgia"/> 
+                <Setter Property="FontFamily" Value="Baskerville,Georgia"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
                             <Border CornerRadius="{TemplateBinding Border.CornerRadius}" 
-                        Background="#2E333A" BorderBrush="#ccc" 
+                        Background="{StaticResource CardBackgroundColor}" BorderBrush="#ccc" 
                         BorderThickness="1,2,1,0" >
                                 <ContentPresenter x:Name="contentPresenter" 
                                       ContentTemplate="{TemplateBinding ContentTemplate}" 
@@ -37,7 +37,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-  
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
@@ -48,18 +48,19 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="40.59"/>
+            <ColumnDefinition Width="49.41"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-       <!--Buttons, title, and icon-->
-        
-        <TextBlock Grid.Column="1" Text="SWAN" VerticalAlignment="Center" Foreground="WhiteSmoke" FontFamily="Baskerville, Georgia" FontSize="45"/>
-        <Button Grid.Column="3" Content="Index" Style="{StaticResource btn}" Command="{Binding ChangePageCommand}" CommandParameter="{x:Static local:PageId.IndexView}"/>
-        <Button Grid.Column="4" Content="Dashboard" Style="{StaticResource btn}" Command="{Binding ChangePageCommand}" CommandParameter="{x:Static local:PageId.RMFDashboardView}"/>
-        <Button Grid.Column="5" Content="Risk Score" Style="{StaticResource btn}" Command="{Binding ChangePageCommand}" CommandParameter="{x:Static local:PageId.RiskScoreView}"/>
-        <Button Grid.Column="6" Content="History" Style="{StaticResource btn}"  Command="{Binding ChangePageCommand}" CommandParameter="{x:Static local:PageId.HistoryView}"/>
+        <!--Buttons, title, and icon-->
+
+        <TextBlock Grid.Column="1" Text="SWAN" VerticalAlignment="Center" Foreground="WhiteSmoke" FontFamily="Baskerville, Georgia" FontSize="45" Grid.ColumnSpan="2" Margin="0,0,306,0"/>
+        <Button Grid.Column="3" Content="Index" Style="{StaticResource btn}" Command="{Binding ChangePageCommand}" CommandParameter="{x:Static local:PageId.IndexView}" Grid.ColumnSpan="2" Margin="0,40,0,0" VerticalAlignment="Top"/>
+        <Button Grid.Column="5" Content="Dashboard" Style="{StaticResource btn}" Command="{Binding ChangePageCommand}" CommandParameter="{x:Static local:PageId.RMFDashboardView}" Margin="0,40,0,0" VerticalAlignment="Top"/>
+        <Button Grid.Column="6" Content="Risk Score" Style="{StaticResource btn}" Command="{Binding ChangePageCommand}" CommandParameter="{x:Static local:PageId.RiskScoreView}" Margin="0,40,0,0" VerticalAlignment="Top"/>
+        <Button Grid.Column="7" Content="History" Style="{StaticResource btn}"  Command="{Binding ChangePageCommand}" CommandParameter="{x:Static local:PageId.HistoryView}" Margin="0,40,0,0" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

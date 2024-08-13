@@ -9,6 +9,11 @@
                 <ui:ThemesDictionary Theme="Dark" />
                 <ui:ControlsDictionary />
             </ResourceDictionary.MergedDictionaries>
+            <SolidColorBrush x:Key="WindowBackgroundColor" Color="#15131C"/>
+            <SolidColorBrush x:Key="CardBackgroundColor" Color="#21222D"/>
+            <SolidColorBrush x:Key="PrimaryColor" Color="#FF2697FF"/>
+            <SolidColorBrush x:Key="SecondaryColor" Color="#FFFFFFFF"/>
+            <SolidColorBrush x:Key="AccentColor" Color="#88B2AC"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

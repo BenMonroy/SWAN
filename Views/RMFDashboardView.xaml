@@ -24,7 +24,8 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="RMF Dashboard Page" FontSize="50"/>
-        <TreeView x:Name="TreeView1" ItemsSource="{Binding TestsCollection}" BorderThickness="0" Grid.Row="1" Grid.Column="0" >
+            <!--This should be bound to the checkbox collection in the view not viewmodel-->
+        <TreeView x:Name="TreeView1" ItemsSource="{Binding CheckBoxCollection}" BorderThickness="0" Grid.Row="1" Grid.Column="0" >
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Children}">
                     <StackPanel x:Name="CheckBoxesPanel" Orientation="Horizontal">
@@ -37,7 +38,8 @@
             </TreeView.ItemTemplate>
             <TreeView.ItemContainerStyle>
                 <Style TargetType="TreeViewItem">
-                    <Setter Property="IsExpanded" Value="{Binding IsExpanded}" />
+                    <!-- check this -->
+                    <Setter Property="IsExpanded" Value="{Binding IsSelected}" />
                 </Style>
             </TreeView.ItemContainerStyle>
         </TreeView>
