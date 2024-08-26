@@ -46,6 +46,9 @@ namespace SWAN.ViewModels
         public ICommand OpenFileCommand => new RelayCommand(OpenFile);
         public static ICommand TodoCommand => new RelayCommand(() => MessageBox.Show("not implemented!"));
 
+        public ICommand HandleFrameworkSelectionCommand => new RelayCommand<string>(HandleFrameworkSelection);
+
+
         private void ChangePage(PageId nextPage)
         {
             switch (nextPage)
@@ -82,7 +85,7 @@ namespace SWAN.ViewModels
             }
         }
 
-
+        
         private void SaveAs()
         {
             var dialog = new Microsoft.Win32.SaveFileDialog
@@ -116,6 +119,30 @@ namespace SWAN.ViewModels
             {
                 MessageBox.Show("Operation cancelled.");
             }
+        }
+
+       
+        private void HandleFrameworkSelection(string framework)
+        {
+            _dashboardViewModel.SelectedFramework = framework;
+
+            switch (framework)
+            {
+                case "DoDI 8510.01":
+                    _dashboardViewModel.LoadDoDICommand.Execute(null);
+                    break;
+                case "NIST SP 800.53 Rev. 5":
+                    _dashboardViewModel.Load80053Command.Execute(null);
+                    break;
+                case "NIST SP 800-37 Rev. 2":
+                    _dashboardViewModel.Load80037Command.Execute(null);
+                    break;
+                case "NIST 800-160 Vol. 1":
+                    _dashboardViewModel.Load800160Command.Execute(null);
+                    break;
+            }
+            //TODO fix this so stack panel goes invisible
+            //_RMFDashboardView.RMF_StackPanel.Visibility = Visibility.Hidden;
         }
 
 

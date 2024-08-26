@@ -16,10 +16,12 @@ namespace SWAN
         // Change this when choosing a file
         private string currentFilePath = string.Empty;
 
+        private ScaffoldViewModel _viewModel;
         public MainWindow(ScaffoldViewModel viewModel)
         {
             InitializeComponent();
             this.DataContext = viewModel;
+            _viewModel = viewModel;
         }
 
         private void CloseOnClick(object sender, RoutedEventArgs e)
@@ -44,6 +46,15 @@ namespace SWAN
             }
         }
 
+
+        //Todo must be some try/catch block with a popup if already in an active dashboard
+        private void NewFileMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var menuItem = sender as MenuItem;
+            string selectedFramework = menuItem.Header.ToString();
+
+            _viewModel.HandleFrameworkSelectionCommand.Execute(menuItem.Header.ToString());
+        }
 
 
         private void TitleBarButton_Click(object sender, RoutedEventArgs e)

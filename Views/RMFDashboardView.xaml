@@ -8,40 +8,53 @@
              xmlns:components="clr-namespace:SWAN.Components"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             Background="CadetBlue">
+             Background="{StaticResource WindowBackgroundColor}">
 
-    
-<Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="RMF Dashboard Page" FontSize="50"/>
-            <!--This should be bound to the checkbox collection in the view not viewmodel-->
-        <TreeView x:Name="TreeView1" ItemsSource="{Binding CheckBoxCollection}" BorderThickness="0" Grid.Row="1" Grid.Column="0" >
-            <TreeView.ItemTemplate>
-                <HierarchicalDataTemplate ItemsSource="{Binding Children}">
-                    <StackPanel x:Name="CheckBoxesPanel" Orientation="Horizontal">
-                        <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}"
-                          Content="{Binding Label, Mode=OneWay}"
-                          Click="CheckBoxClick"
-                          />
-                    </StackPanel>
-                </HierarchicalDataTemplate>
-            </TreeView.ItemTemplate>
-            <TreeView.ItemContainerStyle>
-                <Style TargetType="TreeViewItem">
-                    <!-- check this -->
-                    <Setter Property="IsExpanded" Value="{Binding IsSelected}" />
-                </Style>
-            </TreeView.ItemContainerStyle>
-        </TreeView>
-    </Grid>
+    <Border CornerRadius="10" Padding="10" Background="{StaticResource CardBackgroundColor}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- TextBlock in the first row, first column -->
+            <TextBlock x:Name="RMFTextBlock" Grid.Row="0" Grid.Column="0" Foreground="{StaticResource SecondaryColor}" Text="{Binding SelectedFramework}" FontSize="50" VerticalAlignment="Center"/>
+
+
+            <!-- StackPanel for buttons and dropdown in the same row, second column -->
+            <StackPanel x:Name="RMF_StackPanel" Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                <!-- First ComboBox with predefined items -->
+                <ComboBox Width="165" Margin="5" Text="Select Framework"  IsEditable ="True" IsReadOnly="True" x:Name="Framework_ComboBox">
+                    <ComboBoxItem Content="DoDI 8510.01" />
+                    <ComboBoxItem Content="NIST SP 800.53 Rev. 5" />
+                    <ComboBoxItem Content="NIST SP 800-37 Rev. 2" />
+                    <ComboBoxItem Content="NIST 800-160 Vol. 1" />
+                </ComboBox>
+                <!-- Second ComboBox -->
+                <Button Content="Create Dashboard" Click="Create_Dashboard_Click" Margin="10"/>
+            </StackPanel>
+
+            <!-- TreeView in the second row, spanning both columns -->
+            <TreeView x:Name="TreeView1" ItemsSource="{Binding CheckBoxCollection}" BorderThickness="0" Grid.Row="1" Grid.ColumnSpan="2">
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                  Content="{Binding Label, Mode=OneWay}"
+                                  Click="CheckBoxClick" />
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+                <TreeView.ItemContainerStyle>
+                    <Style TargetType="TreeViewItem">
+                        <Setter Property="IsExpanded" Value="{Binding IsSelected}" />
+                    </Style>
+                </TreeView.ItemContainerStyle>
+            </TreeView>
+        </Grid>
+    </Border>
 </UserControl>

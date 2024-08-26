@@ -3,9 +3,9 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Text;
 
-namespace SWAN.ViewModels
+namespace SWAN.Models
 {
-    public class CheckBoxItem  : ObservableObject
+    public class CheckBoxItem : ObservableObject
     {
         private ObservableCollection<CheckBoxItem> _children;
         public ObservableCollection<CheckBoxItem> Children

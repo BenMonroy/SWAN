@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.VisualBasic.FileIO;
 using SWAN.Models;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows.Input;
 
 namespace SWAN.ViewModels
 {
@@ -13,14 +15,32 @@ namespace SWAN.ViewModels
 
     {
         public ObservableCollection<CheckBoxItem> CheckBoxCollection { get; set; }
+        private String _selectedFramework;
 
+       
+        public String SelectedFramework
+        {
+            get => _selectedFramework;
+            set => SetProperty(ref _selectedFramework, value);
+        }
         public RMFDashboardViewModel()
         {
             CheckBoxCollection = new ObservableCollection<CheckBoxItem>();
-            LoadTestsCollection();
+            _selectedFramework = "Risk Management Framework Dashboard";
         }
 
-        public void LoadTestsCollection()
+        public ICommand LoadDoDICommand => new RelayCommand(LoadDoDICollection);
+        public ICommand Load80053Command => new RelayCommand(Load80053Collection);
+        public ICommand Load80037Command => new RelayCommand(Load80037Collection);
+        public ICommand Load800160Command => new RelayCommand(Load800160Collection);
+
+
+        public void DisposeCheckBoxCollection()
+        {
+            CheckBoxCollection.Clear();
+        }
+
+        private void LoadDoDICollection()
         {
             IList<Control> controlList = new List<Control>
 {
@@ -125,7 +145,7 @@ namespace SWAN.ViewModels
     new Control{ Major = "SI-7 - Software, Firmware, and Information Integrity", Minor = "The developer shall document the use of integrity verification processes directly or by reference in a SDP, FDP, PPIP, or equivalent documents. Maps to CCI-002703, CCI-002704." }
 };
 
-
+            //take the list and adds them to the checkbox collection
             var groupedTests = controlList.GroupBy(t => t.Major);
 
             foreach (var group in groupedTests)
@@ -138,6 +158,79 @@ namespace SWAN.ViewModels
                 CheckBoxCollection.Add(parent);
             }
         }
+
+        private void Load80053Collection()
+        {
+            IList<Control> controlList = new List<Control> 
+            { 
+                new Control { 
+                    Major = "Placeholder for NIST SP 800.53 Rev. 5", Minor = "Nothing to see here" 
+                } 
+            };
+
+            //take the list and adds them to the checkbox collection
+            var groupedTests = controlList.GroupBy(t => t.Major);
+
+            foreach (var group in groupedTests)
+            {
+                var parent = new CheckBoxItem(group.Key);
+                foreach (var minorTest in group)
+                {
+                    parent.AddChild(new CheckBoxItem(minorTest.Minor));
+                }
+                CheckBoxCollection.Add(parent);
+            }
+
+        }
+
+        private void Load80037Collection()
+        {
+            IList<Control> controlList = new List<Control>
+            {
+                new Control {
+                    Major = "Placeholder for NIST SP 800-37 Rev. 2", Minor = "Nothing to see here"
+                }
+            };
+
+            //take the list and adds them to the checkbox collection
+            var groupedTests = controlList.GroupBy(t => t.Major);
+
+            foreach (var group in groupedTests)
+            {
+                var parent = new CheckBoxItem(group.Key);
+                foreach (var minorTest in group)
+                {
+                    parent.AddChild(new CheckBoxItem(minorTest.Minor));
+                }
+                CheckBoxCollection.Add(parent);
+            }
+
+        }
+        private void Load800160Collection()
+        {
+            IList<Control> controlList = new List<Control>
+            {
+                new Control {
+                    Major = "Placeholder for NIST SP 800-160 Vol. 1", Minor = "Nothing to see here"
+                }
+            };
+
+            //take the list and adds them to the checkbox collection
+            var groupedTests = controlList.GroupBy(t => t.Major);
+
+            foreach (var group in groupedTests)
+            {
+                var parent = new CheckBoxItem(group.Key);
+                foreach (var minorTest in group)
+                {
+                    parent.AddChild(new CheckBoxItem(minorTest.Minor));
+                }
+                CheckBoxCollection.Add(parent);
+            }
+
+        }
+
+
         public void SaveStateToCsv(string filePath)
         {
             var sb = new StringBuilder();
