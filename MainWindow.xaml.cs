@@ -52,10 +52,28 @@ namespace SWAN
         {
             var menuItem = sender as MenuItem;
             string selectedFramework = menuItem.Header.ToString();
+            if(emptyChangeDashboard()){
+                _viewModel.HandleFrameworkSelectionCommand.Execute(menuItem.Header.ToString());
+            }
+            else
+            {
+                MessageBoxResult result = MessageBox.Show("Opening a new Dashboard will erase any unsaved changes. Do you want to proceed?", "Confirm Action", MessageBoxButton.YesNo);
 
-            _viewModel.HandleFrameworkSelectionCommand.Execute(menuItem.Header.ToString());
+                // Perform actions based on the user's choice
+                if (result == MessageBoxResult.Yes)
+                {
+                    _viewModel.HandleFrameworkSelectionCommand.Execute(menuItem.Header.ToString());
+                }
+                else if (result == MessageBoxResult.No)
+                {
+                    // User clicked No, perform a different operation or handle cancellation
+                }
+
+            }
         }
 
+        //TODO this has got to be done much better
+        private bool emptyChangeDashboard() { return _viewModel.DashboardViewModel.CheckBoxCollection.Count == 0; }
 
         private void TitleBarButton_Click(object sender, RoutedEventArgs e)
         {
