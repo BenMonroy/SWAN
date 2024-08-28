@@ -26,11 +26,15 @@ namespace SWAN.Views
         private RMFDashboardViewModel _viewModel;
        
 
-        public RMFDashboardView(RMFDashboardViewModel viewModel)
+        public RMFDashboardView(RMFDashboardViewModel viewModel) : this()
         {
             InitializeComponent();
             this.DataContext = viewModel;
             _viewModel = viewModel; 
+        }
+
+        public RMFDashboardView()
+        {
         }
 
         public void OnClickExpand(object sender, RoutedEventArgs e)
@@ -129,7 +133,7 @@ namespace SWAN.Views
                     _viewModel.Load800160Command.Execute(null);
                     break;
             }
-            RMF_StackPanel.Visibility = Visibility.Hidden;
+            _viewModel.ToggleRMFStackPanelVisibility();
         }
 
 

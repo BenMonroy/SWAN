@@ -7,17 +7,21 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using System.Windows.Input;
 
 namespace SWAN.ViewModels
 {
-    public class RMFDashboardViewModel : ObservableObject
+    public partial class RMFDashboardViewModel : ObservableObject
 
     {
         public ObservableCollection<CheckBoxItem> CheckBoxCollection { get; set; }
         private String _selectedFramework;
+        //TODO add a binding visibility here for RMF stack panel, change other refeernces to stack panel to this property
 
-       
+        [ObservableProperty]
+        private Visibility _RmfStackPanelVisibility = Visibility.Visible;
+
         public String SelectedFramework
         {
             get => _selectedFramework;
@@ -34,6 +38,14 @@ namespace SWAN.ViewModels
         public ICommand Load80037Command => new RelayCommand(Load80037Collection);
         public ICommand Load800160Command => new RelayCommand(Load800160Collection);
 
+        
+
+
+        // Example of changing visibility
+        public void ToggleRMFStackPanelVisibility()
+        {
+            RmfStackPanelVisibility = RmfStackPanelVisibility == Visibility.Visible ? Visibility.Hidden : Visibility.Visible;
+        } 
 
         public void DisposeCheckBoxCollection()
         {
@@ -234,6 +246,7 @@ namespace SWAN.ViewModels
         public void SaveStateToCsv(string filePath)
         {
             var sb = new StringBuilder();
+            sb.AppendLine($"SelectedFramework,\"{SelectedFramework}\"");
             sb.AppendLine("Label,IsSelected");
 
             foreach (var test in CheckBoxCollection)
@@ -246,6 +259,7 @@ namespace SWAN.ViewModels
 
         private void SaveTestToCsv(CheckBoxItem test, StringBuilder sb)
         {
+            
             // Add quotes around the label to handle commas and special characters
             sb.AppendLine($"\"{EscapeCsvField(test.Label)}\",{test.IsSelected}");
 
@@ -269,42 +283,74 @@ namespace SWAN.ViewModels
 
 
         public void LoadStateFromCsv(string filePath)
-    {
-        if (!File.Exists(filePath))
-            throw new FileNotFoundException("The specified CSV file does not exist.");
-
-        using (var parser = new TextFieldParser(filePath))
         {
-            parser.TextFieldType = FieldType.Delimited;
-            parser.SetDelimiters(",");
+            if (!File.Exists(filePath))
+                throw new FileNotFoundException("The specified CSV file does not exist.");
 
-            // Read the header line
-            string[] headers = parser.ReadFields();
-            if (headers.Length < 2 || headers[0] != "Label" || headers[1] != "IsSelected")
-                throw new InvalidDataException("The CSV file does not have the correct header format.");
-
-            // Process each line after the header
-            while (!parser.EndOfData)
+            using (var parser = new TextFieldParser(filePath))
             {
-                string[] columns = parser.ReadFields();
+                parser.TextFieldType = FieldType.Delimited;
+                parser.SetDelimiters(",");
 
-                if (columns.Length < 2)
-                    continue;
+                // Check the first line for SelectedFramework
+                string[] firstLine = parser.ReadFields();
+                if (firstLine.Length < 2 || firstLine[0] != "SelectedFramework")
+                    throw new InvalidDataException("The CSV file does not start with 'SelectedFramework'.");
 
-                string label = columns[0];
-                bool isSelected = bool.Parse(columns[1]);
+                // Validate the framework name in the second column
+                string selectedFramework = firstLine[1];
+                string[] validFrameworks = { "NIST SP 800-37 Rev. 2", "NIST SP 800-160 Vol. 1", "DoDI 8510.01", "NIST SP 800-53 Rev. 5" }; // Adjust according to your frameworks
 
-                // Find the matching item in the collection by label
-                var matchingItem = CheckBoxCollection.FirstOrDefault(item => item.Label == label);
+                if (!validFrameworks.Contains(selectedFramework))
+                    throw new InvalidDataException($"The specified framework '{selectedFramework}' is not recognized.");
+              
 
-                if (matchingItem != null)
+                // Read the header line
+                string[] headers = parser.ReadFields();
+                if (headers.Length < 2 || headers[0] != "Label" || headers[1] != "IsSelected")
+                    throw new InvalidDataException("The CSV file does not have the correct header format.");
+
+                switch (selectedFramework)
                 {
-                    matchingItem.IsSelected = isSelected;
+                    case "DoDI 8510.01":
+                        LoadDoDICollection();
+                        break;
+                    case "NIST SP 800-37 Rev. 2":
+                        Load80037Collection();
+                        break;
+                    case "NIST SP 800-53 Rev. 5":
+                        Load80053Collection();
+                        break;
+                    case "NIST SP 800-160 Vol. 1":
+                        Load800160Collection();
+                        break;
                 }
+
+                // Process each line after the header
+                while (!parser.EndOfData)
+                {
+                    string[] columns = parser.ReadFields();
+
+                    if (columns.Length < 2)
+                        continue;
+
+                    string label = columns[0];
+                    bool isSelected = bool.Parse(columns[1]);
+
+                    // Find the matching item in the collection by label
+                    var matchingItem = CheckBoxCollection.FirstOrDefault(item => item.Label == label);
+
+                    if (matchingItem != null)
+                    {
+                        matchingItem.IsSelected = isSelected;
+                    }
+                }
+
+                ToggleRMFStackPanelVisibility();
+
             }
         }
+        
+
     }
-
-
-}
 }

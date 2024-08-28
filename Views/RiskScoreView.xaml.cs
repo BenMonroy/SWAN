@@ -11,12 +11,15 @@ namespace SWAN.Views
 {
     public partial class RiskScoreView : UserControl
     {
+        // parameterless constructor since this is required by the content control
+        public RiskScoreView()
+        {
+        }
 
-        public RiskScoreView(RiskScoreViewModel viewModel)
+        public RiskScoreView(RiskScoreViewModel viewModel) : this() // makes the paramterless constructor call this
         {
             InitializeComponent();
             DataContext = viewModel;
-
         }
     }
 }

@@ -142,7 +142,7 @@ namespace SWAN.ViewModels
                     break;
             }
             //TODO fix this so stack panel goes invisible
-            //_RMFDashboardView.RMF_StackPanel.Visibility = Visibility.Hidden;
+            _dashboardViewModel.ToggleRMFStackPanelVisibility();
         }
 
 

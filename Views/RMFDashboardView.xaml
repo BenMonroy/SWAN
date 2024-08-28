@@ -26,7 +26,7 @@
 
 
             <!-- StackPanel for buttons and dropdown in the same row, second column -->
-            <StackPanel x:Name="RMF_StackPanel" Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <StackPanel x:Name="RMF_StackPanel" Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Visibility="{Binding RmfStackPanelVisibility}">
                 <!-- First ComboBox with predefined items -->
                 <ComboBox Width="165" Margin="5" Text="Select Framework"  IsEditable ="True" IsReadOnly="True" x:Name="Framework_ComboBox">
                     <ComboBoxItem Content="DoDI 8510.01" />
