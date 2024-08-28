@@ -17,7 +17,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!-- Header Section -->
@@ -45,18 +45,18 @@
             </Grid.ColumnDefinitions>
 
             <!-- Cyber Controls Graph -->
-            <materialDesign:Card Grid.Column="0" Margin="10" Padding="10" UniformCornerRadius="10" Background="{DynamicResource CardBackgroundColor}">
+            <materialDesign:Card Grid.Column="0" Margin="10" Padding="10" UniformCornerRadius="10" Background="{DynamicResource CardBackgroundColor}" VerticalAlignment="Stretch">
                 <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <TextBlock Text="Failed Standards per Cyber Control" FontSize="24" FontWeight="Bold" Foreground="{DynamicResource PrimaryColor}" Margin="0,0,0,10"/>
-                    <oxy:PlotView Model="{Binding CyberControlBarGraphModel}" MinHeight="300" MinWidth="400" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <oxy:PlotView Model="{Binding CyberControlBarGraphModel}" MinHeight="300" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
                 </StackPanel>
             </materialDesign:Card>
 
             <!-- Pie Chart -->
-            <materialDesign:Card Grid.Column="1" Margin="10" Padding="10" UniformCornerRadius="10" Background="{DynamicResource CardBackgroundColor}">
+            <materialDesign:Card Grid.Column="1" Margin="10" Padding="10" UniformCornerRadius="10" Background="{DynamicResource CardBackgroundColor}" VerticalAlignment="Stretch">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top">
                     <TextBlock Text="Vulnerabilities by Severity" FontSize="24" FontWeight="Bold" Foreground="{DynamicResource PrimaryColor}" Margin="0,0,0,10"/>
-                    <oxy:PlotView Model="{Binding RiskSeverityModel}" Height="300" Width="300"/>
+                    <oxy:PlotView Model="{Binding RiskSeverityModel}" Height="250" Width="250"/>
                 </StackPanel>
             </materialDesign:Card>
         </Grid>
@@ -70,10 +70,18 @@
                         <ItemsControl ItemsSource="{Binding AllControls}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" Margin="5">
-                                        <TextBlock Text="{Binding Label}" FontSize="16" Foreground="{DynamicResource PrimaryColor}" Width="300"/>
-                                        <TextBlock Text="{Binding IsSelected, Converter={StaticResource BooleanToCheckedConverter}}" FontSize="16" Foreground="{DynamicResource PrimaryColor}" Width="100"/>
-                                    </StackPanel>
+                                    <Grid Margin="5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="3*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Control label -->
+                                        <TextBlock Text="{Binding Label}" FontSize="16" Foreground="{DynamicResource PrimaryColor}" Grid.Column="0" TextTrimming="CharacterEllipsis" />
+
+                                        <!-- Checked status -->
+                                        <TextBlock Text="{Binding IsSelected, Converter={StaticResource BooleanToCheckedConverter}}" FontSize="16" Foreground="{DynamicResource PrimaryColor}" Grid.Column="1" HorizontalAlignment="Right"/>
+                                    </Grid>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>

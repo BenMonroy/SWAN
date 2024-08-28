@@ -1,24 +1,25 @@
-﻿using OxyPlot.Axes;
-using OxyPlot.Series;
-using OxyPlot;
-using SWAN.Models;
-using SWAN.ViewModels;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
+using OxyPlot;
+using OxyPlot.Series;
+using OxyPlot.Axes;
+using SWAN.Models;
+using SWAN.ViewModels;
 
 namespace SWAN.Views
 {
     public partial class RiskScoreView : UserControl
     {
-        public PlotModel CyberControlBarGraphModel { get; private set; }
-        public PlotModel RiskSeverityModel { get; private set; }
+        public PlotModel CyberControlBarGraphModel { get; private set; } = new PlotModel();
+        public PlotModel RiskSeverityModel { get; private set; } = new PlotModel();
         public double RiskScore { get; private set; }
 
         public ObservableCollection<CheckBoxItem> AllControls { get; private set; }
 
         public RiskScoreView(RMFDashboardViewModel dashboardViewModel)
         {
-            InitializeComponent(); // This is required for XAML elements to be initialized
+            InitializeComponent();
             DataContext = this;
 
             // Bind controls from the dashboard
@@ -39,29 +40,6 @@ namespace SWAN.Views
             // Setup graphs
             SetupCyberControlBarGraph();
             SetupRiskSeverityModel();
-        }
-
-        public class CVSSCalculator
-        {
-            public double CalculateBaseScore(double attackVector, double attackComplexity, double privilegesRequired, double userInteraction, double impactConfidentiality, double impactIntegrity, double impactAvailability)
-            {
-                // Calculate Impact
-                double impact = 1 - (1 - impactConfidentiality) * (1 - impactIntegrity) * (1 - impactAvailability);
-
-                // Calculate Exploitability
-                double exploitability = 8.22 * attackVector * attackComplexity * privilegesRequired * userInteraction;
-
-                // Calculate Impact SubScore
-                double impactSubScore = 6.42 * impact;
-
-                // Calculate Base Score
-                double baseScore = Math.Min(impactSubScore + exploitability, 10.0);
-
-                // Round up the base score to one decimal place
-                baseScore = Math.Ceiling(baseScore * 10) / 10;
-
-                return baseScore;
-            }
         }
 
         private void SetupCyberControlBarGraph()
@@ -108,6 +86,29 @@ namespace SWAN.Views
             pieSeries.Slices.Add(new PieSlice("Critical", 10) { IsExploded = true, Fill = OxyColors.DarkRed });
 
             RiskSeverityModel.Series.Add(pieSeries);
+        }
+    }
+
+    public class CVSSCalculator
+    {
+        public double CalculateBaseScore(double attackVector, double attackComplexity, double privilegesRequired, double userInteraction, double impactConfidentiality, double impactIntegrity, double impactAvailability)
+        {
+            // Calculate Impact
+            double impact = 1 - (1 - impactConfidentiality) * (1 - impactIntegrity) * (1 - impactAvailability);
+
+            // Calculate Exploitability
+            double exploitability = 8.22 * attackVector * attackComplexity * privilegesRequired * userInteraction;
+
+            // Calculate Impact SubScore
+            double impactSubScore = 6.42 * impact;
+
+            // Calculate Base Score
+            double baseScore = Math.Min(impactSubScore + exploitability, 10.0);
+
+            // Round up the base score to one decimal place
+            baseScore = Math.Ceiling(baseScore * 10) / 10;
+
+            return baseScore;
         }
     }
 }
