@@ -1,51 +1,32 @@
-﻿using System;
-using System.Windows.Controls;
-using OxyPlot;
+﻿using OxyPlot.Axes;
 using OxyPlot.Series;
-using OxyPlot.Axes;
-using System.Windows.Media;
+using OxyPlot;
+using SWAN.Models;
+using SWAN.ViewModels;
+using System.Collections.ObjectModel;
+using System.Windows.Controls;
 
 namespace SWAN.Views
 {
-    public class CVSSCalculator
-    {
-        public double CalculateBaseScore(double attackVector, double attackComplexity, double privilegesRequired, double userInteraction, double impactConfidentiality, double impactIntegrity, double impactAvailability)
-        {
-            // Calculate Impact
-            double impact = 1 - (1 - impactConfidentiality) * (1 - impactIntegrity) * (1 - impactAvailability);
-
-            // Calculate Exploitability
-            double exploitability = 8.22 * attackVector * attackComplexity * privilegesRequired * userInteraction;
-
-            // Calculate Impact SubScore
-            double impactSubScore = 6.42 * impact;
-
-            // Calculate Base Score
-            double baseScore = Math.Min(impactSubScore + exploitability, 10.0);
-
-            // Round up the base score to one decimal place
-            baseScore = Math.Ceiling(baseScore * 10) / 10;
-
-            return baseScore;
-        }
-    }
-
     public partial class RiskScoreView : UserControl
     {
         public PlotModel CyberControlBarGraphModel { get; private set; }
         public PlotModel RiskSeverityModel { get; private set; }
         public double RiskScore { get; private set; }
 
-        public RiskScoreView()
+        public ObservableCollection<CheckBoxItem> AllControls { get; private set; }
+
+        public RiskScoreView(RMFDashboardViewModel dashboardViewModel)
         {
-            InitializeComponent();
+            InitializeComponent(); // This is required for XAML elements to be initialized
             DataContext = this;
+
+            // Bind controls from the dashboard
+            AllControls = dashboardViewModel.CheckBoxCollection;
 
             // Calculate the CVSS risk score
             CVSSCalculator calculator = new CVSSCalculator();
-
-            // Sample input values for the CVSS calculation
-            double attackVector = 0.85; 
+            double attackVector = 0.85;
             double attackComplexity = 0.77;
             double privilegesRequired = 0.62;
             double userInteraction = 0.85;
@@ -55,9 +36,32 @@ namespace SWAN.Views
 
             RiskScore = calculator.CalculateBaseScore(attackVector, attackComplexity, privilegesRequired, userInteraction, impactConfidentiality, impactIntegrity, impactAvailability);
 
-            // graph setup
+            // Setup graphs
             SetupCyberControlBarGraph();
             SetupRiskSeverityModel();
+        }
+
+        public class CVSSCalculator
+        {
+            public double CalculateBaseScore(double attackVector, double attackComplexity, double privilegesRequired, double userInteraction, double impactConfidentiality, double impactIntegrity, double impactAvailability)
+            {
+                // Calculate Impact
+                double impact = 1 - (1 - impactConfidentiality) * (1 - impactIntegrity) * (1 - impactAvailability);
+
+                // Calculate Exploitability
+                double exploitability = 8.22 * attackVector * attackComplexity * privilegesRequired * userInteraction;
+
+                // Calculate Impact SubScore
+                double impactSubScore = 6.42 * impact;
+
+                // Calculate Base Score
+                double baseScore = Math.Min(impactSubScore + exploitability, 10.0);
+
+                // Round up the base score to one decimal place
+                baseScore = Math.Ceiling(baseScore * 10) / 10;
+
+                return baseScore;
+            }
         }
 
         private void SetupCyberControlBarGraph()
@@ -97,7 +101,7 @@ namespace SWAN.Views
                 StartAngle = 0
             };
 
-            // colors for each severity level
+            // Colors for each severity level
             pieSeries.Slices.Add(new PieSlice("Low", 20) { Fill = OxyColors.LightBlue });
             pieSeries.Slices.Add(new PieSlice("Medium", 50) { Fill = OxyColors.Orange });
             pieSeries.Slices.Add(new PieSlice("High", 20) { Fill = OxyColors.Red });
