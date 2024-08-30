@@ -10,7 +10,7 @@
              d:DesignHeight="450" d:DesignWidth="800"
              Background="{StaticResource WindowBackgroundColor}">
 
-    <Border CornerRadius="10" Padding="10" Background="{StaticResource CardBackgroundColor}">
+    <Border CornerRadius="10" Padding="10" Background="{StaticResource WindowBackgroundColor}">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>

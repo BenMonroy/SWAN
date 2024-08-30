@@ -7,7 +7,7 @@
              d:DesignHeight="300" d:DesignWidth="400">
 	<Grid Background="{StaticResource WindowBackgroundColor}">
 		<!-- Set grid background -->
-		<TreeView Name="treeView" Background="{StaticResource CardBackgroundColor}">
+		<TreeView Name="treeView" Background="{StaticResource WindowBackgroundColor}">
 			<TreeView.ItemTemplate>
 				<HierarchicalDataTemplate ItemsSource="{Binding ChildItems}">
 					<StackPanel Orientation="Horizontal">

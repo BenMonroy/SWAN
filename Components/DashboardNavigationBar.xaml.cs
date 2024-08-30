@@ -21,9 +21,22 @@ namespace SWAN.Components
     /// </summary>
     public partial class DashboardNavigationBar : UserControl
     {
+        private ScaffoldViewModel ViewModel;
         public DashboardNavigationBar()
         {
             InitializeComponent();
         }
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.Source is TabControl tabControl && tabControl.SelectedItem is TabItem selectedTab)
+            {
+                if (selectedTab.Tag is PageId pageId)
+                {
+                    var viewModel = DataContext as ScaffoldViewModel;
+                    viewModel?.ChangePageCommand.Execute(pageId);
+                }
+            }
+        }
+
     }
 }

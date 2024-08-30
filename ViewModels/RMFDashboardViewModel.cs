@@ -22,15 +22,12 @@ namespace SWAN.ViewModels
         [ObservableProperty]
         private Visibility _RmfStackPanelVisibility = Visibility.Visible;
 
-        public String SelectedFramework
-        {
-            get => _selectedFramework;
-            set => SetProperty(ref _selectedFramework, value);
-        }
+        [ObservableProperty]
+        public String selectedFramework = "Risk Management Framework Dashboard";
+        
         public RMFDashboardViewModel()
         {
             CheckBoxCollection = new ObservableCollection<CheckBoxItem>();
-            _selectedFramework = "Risk Management Framework Dashboard";
         }
 
         public ICommand LoadDoDICommand => new RelayCommand(LoadDoDICollection);

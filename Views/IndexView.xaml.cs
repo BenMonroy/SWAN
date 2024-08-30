@@ -1,13 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using SWAN.ViewModels;
+using System.Collections.Generic;
 using System.Windows.Controls;
 
 namespace SWAN.Views
 {
     public partial class IndexView : UserControl
     {
-        public IndexView()
+        public IndexView(IndexViewModel viewModel)
         {
             InitializeComponent();
+            this.DataContext = viewModel;
             LoadData();
         }
 

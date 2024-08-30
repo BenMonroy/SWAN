@@ -10,35 +10,23 @@ using SWAN.Views;
 
 namespace SWAN.ViewModels
 {
-    public class ScaffoldViewModel : ObservableObject
+    public partial class ScaffoldViewModel : ObservableObject
     {
-        private PageId _pageId;
-        private RMFDashboardViewModel _dashboardViewModel;
-        private UserControl _currentView;
+        [ObservableProperty]
+        private PageId pageId;
+        [ObservableProperty]
+        private RMFDashboardViewModel dashboardViewModel;
+        [ObservableProperty]
+        private UserControl currentView;
         private readonly RMFDashboardView _rmfDashboardView;
         private readonly HistoryView _historyView;
         private readonly IndexView _indexView;
         private readonly RiskScoreView _riskScoreView;
 
-        public UserControl CurrentView
-        {
-            get => _currentView;
-            set => SetProperty(ref _currentView, value);
-        }
-
+     
         private string _currentFilePath = string.Empty;
-        public PageId PageId
-        {
-            get { return _pageId; }
-            set { SetProperty(ref _pageId, value); }
-        }
+       
 
-        
-        public RMFDashboardViewModel DashboardViewModel
-        {
-            get => _dashboardViewModel;
-            set => SetProperty(ref _dashboardViewModel, value);
-        }
 
         public ICommand ChangePageCommand => new RelayCommand<PageId>(ChangePage);
         public ICommand SaveCommand => new RelayCommand(Save);
@@ -124,25 +112,25 @@ namespace SWAN.ViewModels
        
         private void HandleFrameworkSelection(string framework)
         {
-            _dashboardViewModel.SelectedFramework = framework;
+            DashboardViewModel.SelectedFramework = framework;
 
             switch (framework)
             {
                 case "DoDI 8510.01":
-                    _dashboardViewModel.LoadDoDICommand.Execute(null);
+                    DashboardViewModel.LoadDoDICommand.Execute(null);
                     break;
                 case "NIST SP 800.53 Rev. 5":
-                    _dashboardViewModel.Load80053Command.Execute(null);
+                    DashboardViewModel.Load80053Command.Execute(null);
                     break;
                 case "NIST SP 800-37 Rev. 2":
-                    _dashboardViewModel.Load80037Command.Execute(null);
+                    DashboardViewModel.Load80037Command.Execute(null);
                     break;
                 case "NIST 800-160 Vol. 1":
-                    _dashboardViewModel.Load800160Command.Execute(null);
+                    DashboardViewModel.Load800160Command.Execute(null);
                     break;
             }
             //TODO fix this so stack panel goes invisible
-            _dashboardViewModel.ToggleRMFStackPanelVisibility();
+            DashboardViewModel.ToggleRMFStackPanelVisibility();
         }
 
 
@@ -184,12 +172,12 @@ namespace SWAN.ViewModels
        RiskScoreView riskScoreView,
        RMFDashboardView rmfDashboardView)
         {
-            _dashboardViewModel = dashboardViewModel;
+            DashboardViewModel = dashboardViewModel;
             _historyView = historyView;
             _indexView = indexView;
             _riskScoreView = riskScoreView;
             _rmfDashboardView = rmfDashboardView;
-            _currentView = _rmfDashboardView;
+            CurrentView = _rmfDashboardView;
         }
     }
 }

@@ -8,28 +8,39 @@
              mc:Ignorable="d"
              d:DesignHeight="80" d:DesignWidth="800"
              Background="{StaticResource CardBackgroundColor}">
+
     <UserControl.Resources>
         <ResourceDictionary>
-            <Style x:Key="btn" TargetType="{x:Type Button}">
+            <Style x:Key="tabItemStyle" TargetType="{x:Type TabItem}">
                 <Setter Property="Width" Value="90"/>
                 <Setter Property="Height" Value="40"/>
-                <Setter Property="Border.CornerRadius" Value="10,10,0,0"/>
-                <Setter Property="VerticalAlignment" Value="Bottom"/>
-                <Setter Property="Foreground" Value= "WhiteSmoke" />
+                <Setter Property="Foreground" Value="WhiteSmoke"/>
                 <Setter Property="FontFamily" Value="Baskerville,Georgia"/>
                 <Setter Property="Template">
                     <Setter.Value>
-                        <ControlTemplate TargetType="Button">
-                            <Border CornerRadius="{TemplateBinding Border.CornerRadius}" 
-                        Background="{StaticResource CardBackgroundColor}" BorderBrush="#ccc" 
-                        BorderThickness="1,2,1,0" >
+                        <ControlTemplate TargetType="TabItem">
+                            <Border x:Name="Border"
+                                    Background="{StaticResource CardBackgroundColor}"
+                                    BorderBrush="black"
+                                    BorderThickness="1,1,0,0">
                                 <ContentPresenter x:Name="contentPresenter" 
-                                      ContentTemplate="{TemplateBinding ContentTemplate}" 
-                                      Content="{TemplateBinding Content}" 
-                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      Margin="{TemplateBinding Padding}" 
-                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                                  Content="{TemplateBinding Header}" 
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
                             </Border>
+                            <ControlTemplate.Triggers>
+                                <!-- Trigger for selected tab -->
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="#FF2697FF"/>
+                                    <Setter TargetName="Border" Property="BorderThickness" Value="0,2,0,0"/>
+                                    <Setter TargetName="Border" Property="Background" Value="#15131C"/>
+                                </Trigger>
+                                <!-- Trigger for hover state -->
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="Border" Property="Background" Value="#555"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
@@ -37,30 +48,31 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="80"/>
-        </Grid.RowDefinitions>
-
-        <!-- Column definitions for buttons and tilte/icon -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="40.59"/>
-            <ColumnDefinition Width="49.41"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <!--Buttons, title, and icon-->
+        <!-- Left-aligned SWAN TextBlock -->
+        <TextBlock Text="SWAN"
+                   VerticalAlignment="Center"
+                   Foreground="WhiteSmoke"
+                   FontFamily="Baskerville, Georgia"
+                   FontSize="45"
+                   Margin="10,0"
+                   Grid.Column="0"/>
 
-        <TextBlock Grid.Column="1" Text="SWAN" VerticalAlignment="Center" Foreground="WhiteSmoke" FontFamily="Baskerville, Georgia" FontSize="45" Grid.ColumnSpan="2" Margin="0,0,306,0"/>
-        <Button Grid.Column="3" Content="Index" Style="{StaticResource btn}" Command="{Binding ChangePageCommand}" CommandParameter="{x:Static local:PageId.IndexView}" Grid.ColumnSpan="2" Margin="0,40,0,0" VerticalAlignment="Top"/>
-        <Button Grid.Column="5" Content="Dashboard" Style="{StaticResource btn}" Command="{Binding ChangePageCommand}" CommandParameter="{x:Static local:PageId.RMFDashboardView}" Margin="0,40,0,0" VerticalAlignment="Top"/>
-        <Button Grid.Column="6" Content="Risk Score" Style="{StaticResource btn}" Command="{Binding ChangePageCommand}" CommandParameter="{x:Static local:PageId.RiskScoreView}" Margin="0,40,0,0" VerticalAlignment="Top"/>
-        <Button Grid.Column="7" Content="History" Style="{StaticResource btn}"  Command="{Binding ChangePageCommand}" CommandParameter="{x:Static local:PageId.HistoryView}" Margin="0,40,0,0" VerticalAlignment="Top"/>
+        <!-- TabControl for navigation -->
+        <TabControl SelectionChanged="TabControl_SelectionChanged"
+                    SelectedIndex="1"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Grid.Column="1">
+            <TabItem Header="Index" Style="{StaticResource tabItemStyle}" Tag="{x:Static local:PageId.IndexView}" />
+            <TabItem Header="Dashboard" Style="{StaticResource tabItemStyle}" Tag="{x:Static local:PageId.RMFDashboardView}" />
+            <TabItem Header="Risk Score" Style="{StaticResource tabItemStyle}" Tag="{x:Static local:PageId.RiskScoreView}" />
+            <TabItem Header="History" Style="{StaticResource tabItemStyle}" Tag="{x:Static local:PageId.HistoryView}" />
+        </TabControl>
     </Grid>
 </UserControl>
