@@ -18,6 +18,7 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
@@ -39,7 +40,7 @@
             </StackPanel>
 
             <!-- TreeView in the second row, spanning both columns -->
-            <TreeView x:Name="TreeView1" ItemsSource="{Binding CheckBoxCollection}" BorderThickness="0" Grid.Row="1" Grid.ColumnSpan="2">
+            <!--<TreeView x:Name="TreeView1" ItemsSource="{Binding CheckBoxCollection}" BorderThickness="0" Grid.Row="1" Grid.ColumnSpan="2">
                 <TreeView.ItemTemplate>
                     <HierarchicalDataTemplate ItemsSource="{Binding Children}">
                         <StackPanel Orientation="Horizontal">
@@ -54,7 +55,99 @@
                         <Setter Property="IsExpanded" Value="{Binding IsSelected}" />
                     </Style>
                 </TreeView.ItemContainerStyle>
-            </TreeView>
+            </TreeView>-->
+            <Border BorderBrush="Black" Width="Auto" Grid.Row="1" Grid.Column="0" BorderThickness="2" CornerRadius="5" Background="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="10">
+                <!-- StackPanel to hold buttons inside the rectangle -->
+                <StackPanel HorizontalAlignment="Left">
+                    <Button Name="OpenModalButton" Content="CM-1: Configuration Management Policy and Procedures" Width="Auto" Height="30" Margin="0,5,0,5" Click="TogglePopup_Click" Tag="ModalPopup"/>
+                    <Button Name="OpenModalButton2" Content="SA-3: System Development Life Cycle " Width="Auto" Height="30" Margin="0,5,0,5" Click="TogglePopup_Click" Tag="ModalPopup2"/>
+                    <Button Name="OpenModalButton3" Content="Open Modal 3" Width="100" Height="30" Margin="0,5,0,5" Click="TogglePopup_Click" Tag="ModalPopup3"/>
+                    <Button Name="OpenModalButton4" Content="Open Modal 4" Width="100" Height="30" Margin="0,5,0,5" Click="TogglePopup_Click" Tag="ModalPopup4"/>
+                </StackPanel>
+            </Border>
+            
+            <Border BorderBrush="Black" Width="Auto" Grid.Row="1" Grid.Column="1" BorderThickness="2" CornerRadius="5" Background="Black" 
+    HorizontalAlignment="Left" VerticalAlignment="Center" Padding="10">
+                <!-- StackPanel to hold buttons inside the rectangle -->
+                <StackPanel HorizontalAlignment="Left">
+                    <Button Content="Button 3" Width="100" Margin="0,5,0,5"/>
+                    <Button Content="Button 4" Width="100" Margin="0,5,0,5"/>
+                    <Button Content="Button 3" Width="100" Margin="0,5,0,5"/>
+                    <Button Content="Button 4" Width="100" Margin="0,5,0,5"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Popup acting as a dropdown modal (Modal 1) -->
+            <Popup Name="ModalPopup" PlacementTarget="{Binding ElementName=OpenModalButton}" 
+                   StaysOpen="True" AllowsTransparency="True" PopupAnimation="Slide" Placement="Bottom">
+                <Border BorderBrush="Gray" BorderThickness="1" Background="White" CornerRadius="5">
+                    <StackPanel Margin="10">
+                        <!-- Header Text -->
+                        <TextBlock Text="Select Options:" FontWeight="Bold" Margin="0,0,0,10"/>
+
+                        <!-- Checkboxes -->
+                        <CheckBox Content="CCI-000287" Margin="0,5,0,5" Foreground="Black"/>
+
+                        <!-- Button to close the modal -->
+                        <Button Content="Close" Width="60" HorizontalAlignment="Right"/>
+                    </StackPanel>
+                </Border>
+            </Popup>
+            <Popup Name="ModalPopup2" PlacementTarget="{Binding ElementName=OpenModalButton2}" 
+       StaysOpen="True" AllowsTransparency="True" PopupAnimation="Slide" Placement="Bottom" HorizontalAlignment="Right">
+                <Border BorderBrush="Gray" BorderThickness="1" Background="White" CornerRadius="5">
+                    <StackPanel Margin="10">
+                        <!-- Header Text -->
+                        <TextBlock Text="Select Options:" FontWeight="Bold" Margin="0,0,0,10"/>
+
+                        <!-- Checkboxes -->
+                        <CheckBox Content="CCI-000615" Margin="0,5,0,5" Foreground="Black"/>
+                        <CheckBox Content="CCI-003092" Margin="0,5,0,5" Foreground="Black"/>
+                        <CheckBox Content="CCI-000616" Margin="0,5,0,5" Foreground="Black"/>
+
+                        <!-- Button to close the modal -->
+                        <Button Content="Close" Width="60" HorizontalAlignment="Right" />
+                    </StackPanel>
+                </Border>
+            </Popup>
+            <Popup Name="ModalPopup3" PlacementTarget="{Binding ElementName=OpenModalButton3}" 
+       StaysOpen="True" AllowsTransparency="True" PopupAnimation="Slide" Placement="Bottom">
+                <Border BorderBrush="Gray" BorderThickness="1" Background="White" CornerRadius="5">
+                    <StackPanel Margin="10">
+                        <!-- Header Text -->
+                        <TextBlock Text="Select Options:" FontWeight="Bold" Margin="0,0,0,10"/>
+
+                        <!-- Checkboxes -->
+                        <CheckBox Content="Option 111" Margin="0,5,0,5" Foreground="Black"/>
+                        <CheckBox Content="Option 222" Margin="0,5,0,5" Foreground="Black"/>
+                        <CheckBox Content="Option 333" Margin="0,5,0,5" Foreground="Black"/>
+
+                        <!-- Button to close the modal -->
+                        <Button Content="Close" Width="60" HorizontalAlignment="Right"/>
+                    </StackPanel>
+                </Border>
+            </Popup>
+            <Popup Name="ModalPopup4" PlacementTarget="{Binding ElementName=OpenModalButton4}" 
+       StaysOpen="True" AllowsTransparency="True" PopupAnimation="Slide" Placement="Bottom">
+                <Border BorderBrush="Gray" BorderThickness="1" Background="White" CornerRadius="5">
+                    <StackPanel Margin="10">
+                        <!-- Header Text -->
+                        <TextBlock Text="Select Options:" FontWeight="Bold" Margin="0,0,0,10"/>
+
+                        <!-- Checkboxes -->
+                        <CheckBox Content="Option 1111" Margin="0,5,0,5" Foreground="Black"/>
+                        <CheckBox Content="Option 2222" Margin="0,5,0,5" Foreground="Black"/>
+                        <CheckBox Content="Option 3333" Margin="0,5,0,5" Foreground="Black"/>
+
+                        <!-- Button to close the modal -->
+                        <Button Content="Close" Width="60" HorizontalAlignment="Right" Click="CloseModalButton_Click"/>
+                    </StackPanel>
+                </Border>
+            </Popup>
+
+            <!-- Popup acting as a dropdown modal (Modal 2) -->
+            
+
         </Grid>
     </Border>
 </UserControl>

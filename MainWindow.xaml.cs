@@ -4,6 +4,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 using System.Windows.Interop;
 
 namespace SWAN
@@ -45,7 +46,13 @@ namespace SWAN
                 this.WindowState = WindowState.Maximized;
             }
         }
-
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
 
         //Todo must be some try/catch block with a popup if already in an active dashboard
         private void NewFileMenuItem_Click(object sender, RoutedEventArgs e)

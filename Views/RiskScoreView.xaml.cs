@@ -87,6 +87,30 @@ namespace SWAN.Views
 
             RiskSeverityModel.Series.Add(pieSeries);
         }
+        public void UpdateGraphsBasedOnSelection(ObservableCollection<CheckBoxItem> checkBoxItems)
+        {
+            // Update CyberControlBarGraphModel or RiskSeverityModel based on checkBoxItems
+
+            // Example: Refresh CyberControlBarGraphModel
+            var selectedControls = checkBoxItems.Where(item => item.IsSelected).Count();
+
+            // Reset the model
+            CyberControlBarGraphModel.Series.Clear();
+
+            var barSeries = new BarSeries
+            {
+                ItemsSource = new[]
+                {
+            new BarItem { Value = selectedControls } // For demonstration
+        },
+                LabelPlacement = LabelPlacement.Inside,
+                LabelFormatString = "{0}"
+            };
+
+            CyberControlBarGraphModel.Series.Add(barSeries);
+            CyberControlBarGraphModel.InvalidatePlot(true);
+        }
+
     }
 
     public class CVSSCalculator
@@ -111,4 +135,5 @@ namespace SWAN.Views
             return baseScore;
         }
     }
+
 }

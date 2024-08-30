@@ -1,61 +1,28 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Text;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
-namespace SWAN.Models
+public class CheckBoxItem : INotifyPropertyChanged
 {
-    public class CheckBoxItem : ObservableObject
+    private bool _isSelected;
+    public bool IsSelected
     {
-        private ObservableCollection<CheckBoxItem> _children;
-        public ObservableCollection<CheckBoxItem> Children
+        get => _isSelected;
+        set
         {
-            get => _children;
-            set => SetProperty(ref _children, value);
-        }
-
-        private string _label;
-        public string Label
-        {
-            get => _label;
-            set => SetProperty(ref _label, value);
-        }
-
-        private bool _isSelected;
-        public bool IsSelected
-        {
-            get => _isSelected;
-            set
+            if (_isSelected != value)
             {
-                if (SetProperty(ref _isSelected, value))
-                {
-                    CheckChildSelected(value);
-                }
+                _isSelected = value;
+                OnPropertyChanged();
             }
         }
+    }
 
-        public CheckBoxItem(string label, bool isSelected = false)
-        {
-            Children = new ObservableCollection<CheckBoxItem>();
-            Label = label;
-            IsSelected = isSelected;
-        }
+    public string Label { get; set; }
 
-        public CheckBoxItem() : this(string.Empty)
-        {
-        }
+    public event PropertyChangedEventHandler PropertyChanged;
 
-        public void AddChild(CheckBoxItem child)
-        {
-            Children.Add(child);
-        }
-
-        private void CheckChildSelected(bool value)
-        {
-            foreach (var child in Children)
-            {
-                child.IsSelected = value;
-            }
-        }
+    protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
