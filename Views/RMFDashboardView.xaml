@@ -4,11 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SWAN.Views" 
-             xmlns:ViewModels ="clr-namespace:SWAN.ViewModels"
+             xmlns:ViewModels="clr-namespace:SWAN.ViewModels"
              xmlns:components="clr-namespace:SWAN.Components"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="{StaticResource WindowBackgroundColor}">
+
 
     <Border CornerRadius="10" Padding="10" Background="{StaticResource WindowBackgroundColor}">
         <Grid>
@@ -17,29 +18,39 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="90"/>
+                <!-- Adjusted by removing redundant RowDefinition -->
+                <RowDefinition Height="50"/>
+                <!-- Add a textbox that says "Recent Files" here -->
+                <RowDefinition Height="40"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- TextBlock in the first row, first column -->
-            <TextBlock x:Name="RMFTextBlock" Grid.Row="0" Grid.Column="0" Foreground="{StaticResource SecondaryColor}" Text="{Binding SelectedFramework}" FontSize="50" VerticalAlignment="Center"/>
+            <!-- TextBlock for Selected Framework -->
+            <TextBlock x:Name="RMFTextBlock" Grid.Row="0" Grid.Column="0" 
+                       Foreground="{StaticResource SecondaryColor}" 
+                       Text="{Binding SelectedFramework}" 
+                       FontSize="50" VerticalAlignment="Center"/>
 
-
-            <!-- StackPanel for buttons and dropdown in the same row, second column -->
-            <StackPanel x:Name="RMF_StackPanel" Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Visibility="{Binding RmfStackPanelVisibility}">
-                <!-- First ComboBox with predefined items -->
-                <ComboBox Width="165" Margin="5" Text="Select Framework"  IsEditable ="True" IsReadOnly="True" x:Name="Framework_ComboBox">
+            <!-- StackPanel for framework selection and dashboard creation -->
+            <StackPanel x:Name="RMF_StackPanel" Grid.Row="0" Grid.Column="1" 
+                        Orientation="Horizontal" HorizontalAlignment="Right" 
+                        Visibility="{Binding RmfStackPanelVisibility}">
+                <ComboBox Width="165" Margin="5" Text="Select Framework" 
+                          IsEditable="True" IsReadOnly="True" x:Name="Framework_ComboBox">
                     <ComboBoxItem Content="DoDI 8510.01" />
                     <ComboBoxItem Content="NIST SP 800.53 Rev. 5" />
                     <ComboBoxItem Content="NIST SP 800-37 Rev. 2" />
                     <ComboBoxItem Content="NIST 800-160 Vol. 1" />
                 </ComboBox>
-                <!-- Second ComboBox -->
                 <Button Content="Create Dashboard" Click="Create_Dashboard_Click" Margin="10"/>
             </StackPanel>
 
+
             <!-- TreeView in the second row, spanning both columns -->
-            <TreeView x:Name="TreeView1" ItemsSource="{Binding CheckBoxCollection}" BorderThickness="0" Grid.Row="1" Grid.ColumnSpan="2">
+            <TreeView x:Name="TreeView1" ItemsSource="{Binding CheckBoxCollection}" BorderThickness="0" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="5">
                 <TreeView.ItemTemplate>
                     <HierarchicalDataTemplate ItemsSource="{Binding Children}">
                         <StackPanel Orientation="Horizontal">
@@ -55,6 +66,44 @@
                     </Style>
                 </TreeView.ItemContainerStyle>
             </TreeView>
+
+
+
+
+
+            <!-- New Dashboard Label -->
+            <TextBlock Text="New Dashboard" Grid.Row="1" Grid.Column="0" 
+                       VerticalAlignment="Center" FontSize="20" Foreground="White" Visibility="{Binding RmfStackPanelVisibility}"/>
+
+            <!-- Grid with middle aligned text boxes -->
+            <Grid Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Visibility="{Binding RmfStackPanelVisibility}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="new RMF dash" Margin="10" Width="120" Height="90" 
+                         HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Button Grid.Column="1" Content="new RMF dash" Margin="10" Width="120" Height="90"
+                         HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Button Grid.Column="2" Content="new RMF dash" Margin="10" Width="120" Height="90" 
+                         HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Button Grid.Column="3" Content="new RMF dash" Margin="10" Width="120" Height="90"
+                         HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+
+            <!-- Search Bar -->
+            <Button Grid.Row="3" Grid.Column="0" Margin="10" Height="50" Width="300" 
+                     HorizontalAlignment="Left" Content="Search" 
+                     VerticalAlignment="Center" Visibility="{Binding RmfStackPanelVisibility}"/>
+
+            <!-- Label for Recent Files -->
+            <TextBlock Text="Recent Files" Grid.Row="4" Grid.Column="0" 
+                       VerticalAlignment="Center" FontSize="20" Foreground="White" Margin="10" Visibility="{Binding RmfStackPanelVisibility}"/>
+
+            <!-- RecentFilesView ContentControl -->
+            <ContentControl Grid.Row="5" Content="{Binding FileView}" Visibility="{Binding RmfStackPanelVisibility}"/>
         </Grid>
     </Border>
 </UserControl>

@@ -34,8 +34,24 @@ namespace SWAN.ViewModels
         public ICommand OpenFileCommand => new RelayCommand(OpenFile);
         public static ICommand TodoCommand => new RelayCommand(() => MessageBox.Show("not implemented!"));
 
-        public ICommand HandleFrameworkSelectionCommand => new RelayCommand<string>(HandleFrameworkSelection);
+        public ICommand HandleFrameworkSelectionCommand => new RelayCommand<string>(NewFile);
 
+
+
+        public ScaffoldViewModel(
+        RMFDashboardViewModel dashboardViewModel,
+        HistoryView historyView,
+        IndexView indexView,
+        RiskScoreView riskScoreView,
+        RMFDashboardView rmfDashboardView)
+        {
+            DashboardViewModel = dashboardViewModel;
+            _historyView = historyView;
+            _indexView = indexView;
+            _riskScoreView = riskScoreView;
+            _rmfDashboardView = rmfDashboardView;
+            CurrentView = _rmfDashboardView;
+        }
 
         private void ChangePage(PageId nextPage)
         {
@@ -54,10 +70,11 @@ namespace SWAN.ViewModels
                     CurrentView = _rmfDashboardView;
                     break;
                 default:
-                    CurrentView = _historyView; 
+                    CurrentView = _historyView;
                     break;
             }
         }
+
 
         private void Save()
         {
@@ -110,10 +127,11 @@ namespace SWAN.ViewModels
         }
 
        
-        private void HandleFrameworkSelection(string framework)
+        private void NewFile(string framework)
         {
             DashboardViewModel.SelectedFramework = framework;
-
+            _currentFilePath = string.Empty;
+            DashboardViewModel.DisposeCheckBoxCollection(); //clears checkboxes so new one can be loaded
             switch (framework)
             {
                 case "DoDI 8510.01":
@@ -125,7 +143,7 @@ namespace SWAN.ViewModels
                 case "NIST SP 800-37 Rev. 2":
                     DashboardViewModel.Load80037Command.Execute(null);
                     break;
-                case "NIST 800-160 Vol. 1":
+                case "NIST SP 800-160 Vol. 1":
                     DashboardViewModel.Load800160Command.Execute(null);
                     break;
             }
@@ -165,19 +183,5 @@ namespace SWAN.ViewModels
             }
         }
 
-        public ScaffoldViewModel(
-       RMFDashboardViewModel dashboardViewModel,
-       HistoryView historyView,
-       IndexView indexView,
-       RiskScoreView riskScoreView,
-       RMFDashboardView rmfDashboardView)
-        {
-            DashboardViewModel = dashboardViewModel;
-            _historyView = historyView;
-            _indexView = indexView;
-            _riskScoreView = riskScoreView;
-            _rmfDashboardView = rmfDashboardView;
-            CurrentView = _rmfDashboardView;
-        }
     }
 }

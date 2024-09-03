@@ -11,23 +11,6 @@
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
 
-	<UserControl.Resources>
-		<ResourceDictionary>
-			<DataTemplate x:Key="History">
-				<local:HistoryView/>
-			</DataTemplate>
-			<DataTemplate x:Key="Index">
-				<local:IndexView/>
-				<!-- Correct reference to IndexView -->
-			</DataTemplate>
-			<DataTemplate x:Key="Dashboard">
-				<local:RMFDashboardView/>
-			</DataTemplate>
-			<DataTemplate x:Key="RiskScore">
-				<local:RiskScoreView/>
-			</DataTemplate>
-		</ResourceDictionary>
-	</UserControl.Resources>
 
 	<Grid>
 		<Grid.RowDefinitions>

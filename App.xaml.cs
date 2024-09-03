@@ -19,10 +19,14 @@ namespace SWAN
             AppHost = Host.CreateDefaultBuilder()
              .ConfigureServices((hostContext, services) => {
                  services.AddSingleton<MainWindow>();
+
+                 services.AddSingleton<RecentFilesViewModel>();
                  services.AddSingleton<ScaffoldViewModel>();
                  services.AddSingleton<RiskScoreViewModel>();
                  services.AddSingleton<RMFDashboardViewModel>();
                  services.AddSingleton<IndexViewModel>();
+
+                 services.AddSingleton<RecentFilesView>();
                  services.AddSingleton<HistoryView>();
                  services.AddSingleton<IndexView>();
                  services.AddSingleton<RiskScoreView>();

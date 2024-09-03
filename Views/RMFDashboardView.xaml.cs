@@ -25,12 +25,13 @@ namespace SWAN.Views
     {
         private RMFDashboardViewModel _viewModel;
        
+        
 
         public RMFDashboardView(RMFDashboardViewModel viewModel) : this()
         {
             InitializeComponent();
             this.DataContext = viewModel;
-            _viewModel = viewModel; 
+            _viewModel = viewModel;
         }
 
         public RMFDashboardView()
@@ -129,7 +130,7 @@ namespace SWAN.Views
                     break;
                 case 3:
                     // Action for "NIST 800-160 Vol. 1"
-                    _viewModel.SelectedFramework = "NIST 800-160 Vol. 1";
+                    _viewModel.SelectedFramework = "NIST SP 800-160 Vol. 1";
                     _viewModel.Load800160Command.Execute(null);
                     break;
             }

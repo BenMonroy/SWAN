@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SWAN.Models
 {
-    public class Control
+    public class CheckControl
     {
         public string Major { get; set; }
         public string Minor { get; set; }

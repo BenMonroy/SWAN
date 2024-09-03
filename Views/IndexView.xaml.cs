@@ -6,12 +6,13 @@ namespace SWAN.Views
 {
     public partial class IndexView : UserControl
     {
-        public IndexView(IndexViewModel viewModel)
+        public IndexView(IndexViewModel viewModel) : this()
         {
             InitializeComponent();
             this.DataContext = viewModel;
             LoadData();
         }
+        public IndexView() { }
 
         private void LoadData()
         {

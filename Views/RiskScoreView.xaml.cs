@@ -11,7 +11,7 @@ namespace SWAN.Views
 {
     public partial class RiskScoreView : UserControl
     {
-        // parameterless constructor since this is required by the content control
+        // parameterless constructor since this is required by the content CheckControl
         public RiskScoreView()
         {
         }
