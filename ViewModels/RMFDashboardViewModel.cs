@@ -32,21 +32,34 @@ namespace SWAN.ViewModels
         private RecentFilesManager _recentFilesManager = new RecentFilesManager();
 
         [ObservableProperty]
-        private UserControl fileView; 
+        private UserControl fileView;
 
+        [ObservableProperty]
+        public ObservableCollection<RecentFile> recentFiles;
+
+     
 
         public RMFDashboardViewModel(RecentFilesView fileView)
         {
             CheckBoxCollection = new ObservableCollection<CheckBoxItem>();
             FileView = fileView;
+            RecentFiles = new ObservableCollection<RecentFile>(_recentFilesManager.LoadRecentFiles());
+
         }
+
+
+
+        
 
         public ICommand LoadDoDICommand => new RelayCommand(LoadDoDICollection);
         public ICommand Load80053Command => new RelayCommand(Load80053Collection);
         public ICommand Load80037Command => new RelayCommand(Load80037Collection);
         public ICommand Load800160Command => new RelayCommand(Load800160Collection);
+        public ICommand NewFileCommand => new RelayCommand<string>(CreateNewFile);
+        public ICommand OpenRecentFileCommand => new RelayCommand<RecentFile>(OpenRecentFile);
+        public ICommand RemoveFileCommand => new RelayCommand<RecentFile>(RemoveFile);
 
-        
+
 
 
         // Example of changing visibility
@@ -383,7 +396,50 @@ namespace SWAN.ViewModels
 
             }
         }
-        
+        public void CreateNewFile(string framework)
+        {
+            SelectedFramework = framework;
+            DisposeCheckBoxCollection(); //clears checkboxes so new one can be loaded
+            switch (framework)
+            {
+                case "DoDI 8510.01":
+                    LoadDoDICollection();
+                    break;
+                case "NIST SP 800.53 Rev. 5":
+                    Load80053Collection();
+                    break;
+                case "NIST SP 800-37 Rev. 2":
+                    Load80037Collection();
+                    break;
+                case "NIST SP 800-160 Vol. 1":
+                    Load800160Collection();
+                    break;
+            }
+            //TODO fix this so stack panel goes invisible
+            ToggleRMFStackPanelVisibility();
+        }
+        private void RemoveFile(RecentFile recentFile)
+        {
+            if (recentFile != null)
+            {
+                RecentFiles.Remove(recentFile);
+                _recentFilesManager.RemoveRecentFile(recentFile.FilePath);
+            }
+        }
 
+        private void OpenRecentFile(RecentFile recentFile)
+        {
+            string filePath = recentFile.FilePath;
+            if (System.IO.File.Exists(filePath))
+            {
+                //open the file here
+                LoadStateFromCsv(filePath);
+            }
+            else
+            {
+                RemoveFile(recentFile);
+                MessageBox.Show("Error: File path not found. Removing from recent files list.");
+            }
+        }
     }
 }

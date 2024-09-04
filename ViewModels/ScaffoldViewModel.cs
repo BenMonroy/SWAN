@@ -129,26 +129,8 @@ namespace SWAN.ViewModels
        
         private void NewFile(string framework)
         {
-            DashboardViewModel.SelectedFramework = framework;
             _currentFilePath = string.Empty;
-            DashboardViewModel.DisposeCheckBoxCollection(); //clears checkboxes so new one can be loaded
-            switch (framework)
-            {
-                case "DoDI 8510.01":
-                    DashboardViewModel.LoadDoDICommand.Execute(null);
-                    break;
-                case "NIST SP 800.53 Rev. 5":
-                    DashboardViewModel.Load80053Command.Execute(null);
-                    break;
-                case "NIST SP 800-37 Rev. 2":
-                    DashboardViewModel.Load80037Command.Execute(null);
-                    break;
-                case "NIST SP 800-160 Vol. 1":
-                    DashboardViewModel.Load800160Command.Execute(null);
-                    break;
-            }
-            //TODO fix this so stack panel goes invisible
-            DashboardViewModel.ToggleRMFStackPanelVisibility();
+            DashboardViewModel.CreateNewFile(framework);
         }
 
 

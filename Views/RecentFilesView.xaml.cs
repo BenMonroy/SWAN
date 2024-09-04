@@ -21,14 +21,9 @@ namespace SWAN.Views
     /// </summary>
     public partial class RecentFilesView : UserControl
     {
-        public RecentFilesView(RecentFilesViewModel viewModel) : this()
-        {
-            InitializeComponent();
-            this.DataContext = viewModel;
-        }
-
         public RecentFilesView()
         {
+            InitializeComponent();
         }
     }
 }

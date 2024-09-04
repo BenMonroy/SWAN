@@ -20,7 +20,7 @@ namespace SWAN
              .ConfigureServices((hostContext, services) => {
                  services.AddSingleton<MainWindow>();
 
-                 services.AddSingleton<RecentFilesViewModel>();
+        
                  services.AddSingleton<ScaffoldViewModel>();
                  services.AddSingleton<RiskScoreViewModel>();
                  services.AddSingleton<RMFDashboardViewModel>();

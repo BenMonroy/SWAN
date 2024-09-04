@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using SWAN.Components;
 using SWAN.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -24,8 +25,8 @@ namespace SWAN.Views
     public partial class RMFDashboardView : UserControl
     {
         private RMFDashboardViewModel _viewModel;
-       
-        
+
+
 
         public RMFDashboardView(RMFDashboardViewModel viewModel) : this()
         {
@@ -82,32 +83,32 @@ namespace SWAN.Views
         public void CheckBoxClick(object sender, RoutedEventArgs e)
         {
             // Assuming MainViewModelInstance.TestsCollection holds your parent items
-             // and each parent item has a Children collection and an IsSelected property.
+            // and each parent item has a Children collection and an IsSelected property.
             foreach (var parent in _viewModel.CheckBoxCollection)
             {
-                    int totalChildren = parent.Children.Count;
-                    int selectedChildren = 0;
-                    foreach (var child in parent.Children)
+                int totalChildren = parent.Children.Count;
+                int selectedChildren = 0;
+                foreach (var child in parent.Children)
+                {
+                    if (child.IsSelected == true)
                     {
-                        if (child.IsSelected == true)
-                        {
-                            selectedChildren++;
-                        }
+                        selectedChildren++;
                     }
+                }
 
-                    // Set the parent's IsSelected to true only if all children are selected
-                    if (selectedChildren == totalChildren)
-                    {
-                            parent.IsSelected = true;
+                // Set the parent's IsSelected to true only if all children are selected
+                if (selectedChildren == totalChildren)
+                {
+                    parent.IsSelected = true;
 
-                    }
-                    if(selectedChildren == 0)
-                        {
-                            parent.IsSelected = false;
-                        }
+                }
+                if (selectedChildren == 0)
+                {
+                    parent.IsSelected = false;
+                }
             }
         }
-        
+
 
         private void Create_Dashboard_Click(object sender, RoutedEventArgs e)
         {
@@ -120,7 +121,7 @@ namespace SWAN.Views
                     break;
                 case 1:
                     // Action for "NIST SP 800.53 Rev. 5"
-                   _viewModel.SelectedFramework = "NIST SP 800.53 Rev. 5";
+                    _viewModel.SelectedFramework = "NIST SP 800.53 Rev. 5";
                     _viewModel.Load80053Command.Execute(null);
                     break;
                 case 2:
@@ -137,6 +138,26 @@ namespace SWAN.Views
             _viewModel.ToggleRMFStackPanelVisibility();
         }
 
+
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Ensure there is a newly selected item
+            if (e.AddedItems.Count > 0 && e.AddedItems[0] is RecentFile selectedFileItem)
+            {
+                // Check if the ViewModel and Command are set up correctly
+                if (selectedFileItem != null)
+                {
+                    //TODO fix search bar logic/implementation before actually opening a file
+                    //right now it opens first file matching any char, does not wait for you to type whole file or select from list
+                    //_viewModel.OpenRecentFileCommand.Execute(selectedFileItem);
+                }
+                else
+                {
+                    MessageBox.Show("Error trying to open recent file.");
+                }
+            }
+        }
 
     }
 }

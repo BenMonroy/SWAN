@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SWAN.Views" 
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              xmlns:ViewModels="clr-namespace:SWAN.ViewModels"
              xmlns:components="clr-namespace:SWAN.Components"
              mc:Ignorable="d" 
@@ -76,27 +77,36 @@
                        VerticalAlignment="Center" FontSize="20" Foreground="White" Visibility="{Binding RmfStackPanelVisibility}"/>
 
             <!-- Grid with middle aligned text boxes -->
-            <Grid Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Visibility="{Binding RmfStackPanelVisibility}">
+            <Grid Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" Visibility="{Binding RmfStackPanelVisibility}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Content="new RMF dash" Margin="10" Width="120" Height="90" 
-                         HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Button Grid.Column="1" Content="new RMF dash" Margin="10" Width="120" Height="90"
-                         HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Button Grid.Column="2" Content="new RMF dash" Margin="10" Width="120" Height="90" 
-                         HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Button Grid.Column="3" Content="new RMF dash" Margin="10" Width="120" Height="90"
-                         HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Button Grid.Column="0" Content="DoDI 8510.01" FontSize="8" Margin="10" Width="160" Height="90" 
+            HorizontalAlignment="Center" VerticalAlignment="Center"
+            Command="{Binding NewFileCommand}" CommandParameter="DoDI 8510.01"/>
+                <Button Grid.Column="1" Content="NIST SP 800.53 Rev. 5" Margin="10" Width="160" Height="90"
+            HorizontalAlignment="Center" VerticalAlignment="Center"
+            Command="{Binding NewFileCommand}" CommandParameter="NIST SP 800.53 Rev. 5"/>
+                <Button Grid.Column="2" Content="NIST SP 800-37 Rev. 2" Margin="10" Width="160" Height="90" 
+            HorizontalAlignment="Center" VerticalAlignment="Center"
+            Command="{Binding NewFileCommand}" CommandParameter="NIST SP 800-37 Rev. 2"/>
+                <Button Grid.Column="3" Content="NIST 800-160 Vol. 1" Margin="10" Width="160" Height="90"
+            HorizontalAlignment="Center" VerticalAlignment="Center"
+            Command="{Binding NewFileCommand}" CommandParameter="NIST 800-160 Vol. 1"/>
             </Grid>
 
+
             <!-- Search Bar -->
-            <Button Grid.Row="3" Grid.Column="0" Margin="10" Height="50" Width="300" 
-                     HorizontalAlignment="Left" Content="Search" 
-                     VerticalAlignment="Center" Visibility="{Binding RmfStackPanelVisibility}"/>
+            <ComboBox Grid.Row="3" Grid.Column="0" Margin="10" Height="50" Width="300" 
+                     HorizontalAlignment="Left" ItemsSource="{Binding RecentFiles}" Name="SearchComboBox"
+              DisplayMemberPath="Name" 
+              IsEditable="True"
+              StaysOpenOnEdit="True" 
+              IsTextSearchEnabled="True" Text="Search Files                          "
+                     VerticalAlignment="Center" Visibility="{Binding RmfStackPanelVisibility}" SelectionChanged="ComboBox_SelectionChanged"/>
 
             <!-- Label for Recent Files -->
             <TextBlock Text="Recent Files" Grid.Row="4" Grid.Column="0" 
