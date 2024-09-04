@@ -16,6 +16,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wpf.Ui.Controls;
+using TreeViewItem = Wpf.Ui.Controls.TreeViewItem;
 
 namespace SWAN.Views
 {
@@ -140,24 +142,17 @@ namespace SWAN.Views
 
 
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void FileChosenFromSearch(object sender, AutoSuggestBoxSuggestionChosenEventArgs e)
         {
-            // Ensure there is a newly selected item
-            if (e.AddedItems.Count > 0 && e.AddedItems[0] is RecentFile selectedFileItem)
+            if (e.SelectedItem is RecentFile selectedFile)
             {
-                // Check if the ViewModel and Command are set up correctly
-                if (selectedFileItem != null)
-                {
-                    //TODO fix search bar logic/implementation before actually opening a file
-                    //right now it opens first file matching any char, does not wait for you to type whole file or select from list
-                    //_viewModel.OpenRecentFileCommand.Execute(selectedFileItem);
-                }
-                else
-                {
-                    MessageBox.Show("Error trying to open recent file.");
-                }
+                _viewModel.LoadStateFromCsv(selectedFile.FilePath);
             }
-        }
+            else
+            {
+                System.Windows.MessageBox.Show("Error: Could not open file.");
+            }
 
+        }
     }
 }

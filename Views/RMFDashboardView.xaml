@@ -100,13 +100,10 @@
 
 
             <!-- Search Bar -->
-            <ComboBox Grid.Row="3" Grid.Column="0" Margin="10" Height="50" Width="300" 
-                     HorizontalAlignment="Left" ItemsSource="{Binding RecentFiles}" Name="SearchComboBox"
-              DisplayMemberPath="Name" 
-              IsEditable="True"
-              StaysOpenOnEdit="True" 
-              IsTextSearchEnabled="True" Text="Search Files                          "
-                     VerticalAlignment="Center" Visibility="{Binding RmfStackPanelVisibility}" SelectionChanged="ComboBox_SelectionChanged"/>
+            <ui:AutoSuggestBox Grid.Row="3"
+            Icon="{ui:SymbolIcon Search24}"
+            OriginalItemsSource="{Binding RecentFiles}" DisplayMemberPath="Name"
+            PlaceholderText="Search..." SuggestionChosen="FileChosenFromSearch"  Visibility="{Binding RmfStackPanelVisibility}"/>
 
             <!-- Label for Recent Files -->
             <TextBlock Text="Recent Files" Grid.Row="4" Grid.Column="0" 
