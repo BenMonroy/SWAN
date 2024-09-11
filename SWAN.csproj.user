@@ -31,6 +31,9 @@
     <Compile Update="Views\ScaffoldView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\WikiPages\CM1WikiPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Components\CheckboxComponent.xaml">
@@ -58,6 +61,15 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\ScaffoldView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\WikiPageTemplate.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\SA3WikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\CM1WikiPage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

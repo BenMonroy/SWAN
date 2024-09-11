@@ -12,7 +12,8 @@
         Title="Software Assurance Navigator" 
         Height="450" 
         Width="800"
-        Background="{StaticResource WindowBackgroundColor}">
+        Background="{StaticResource WindowBackgroundColor}"
+        >
 
     <Window.Resources>
         <!-- Defines a style for buttons with a MouseOver trigger -->
@@ -115,7 +116,7 @@
         </Grid.RowDefinitions>
 
         <!-- Custom Title Bar -->
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" MouseLeftButtonDown="Window_MouseLeftButtonDown" Background="Transparent">
             <!-- Column Definitions to split title bar into 3 sections -->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>

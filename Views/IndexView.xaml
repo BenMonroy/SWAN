@@ -3,19 +3,43 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="400">
-	<Grid Background="{StaticResource WindowBackgroundColor}">
-		<!-- Set grid background -->
-		<TreeView Name="treeView" Background="{StaticResource WindowBackgroundColor}">
-			<TreeView.ItemTemplate>
-				<HierarchicalDataTemplate ItemsSource="{Binding ChildItems}">
-					<StackPanel Orientation="Horizontal">
-						<Rectangle Height="10" Width="10" Fill="Red"/>
-						<TextBlock Text="{Binding Title}"/>
-					</StackPanel>
-				</HierarchicalDataTemplate>
-			</TreeView.ItemTemplate>
-		</TreeView>
-	</Grid>
+             mc:Ignorable="d" 
+             d:DesignHeight="450" 
+             d:DesignWidth="800"
+             Background="{StaticResource WindowBackgroundColor}">
+
+    <Grid Background="{StaticResource WindowBackgroundColor}">
+        <Grid.ColumnDefinitions>
+            <!-- Sidebar column with a fixed width -->
+            <ColumnDefinition Width="100"/>
+            <!-- Main content area with flexible width -->
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- ListBox for Navigation Sidebar -->
+        <ListBox Grid.Column="0" 
+                 SelectionMode="Single" 
+                 x:Name="sidebar" 
+                 Margin="0" 
+                 Foreground="White"
+                 BorderThickness="0"
+                 VerticalAlignment="Stretch"
+                 HorizontalContentAlignment="Left"
+                 SelectionChanged="Sidebar_SelectionChanged">
+
+            <!-- ListBoxItems for Navigation -->
+            <ListBoxItem Content="Page 1" HorizontalContentAlignment="Left"/>
+            <ListBoxItem Content="Page 2" HorizontalContentAlignment="Left"/>
+            <ListBoxItem Content="Page 3" HorizontalContentAlignment="Left"/>
+        </ListBox>
+
+        <!-- Frame for Content Display -->
+        <Frame Grid.Column="1" 
+               Foreground="White"
+               x:Name="ContentFrame" 
+               NavigationUIVisibility="Hidden"
+               HorizontalAlignment="Stretch" 
+               VerticalAlignment="Stretch"/>
+        <!-- Ensures the frame stretches to fill available space -->
+    </Grid>
 </UserControl>

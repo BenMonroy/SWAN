@@ -23,7 +23,15 @@ namespace SWAN
             this.DataContext = viewModel;
             _viewModel = viewModel;
         }
-
+        private void Window_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            // Check if the left mouse button is pressed
+            if (e.ButtonState == System.Windows.Input.MouseButtonState.Pressed)
+            {
+                // Drag the window
+                this.DragMove();
+            }
+        }
         private void CloseOnClick(object sender, RoutedEventArgs e)
         {
             this.Close();
