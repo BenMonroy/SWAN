@@ -21,7 +21,7 @@ namespace SWAN.Components
     /// </summary>
     public partial class DashboardNavigationBar : UserControl
     {
-        private ScaffoldViewModel ViewModel;
+       
         public DashboardNavigationBar()
         {
             InitializeComponent();

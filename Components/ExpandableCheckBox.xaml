@@ -1,0 +1,533 @@
+﻿<UserControl x:Class="SWAN.Components.ExpandableCheckBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SWAN.Components"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="800">
+   
+        <Grid>
+            <!-- Define the three columns with equal width -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Vertical StackPanel for the first column -->
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <Expander Header="{Binding ConceptualControl1.Name}" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding ConceptualControl1.PhysicalControls}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="3*"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="*"/>
+                                <DataGridTemplateColumn Header="Passed" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+
+                <Expander Header="{Binding ConceptualControl4.Name}" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding ConceptualControl4.PhysicalControls}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="3*"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="*"/>
+                                <DataGridTemplateColumn Header="Passed" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+
+                <Expander Header="{Binding ConceptualControl7.Name}" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding ConceptualControl7.PhysicalControls}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="3*"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="*"/>
+                                <DataGridTemplateColumn Header="Passed" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+
+                <Expander Header="{Binding ConceptualControl10.Name}" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding ConceptualControl10.PhysicalControls}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="3*"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="*"/>
+                                <DataGridTemplateColumn Header="Passed" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+                <Expander Header="{Binding ConceptualControl13.Name}" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding ConceptualControl13.PhysicalControls}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="3*"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="*"/>
+                                <DataGridTemplateColumn Header="Passed" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+                <Expander Header="{Binding ConceptualControl16.Name}" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding ConceptualControl16.PhysicalControls}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="3*"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="*"/>
+                                <DataGridTemplateColumn Header="Passed" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+                <Expander Header="{Binding ConceptualControl19.Name}" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding ConceptualControl19.PhysicalControls}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="3*"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="*"/>
+                                <DataGridTemplateColumn Header="Passed" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+                <Expander Header="{Binding ConceptualControl22.Name}" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding ConceptualControl22.PhysicalControls}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="3*"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="*"/>
+                                <DataGridTemplateColumn Header="Passed" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+                <Expander Header="{Binding ConceptualControl25.Name}" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding ConceptualControl25.PhysicalControls}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="3*"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="*"/>
+                                <DataGridTemplateColumn Header="Passed" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+                <Expander Header="{Binding ConceptualControl28.Name}" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding ConceptualControl28.PhysicalControls}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="3*"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="*"/>
+                                <DataGridTemplateColumn Header="Passed" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+            </StackPanel>
+
+
+            <!-- Vertical StackPanel for the second column -->
+            <StackPanel Grid.Column="1" Orientation="Vertical">
+                <Expander Header="{Binding ConceptualControl2.Name}" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding ConceptualControl2.PhysicalControls}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="3*"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="*"/>
+                                <DataGridTemplateColumn Header="Passed" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+                <Expander Header="{Binding ConceptualControl5.Name}" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding ConceptualControl5.PhysicalControls}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="3*"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="*"/>
+                                <DataGridTemplateColumn Header="Passed" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+
+                <Expander Header="{Binding ConceptualControl8.Name}" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding ConceptualControl8.PhysicalControls}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="3*"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="*"/>
+                                <DataGridTemplateColumn Header="Passed" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+
+                <Expander Header="{Binding ConceptualControl11.Name}" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding ConceptualControl11.PhysicalControls}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="3*"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="*"/>
+                                <DataGridTemplateColumn Header="Passed" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+
+                <Expander Header="{Binding ConceptualControl14.Name}" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding ConceptualControl14.PhysicalControls}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="3*"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="*"/>
+                                <DataGridTemplateColumn Header="Passed" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+                <Expander Header="{Binding ConceptualControl17.Name}" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding ConceptualControl17.PhysicalControls}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="3*"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="*"/>
+                                <DataGridTemplateColumn Header="Passed" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+                <Expander Header="{Binding ConceptualControl20.Name}" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding ConceptualControl20.PhysicalControls}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="3*"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="*"/>
+                                <DataGridTemplateColumn Header="Passed" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+                <Expander Header="{Binding ConceptualControl23.Name}" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding ConceptualControl23.PhysicalControls}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="3*"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="*"/>
+                                <DataGridTemplateColumn Header="Passed" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+                <Expander Header="{Binding ConceptualControl26.Name}" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding ConceptualControl26.PhysicalControls}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="3*"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="*"/>
+                                <DataGridTemplateColumn Header="Passed" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+                <Expander Header="{Binding ConceptualControl29.Name}" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding ConceptualControl29.PhysicalControls}" CanUserAddRows="False" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="3*"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="*"/>
+                                <DataGridTemplateColumn Header="Passed" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+            </StackPanel>
+
+            <!-- Vertical StackPanel for the third column -->
+            <StackPanel Grid.Column="2" Orientation="Vertical">
+                <Expander Header="{Binding ConceptualControl3.Name}" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding ConceptualControl3.PhysicalControls}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="3*"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="*"/>
+                                <DataGridTemplateColumn Header="Passed" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+
+                <Expander Header="{Binding ConceptualControl6.Name}" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding ConceptualControl6.PhysicalControls}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="3*"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="*"/>
+                                <DataGridTemplateColumn Header="Passed" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+
+                <Expander Header="{Binding ConceptualControl9.Name}" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding ConceptualControl9.PhysicalControls}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="3*"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="*"/>
+                                <DataGridTemplateColumn Header="Passed" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+
+                <Expander Header="{Binding ConceptualControl12.Name}" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding ConceptualControl12.PhysicalControls}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="3*"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="*"/>
+                                <DataGridTemplateColumn Header="Passed" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+                <Expander Header="{Binding ConceptualControl15.Name}" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding ConceptualControl15.PhysicalControls}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="3*"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="*"/>
+                                <DataGridTemplateColumn Header="Passed" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+                <Expander Header="{Binding ConceptualControl18.Name}" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding ConceptualControl18.PhysicalControls}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="3*"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="*"/>
+                                <DataGridTemplateColumn Header="Passed" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+                <Expander Header="{Binding ConceptualControl21.Name}" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding ConceptualControl21.PhysicalControls}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="3*"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="*"/>
+                                <DataGridTemplateColumn Header="Passed" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+                <Expander Header="{Binding ConceptualControl24.Name}" Margin="5" VerticalAlignment="Stretch">
+                    <Grid>
+                        <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding ConceptualControl24.PhysicalControls}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="3*"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="*"/>
+                                <DataGridTemplateColumn Header="Passed" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+                <Expander Header="{Binding ConceptualControl27.Name}" Margin="5" VerticalAlignment="Stretch" Name="ControlBox27">
+                    <Grid>
+                        <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding ConceptualControl27.PhysicalControls}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="3*"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="*"/>
+                                <DataGridTemplateColumn Header="Passed" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+            </StackPanel>
+        </Grid>
+</UserControl>

@@ -25,6 +25,7 @@ namespace SWAN
                  services.AddSingleton<RiskScoreViewModel>();
                  services.AddSingleton<RMFDashboardViewModel>();
                  services.AddSingleton<IndexViewModel>();
+                 services.AddSingleton<HistoryViewModel>();
 
                  services.AddSingleton<RecentFilesView>();
                  services.AddSingleton<HistoryView>();

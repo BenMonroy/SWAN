@@ -41,31 +41,9 @@ namespace SWAN.Views
         {
         }
 
-        public void OnClickExpand(object sender, RoutedEventArgs e)
-        {
-            foreach (object item in this.TreeView1.Items)
-            {
-                TreeViewItem trItem = this.TreeView1.ItemContainerGenerator.ContainerFromItem(item) as TreeViewItem;
-                if (trItem != null)
-                {
-                    ToggleAll(trItem, true);
-                }
-                trItem.IsExpanded = true;
-            }
-        }
+       
 
-        public void OnClickCollapse(object sender, RoutedEventArgs e)
-        {
-            foreach (object item in this.TreeView1.Items)
-            {
-                TreeViewItem trItem = this.TreeView1.ItemContainerGenerator.ContainerFromItem(item) as TreeViewItem;
-                if (trItem != null)
-                {
-                    ToggleAll(trItem, false);
-                }
-                trItem.IsExpanded = false;
-            }
-        }
+       
 
         public void ToggleAll(ItemsControl items, bool expand)
         {

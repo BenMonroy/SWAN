@@ -49,24 +49,12 @@
                 <Button Content="Create Dashboard" Click="Create_Dashboard_Click" Margin="10"/>
             </StackPanel>
 
-
-            <!-- TreeView in the second row, spanning both columns -->
-            <TreeView x:Name="TreeView1" ItemsSource="{Binding CheckBoxCollection}" BorderThickness="0" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="5">
-                <TreeView.ItemTemplate>
-                    <HierarchicalDataTemplate ItemsSource="{Binding Children}">
-                        <StackPanel Orientation="Horizontal">
-                            <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}"
-                                  Content="{Binding Label, Mode=OneWay}"
-                                  Click="CheckBoxClick" />
-                        </StackPanel>
-                    </HierarchicalDataTemplate>
-                </TreeView.ItemTemplate>
-                <TreeView.ItemContainerStyle>
-                    <Style TargetType="TreeViewItem">
-                        <Setter Property="IsExpanded" Value="{Binding IsSelected}" />
-                    </Style>
-                </TreeView.ItemContainerStyle>
-            </TreeView>
+            <!-- New Checkboxes -->
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" 
+                          Grid.ColumnSpan="2" Grid.RowSpan ="5" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
+                          Visibility="{Binding CheckBoxesVisibility}">
+                <components:ExpandableCheckBox x:Name="CheckBoxes" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+            </ScrollViewer>
 
 
 

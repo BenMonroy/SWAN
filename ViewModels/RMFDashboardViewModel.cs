@@ -27,6 +27,9 @@ namespace SWAN.ViewModels
         private Visibility _RmfStackPanelVisibility = Visibility.Visible;
 
         [ObservableProperty]
+        private Visibility checkBoxesVisibility = Visibility.Hidden;
+
+        [ObservableProperty]
         public String selectedFramework = "Risk Management Framework Dashboard";
 
         private RecentFilesManager _recentFilesManager = new RecentFilesManager();
@@ -37,13 +40,45 @@ namespace SWAN.ViewModels
         [ObservableProperty]
         public ObservableCollection<RecentFile> recentFiles;
 
-     
+        public ConceptualCheckBox ConceptualControl1 { get; set; }
+        public ConceptualCheckBox ConceptualControl2 { get; set; }
+        public ConceptualCheckBox ConceptualControl3 { get; set; }
+        public ConceptualCheckBox ConceptualControl4 { get; set; }
+        public ConceptualCheckBox ConceptualControl5 { get; set; }
+        public ConceptualCheckBox ConceptualControl6 { get; set; }
+        public ConceptualCheckBox ConceptualControl7 { get; set; }
+        public ConceptualCheckBox ConceptualControl8 { get; set; }
+        public ConceptualCheckBox ConceptualControl9 { get; set; }
+        public ConceptualCheckBox ConceptualControl10 { get; set; }
+        public ConceptualCheckBox ConceptualControl11 { get; set; }
+        public ConceptualCheckBox ConceptualControl12 { get; set; }
+        public ConceptualCheckBox ConceptualControl13 { get; set; }
+        public ConceptualCheckBox ConceptualControl14 { get; set; }
+        public ConceptualCheckBox ConceptualControl15 { get; set; }
+        public ConceptualCheckBox ConceptualControl16 { get; set; }
+        public ConceptualCheckBox ConceptualControl17 { get; set; }
+        public ConceptualCheckBox ConceptualControl18 { get; set; }
+        public ConceptualCheckBox ConceptualControl19 { get; set; }
+        public ConceptualCheckBox ConceptualControl20 { get; set; }
+        public ConceptualCheckBox ConceptualControl21 { get; set; }
+        public ConceptualCheckBox ConceptualControl22 { get; set; }
+        public ConceptualCheckBox ConceptualControl23 { get; set; }
+        public ConceptualCheckBox ConceptualControl24 { get; set; }
+        public ConceptualCheckBox ConceptualControl25 { get; set; }
+        public ConceptualCheckBox ConceptualControl26 { get; set; }
+        public ConceptualCheckBox ConceptualControl27 { get; set; }
+        public ConceptualCheckBox ConceptualControl28 { get; set; }
+        public ConceptualCheckBox ConceptualControl29 { get; set; }
+
+
 
         public RMFDashboardViewModel(RecentFilesView fileView)
         {
             CheckBoxCollection = new ObservableCollection<CheckBoxItem>();
             FileView = fileView;
             RecentFiles = new ObservableCollection<RecentFile>(_recentFilesManager.LoadRecentFiles());
+            // remove this after testing
+            NewDoDIControls();
 
         }
 
@@ -66,6 +101,7 @@ namespace SWAN.ViewModels
         public void ToggleRMFStackPanelVisibility()
         {
             RmfStackPanelVisibility = Visibility.Hidden;
+            CheckBoxesVisibility = Visibility.Visible;
         } 
 
         public void DisposeCheckBoxCollection()
@@ -441,5 +477,316 @@ namespace SWAN.ViewModels
                 MessageBox.Show("Error: File path not found. Removing from recent files list.");
             }
         }
+        public void NewDoDIControls()
+        {
+            ConceptualControl1 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 1",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+                {
+                    new PhysicalControl { Control = "Physical Control 1", Severity = "Low/Low", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 2", Severity = "Med/Med", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 3", Severity = "High/High", Passed = true }
+                }
+            };
+            ConceptualControl2 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 2",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+                {
+                    new PhysicalControl { Control = "Physical Control 1", Severity = "Low/Low", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 2", Severity = "Med/Med", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 3", Severity = "High/High", Passed = true }
+                }
+            };
+            ConceptualControl3 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 3", // You can modify this name as needed
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+                {
+                    new PhysicalControl { Control = "Physical Control 1", Severity = "Low/Low", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 2", Severity = "Med/Med", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 3", Severity = "High/High", Passed = true }
+                }
+            };
+            ConceptualControl4 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 4", // You can modify this name as needed
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+                {
+                    new PhysicalControl { Control = "Physical Control 1", Severity = "Low/Low", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 2", Severity = "Med/Med", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 3", Severity = "High/High", Passed = true }
+                }
+            };
+            ConceptualControl5 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 5", // You can modify this name as needed
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+                {
+                    new PhysicalControl { Control = "Physical Control 1", Severity = "Low/Low", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 2", Severity = "Med/Med", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 3", Severity = "High/High", Passed = true }
+                }
+            };
+            ConceptualControl6 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 6", // You can modify this name as needed
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+                {
+                    new PhysicalControl { Control = "Physical Control 1", Severity = "Low/Low", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 2", Severity = "Med/Med", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 3", Severity = "High/High", Passed = true }
+                }
+            };
+            ConceptualControl7 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 7", // You can modify this name as needed
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+                {
+                    new PhysicalControl { Control = "Physical Control 1", Severity = "Low/Low", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 2", Severity = "Med/Med", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 3", Severity = "High/High", Passed = true }
+                }
+            };
+            ConceptualControl8 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 8", // You can modify this name as needed
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+                {
+                    new PhysicalControl { Control = "Physical Control 1", Severity = "Low/Low", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 2", Severity = "Med/Med", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 3", Severity = "High/High", Passed = true }
+                }
+            };
+            ConceptualControl9 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 9", // You can modify this name as needed
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+                {
+                    new PhysicalControl { Control = "Physical Control 1", Severity = "Low/Low", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 2", Severity = "Med/Med", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 3", Severity = "High/High", Passed = true }
+                }
+            };
+            ConceptualControl10 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 10", // You can modify this name as needed
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+                {
+                    new PhysicalControl { Control = "Physical Control 1", Severity = "Low/Low", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 2", Severity = "Med/Med", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 3", Severity = "High/High", Passed = true }
+                }
+            };
+            ConceptualControl11 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 11", // You can modify this name as needed
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+                {
+                    new PhysicalControl { Control = "Physical Control 1", Severity = "Low/Low", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 2", Severity = "Med/Med", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 3", Severity = "High/High", Passed = true }
+                }
+            };
+            ConceptualControl12 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 12", // You can modify this name as needed
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+                {
+                    new PhysicalControl { Control = "Physical Control 1", Severity = "Low/Low", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 2", Severity = "Med/Med", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 3", Severity = "High/High", Passed = true }
+                }
+            };
+            ConceptualControl13 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 13",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+    {
+        new PhysicalControl { Control = "Physical Control 1", Severity = "Low/Low", Passed = true },
+        new PhysicalControl { Control = "Physical Control 2", Severity = "Med/Med", Passed = false },
+        new PhysicalControl { Control = "Physical Control 3", Severity = "High/High", Passed = true }
+    }
+            };
+
+            ConceptualControl14 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 14",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+    {
+        new PhysicalControl { Control = "Physical Control 1", Severity = "Low/Low", Passed = true },
+        new PhysicalControl { Control = "Physical Control 2", Severity = "Med/Med", Passed = false },
+        new PhysicalControl { Control = "Physical Control 3", Severity = "High/High", Passed = true }
+    }
+            };
+
+            ConceptualControl15 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 15",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+    {
+        new PhysicalControl { Control = "Physical Control 1", Severity = "Low/Low", Passed = true },
+        new PhysicalControl { Control = "Physical Control 2", Severity = "Med/Med", Passed = false },
+        new PhysicalControl { Control = "Physical Control 3", Severity = "High/High", Passed = true }
+    }
+            };
+
+            ConceptualControl16 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 16",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+    {
+        new PhysicalControl { Control = "Physical Control 1", Severity = "Low/Low", Passed = true },
+        new PhysicalControl { Control = "Physical Control 2", Severity = "Med/Med", Passed = false },
+        new PhysicalControl { Control = "Physical Control 3", Severity = "High/High", Passed = true }
+    }
+            };
+
+            ConceptualControl17 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 17",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+    {
+        new PhysicalControl { Control = "Physical Control 1", Severity = "Low/Low", Passed = true },
+        new PhysicalControl { Control = "Physical Control 2", Severity = "Med/Med", Passed = false },
+        new PhysicalControl { Control = "Physical Control 3", Severity = "High/High", Passed = true }
+    }
+            };
+
+            ConceptualControl18 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 18",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+    {
+        new PhysicalControl { Control = "Physical Control 1", Severity = "Low/Low", Passed = true },
+        new PhysicalControl { Control = "Physical Control 2", Severity = "Med/Med", Passed = false },
+        new PhysicalControl { Control = "Physical Control 3", Severity = "High/High", Passed = true }
+    }
+            };
+
+            ConceptualControl19 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 19",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+    {
+        new PhysicalControl { Control = "Physical Control 1", Severity = "Low/Low", Passed = true },
+        new PhysicalControl { Control = "Physical Control 2", Severity = "Med/Med", Passed = false },
+        new PhysicalControl { Control = "Physical Control 3", Severity = "High/High", Passed = true }
+    }
+            };
+
+            ConceptualControl20 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 20",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+    {
+        new PhysicalControl { Control = "Physical Control 1", Severity = "Low/Low", Passed = true },
+        new PhysicalControl { Control = "Physical Control 2", Severity = "Med/Med", Passed = false },
+        new PhysicalControl { Control = "Physical Control 3", Severity = "High/High", Passed = true }
+    }
+            };
+
+            ConceptualControl21 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 21",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+    {
+        new PhysicalControl { Control = "Physical Control 1", Severity = "Low/Low", Passed = true },
+        new PhysicalControl { Control = "Physical Control 2", Severity = "Med/Med", Passed = false },
+        new PhysicalControl { Control = "Physical Control 3", Severity = "High/High", Passed = true }
+    }
+            };
+
+            ConceptualControl22 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 22",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+    {
+        new PhysicalControl { Control = "Physical Control 1", Severity = "Low/Low", Passed = true },
+        new PhysicalControl { Control = "Physical Control 2", Severity = "Med/Med", Passed = false },
+        new PhysicalControl { Control = "Physical Control 3", Severity = "High/High", Passed = true }
+    }
+            };
+
+            ConceptualControl23 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 23",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+    {
+        new PhysicalControl { Control = "Physical Control 1", Severity = "Low/Low", Passed = true },
+        new PhysicalControl { Control = "Physical Control 2", Severity = "Med/Med", Passed = false },
+        new PhysicalControl { Control = "Physical Control 3", Severity = "High/High", Passed = true }
+    }
+            };
+
+            ConceptualControl24 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 24",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+    {
+        new PhysicalControl { Control = "Physical Control 1", Severity = "Low/Low", Passed = true },
+        new PhysicalControl { Control = "Physical Control 2", Severity = "Med/Med", Passed = false },
+        new PhysicalControl { Control = "Physical Control 3", Severity = "High/High", Passed = true }
+    }
+            };
+
+            ConceptualControl25 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 25",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+    {
+        new PhysicalControl { Control = "Physical Control 1", Severity = "Low/Low", Passed = true },
+        new PhysicalControl { Control = "Physical Control 2", Severity = "Med/Med", Passed = false },
+        new PhysicalControl { Control = "Physical Control 3", Severity = "High/High", Passed = true }
+    }
+            };
+            ConceptualControl26 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 26",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+    {
+        new PhysicalControl { Control = "Physical Control 1", Severity = "Low/Low", Passed = true },
+        new PhysicalControl { Control = "Physical Control 2", Severity = "Med/Med", Passed = false },
+        new PhysicalControl { Control = "Physical Control 3", Severity = "High/High", Passed = true }
+    }
+            };
+
+            ConceptualControl27 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 27",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+    {
+        new PhysicalControl { Control = "Physical Control 1", Severity = "Low/Low", Passed = true },
+        new PhysicalControl { Control = "Physical Control 2", Severity = "Med/Med", Passed = false },
+        new PhysicalControl { Control = "Physical Control 3", Severity = "High/High", Passed = true }
+    }
+            };
+
+            ConceptualControl28 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 28",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+    {
+        new PhysicalControl { Control = "Physical Control 1", Severity = "Low/Low", Passed = true },
+        new PhysicalControl { Control = "Physical Control 2", Severity = "Med/Med", Passed = false },
+        new PhysicalControl { Control = "Physical Control 3", Severity = "High/High", Passed = true }
+    }
+            };
+
+            ConceptualControl29 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 29",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+    {
+        new PhysicalControl { Control = "Physical Control 1", Severity = "Low/Low", Passed = true },
+        new PhysicalControl { Control = "Physical Control 2", Severity = "Med/Med", Passed = false },
+        new PhysicalControl { Control = "Physical Control 3", Severity = "High/High", Passed = true }
+    }
+            };
+        }
+
+
     }
 }
+
