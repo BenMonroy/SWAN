@@ -20,16 +20,29 @@ namespace SWAN.Views
                 // Perform navigation based on the selected item
                 switch (selectedText)
                 {
-                    case "Page 1":
+                    case "CM-1":
                         ContentFrame.Navigate(new System.Uri("Views/WikiPages/CM1WikiPage.xaml", System.UriKind.Relative));
                         break;
-                    case "Page 2":
+                    case "SA-3":
                         ContentFrame.Navigate(new System.Uri("Views/WikiPages/SA3WikiPage.xaml", System.UriKind.Relative));
                         break;
-                    case "Page 3":
-                        ContentFrame.Navigate(new System.Uri("Views/WikiPages/WikiPageTemplate.xaml", System.UriKind.Relative));
+                    case "SA-4":
+                        ContentFrame.Navigate(new System.Uri("Views/WikiPages/SA4WikiPage.xaml", System.UriKind.Relative));
+                        break;
+                    case "SA-4(2)":
+                        ContentFrame.Navigate(new System.Uri("Views/WikiPages/SA4_2_WikiPage.xaml", System.UriKind.Relative));
+                        break;
+                    case "SA-4(3)":
+                        ContentFrame.Navigate(new System.Uri("Views/WikiPages/SA4_3_WikiPage.xaml", System.UriKind.Relative));
+                        break;
+                    case "SA-8":
+                        ContentFrame.Navigate(new System.Uri("Views/WikiPages/SA8WikiPage.xaml", System.UriKind.Relative));
+                        break;
+                    case "SA-10":
+                        ContentFrame.Navigate(new System.Uri("Views/WikiPages/SA10WikiPage.xaml", System.UriKind.Relative));
                         break;
                     default:
+                        ContentFrame.Navigate(new System.Uri("Views/WikiPages/CM1WikiPage.xaml", System.UriKind.Relative));
                         break;
                 }
             }

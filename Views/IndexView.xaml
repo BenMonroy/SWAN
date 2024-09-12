@@ -43,9 +43,13 @@
                      SelectionChanged="Sidebar_SelectionChangedRMF1">
 
                         <!-- ListBoxItems for Navigation -->
-                        <ListBoxItem Content="Page 1" HorizontalContentAlignment="Left"/>
-                        <ListBoxItem Content="Page 2" HorizontalContentAlignment="Left"/>
-                        <ListBoxItem Content="Page 3" HorizontalContentAlignment="Left"/>
+                        <ListBoxItem Content="CM-1" HorizontalContentAlignment="Left"/>
+                        <ListBoxItem Content="SA-3" HorizontalContentAlignment="Left"/>
+                        <ListBoxItem Content="SA-4" HorizontalContentAlignment="Left"/>
+                        <ListBoxItem Content="SA-4(2)" HorizontalContentAlignment="Left"/>
+                        <ListBoxItem Content="SA-4(3)" HorizontalContentAlignment="Left"/>
+                        <ListBoxItem Content="SA-8" HorizontalContentAlignment="Left"/>
+                        <ListBoxItem Content="SA-10" HorizontalContentAlignment="Left"/>
                     </ListBox>
 
                     <!-- Frame for Content Display -->
