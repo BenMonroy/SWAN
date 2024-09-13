@@ -8,38 +8,136 @@
              d:DesignWidth="800"
              Background="{StaticResource WindowBackgroundColor}">
 
+    <!-- Main Grid for the entire control layout -->
     <Grid Background="{StaticResource WindowBackgroundColor}">
-        <Grid.ColumnDefinitions>
-            <!-- Sidebar column with a fixed width -->
-            <ColumnDefinition Width="100"/>
-            <!-- Main content area with flexible width -->
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <!-- Row for TabControl -->
+            <RowDefinition Height="Auto"/>
+            <!-- Row for main content area (Navigation + Frame) -->
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- TabControl at the top of the UserControl -->
+        <TabControl Grid.Row="0" x:Name="MainTabControl" Margin="0,0,0,10">
+            <!-- Define individual TabItems -->
+            <TabItem Header="RMF1">
+                <!-- Content for Tab 1 -->
 
-        <!-- ListBox for Navigation Sidebar -->
-        <ListBox Grid.Column="0" 
-                 SelectionMode="Single" 
-                 x:Name="sidebar" 
-                 Margin="0" 
-                 Foreground="White"
-                 BorderThickness="0"
-                 VerticalAlignment="Stretch"
-                 HorizontalContentAlignment="Left"
-                 SelectionChanged="Sidebar_SelectionChanged">
+                <Grid Grid.Row="1" Background="{StaticResource WindowBackgroundColor}">
+                    <Grid.ColumnDefinitions>
+                        <!-- Sidebar column with a fixed width -->
+                        <ColumnDefinition Width="100"/>
+                        <!-- Main content area with flexible width -->
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-            <!-- ListBoxItems for Navigation -->
-            <ListBoxItem Content="Page 1" HorizontalContentAlignment="Left"/>
-            <ListBoxItem Content="Page 2" HorizontalContentAlignment="Left"/>
-            <ListBoxItem Content="Page 3" HorizontalContentAlignment="Left"/>
-        </ListBox>
+                    <!-- ListBox for Navigation Sidebar -->
+                    <ListBox Grid.Column="0" 
+                     SelectionMode="Single" 
+                     x:Name="sidebar" 
+                     Margin="0" 
+                     Foreground="White"
+                     BorderThickness="0"
+                     VerticalAlignment="Stretch"
+                     HorizontalContentAlignment="Left"
+                     SelectionChanged="Sidebar_SelectionChangedRMF1">
 
-        <!-- Frame for Content Display -->
-        <Frame Grid.Column="1" 
-               Foreground="White"
-               x:Name="ContentFrame" 
-               NavigationUIVisibility="Hidden"
-               HorizontalAlignment="Stretch" 
-               VerticalAlignment="Stretch"/>
-        <!-- Ensures the frame stretches to fill available space -->
+                        <!-- ListBoxItems for Navigation -->
+                        <ListBoxItem Content="CM-1" HorizontalContentAlignment="Left"/>
+                        <ListBoxItem Content="SA-3" HorizontalContentAlignment="Left"/>
+                        <ListBoxItem Content="SA-4" HorizontalContentAlignment="Left"/>
+                        <ListBoxItem Content="SA-4(2)" HorizontalContentAlignment="Left"/>
+                        <ListBoxItem Content="SA-4(3)" HorizontalContentAlignment="Left"/>
+                        <ListBoxItem Content="SA-8" HorizontalContentAlignment="Left"/>
+                        <ListBoxItem Content="SA-10" HorizontalContentAlignment="Left"/>
+                    </ListBox>
+
+                    <!-- Frame for Content Display -->
+                    <Frame Grid.Column="1" 
+                       Foreground="White"
+                       x:Name="ContentFrame" 
+                       NavigationUIVisibility="Hidden"
+                       HorizontalAlignment="Stretch" 
+                       VerticalAlignment="Stretch"/>
+                </Grid>
+
+
+
+            </TabItem>
+            <TabItem Header="RMF2">
+                <Grid Grid.Row="1" Background="{StaticResource WindowBackgroundColor}">
+                    <Grid.ColumnDefinitions>
+                        <!-- Sidebar column with a fixed width -->
+                        <ColumnDefinition Width="100"/>
+                        <!-- Main content area with flexible width -->
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- ListBox for Navigation Sidebar -->
+                    <ListBox Grid.Column="0" 
+                     SelectionMode="Single" 
+                     x:Name="sidebar2" 
+                     Margin="0" 
+                     Foreground="White"
+                     BorderThickness="0"
+                     VerticalAlignment="Stretch"
+                     HorizontalContentAlignment="Left"
+                     SelectionChanged="Sidebar_SelectionChangedRMF2">
+
+                        <!-- ListBoxItems for Navigation -->
+                        <ListBoxItem Content="Page 1" HorizontalContentAlignment="Left"/>
+                        <ListBoxItem Content="Page 2" HorizontalContentAlignment="Left"/>
+                        <ListBoxItem Content="Page 3" HorizontalContentAlignment="Left"/>
+                    </ListBox>
+
+                    <!-- Frame for Content Display -->
+                    <Frame Grid.Column="1" 
+                       Foreground="White"
+                       x:Name="ContentFrame2" 
+                       NavigationUIVisibility="Hidden"
+                       HorizontalAlignment="Stretch" 
+                       VerticalAlignment="Stretch"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="RMF3">
+                <!-- Content for Tab 3 -->
+                <Grid Grid.Row="1" Background="{StaticResource WindowBackgroundColor}">
+                    <Grid.ColumnDefinitions>
+                        <!-- Sidebar column with a fixed width -->
+                        <ColumnDefinition Width="100"/>
+                        <!-- Main content area with flexible width -->
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- ListBox for Navigation Sidebar -->
+                    <ListBox Grid.Column="0" 
+                     SelectionMode="Single" 
+                     x:Name="sidebar3" 
+                     Margin="0" 
+                     Foreground="White"
+                     BorderThickness="0"
+                     VerticalAlignment="Stretch"
+                     HorizontalContentAlignment="Left"
+                     SelectionChanged="Sidebar_SelectionChangedRMF3">
+
+                        <!-- ListBoxItems for Navigation -->
+                        <ListBoxItem Content="Page 1" HorizontalContentAlignment="Left"/>
+                        <ListBoxItem Content="Page 2" HorizontalContentAlignment="Left"/>
+                        <ListBoxItem Content="Page 3" HorizontalContentAlignment="Left"/>
+                    </ListBox>
+
+                    <!-- Frame for Content Display -->
+                    <Frame Grid.Column="1" 
+                    Foreground="White"
+                    x:Name="ContentFrame3" 
+                    NavigationUIVisibility="Hidden"
+                    HorizontalAlignment="Stretch" 
+                    VerticalAlignment="Stretch"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <!-- Main Content Grid (Sidebar + Content Frame) -->
+        
     </Grid>
 </UserControl>
