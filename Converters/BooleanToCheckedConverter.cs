@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Windows.Data;
 
-namespace SWAN.Views
+namespace SWAN.Converters
 {
     public class BooleanToCheckedConverter : IValueConverter
     {
