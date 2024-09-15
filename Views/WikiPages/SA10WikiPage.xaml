@@ -4,8 +4,8 @@
       Title="WikiPage">
 
     <!-- Ensure FlowDocumentReader stretches to fill available space -->
-    <FlowDocumentScrollViewer Foreground="White" Width="auto" Height="auto" HorizontalContentAlignment="Stretch">
-        <FlowDocument IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True">
+    <FlowDocumentScrollViewer x:Name="flowDocumentScrollViewer" Foreground="White" Width="auto" Height="auto" HorizontalContentAlignment="Stretch">
+        <FlowDocument x:Name="flowDocument" IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True">
             <!-- Center-align the title to take up the entire frame width -->
             <Paragraph FontSize="30">
 
@@ -25,30 +25,142 @@
                 <Run Text="Control Extension" FontWeight="Bold" FontSize="30" />
             </Paragraph>
             <!-- BEGIN TEMPLATE FOR PHYSICAL CONTROL -->
-            <Paragraph Margin="10,20,0,0">
+            <Paragraph Tag="numberone"  Margin="10,20,0,0">
                 <Run Text="1." FontWeight="ExtraBold" FontSize="30"></Run>
-                CONTROL EXTENSION DESCRIPTION
+                The developer shall execute configuration management of software and firmware configuration items
             </Paragraph>
             <Paragraph TextAlignment="Left" Margin="50,20,0,0">
                 <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
-                <Run Text="CCI-000664, 000665, 000666, 000667, 000668"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-003155"  FontWeight="Bold" FontSize="15" ></Run>
             </Paragraph>
             <Paragraph Margin="70,20,0,0">
-                The organization applies information system security engineering principles in the specification of the information system.
+                The organization requires the developer of the information system, system component, or information system service to perform configuration management during system, component, or service design, development, implementation and/or operation.</Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed requires within contracts/agreements that the developer of the information system, system component, or information system service perform configuration management during system, component or service design, development, implementation and/or operation. The configuration management process applies to: 1. Documentation developed or used in the lifecycle, including requirements and interface specifications; 2. Elements including design libraries; 3. Tools including design tools and test tools; 4. Technical data including test data; and 5. Information on element and system lifecycle processes</Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment obtains and examines the contracts/agreements to ensure the organization being inspected/assessed requires the developer of the information system, system component, or information system service perform configuration management during system, component or service design, development, implementation and/or operation.</Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                1.) System security plan (SSP).
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                2.) System development life cycle (SDLC) documentation.
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                3.) Continuous monitoring plan must require developer to perform configuration management during system, component or service design, development, implementation, and/or operation.
+            </Paragraph>
+
+            <Paragraph Tag="numbertwo" Margin="10,20,0,0">
+
+                    <Run Text="2."  FontWeight="ExtraBold" FontSize="30"></Run>
+                    The developer shall identify software/firmware configuration items to be placed under configuration management. This shall include all developed source code, incorporated code (open source, commercial, or third-party developed code), and build and test environment software (compilers, libraries, build scripts)
+
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-003159"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization defines the configuration items under configuration management that require the integrity of changes to be documented, managed and controlled.
             </Paragraph>
             <Paragraph Margin="50,20,0,0">
                 <LineBreak></LineBreak>
                 <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
             </Paragraph>
             <Paragraph Margin="70,20,0,0">
-                The organization managing the acquisition/development of the information system (e.g. PM) applies and documents system security engineering (SSE) principles as part of the overall systems engineering process IAW DoDD 5000.01 and DoDI 5000.02. The primary source of general and DoD-specific guidance on SSE can be found in the NIST SP 800-160 - Systems Security Engineering, currently in draft form, and can be found here: http://csrc.nist.gov/publications/PubsSPs.html. Additional guidance can be found in the Defense Acquisition Guidebook (DAG) Chapters 4 and 13, found here: https://dag.dau.mil/. This CCI does not apply to COTS products. The organization managing the acquisition/development of the information system must ensure that the system requirements documents reflect the system security engineering principles that can be applied to information systems in development, systems undergoing major upgrades and to the extent feasible systems in sustainment. Security engineering principles include: 1. Developing layered protections; 2. Establishing sound security policy, architecture, and controls as the foundation for design; 3. Incorporating security requirements into all phases of the system development life cycle; 4. Delineating physical and logical security boundaries; 5. Ensuring that system developers are trained on how to design and build secure software; 6. Tailoring security controls and protections to meet system-specific requirements and operational needs; 7. Performing threat modeling to identify use cases, threat agents, attack vectors, and attack patterns as well as compensating controls and design patterns needed to mitigate risk.
+                The organization being inspected/assessed defines and documents the configuration items under configuration management that require the integrity of changes to be documented, managed and controlled. DoD has determined the configuration items are not appropriate to define at the Enterprise level.</Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment obtains and examines the documented configuration items to ensure the organization being inspected/assessed defines the configuration items under configuration management that require the integrity of changes to be documented, managed and controlled. DoD has determined the configuration items are not appropriate to define at the Enterprise level.</Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                1.) System security plan (SSP).
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                2.) System development life cycle (SDLC) documentation.
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                3.) Continuous monitoring plan must require developer to perform configuration management during system, component or service design, development, implementation, and/or operation.
+            </Paragraph>
+
+
+            <Paragraph Tag="numberthree" Margin="10,20,0,0">
+                <Run Text="3." FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall document, manage, and control the integrity of changes to software/firmware configuration items under configuration management
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-003156, 003157, 003158"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization requires the developer of the information system, system component, or information system service to document the integrity of changes to organization-defined configuration items under configuration management.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed requires within contracts/agreements that the developer of the information system, system component, or information system service document the integrity of changes to configuration items under configuration management defined in SA-10, CCI 3159.</Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment obtains and examines the contracts/agreements to ensure the organization being inspected/assessed requires that the developer of the information system, system component, or information system service document the integrity of changes to configuration items under configuration management defined in SA-10, CCI 3159.</Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                1.) System security plan (SSP).
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                2.) System development life cycle (SDLC) documentation.
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                3.) Continuous monitoring plan must require developer to perform configuration management during system, component or service design, development, implementation, and/or operation.
+            </Paragraph>
+
+            <Paragraph Margin="10,20,0,0">
+                <Run Text="4." x:Name="numberfour" FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall document and utilize a process for approving changes to software/firmware configuration items.
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-003159"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization defines the configuration items under configuration management that require the integrity of changes to be documented, managed and controlled.</Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed defines and documents the configuration items under configuration management that require the integrity of changes to be documented, managed and controlled. DoD has determined the configuration items are not appropriate to define at the Enterprise level.
             </Paragraph>
             <Paragraph Margin="50,20,0,0">
                 <LineBreak></LineBreak>
                 <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
             </Paragraph>
             <Paragraph Margin="70,20,0,0">
-                The organization conducting the inspection/assessment obtains and examines the system requirements documents to ensure that the organization being inspected/assessed applies information system security engineering principles in the specification of the information system.
+                The organization conducting the inspection/assessment obtains and examines the documented configuration items to ensure the organization being inspected/assessed defines the configuration items under configuration management that require the integrity of changes to be documented, managed and controlled. DoD has determined the configuration items are not appropriate to define at the Enterprise level.
             </Paragraph>
             <Paragraph Margin="50,20,0,0">
                 <LineBreak></LineBreak>
@@ -58,7 +170,126 @@
                 1.) System security plan (SSP).
             </Paragraph>
             <Paragraph Margin="70,20,0,0">
-                2.) Design documentation must include system requirements documentation and it must apply information system security principles in specifications.
+                2.) System development life cycle (SDLC) documentation.
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                3.) Continuous monitoring plan must define configuration items under configuration management that require integrity of changes to be documented, managed and controlled.
+            </Paragraph>
+
+            <Paragraph Margin="10,20,0,0">
+                <Run Text="5." x:Name="numberfive" FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall implement only approved changes to software/firmware configuration items.
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-000692"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization requires the developer of the information system, system component, or information system service to implement only organization-approved changes to the system, component, or service.</Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed requires within contracts/agreements that the developer of the information system, system component, or information system service implement only organization-approved changes to the system, component, or service throughout its life cycle.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment obtains and examines contracts/agreements between the organization and the IS developer to confirm the organization has established in its acquisition contracts/agreements the requirement that the IS developer implement only organization-approved changes to the system, component, or service throughout its life cycle.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                1.) System security plan (SSP).
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                2.) System development life cycle (SDLC) documentation.
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                3.) Continuous monitoring plan must require that only organization-approved changes are implemented.
+            </Paragraph>
+
+            <Paragraph Margin="10,20,0,0">
+                <Run Text="6." x:Name="numbersix" FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall document approved changes to software/firmware configuration items and the potential security impacts of such changes
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-000694, 003160"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization requires the developer of the information system, system component, or information system service to document approved changes to the system, component, or service.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed requires within contracts/agreements that the developer of the information system, system component, or information system service document approved changes to the system, component, or service.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment obtains and examines the contracts/agreements to ensure the organization being inspected/assessed requires that the developer of the information system, system component, or information system service document approved changes to the system, component, or service.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                1.) System security plan (SSP).
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                2.) System development life cycle (SDLC) documentation.
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                3.) Continuous monitoring plan must require that only organization-approved changes are implemented, and documented.
+            </Paragraph>
+
+            <Paragraph Margin="10,20,0,0">
+                <Run Text="7." x:Name="numberseven" FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall make available to the Government upon request documentation describing the configuration items under configuration management including descriptions of the changes made to those configuration items
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-003162"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization requires the developer of the information system, system component, or information system service to track flaw resolution within the system, component, or service.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed requires within contracts/agreements that the developer of the information system, system component, or information system service track flaw resolution within the system, component, or service.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment obtains and examines the contracts/agreements to ensure the organization being inspected/assessed requires that the developer of the information system, system component, or information system service track flaw resolution within the system, component, or service.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                1.) System security plan (SSP).
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                2.) System development life cycle (SDLC) documentation.
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                3.) Continuous monitoring plan must document developer flaw tracking, and resolution.
             </Paragraph>
         </FlowDocument>
     </FlowDocumentScrollViewer>
