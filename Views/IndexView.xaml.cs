@@ -7,6 +7,10 @@ namespace SWAN.Views
         public IndexView()
         {
             InitializeComponent();
+
+            sidebar.SelectedIndex = 0;
+            sidebar2.SelectedIndex = 0;
+            sidebar3.SelectedIndex = 0;
         }
 
         // Event handler for SelectionChanged
@@ -40,6 +44,9 @@ namespace SWAN.Views
                         break;
                     case "SA-10":
                         ContentFrame.Navigate(new System.Uri("Views/WikiPages/SA10WikiPage.xaml", System.UriKind.Relative));
+                        break;
+                    case "SA-11":
+                        ContentFrame.Navigate(new System.Uri("Views/WikiPages/SA11WikiPage.xaml", System.UriKind.Relative));
                         break;
                     default:
                         ContentFrame.Navigate(new System.Uri("Views/WikiPages/CM1WikiPage.xaml", System.UriKind.Relative));
