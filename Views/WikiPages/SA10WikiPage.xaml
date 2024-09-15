@@ -4,8 +4,8 @@
       Title="WikiPage">
 
     <!-- Ensure FlowDocumentReader stretches to fill available space -->
-    <FlowDocumentScrollViewer Foreground="White" Width="auto" Height="auto" HorizontalContentAlignment="Stretch">
-        <FlowDocument IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True">
+    <FlowDocumentScrollViewer x:Name="flowDocumentScrollViewer" Foreground="White" Width="auto" Height="auto" HorizontalContentAlignment="Stretch">
+        <FlowDocument x:Name="flowDocument" IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True">
             <!-- Center-align the title to take up the entire frame width -->
             <Paragraph FontSize="30">
 
@@ -25,9 +25,9 @@
                 <Run Text="Control Extension" FontWeight="Bold" FontSize="30" />
             </Paragraph>
             <!-- BEGIN TEMPLATE FOR PHYSICAL CONTROL -->
-            <Paragraph Margin="10,20,0,0">
+            <Paragraph Tag="numberone"  Margin="10,20,0,0">
                 <Run Text="1." FontWeight="ExtraBold" FontSize="30"></Run>
-                The developer shall execute configuration management of software and firmware configuration items.
+                The developer shall execute configuration management of software and firmware configuration items
             </Paragraph>
             <Paragraph TextAlignment="Left" Margin="50,20,0,0">
                 <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
@@ -61,9 +61,11 @@
                 3.) Continuous monitoring plan must require developer to perform configuration management during system, component or service design, development, implementation, and/or operation.
             </Paragraph>
 
-            <Paragraph Margin="10,20,0,0">
-                <Run Text="2." FontWeight="ExtraBold" FontSize="30"></Run>
-                The developer shall identify software/firmware configuration items to be placed under configuration management. This shall include all developed source code, incorporated code (open source, commercial, or third-party developed code), and build and test environment software (compilers, libraries, build scripts)
+            <Paragraph Tag="numbertwo" Margin="10,20,0,0">
+
+                    <Run Text="2."  FontWeight="ExtraBold" FontSize="30"></Run>
+                    The developer shall identify software/firmware configuration items to be placed under configuration management. This shall include all developed source code, incorporated code (open source, commercial, or third-party developed code), and build and test environment software (compilers, libraries, build scripts)
+
             </Paragraph>
             <Paragraph TextAlignment="Left" Margin="50,20,0,0">
                 <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
@@ -99,7 +101,7 @@
             </Paragraph>
 
 
-            <Paragraph Margin="10,20,0,0">
+            <Paragraph Tag="numberthree" Margin="10,20,0,0">
                 <Run Text="3." FontWeight="ExtraBold" FontSize="30"></Run>
                 The developer shall document, manage, and control the integrity of changes to software/firmware configuration items under configuration management
             </Paragraph>
@@ -137,7 +139,7 @@
             </Paragraph>
 
             <Paragraph Margin="10,20,0,0">
-                <Run Text="4." FontWeight="ExtraBold" FontSize="30"></Run>
+                <Run Text="4." x:Name="numberfour" FontWeight="ExtraBold" FontSize="30"></Run>
                 The developer shall document and utilize a process for approving changes to software/firmware configuration items.
             </Paragraph>
             <Paragraph TextAlignment="Left" Margin="50,20,0,0">
@@ -175,7 +177,7 @@
             </Paragraph>
 
             <Paragraph Margin="10,20,0,0">
-                <Run Text="5." FontWeight="ExtraBold" FontSize="30"></Run>
+                <Run Text="5." x:Name="numberfive" FontWeight="ExtraBold" FontSize="30"></Run>
                 The developer shall implement only approved changes to software/firmware configuration items.
             </Paragraph>
             <Paragraph TextAlignment="Left" Margin="50,20,0,0">
@@ -213,7 +215,7 @@
             </Paragraph>
 
             <Paragraph Margin="10,20,0,0">
-                <Run Text="6." FontWeight="ExtraBold" FontSize="30"></Run>
+                <Run Text="6." x:Name="numbersix" FontWeight="ExtraBold" FontSize="30"></Run>
                 The developer shall document approved changes to software/firmware configuration items and the potential security impacts of such changes
             </Paragraph>
             <Paragraph TextAlignment="Left" Margin="50,20,0,0">
@@ -252,7 +254,7 @@
             </Paragraph>
 
             <Paragraph Margin="10,20,0,0">
-                <Run Text="7." FontWeight="ExtraBold" FontSize="30"></Run>
+                <Run Text="7." x:Name="numberseven" FontWeight="ExtraBold" FontSize="30"></Run>
                 The developer shall make available to the Government upon request documentation describing the configuration items under configuration management including descriptions of the changes made to those configuration items
             </Paragraph>
             <Paragraph TextAlignment="Left" Margin="50,20,0,0">

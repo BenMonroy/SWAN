@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace SWAN.Views
 {
@@ -27,6 +28,7 @@ namespace SWAN.Views
                     case "CM-1":
                         ContentFrame.Navigate(new System.Uri("Views/WikiPages/CM1WikiPage.xaml", System.UriKind.Relative));
                         break;
+                    
                     case "SA-3":
                         ContentFrame.Navigate(new System.Uri("Views/WikiPages/SA3WikiPage.xaml", System.UriKind.Relative));
                         break;
@@ -45,6 +47,18 @@ namespace SWAN.Views
                     case "SA-10":
                         ContentFrame.Navigate(new System.Uri("Views/WikiPages/SA10WikiPage.xaml", System.UriKind.Relative));
                         break;
+                    //case "numberone":
+                    //    Application.Current.Properties["SubsectionName"] = selectedText;
+                    //    ContentFrame.Navigate(new System.Uri("Views/WikiPages/SA10WikiPage.xaml", System.UriKind.Relative));
+                    //    break;
+                    //case "numbertwo":
+                    //    Application.Current.Properties["SubsectionName"] = selectedText;
+                    //    ContentFrame.Navigate(new System.Uri("Views/WikiPages/SA10WikiPage.xaml", System.UriKind.Relative));
+                    //    break;
+                    //case "numberthree":
+                    //    Application.Current.Properties["SubsectionName"] = selectedText;
+                    //    ContentFrame.Navigate(new System.Uri("Views/WikiPages/SA10WikiPage.xaml", System.UriKind.Relative));
+                    //    break;
                     case "SA-11":
                         ContentFrame.Navigate(new System.Uri("Views/WikiPages/SA11WikiPage.xaml", System.UriKind.Relative));
                         break;
