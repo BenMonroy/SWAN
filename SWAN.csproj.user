@@ -51,6 +51,21 @@
     <Page Update="Views\ScaffoldView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\WikiPages\SA4_2_WikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\SA4WikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\SA4_3_WikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\SA8WikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\SA10WikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\WikiPages\WikiPageTemplate.xaml">
       <SubType>Designer</SubType>
     </Page>

@@ -1,0 +1,95 @@
+﻿<Page x:Class="SWAN.Views.WikiPages.SA4_3_WikiPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="WikiPage">
+
+    <!-- Ensure FlowDocumentReader stretches to fill available space -->
+    <FlowDocumentScrollViewer Foreground="White" Width="auto" Height="auto" HorizontalContentAlignment="Stretch">
+        <FlowDocument IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True">
+            <!-- Center-align the title to take up the entire frame width -->
+            <Paragraph FontSize="30">
+                <Run Text="SA-4(3): Acquisition Process: Development Methods/Techniques/Practices" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+
+            <!-- Left-align content -->
+            <Paragraph TextAlignment="Left">
+                <Run Text="Severity :" FontWeight="ExtraBold"/>
+                <Run Text="Mod" FontWeight="ExtraBold" Foreground="Orange"/>
+                <Run Text="-" FontWeight="ExtraBold" Foreground="Orange"/>
+                <Run Text="Mod" FontWeight="ExtraBold" Foreground="Orange"/>
+            </Paragraph>
+            <!-- Add more content as needed -->
+            <Paragraph FontSize="30">
+                <LineBreak></LineBreak>
+                <Run Text="Control Extension" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <!-- BEGIN TEMPLATE FOR PHYSICAL CONTROL -->
+            <Paragraph Margin="10,20,0,0">
+                <Run Text="1." FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall document software/firmware security engineering methods, software/firmware development methods, testing/evaluation/validation techniques, and quality control processes directly or by reference in a SDP, FDP, PPIP, or equivalent documents
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-003108"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization defines the state-of-the-practice system/security engineering methods, software development methods, testing/evaluation/validation techniques, and quality control processes that the developer of the information system, system component, or information system service is required to include when demonstrating the use of a system development life cycle.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed defines and documents within contracts/agreements, the requirement for the developer to provide information regarding the state-of-the-practice system/security engineering methods, software development methods, testing/evaluation/validation techniques, and quality control processes.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment obtains and examines the contracts/agreements to ensure the organization being inspected/assessed defines the state-of-the-practice system/security engineering methods, software development methods, testing/evaluation/validation techniques, and quality control processes that the developer of the information system, system component, or information system service needs to include when demonstrating the use of a system development life cycle.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                System development life cycle (SDLC) includes organization-defined state-of-the-practice system/security engineering methods, software development methods , testing/evaluation/validation techniques, and quality control processes.
+            </Paragraph>
+
+            <Paragraph Margin="10,20,0,0">
+                <Run Text="2." FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall incorporate software and firmware requirements from applicable Defense Information Systems Agency Security Technical Implementation Guides (STIG) (e.g., Application Security and Development STIG).
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-003107"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization requires the developer of the information system, system component, or information system service to demonstrate the use of a system development life cycle that includes organization-defined state-of-the-practice system/security engineering methods, software development methods, testing/evaluation/validation techniques, and quality control processes.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed defines and documents within contracts/agreements, a requirement for the developer to demonstrate the use of a system development life cycle that includes the state-of-the-practice system/security engineering methods, software development methods, testing/evaluation/validation techniques, and quality control processes defined in SA-4 (3), CCI 3108.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment obtains and examines the contracts/agreements to ensure the organization being inspected/assessed requires the developer of the information system, system component, or information system service to demonstrate the use of a system development life cycle that includes the state-of-the-practice system/security engineering methods, software development methods, testing/evaluation/validation techniques, and quality control processes defined in SA-4 (3), CCI 3108.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                System development life cycle (SDLC) includes organization-defined state-of-the-practice system/security engineering methods, software development methods , testing/evaluation/validation techniques, and quality control processes.
+            </Paragraph>
+
+        </FlowDocument>
+    </FlowDocumentScrollViewer>
+</Page>

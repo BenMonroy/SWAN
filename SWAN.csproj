@@ -32,6 +32,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\WikiPages\SA4_2_WikiPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\WikiPages\SA4WikiPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\WikiPages\SA4_3_WikiPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\WikiPages\SA8WikiPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\WikiPages\SA10WikiPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\WikiPages\WikiPageTemplate.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
