@@ -422,9 +422,9 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 1",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
                     new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = true }
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
                 }
             };
             ConceptualControl2 = new ConceptualCheckBox
@@ -434,9 +434,9 @@ namespace SWAN.ViewModels
                 CIA = "HHH",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
                     new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = true }
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
                 }
             };
             ConceptualControl3 = new ConceptualCheckBox
@@ -446,9 +446,9 @@ namespace SWAN.ViewModels
                 CIA = "HHH",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
-                    new PhysicalControl { Control = "Physical Control 1"    , Passed = true },
+                    new PhysicalControl { Control = "Physical Control 1"    , Passed = false },
                     new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = true }
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
                 }
             };
             ConceptualControl4 = new ConceptualCheckBox
@@ -458,9 +458,9 @@ namespace SWAN.ViewModels
                 CIA = "HHH",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
                     new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = true }
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
                 }
             };
             ConceptualControl5 = new ConceptualCheckBox
@@ -470,9 +470,9 @@ namespace SWAN.ViewModels
                 CIA = "HHH",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
                     new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = true }
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
                 }
             };
             ConceptualControl6 = new ConceptualCheckBox
@@ -482,9 +482,9 @@ namespace SWAN.ViewModels
                 CIA = "HHH",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
                     new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = true }
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
                 }
             };
             ConceptualControl7 = new ConceptualCheckBox
@@ -494,9 +494,9 @@ namespace SWAN.ViewModels
                 CIA = "HHH",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
                     new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = true }
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
                 }
             };
             ConceptualControl8 = new ConceptualCheckBox
@@ -506,9 +506,9 @@ namespace SWAN.ViewModels
                 CIA = "HHH",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
                     new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = true }
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
                 }
             };
             ConceptualControl9 = new ConceptualCheckBox
@@ -518,9 +518,9 @@ namespace SWAN.ViewModels
                 CIA = "HHH",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
                     new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = true }
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
                 }
             };
             ConceptualControl10 = new ConceptualCheckBox
@@ -530,9 +530,9 @@ namespace SWAN.ViewModels
                 CIA = "HHH",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
                     new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = true }
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
                 }
             };
             ConceptualControl11 = new ConceptualCheckBox
@@ -542,9 +542,9 @@ namespace SWAN.ViewModels
                 CIA = "HHH",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
                     new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = true }
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
                 }
             };
             ConceptualControl12 = new ConceptualCheckBox
@@ -554,9 +554,9 @@ namespace SWAN.ViewModels
                 CIA = "HHH",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
                     new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = true }
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
                 }
             };
             ConceptualControl13 = new ConceptualCheckBox
@@ -566,9 +566,9 @@ namespace SWAN.ViewModels
                 CIA = "HHH",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -579,9 +579,9 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -592,9 +592,9 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -605,9 +605,9 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 16",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -618,9 +618,9 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -631,9 +631,9 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -644,9 +644,9 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -657,9 +657,9 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -670,9 +670,9 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -683,9 +683,9 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -696,9 +696,9 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -709,9 +709,9 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -722,9 +722,9 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
             ConceptualControl26 = new ConceptualCheckBox
@@ -734,9 +734,9 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -747,9 +747,9 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -760,9 +760,9 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -773,9 +773,9 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
         }
