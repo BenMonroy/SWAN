@@ -76,12 +76,12 @@ namespace SWAN.ViewModels
         }
 
 
-        private void Save()
+        private async void Save()
         {
             //checks to see if previously saved, if not do saveAs
             if (!string.IsNullOrEmpty(_currentFilePath))
             {
-                DashboardViewModel.SaveStateToCsv(_currentFilePath);
+                await DashboardViewModel.SaveStateAsync(_currentFilePath);
                 MessageBox.Show("File saved successfully.");
             }
             else
@@ -90,14 +90,14 @@ namespace SWAN.ViewModels
             }
         }
 
-        
-        private void SaveAs()
+
+        private async void SaveAs()
         {
             var dialog = new Microsoft.Win32.SaveFileDialog
             {
                 FileName = string.IsNullOrEmpty(_currentFilePath) ? "" : System.IO.Path.GetFileName(_currentFilePath),
-                DefaultExt = ".csv",
-                Filter = "CSV files (.csv)|*.csv"
+                DefaultExt = ".json",  
+                Filter = "JSON files (.json)|*.json"  
             };
 
             if (!string.IsNullOrEmpty(_currentFilePath) && System.IO.File.Exists(_currentFilePath))
@@ -112,8 +112,8 @@ namespace SWAN.ViewModels
                 _currentFilePath = dialog.FileName;
                 try
                 {
-                    DashboardViewModel.SaveStateToCsv(_currentFilePath);
-                    MessageBox.Show("File saved successfully.");
+                    await DashboardViewModel.SaveStateAsync(_currentFilePath);
+                    MessageBox.Show("File saved successfully as JSON.");
                 }
                 catch (Exception ex)
                 {
@@ -126,22 +126,23 @@ namespace SWAN.ViewModels
             }
         }
 
-       
+
+     
         private void NewFile(string framework)
         {
-            _currentFilePath = string.Empty;
-            DashboardViewModel.CreateNewFile(framework);
+                _currentFilePath = string.Empty;
+                DashboardViewModel.CreateNewFile(framework); 
         }
 
 
 
-        private void OpenFile()
+        private async void OpenFile()
         {
             var dialog = new Microsoft.Win32.OpenFileDialog
             {
                 FileName = "",
-                DefaultExt = ".csv",
-                Filter = "CSV files (.csv)|*.csv"
+                DefaultExt = ".json",
+                Filter = "JSON files (.json)|*.json"
             };
 
             bool? result = dialog.ShowDialog();
@@ -151,7 +152,8 @@ namespace SWAN.ViewModels
                 _currentFilePath = dialog.FileName;
                 try
                 {
-                    DashboardViewModel.LoadStateFromCsv(_currentFilePath);
+                    await DashboardViewModel.LoadStateAsync(_currentFilePath);
+                    DashboardViewModel.ToggleRMFStackPanelVisibility();
                     MessageBox.Show("File loaded successfully.");
                 }
                 catch (Exception ex)

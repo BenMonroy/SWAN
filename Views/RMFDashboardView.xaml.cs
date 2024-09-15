@@ -60,35 +60,7 @@ namespace SWAN.Views
             }
         }
 
-        public void CheckBoxClick(object sender, RoutedEventArgs e)
-        {
-            // Assuming MainViewModelInstance.TestsCollection holds your parent items
-            // and each parent item has a Children collection and an IsSelected property.
-            foreach (var parent in _viewModel.CheckBoxCollection)
-            {
-                int totalChildren = parent.Children.Count;
-                int selectedChildren = 0;
-                foreach (var child in parent.Children)
-                {
-                    if (child.IsSelected == true)
-                    {
-                        selectedChildren++;
-                    }
-                }
-
-                // Set the parent's IsSelected to true only if all children are selected
-                if (selectedChildren == totalChildren)
-                {
-                    parent.IsSelected = true;
-
-                }
-                if (selectedChildren == 0)
-                {
-                    parent.IsSelected = false;
-                }
-            }
-        }
-
+        
 
         private void Create_Dashboard_Click(object sender, RoutedEventArgs e)
         {
@@ -120,11 +92,11 @@ namespace SWAN.Views
 
 
 
-        private void FileChosenFromSearch(object sender, AutoSuggestBoxSuggestionChosenEventArgs e)
+        private async void FileChosenFromSearch(object sender, AutoSuggestBoxSuggestionChosenEventArgs e)
         {
             if (e.SelectedItem is RecentFile selectedFile)
             {
-                _viewModel.LoadStateFromCsv(selectedFile.FilePath);
+                await _viewModel.LoadStateAsync(selectedFile.FilePath);
             }
             else
             {

@@ -67,7 +67,7 @@
                 <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <TextBlock Text="All Controls from Dashboard" FontSize="24" FontWeight="Bold" Foreground="{DynamicResource PrimaryColor}" Margin="0,0,0,10"/>
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Height="200">
-                        <ItemsControl ItemsSource="{Binding AllControls}">
+                        <ItemsControl ItemsSource="{Binding}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Grid Margin="5">
