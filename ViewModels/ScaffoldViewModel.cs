@@ -130,8 +130,8 @@ namespace SWAN.ViewModels
      
         private void NewFile(string framework)
         {
-                _currentFilePath = string.Empty;
-                DashboardViewModel.CreateNewFile(framework); 
+            _currentFilePath = string.Empty;
+            DashboardViewModel.CreateNewFile(framework); 
         }
 
 

@@ -385,71 +385,105 @@ namespace SWAN.ViewModels
         {
             var options = new JsonSerializerOptions { WriteIndented = true };
 
-            // Serialize the collection of ConceptualCheckBox to JSON
-            string json = JsonSerializer.Serialize(ConceptualControls, options);
+            // Create a dictionary to hold both SelectedFramework and ConceptualControls
+            var saveData = new Dictionary<string, object>
+    {
+        { "SelectedFramework", SelectedFramework },
+        { "ConceptualControls", ConceptualControls }
+    };
+
+            // Serialize the dictionary to JSON
+            string json = JsonSerializer.Serialize(saveData, options);
 
             // Write the JSON to a file
             await File.WriteAllTextAsync(filePath, json);
-            // add the file to recent files
+
+            // Add the file to recent files
             var recent = CreateRecentFile(filePath);
             _recentFilesManager.AddRecentFile(recent);
         }
 
         public async Task LoadStateAsync(string filePath)
         {
-            //TODO add a variable for the selected framework to update textbox for rmf type
             if (string.IsNullOrEmpty(filePath))
-            { MessageBox.Show("Error: Attempted to save file with empty filepath."); }
-
-           
-            string json = await File.ReadAllTextAsync(filePath);
-            var loadedControls = JsonSerializer.Deserialize<ObservableCollection<ConceptualCheckBox>>(json);
-
-            // Update the ConceptualControls collection
-            if (loadedControls != null)
             {
-                ConceptualControls.Clear();
-                foreach (var control in loadedControls)
-                {
-                    ConceptualControls.Add(control);
-                }
+                MessageBox.Show("Error: Attempted to open file with empty filepath.");
+                return;
+            }
+            string json = await File.ReadAllTextAsync(filePath);
+            var loadedData = JsonSerializer.Deserialize<Dictionary<string, object>>(json);
+            if (loadedData != null && loadedData.ContainsKey("SelectedFramework") && loadedData.ContainsKey("ConceptualControls"))
+            {
+                var validFrameworks = new List<string>
+        {
+            "DoDI 8510.01",
+            "NIST SP 800.53 Rev. 5",
+            "NIST SP 800-37 Rev. 2",
+            "NIST SP 800-160 Vol. 1"
+        };
 
-                // Assign the first 29 controls to individual properties
-                ConceptualControl1 = loadedControls.ElementAtOrDefault(0);
-                ConceptualControl2 = loadedControls.ElementAtOrDefault(1);
-                ConceptualControl3 = loadedControls.ElementAtOrDefault(2);
-                ConceptualControl4 = loadedControls.ElementAtOrDefault(3);
-                ConceptualControl5 = loadedControls.ElementAtOrDefault(4);
-                ConceptualControl6 = loadedControls.ElementAtOrDefault(5);
-                ConceptualControl7 = loadedControls.ElementAtOrDefault(6);
-                ConceptualControl8 = loadedControls.ElementAtOrDefault(7);
-                ConceptualControl9 = loadedControls.ElementAtOrDefault(8);
-                ConceptualControl10 = loadedControls.ElementAtOrDefault(9);
-                ConceptualControl11 = loadedControls.ElementAtOrDefault(10);
-                ConceptualControl12 = loadedControls.ElementAtOrDefault(11);
-                ConceptualControl13 = loadedControls.ElementAtOrDefault(12);
-                ConceptualControl14 = loadedControls.ElementAtOrDefault(13);
-                ConceptualControl15 = loadedControls.ElementAtOrDefault(14);
-                ConceptualControl16 = loadedControls.ElementAtOrDefault(15);
-                ConceptualControl17 = loadedControls.ElementAtOrDefault(16);
-                ConceptualControl18 = loadedControls.ElementAtOrDefault(17);
-                ConceptualControl19 = loadedControls.ElementAtOrDefault(18);
-                ConceptualControl20 = loadedControls.ElementAtOrDefault(19);
-                ConceptualControl21 = loadedControls.ElementAtOrDefault(20);
-                ConceptualControl22 = loadedControls.ElementAtOrDefault(21);
-                ConceptualControl23 = loadedControls.ElementAtOrDefault(22);
-                ConceptualControl24 = loadedControls.ElementAtOrDefault(23);
-                ConceptualControl25 = loadedControls.ElementAtOrDefault(24);
-                ConceptualControl26 = loadedControls.ElementAtOrDefault(25);
-                ConceptualControl27 = loadedControls.ElementAtOrDefault(26);
-                ConceptualControl28 = loadedControls.ElementAtOrDefault(27);
-                ConceptualControl29 = loadedControls.ElementAtOrDefault(28);
+                var jsonFramework = loadedData["SelectedFramework"]?.ToString();
+
+                if (!validFrameworks.Contains(jsonFramework))
+                {
+                    MessageBox.Show($"Error: Invalid or unsupported framework '{jsonFramework}'.");
+                    return; // TODO do something here so that if open fails it does not load empty dashboard
+                }
+                SelectedFramework = jsonFramework;
+
+                // Retrieve and update the ConceptualControls
+                var loadedControls = JsonSerializer.Deserialize<ObservableCollection<ConceptualCheckBox>>(loadedData["ConceptualControls"].ToString());
+
+                if (loadedControls != null)
+                {
+                    ConceptualControls.Clear();
+                    foreach (var control in loadedControls)
+                    {
+                        ConceptualControls.Add(control);
+                    }
+
+                    // Assign the first 29 controls to individual properties
+                    ConceptualControl1 = loadedControls.ElementAtOrDefault(0);
+                    ConceptualControl2 = loadedControls.ElementAtOrDefault(1);
+                    ConceptualControl3 = loadedControls.ElementAtOrDefault(2);
+                    ConceptualControl4 = loadedControls.ElementAtOrDefault(3);
+                    ConceptualControl5 = loadedControls.ElementAtOrDefault(4);
+                    ConceptualControl6 = loadedControls.ElementAtOrDefault(5);
+                    ConceptualControl7 = loadedControls.ElementAtOrDefault(6);
+                    ConceptualControl8 = loadedControls.ElementAtOrDefault(7);
+                    ConceptualControl9 = loadedControls.ElementAtOrDefault(8);
+                    ConceptualControl10 = loadedControls.ElementAtOrDefault(9);
+                    ConceptualControl11 = loadedControls.ElementAtOrDefault(10);
+                    ConceptualControl12 = loadedControls.ElementAtOrDefault(11);
+                    ConceptualControl13 = loadedControls.ElementAtOrDefault(12);
+                    ConceptualControl14 = loadedControls.ElementAtOrDefault(13);
+                    ConceptualControl15 = loadedControls.ElementAtOrDefault(14);
+                    ConceptualControl16 = loadedControls.ElementAtOrDefault(15);
+                    ConceptualControl17 = loadedControls.ElementAtOrDefault(16);
+                    ConceptualControl18 = loadedControls.ElementAtOrDefault(17);
+                    ConceptualControl19 = loadedControls.ElementAtOrDefault(18);
+                    ConceptualControl20 = loadedControls.ElementAtOrDefault(19);
+                    ConceptualControl21 = loadedControls.ElementAtOrDefault(20);
+                    ConceptualControl22 = loadedControls.ElementAtOrDefault(21);
+                    ConceptualControl23 = loadedControls.ElementAtOrDefault(22);
+                    ConceptualControl24 = loadedControls.ElementAtOrDefault(23);
+                    ConceptualControl25 = loadedControls.ElementAtOrDefault(24);
+                    ConceptualControl26 = loadedControls.ElementAtOrDefault(25);
+                    ConceptualControl27 = loadedControls.ElementAtOrDefault(26);
+                    ConceptualControl28 = loadedControls.ElementAtOrDefault(27);
+                    ConceptualControl29 = loadedControls.ElementAtOrDefault(28);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error: Invalid file format.");
             }
         }
 
 
 
-      
+
+
         public void CreateNewFile(string framework)
         {
             SelectedFramework = framework;
@@ -486,8 +520,14 @@ namespace SWAN.ViewModels
             string filePath = recentFile.FilePath;
             if (System.IO.File.Exists(filePath))
             {
-                //open the file here
-                await LoadStateAsync(filePath);
+                try
+                {
+                    await LoadStateAsync(filePath);
+                    ToggleRMFStackPanelVisibility();
+                    MessageBox.Show("File loaded successfully");
+                }
+                catch (Exception ex) { MessageBox.Show("$ex"); }
+                
             }
             else
             {

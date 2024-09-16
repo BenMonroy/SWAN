@@ -59,8 +59,8 @@ namespace SWAN
         private void NewFileMenuItem_Click(object sender, RoutedEventArgs e)
         {
             var menuItem = sender as MenuItem;
-            string selectedFramework = menuItem.Header.ToString();
             if(emptyChangeDashboard()){
+                string selectedFramework = menuItem.Header.ToString();
                 _viewModel.HandleFrameworkSelectionCommand.Execute(menuItem.Header.ToString());
             }
             else
@@ -72,6 +72,7 @@ namespace SWAN
                 // Perform actions based on the user's choice
                 if (result == MessageBoxResult.Yes)
                 {
+                    string selectedFramework = menuItem.Header.ToString();
                     _viewModel.HandleFrameworkSelectionCommand.Execute(menuItem.Header.ToString());
                 }
                 else if (result == MessageBoxResult.No)
