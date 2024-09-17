@@ -59,17 +59,20 @@ namespace SWAN
         private void NewFileMenuItem_Click(object sender, RoutedEventArgs e)
         {
             var menuItem = sender as MenuItem;
-            string selectedFramework = menuItem.Header.ToString();
             if(emptyChangeDashboard()){
+                string selectedFramework = menuItem.Header.ToString();
                 _viewModel.HandleFrameworkSelectionCommand.Execute(menuItem.Header.ToString());
             }
             else
             {
-                MessageBoxResult result = MessageBox.Show("Opening a new Dashboard will erase any unsaved changes. Do you want to proceed?", "Confirm Action", MessageBoxButton.YesNo);
-
+                var result = MessageBox.Show("You have unsaved changes. Do you want to discard them and create a new file?",
+                                           "Unsaved Changes",
+                                           MessageBoxButton.YesNo,
+                                           MessageBoxImage.Warning);
                 // Perform actions based on the user's choice
                 if (result == MessageBoxResult.Yes)
                 {
+                    string selectedFramework = menuItem.Header.ToString();
                     _viewModel.HandleFrameworkSelectionCommand.Execute(menuItem.Header.ToString());
                 }
                 else if (result == MessageBoxResult.No)
@@ -81,7 +84,7 @@ namespace SWAN
         }
 
         //TODO this has got to be done much better
-        private bool emptyChangeDashboard() { return _viewModel.DashboardViewModel.CheckBoxCollection.Count == 0; }
+        private bool emptyChangeDashboard() { return _viewModel.DashboardViewModel.ConceptualControls.Count == 0; }
 
         private void TitleBarButton_Click(object sender, RoutedEventArgs e)
         {

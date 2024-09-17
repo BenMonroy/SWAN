@@ -1,21 +1,7 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using SWAN.Components;
+﻿using SWAN.Components;
 using SWAN.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Wpf.Ui.Controls;
 using TreeViewItem = Wpf.Ui.Controls.TreeViewItem;
 
@@ -60,35 +46,7 @@ namespace SWAN.Views
             }
         }
 
-        public void CheckBoxClick(object sender, RoutedEventArgs e)
-        {
-            // Assuming MainViewModelInstance.TestsCollection holds your parent items
-            // and each parent item has a Children collection and an IsSelected property.
-            foreach (var parent in _viewModel.CheckBoxCollection)
-            {
-                int totalChildren = parent.Children.Count;
-                int selectedChildren = 0;
-                foreach (var child in parent.Children)
-                {
-                    if (child.IsSelected == true)
-                    {
-                        selectedChildren++;
-                    }
-                }
-
-                // Set the parent's IsSelected to true only if all children are selected
-                if (selectedChildren == totalChildren)
-                {
-                    parent.IsSelected = true;
-
-                }
-                if (selectedChildren == 0)
-                {
-                    parent.IsSelected = false;
-                }
-            }
-        }
-
+        
 
         private void Create_Dashboard_Click(object sender, RoutedEventArgs e)
         {
@@ -110,7 +68,7 @@ namespace SWAN.Views
                     _viewModel.Load80037Command.Execute(null);
                     break;
                 case 3:
-                    // Action for "NIST 800-160 Vol. 1"
+                    // Action for "NIST SP 800-160 Vol. 1"
                     _viewModel.SelectedFramework = "NIST SP 800-160 Vol. 1";
                     _viewModel.Load800160Command.Execute(null);
                     break;
@@ -120,11 +78,17 @@ namespace SWAN.Views
 
 
 
-        private void FileChosenFromSearch(object sender, AutoSuggestBoxSuggestionChosenEventArgs e)
+        private async void FileChosenFromSearch(object sender, AutoSuggestBoxSuggestionChosenEventArgs e)
         {
             if (e.SelectedItem is RecentFile selectedFile)
             {
-                _viewModel.LoadStateFromCsv(selectedFile.FilePath);
+                try
+                {
+                    await _viewModel.LoadStateAsync(selectedFile.FilePath);
+                    _viewModel.ToggleRMFStackPanelVisibility();
+                    System.Windows.MessageBox.Show("File loaded Successfully");
+                }
+                catch (Exception ex) { System.Windows.MessageBox.Show("$ex"); }
             }
             else
             {

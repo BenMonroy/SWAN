@@ -2,7 +2,6 @@
 using OxyPlot.Axes;
 using OxyPlot.Series;
 using OxyPlot;
-using SWAN.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,13 +13,12 @@ namespace SWAN.ViewModels
 {
     public class RiskScoreViewModel : ObservableObject
     {
-        public ObservableCollection<CheckBoxItem> AllControls { get; private set; }
         public PlotModel CyberControlBarGraphModel { get; private set; } = new PlotModel();
         public PlotModel RiskSeverityModel { get; private set; } = new PlotModel();
         public double RiskScore { get; private set; }
         public RiskScoreViewModel(RMFDashboardViewModel viewModel)
         {
-            AllControls = viewModel.CheckBoxCollection;
+            
             // Bind controls from the dashboard
             //AllControls = dashboardViewModel.CheckBoxCollection;
 
