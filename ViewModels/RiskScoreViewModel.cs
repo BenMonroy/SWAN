@@ -1,66 +1,97 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using OxyPlot.Axes;
-using OxyPlot.Series;
-using OxyPlot;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using OxyPlot;
+using OxyPlot.Series;
+using SWAN.Components;
 
 namespace SWAN.ViewModels
 {
-    public class RiskScoreViewModel : ObservableObject
+    public class RiskScoreViewModel
     {
-        public PlotModel CyberControlBarGraphModel { get; private set; } = new PlotModel();
-        public PlotModel RiskSeverityModel { get; private set; } = new PlotModel();
-        public double RiskScore { get; private set; }
-        public RiskScoreViewModel(RMFDashboardViewModel viewModel)
+        public ObservableCollection<ControlGroup> ControlGroups { get; set; } = new ObservableCollection<ControlGroup>();
+        public PlotModel CyberControlBarGraphModel { get; set; } = new PlotModel();
+        public PlotModel RiskSeverityModel { get; set; } = new PlotModel();
+        public double RiskScore { get; set; }
+
+        private readonly RMFDashboardViewModel _dashboardViewModel;
+
+        public RiskScoreViewModel(RMFDashboardViewModel dashboardViewModel)
         {
-            
-            // Bind controls from the dashboard
-            //AllControls = dashboardViewModel.CheckBoxCollection;
+            _dashboardViewModel = dashboardViewModel;
 
-            // Calculate the CVSS risk score
-            CVSSCalculator calculator = new CVSSCalculator();
-            double attackVector = 0.85;
-            double attackComplexity = 0.77;
-            double privilegesRequired = 0.62;
-            double userInteraction = 0.85;
-            double impactConfidentiality = 0.56;
-            double impactIntegrity = 0.56;
-            double impactAvailability = 0.56;
+            // Load controls from the dashboard
+            _dashboardViewModel.LoadDoDICollection();
 
-            RiskScore = calculator.CalculateBaseScore(attackVector, attackComplexity, privilegesRequired, userInteraction, impactConfidentiality, impactIntegrity, impactAvailability);
+            // Fetch the control names from the dashboard
+            FetchControlNames();
+        }
 
-            // Setup graphs
+        private void FetchControlNames()
+        {
+            ControlGroups.Clear();
+
+            // Fetch all conceptual controls from the dashboard
+            var conceptualControls = GetSelectedDashboardControls();
+
+            if (conceptualControls == null || !conceptualControls.Any())
+            {
+                return;
+            }
+
+            foreach (var conceptualControl in conceptualControls)
+            {
+                var group = new ControlGroup
+                {
+                    MajorControlName = conceptualControl.Name
+                };
+
+                foreach (var physicalControl in conceptualControl.PhysicalControls.Where(pc => !pc.Passed)) // Filter only unchecked controls
+                {
+                    group.MinorControls.Add(new MinorControlModel
+                    {
+                        ControlName = physicalControl.Control,
+                        Severity = conceptualControl.Severity,
+                        IsChecked = physicalControl.Passed ? "Passed" : "Failed"
+                    });
+                }
+
+                ControlGroups.Add(group);
+            }
+
             SetupCyberControlBarGraph();
             SetupRiskSeverityModel();
         }
 
         private void SetupCyberControlBarGraph()
         {
-            CyberControlBarGraphModel = new PlotModel { Title = "Failed Standards per Cyber Control" };
-            var barSeries = new BarSeries
-            {
-                ItemsSource = new[]
+            CyberControlBarGraphModel = new PlotModel { Title = "Failed Standards per Severity" };
+
+            var severityGroups = ControlGroups
+                .SelectMany(group => group.MinorControls)
+                .GroupBy(control => control.Severity)
+                .Select(group => new OxyPlot.Series.BarItem
                 {
-                    new BarItem { Value = 10 },
-                    new BarItem { Value = 7 },
-                    new BarItem { Value = 8 },
-                    new BarItem { Value = 6 }
-                },
-                LabelPlacement = LabelPlacement.Inside,
+                    Value = group.Count()
+                })
+                .ToList();
+
+            var barSeries = new OxyPlot.Series.BarSeries
+            {
+                ItemsSource = severityGroups,
+                LabelPlacement = OxyPlot.Series.LabelPlacement.Inside,
                 LabelFormatString = "{0}"
             };
 
             CyberControlBarGraphModel.Series.Add(barSeries);
-            CyberControlBarGraphModel.Axes.Add(new CategoryAxis
+            CyberControlBarGraphModel.Axes.Add(new OxyPlot.Axes.CategoryAxis
             {
-                Position = AxisPosition.Left,
-                Key = "CyberControlsAxis",
-                ItemsSource = new[] { "Control A", "Control B", "Control C", "Control D" }
+                Position = OxyPlot.Axes.AxisPosition.Left,
+                ItemsSource = ControlGroups
+                    .SelectMany(group => group.MinorControls)
+                    .Select(control => control.Severity)
+                    .Distinct()
+                    .ToList()
             });
         }
 
@@ -68,7 +99,7 @@ namespace SWAN.ViewModels
         {
             RiskSeverityModel = new PlotModel { Title = "Vulnerabilities by Severity" };
 
-            var pieSeries = new PieSeries
+            var pieSeries = new OxyPlot.Series.PieSeries
             {
                 StrokeThickness = 2.0,
                 InsideLabelPosition = 0.8,
@@ -76,37 +107,77 @@ namespace SWAN.ViewModels
                 StartAngle = 0
             };
 
-            // Colors for each severity level
-            pieSeries.Slices.Add(new PieSlice("Low", 20) { Fill = OxyColors.LightBlue });
-            pieSeries.Slices.Add(new PieSlice("Medium", 50) { Fill = OxyColors.Orange });
-            pieSeries.Slices.Add(new PieSlice("High", 20) { Fill = OxyColors.Red });
-            pieSeries.Slices.Add(new PieSlice("Critical", 10) { IsExploded = true, Fill = OxyColors.DarkRed });
+            pieSeries.Slices.Add(new OxyPlot.Series.PieSlice("Low/Low", ControlGroups
+                .SelectMany(group => group.MinorControls)
+                .Count(c => c.Severity == "Low/Low"))
+            { Fill = OxyColors.Green });
+            pieSeries.Slices.Add(new OxyPlot.Series.PieSlice("Med/Med", ControlGroups
+                .SelectMany(group => group.MinorControls)
+                .Count(c => c.Severity == "Med/Med"))
+            { Fill = OxyColors.Orange });
+            pieSeries.Slices.Add(new OxyPlot.Series.PieSlice("High/High", ControlGroups
+                .SelectMany(group => group.MinorControls)
+                .Count(c => c.Severity == "High/High"))
+            { Fill = OxyColors.Red });
+            pieSeries.Slices.Add(new OxyPlot.Series.PieSlice("Low/Med", ControlGroups
+                .SelectMany(group => group.MinorControls)
+                .Count(c => c.Severity == "Low/Med"))
+            { Fill = OxyColors.Yellow });
+            pieSeries.Slices.Add(new OxyPlot.Series.PieSlice("Med/Low", ControlGroups
+                .SelectMany(group => group.MinorControls)
+                .Count(c => c.Severity == "Med/Low"))
+            { Fill = OxyColors.GreenYellow });
 
             RiskSeverityModel.Series.Add(pieSeries);
         }
-    }
 
-    public class CVSSCalculator
-    {
-        public double CalculateBaseScore(double attackVector, double attackComplexity, double privilegesRequired, double userInteraction, double impactConfidentiality, double impactIntegrity, double impactAvailability)
+        private IEnumerable<ConceptualCheckBox> GetSelectedDashboardControls()
         {
-            // Calculate Impact
-            double impact = 1 - (1 - impactConfidentiality) * (1 - impactIntegrity) * (1 - impactAvailability);
-
-            // Calculate Exploitability
-            double exploitability = 8.22 * attackVector * attackComplexity * privilegesRequired * userInteraction;
-
-            // Calculate Impact SubScore
-            double impactSubScore = 6.42 * impact;
-
-            // Calculate Base Score
-            double baseScore = Math.Min(impactSubScore + exploitability, 10.0);
-
-            // Round up the base score to one decimal place
-            baseScore = Math.Ceiling(baseScore * 10) / 10;
-
-            return baseScore;
+            return new List<ConceptualCheckBox>
+            {
+                _dashboardViewModel.ConceptualControl1,
+                _dashboardViewModel.ConceptualControl2,
+                _dashboardViewModel.ConceptualControl3,
+                _dashboardViewModel.ConceptualControl4,
+                _dashboardViewModel.ConceptualControl5,
+                _dashboardViewModel.ConceptualControl6,
+                _dashboardViewModel.ConceptualControl7,
+                _dashboardViewModel.ConceptualControl8,
+                _dashboardViewModel.ConceptualControl9,
+                _dashboardViewModel.ConceptualControl10,
+                _dashboardViewModel.ConceptualControl11,
+                _dashboardViewModel.ConceptualControl12,
+                _dashboardViewModel.ConceptualControl13,
+                _dashboardViewModel.ConceptualControl14,
+                _dashboardViewModel.ConceptualControl15,
+                _dashboardViewModel.ConceptualControl16,
+                _dashboardViewModel.ConceptualControl17,
+                _dashboardViewModel.ConceptualControl18,
+                _dashboardViewModel.ConceptualControl19,
+                _dashboardViewModel.ConceptualControl20,
+                _dashboardViewModel.ConceptualControl21,
+                _dashboardViewModel.ConceptualControl22,
+                _dashboardViewModel.ConceptualControl23,
+                _dashboardViewModel.ConceptualControl24,
+                _dashboardViewModel.ConceptualControl25,
+                _dashboardViewModel.ConceptualControl26,
+                _dashboardViewModel.ConceptualControl27,
+                _dashboardViewModel.ConceptualControl28,
+                _dashboardViewModel.ConceptualControl29
+            };
         }
     }
-}
 
+    public class ControlGroup
+    {
+        public string MajorControlName { get; set; }
+        public ObservableCollection<MinorControlModel> MinorControls { get; set; } = new ObservableCollection<MinorControlModel>();
+    }
+
+    public class MinorControlModel
+    {
+        public string ControlName { get; set; }
+        public string Severity { get; set; }
+        public string IsChecked { get; set; }
+    }
+}

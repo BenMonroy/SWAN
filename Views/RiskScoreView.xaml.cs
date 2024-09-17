@@ -1,5 +1,3 @@
-﻿using System;
-using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using SWAN.ViewModels;
 
@@ -7,15 +5,14 @@ namespace SWAN.Views
 {
     public partial class RiskScoreView : UserControl
     {
-        // parameterless constructor since this is required by the content CheckControl
-        public RiskScoreView()
-        {
-        }
+        public RiskScoreViewModel ViewModel { get; private set; }
 
-        public RiskScoreView(RiskScoreViewModel viewModel) : this() // makes the paramterless constructor call this
+        public RiskScoreView(RMFDashboardViewModel dashboardViewModel)
         {
             InitializeComponent();
-            DataContext = viewModel;
+            // Initialize the ViewModel with the dashboard view model
+            ViewModel = new RiskScoreViewModel(dashboardViewModel);
+            DataContext = ViewModel;
         }
     }
 }
