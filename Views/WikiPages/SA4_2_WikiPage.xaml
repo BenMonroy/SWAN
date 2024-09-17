@@ -4,8 +4,8 @@
       Title="WikiPage">
 
     <!-- Ensure FlowDocumentReader stretches to fill available space -->
-    <FlowDocumentScrollViewer Foreground="White" Width="auto" Height="auto" HorizontalContentAlignment="Stretch">
-        <FlowDocument IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True">
+    <FlowDocumentScrollViewer x:Name="flowDocumentScrollViewer" Foreground="White" Width="auto" Height="auto" HorizontalContentAlignment="Stretch">
+        <FlowDocument x:Name="flowDocument" IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True">
             <!-- Center-align the title to take up the entire frame width -->
             <Paragraph FontSize="30">
 
@@ -25,11 +25,11 @@
                 <Run Text="Control Extension" FontWeight="Bold" FontSize="30" />
             </Paragraph>
             <!-- BEGIN TEMPLATE FOR PHYSICAL CONTROL -->
-            <Paragraph Margin="10,20,0,0">
+            <Paragraph Margin="10,20,0,0" Tag="SA4_2_numberone">
                 <Run Text="1." FontWeight="ExtraBold" FontSize="30"></Run>
                 The developer shall grant Government Purpose Rights for all delivered non- commercial and non-proprietary software/firmware. {Does not map to any CCI(s)}
             </Paragraph>
-            <Paragraph Margin="10,20,0,0">
+            <Paragraph Margin="10,20,0,0" Tag="SA4_2_numbertwo">
                 <Run Text="2." FontWeight="ExtraBold" FontSize="30"></Run>
                 The developer shall deliver all developed source code, incorporated code (open source, commercial, or third-party developed code), and any other components needed to build the software/firmware, to the Government to support an independent Government assessment of the code    
             </Paragraph>
@@ -69,7 +69,7 @@
             </Paragraph>
 
 
-            <Paragraph Margin="10,20,0,0">
+            <Paragraph Margin="10,20,0,0" Tag="SA4_2_numberthree">
                 <Run Text="3." FontWeight="ExtraBold" FontSize="30"></Run>
                 The developer shall provide detailed instructions to the Government for building the software/firmware using the delivered source code, incorporated code, and other software/firmware components
             </Paragraph>

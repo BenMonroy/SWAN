@@ -4,12 +4,12 @@
       Title="WikiPage">
 
     <!-- Ensure FlowDocumentReader stretches to fill available space -->
-    <FlowDocumentScrollViewer Foreground="White" Width="auto" Height="auto" HorizontalContentAlignment="Stretch">
-        <FlowDocument IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True">
+    <FlowDocumentScrollViewer x:Name="flowDocumentScrollViewer" Foreground="White" Width="auto" Height="auto" HorizontalContentAlignment="Stretch">
+        <FlowDocument x:Name="flowDocument" IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True">
             <!-- Center-align the title to take up the entire frame width -->
             <Paragraph FontSize="30">
 
-                <Run Text="8.	SA-11: Developer Security Testing and Evaluation" FontWeight="Bold" FontSize="30" />
+                <Run Text="SA-11: Developer Security Testing and Evaluation" FontWeight="Bold" FontSize="30" />
             </Paragraph>
 
             <!-- Left-align content -->
@@ -23,7 +23,7 @@
                 <Run Text="Control Extension" FontWeight="Bold" FontSize="30" />
             </Paragraph>
             <!-- BEGIN TEMPLATE FOR PHYSICAL CONTROL -->
-            <Paragraph Margin="10,20,0,0">
+            <Paragraph Margin="10,20,0,0" Tag="SA11numberone">
                 <Run Text="1." FontWeight="ExtraBold" FontSize="30"></Run>
                 The developer shall verify software/firmware security requirements as a part of testing activities (unit testing, integration testing, software qualification testing, and system testing). Testing shall be automated as much as possible for efficiency and repeatability.
             </Paragraph>
@@ -57,7 +57,7 @@
             </Paragraph>
 
 
-            <Paragraph Margin="10,20,0,0">
+            <Paragraph Margin="10,20,0,0" Tag="SA11numbertwo">
                 <Run Text="2." FontWeight="ExtraBold" FontSize="30"></Run>
                 The developer shall produce evidence of the execution of software/firmware security requirements testing/evaluation in a Software Test Report, or equivalent document, provided to the Government upon request.
             </Paragraph>
@@ -92,7 +92,7 @@
             </Paragraph>
 
 
-            <Paragraph Margin="10,20,0,0">
+            <Paragraph Margin="10,20,0,0" Tag="SA11numberthree">
                 <Run Text="3." FontWeight="ExtraBold" FontSize="30"></Run>
                 The developer shall manage all security flaws identified through software/firmware testing in accordance with the developer’s flaw remediation process.
             </Paragraph>

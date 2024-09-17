@@ -3,11 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              mc:Ignorable="d" 
              d:DesignHeight="450" 
              d:DesignWidth="800"
              Background="{StaticResource WindowBackgroundColor}">
-
+    <UserControl.Resources>
+        <!-- Style for Parent Items -->
+        <Style x:Key="ParentItemStyle" TargetType="ListBoxItem">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="ExtraBold"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <!-- Style for Subnavigation Items -->
+        <Style x:Key="SubItemStyle" TargetType="ListBoxItem">
+            <Setter Property="Foreground" Value="white"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Margin" Value="20,0,0,0"/>
+            <Setter Property="Background" Value="#555555"/>
+            <Setter Property="Padding" Value="4"/>
+        </Style>
+    </UserControl.Resources>
     <!-- Main Grid for the entire control layout -->
     <Grid Background="{StaticResource WindowBackgroundColor}">
         <Grid.RowDefinitions>
@@ -23,7 +40,7 @@
                 <Grid Background="{StaticResource WindowBackgroundColor}">
                     <Grid.ColumnDefinitions>
                         <!-- Sidebar column with a fixed width -->
-                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="150"/>
                         <!-- Main content area with flexible width -->
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
@@ -41,16 +58,36 @@
                              ScrollViewer.VerticalScrollBarVisibility="Auto">
                         <!-- ListBoxItems for Navigation -->
                         <ListBoxItem Content="CM-1" HorizontalContentAlignment="Left"/>
+                            <ListBoxItem Content="CM1numberone" HorizontalContentAlignment="Left"  x:Name="CM1numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
                         <ListBoxItem Content="SA-3" HorizontalContentAlignment="Left"/>
+                            <ListBoxItem Content="SA3numberone" HorizontalContentAlignment="Left"  x:Name="SA3numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SA3numbertwo" HorizontalContentAlignment="Left"  x:Name="SA3numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SA3numberthree" HorizontalContentAlignment="Left"  x:Name="SA3numberthreeItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
                         <ListBoxItem Content="SA-4" HorizontalContentAlignment="Left"/>
+                            <ListBoxItem Content="SA4numberone" HorizontalContentAlignment="Left"  x:Name="SA4numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SA4numbertwo" HorizontalContentAlignment="Left"  x:Name="SA4numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
                         <ListBoxItem Content="SA-4(2)" HorizontalContentAlignment="Left"/>
+                            <ListBoxItem Content="SA4_2_numberone" HorizontalContentAlignment="Left"  x:Name="SA4_2_numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SA4_2_numbertwo" HorizontalContentAlignment="Left"  x:Name="SA4_2_numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SA4_2_numberthree" HorizontalContentAlignment="Left"  x:Name="SA4_2_numberthreeItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SA4_2_numberfour" HorizontalContentAlignment="Left"  x:Name="SA4_2_numberfourItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
                         <ListBoxItem Content="SA-4(3)" HorizontalContentAlignment="Left"/>
+                            <ListBoxItem Content="SA4_3_numberone" HorizontalContentAlignment="Left"  x:Name="SA4_3_numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SA4_3_numbertwo" HorizontalContentAlignment="Left"  x:Name="SA4_3_numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>   
                         <ListBoxItem Content="SA-8" HorizontalContentAlignment="Left"/>
-                        <ListBoxItem Content="SA-10" HorizontalContentAlignment="Left"/>
-                        <!--<ListBoxItem Content="numberone" HorizontalContentAlignment="Left"/>
-                        <ListBoxItem Content="numbertwo" HorizontalContentAlignment="Left"/>
-                        <ListBoxItem Content="numberthree" HorizontalContentAlignment="Left"/>-->
+                            <ListBoxItem Content="SA8numberone" HorizontalContentAlignment="Left"  x:Name="SA8numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                        <ListBoxItem Content="SA-10" HorizontalContentAlignment="Left" />
+                            <ListBoxItem Content="numberone" HorizontalContentAlignment="Left"  x:Name="numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="numbertwo" HorizontalContentAlignment="Left"  x:Name="numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="numberthree" HorizontalContentAlignment="Left"  x:Name="numberthreeItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="numberfour" HorizontalContentAlignment="Left"  x:Name="numberfourItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="numberfive" HorizontalContentAlignment="Left"  x:Name="numberfiveItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="numbersix" HorizontalContentAlignment="Left"  x:Name="numbersixItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="numberseven" HorizontalContentAlignment="Left"  x:Name="numbersevenItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
                         <ListBoxItem Content="SA-11" HorizontalContentAlignment="Left"/>
+                            <ListBoxItem Content="SA11numberone" HorizontalContentAlignment="Left"  x:Name="SA11numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SA11numbertwo" HorizontalContentAlignment="Left"  x:Name="SA11numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SA11numberthree" HorizontalContentAlignment="Left"  x:Name="SA11numberthreeItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
                     </ListBox>
 
                     <!-- Frame for Content Display -->
@@ -67,7 +104,7 @@
                 <Grid Background="{StaticResource WindowBackgroundColor}">
                     <Grid.ColumnDefinitions>
                         <!-- Sidebar column with a fixed width -->
-                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="150"/>
                         <!-- Main content area with flexible width -->
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
@@ -104,7 +141,7 @@
                 <Grid Background="{StaticResource WindowBackgroundColor}">
                     <Grid.ColumnDefinitions>
                         <!-- Sidebar column with a fixed width -->
-                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="150"/>
                         <!-- Main content area with flexible width -->
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>

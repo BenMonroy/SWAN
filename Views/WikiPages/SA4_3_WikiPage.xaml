@@ -4,8 +4,8 @@
       Title="WikiPage">
 
     <!-- Ensure FlowDocumentReader stretches to fill available space -->
-    <FlowDocumentScrollViewer Foreground="White" Width="auto" Height="auto" HorizontalContentAlignment="Stretch">
-        <FlowDocument IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True">
+    <FlowDocumentScrollViewer x:Name="flowDocumentScrollViewer" Foreground="White" Width="auto" Height="auto" HorizontalContentAlignment="Stretch">
+        <FlowDocument x:Name="flowDocument" IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True">
             <!-- Center-align the title to take up the entire frame width -->
             <Paragraph FontSize="30">
                 <Run Text="SA-4(3): Acquisition Process: Development Methods/Techniques/Practices" FontWeight="Bold" FontSize="30" />
@@ -24,7 +24,7 @@
                 <Run Text="Control Extension" FontWeight="Bold" FontSize="30" />
             </Paragraph>
             <!-- BEGIN TEMPLATE FOR PHYSICAL CONTROL -->
-            <Paragraph Margin="10,20,0,0">
+            <Paragraph Margin="10,20,0,0" Tag="SA4_3_numberone">
                 <Run Text="1." FontWeight="ExtraBold" FontSize="30"></Run>
                 The developer shall document software/firmware security engineering methods, software/firmware development methods, testing/evaluation/validation techniques, and quality control processes directly or by reference in a SDP, FDP, PPIP, or equivalent documents
             </Paragraph>
@@ -57,7 +57,7 @@
                 System development life cycle (SDLC) includes organization-defined state-of-the-practice system/security engineering methods, software development methods , testing/evaluation/validation techniques, and quality control processes.
             </Paragraph>
 
-            <Paragraph Margin="10,20,0,0">
+            <Paragraph Margin="10,20,0,0" Tag="SA4_3_numbertwo">
                 <Run Text="2." FontWeight="ExtraBold" FontSize="30"></Run>
                 The developer shall incorporate software and firmware requirements from applicable Defense Information Systems Agency Security Technical Implementation Guides (STIG) (e.g., Application Security and Development STIG).
             </Paragraph>
