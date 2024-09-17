@@ -138,8 +138,8 @@
                 3.) Continuous monitoring plan must require developer to perform configuration management during system, component or service design, development, implementation, and/or operation.
             </Paragraph>
 
-            <Paragraph Margin="10,20,0,0">
-                <Run Text="4." x:Name="numberfour" FontWeight="ExtraBold" FontSize="30"></Run>
+            <Paragraph Margin="10,20,0,0"  Tag="numberfour">
+                <Run Text="4." FontWeight="ExtraBold" FontSize="30"></Run>
                 The developer shall document and utilize a process for approving changes to software/firmware configuration items.
             </Paragraph>
             <Paragraph TextAlignment="Left" Margin="50,20,0,0">
@@ -176,8 +176,8 @@
                 3.) Continuous monitoring plan must define configuration items under configuration management that require integrity of changes to be documented, managed and controlled.
             </Paragraph>
 
-            <Paragraph Margin="10,20,0,0">
-                <Run Text="5." x:Name="numberfive" FontWeight="ExtraBold" FontSize="30"></Run>
+            <Paragraph Margin="10,20,0,0" Tag="numberfive" >
+                <Run Text="5."  FontWeight="ExtraBold" FontSize="30"></Run>
                 The developer shall implement only approved changes to software/firmware configuration items.
             </Paragraph>
             <Paragraph TextAlignment="Left" Margin="50,20,0,0">
@@ -214,8 +214,8 @@
                 3.) Continuous monitoring plan must require that only organization-approved changes are implemented.
             </Paragraph>
 
-            <Paragraph Margin="10,20,0,0">
-                <Run Text="6." x:Name="numbersix" FontWeight="ExtraBold" FontSize="30"></Run>
+            <Paragraph Margin="10,20,0,0"  Tag="numbersix" >
+                <Run Text="6." FontWeight="ExtraBold" FontSize="30"></Run>
                 The developer shall document approved changes to software/firmware configuration items and the potential security impacts of such changes
             </Paragraph>
             <Paragraph TextAlignment="Left" Margin="50,20,0,0">
@@ -253,8 +253,8 @@
                 3.) Continuous monitoring plan must require that only organization-approved changes are implemented, and documented.
             </Paragraph>
 
-            <Paragraph Margin="10,20,0,0">
-                <Run Text="7." x:Name="numberseven" FontWeight="ExtraBold" FontSize="30"></Run>
+            <Paragraph Margin="10,20,0,0" Tag="numberseven" >
+                <Run Text="7."  FontWeight="ExtraBold" FontSize="30"></Run>
                 The developer shall make available to the Government upon request documentation describing the configuration items under configuration management including descriptions of the changes made to those configuration items
             </Paragraph>
             <Paragraph TextAlignment="Left" Margin="50,20,0,0">
