@@ -1,4 +1,13 @@
+<<<<<<< HEAD
 ﻿using System;
+=======
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using OxyPlot.Axes;
+using OxyPlot.Series;
+using OxyPlot;
+using System;
+using System.Collections.Generic;
+>>>>>>> main
 using System.Collections.ObjectModel;
 using System.Linq;
 using OxyPlot;
@@ -9,6 +18,7 @@ namespace SWAN.ViewModels
 {
     public class RiskScoreViewModel
     {
+<<<<<<< HEAD
         public ObservableCollection<ControlGroup> ControlGroups { get; set; } = new ObservableCollection<ControlGroup>();
         public PlotModel CyberControlBarGraphModel { get; set; } = new PlotModel();
         public PlotModel RiskSeverityModel { get; set; } = new PlotModel();
@@ -19,6 +29,16 @@ namespace SWAN.ViewModels
         public RiskScoreViewModel(RMFDashboardViewModel dashboardViewModel)
         {
             _dashboardViewModel = dashboardViewModel;
+=======
+        public PlotModel CyberControlBarGraphModel { get; private set; } = new PlotModel();
+        public PlotModel RiskSeverityModel { get; private set; } = new PlotModel();
+        public double RiskScore { get; private set; }
+        public RiskScoreViewModel(RMFDashboardViewModel viewModel)
+        {
+            
+            // Bind controls from the dashboard
+            //AllControls = dashboardViewModel.CheckBoxCollection;
+>>>>>>> main
 
             // Load controls from the dashboard
             _dashboardViewModel.LoadDoDICollection();

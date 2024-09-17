@@ -2,14 +2,15 @@
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.VisualBasic.FileIO;
 using SWAN.Components;
-using SWAN.Models;
 using SWAN.Views;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -19,7 +20,6 @@ namespace SWAN.ViewModels
     public partial class RMFDashboardViewModel : ObservableObject
 
     {
-        public ObservableCollection<CheckBoxItem> CheckBoxCollection { get; set; }
         
         //TODO add a binding visibility here for RMF stack panel, change other refeernces to stack panel to this property
 
@@ -127,15 +127,15 @@ namespace SWAN.ViewModels
         [ObservableProperty]
         public ConceptualCheckBox conceptualControl29;
 
-
+        public ObservableCollection<ConceptualCheckBox> ConceptualControls { get; set; }
 
 
         public RMFDashboardViewModel(RecentFilesView fileView)
         {
-            CheckBoxCollection = new ObservableCollection<CheckBoxItem>();
             FileView = fileView;
             RecentFiles = new ObservableCollection<RecentFile>(_recentFilesManager.LoadRecentFiles());
-            
+            ConceptualControls = new ObservableCollection<ConceptualCheckBox>();
+
         }
 
 
@@ -157,82 +157,211 @@ namespace SWAN.ViewModels
             CheckBoxesVisibility = Visibility.Visible;
         } 
 
-        public void DisposeCheckBoxCollection()
-        {
-            CheckBoxCollection.Clear();
-        }
-
       
 
         private void Load80053Collection()
         {
-            IList<CheckControl> controlList = new List<CheckControl> 
-            { 
-                new CheckControl { 
-                    Major = "Placeholder for NIST SP 800.53 Rev. 5", Minor = "Nothing to see here" 
-                } 
-            };
-
-            //take the list and adds them to the checkbox collection
-            var groupedTests = controlList.GroupBy(t => t.Major);
-
-            foreach (var group in groupedTests)
+            ConceptualControl1 = new ConceptualCheckBox
             {
-                var parent = new CheckBoxItem(group.Key);
-                foreach (var minorTest in group)
+                Severity = "Low/Low",
+                CIA = "HHH",
+                Name = "Conceptual Control 1",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
-                    parent.AddChild(new CheckBoxItem(minorTest.Minor));
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
                 }
-                CheckBoxCollection.Add(parent);
-            }
+            };
+            ConceptualControl2 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 2",
+                Severity = "Low/Low",
+                CIA = "HHH",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+                {
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
+                }
+            };
+            ConceptualControl3 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 3",
+                Severity = "High/High",
+                CIA = "HHH",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+                {
+                    new PhysicalControl { Control = "Physical Control 1"    , Passed = false },
+                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
+                }
+            };
+            ConceptualControl4 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 4",
+                Severity = "Med/Med",
+                CIA = "HHH",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+                {
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
+                }
+            };
+            ConceptualControl5 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 5",
+                Severity = "Low/Med",
+                CIA = "HHH",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+                {
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
+                }
+            };
+            ConceptualControls = new ObservableCollection<ConceptualCheckBox>
+            {
+        ConceptualControl1, ConceptualControl2, ConceptualControl3, ConceptualControl4,
+        ConceptualControl5 };
 
         }
 
         private void Load80037Collection()
         {
-            IList<CheckControl> controlList = new List<CheckControl>
+            ConceptualControl1 = new ConceptualCheckBox
             {
-                new CheckControl {
-                    Major = "Placeholder for NIST SP 800-37 Rev. 2", Minor = "Nothing to see here"
+                Severity = "Low/Low",
+                CIA = "HHH",
+                Name = "Conceptual Control 1",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+                {
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
                 }
             };
-
-            //take the list and adds them to the checkbox collection
-            var groupedTests = controlList.GroupBy(t => t.Major);
-
-            foreach (var group in groupedTests)
+            ConceptualControl2 = new ConceptualCheckBox
             {
-                var parent = new CheckBoxItem(group.Key);
-                foreach (var minorTest in group)
+                Name = "Conceptual Control 2",
+                Severity = "Low/Low",
+                CIA = "HHH",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
-                    parent.AddChild(new CheckBoxItem(minorTest.Minor));
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
                 }
-                CheckBoxCollection.Add(parent);
-            }
+            };
+            ConceptualControl3 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 3",
+                Severity = "High/High",
+                CIA = "HHH",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+                {
+                    new PhysicalControl { Control = "Physical Control 1"    , Passed = false },
+                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
+                }
+            };
+            ConceptualControl4 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 4",
+                Severity = "Med/Med",
+                CIA = "HHH",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+                {
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
+                }
+            };
+            ConceptualControl5 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 5",
+                Severity = "Low/Med",
+                CIA = "HHH",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+                {
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
+                }
+            };
+            ConceptualControls = new ObservableCollection<ConceptualCheckBox>
+            {
+        ConceptualControl1, ConceptualControl2, ConceptualControl3, ConceptualControl4,
+        ConceptualControl5 };
 
         }
         private void Load800160Collection()
         {
-            IList<CheckControl> controlList = new List<CheckControl>
+            ConceptualControl1 = new ConceptualCheckBox
             {
-                new CheckControl {
-                    Major = "Placeholder for NIST SP 800-160 Vol. 1", Minor = "Nothing to see here"
+                Severity = "Low/Low",
+                CIA = "HHH",
+                Name = "Conceptual Control 1",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+                {
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
                 }
             };
-
-            //take the list and adds them to the checkbox collection
-            var groupedTests = controlList.GroupBy(t => t.Major);
-
-            foreach (var group in groupedTests)
+            ConceptualControl2 = new ConceptualCheckBox
             {
-                var parent = new CheckBoxItem(group.Key);
-                foreach (var minorTest in group)
+                Name = "Conceptual Control 2",
+                Severity = "Low/Low",
+                CIA = "HHH",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
-                    parent.AddChild(new CheckBoxItem(minorTest.Minor));
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
                 }
-                CheckBoxCollection.Add(parent);
-            }
-
+            };
+            ConceptualControl3 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 3",
+                Severity = "High/High",
+                CIA = "HHH",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+                {
+                    new PhysicalControl { Control = "Physical Control 1"    , Passed = false },
+                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
+                }
+            };
+            ConceptualControl4 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 4",
+                Severity = "Med/Med",
+                CIA = "HHH",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+                {
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
+                }
+            };
+            ConceptualControl5 = new ConceptualCheckBox
+            {
+                Name = "Conceptual Control 5",
+                Severity = "Low/Med",
+                CIA = "HHH",
+                PhysicalControls = new ObservableCollection<PhysicalControl>
+                {
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
+                }
+            };
+            ConceptualControls = new ObservableCollection<ConceptualCheckBox>
+            {
+        ConceptualControl1, ConceptualControl2, ConceptualControl3, ConceptualControl4,
+        ConceptualControl5 };
         }
         public RecentFile CreateRecentFile(string filePath)
         {
@@ -252,126 +381,113 @@ namespace SWAN.ViewModels
                 LastOpened = lastOpened
             };
         }
-
-        public void SaveStateToCsv(string filePath)
+        public async Task SaveStateAsync(string filePath)
         {
-            if (string.IsNullOrEmpty(filePath))
-            { MessageBox.Show("Error: Attempted to save file with empty filepath."); }
-            var sb = new StringBuilder();
-            //save the file to csv
-            sb.AppendLine($"SelectedFramework,\"{SelectedFramework}\"");
-            sb.AppendLine("Label,IsSelected");
+            var options = new JsonSerializerOptions { WriteIndented = true };
 
-            foreach (var test in CheckBoxCollection)
-            {
-                SaveTestToCsv(test, sb);
-            }
+            // Create a dictionary to hold both SelectedFramework and ConceptualControls
+            var saveData = new Dictionary<string, object>
+    {
+        { "SelectedFramework", SelectedFramework },
+        { "ConceptualControls", ConceptualControls }
+    };
 
-            File.WriteAllText(filePath, sb.ToString());
-            // add the file to recent files
+            // Serialize the dictionary to JSON
+            string json = JsonSerializer.Serialize(saveData, options);
+
+            // Write the JSON to a file
+            await File.WriteAllTextAsync(filePath, json);
+
+            // Add the file to recent files
             var recent = CreateRecentFile(filePath);
             _recentFilesManager.AddRecentFile(recent);
         }
 
-        private void SaveTestToCsv(CheckBoxItem test, StringBuilder sb)
+        public async Task LoadStateAsync(string filePath)
         {
-            
-            // Add quotes around the label to handle commas and special characters
-            sb.AppendLine($"\"{EscapeCsvField(test.Label)}\",{test.IsSelected}");
-
-            foreach (var child in test.Children)
+            if (string.IsNullOrEmpty(filePath))
             {
-                SaveTestToCsv(child, sb);
+                MessageBox.Show("Error: Attempted to open file with empty filepath.");
+                return;
             }
-        }
-
-        // Helper method to escape quotes in the CSV field
-        private string EscapeCsvField(string field)
-        {
-            if (field.Contains("\""))
+            string json = await File.ReadAllTextAsync(filePath);
+            var loadedData = JsonSerializer.Deserialize<Dictionary<string, object>>(json);
+            if (loadedData != null && loadedData.ContainsKey("SelectedFramework") && loadedData.ContainsKey("ConceptualControls"))
             {
-                // Replace double quotes with two double quotes
-                field = field.Replace("\"", "\"\"");
-            }
-            return field;
-        }
-
-
-
-        public void LoadStateFromCsv(string filePath)
+                var validFrameworks = new List<string>
         {
-            if (!File.Exists(filePath))
-                throw new FileNotFoundException("The specified file does not exist.");
-            //in case loading after already being in active file
-            DisposeCheckBoxCollection();
+            "DoDI 8510.01",
+            "NIST SP 800.53 Rev. 5",
+            "NIST SP 800-37 Rev. 2",
+            "NIST SP 800-160 Vol. 1"
+        };
 
-            using (var parser = new TextFieldParser(filePath))
-            {
-                parser.TextFieldType = FieldType.Delimited;
-                parser.SetDelimiters(",");
+                var jsonFramework = loadedData["SelectedFramework"]?.ToString();
 
-                // Check the first line for SelectedFramework
-                string[] firstLine = parser.ReadFields();
-                if (firstLine.Length < 2 || firstLine[0] != "SelectedFramework")
-                    throw new InvalidDataException("The CSV file does not start with 'SelectedFramework'.");
-
-                // Validate the framework name in the second column
-                string selectedFramework = firstLine[1];
-                string[] validFrameworks = { "NIST SP 800-37 Rev. 2", "NIST SP 800-160 Vol. 1", "DoDI 8510.01", "NIST SP 800-53 Rev. 5" }; // Adjust according to your frameworks
-
-                if (!validFrameworks.Contains(selectedFramework))
-                    throw new InvalidDataException($"The specified framework '{selectedFramework}' is not recognized.");
-                SelectedFramework = selectedFramework;
-
-                // Read the header line
-                string[] headers = parser.ReadFields();
-                if (headers.Length < 2 || headers[0] != "Label" || headers[1] != "IsSelected")
-                    throw new InvalidDataException("The CSV file does not have the correct header format.");
-
-                switch (selectedFramework)
+                if (!validFrameworks.Contains(jsonFramework))
                 {
-                    case "DoDI 8510.01":
-                        LoadDoDICollection();
-                        break;
-                    case "NIST SP 800-37 Rev. 2":
-                        Load80037Collection();
-                        break;
-                    case "NIST SP 800-53 Rev. 5":
-                        Load80053Collection();
-                        break;
-                    case "NIST SP 800-160 Vol. 1":
-                        Load800160Collection();
-                        break;
+                    MessageBox.Show($"Error: Invalid or unsupported framework '{jsonFramework}'.");
+                    return; // TODO do something here so that if open fails it does not load empty dashboard
                 }
+                SelectedFramework = jsonFramework;
 
-                // Process each line after the header
-                while (!parser.EndOfData)
+                // Retrieve and update the ConceptualControls
+                var loadedControls = JsonSerializer.Deserialize<ObservableCollection<ConceptualCheckBox>>(loadedData["ConceptualControls"].ToString());
+
+                if (loadedControls != null)
                 {
-                    string[] columns = parser.ReadFields();
-
-                    if (columns.Length < 2)
-                        continue;
-
-                    string label = columns[0];
-                    bool isSelected = bool.Parse(columns[1]);
-
-                    // Find the matching item in the collection by label
-                    var matchingItem = CheckBoxCollection.FirstOrDefault(item => item.Label == label);
-
-                    if (matchingItem != null)
+                    ConceptualControls.Clear();
+                    foreach (var control in loadedControls)
                     {
-                        matchingItem.IsSelected = isSelected;
+                        ConceptualControls.Add(control);
                     }
+
+                    // Assign the first 29 controls to individual properties
+                    ConceptualControl1 = loadedControls.ElementAtOrDefault(0);
+                    ConceptualControl2 = loadedControls.ElementAtOrDefault(1);
+                    ConceptualControl3 = loadedControls.ElementAtOrDefault(2);
+                    ConceptualControl4 = loadedControls.ElementAtOrDefault(3);
+                    ConceptualControl5 = loadedControls.ElementAtOrDefault(4);
+                    ConceptualControl6 = loadedControls.ElementAtOrDefault(5);
+                    ConceptualControl7 = loadedControls.ElementAtOrDefault(6);
+                    ConceptualControl8 = loadedControls.ElementAtOrDefault(7);
+                    ConceptualControl9 = loadedControls.ElementAtOrDefault(8);
+                    ConceptualControl10 = loadedControls.ElementAtOrDefault(9);
+                    ConceptualControl11 = loadedControls.ElementAtOrDefault(10);
+                    ConceptualControl12 = loadedControls.ElementAtOrDefault(11);
+                    ConceptualControl13 = loadedControls.ElementAtOrDefault(12);
+                    ConceptualControl14 = loadedControls.ElementAtOrDefault(13);
+                    ConceptualControl15 = loadedControls.ElementAtOrDefault(14);
+                    ConceptualControl16 = loadedControls.ElementAtOrDefault(15);
+                    ConceptualControl17 = loadedControls.ElementAtOrDefault(16);
+                    ConceptualControl18 = loadedControls.ElementAtOrDefault(17);
+                    ConceptualControl19 = loadedControls.ElementAtOrDefault(18);
+                    ConceptualControl20 = loadedControls.ElementAtOrDefault(19);
+                    ConceptualControl21 = loadedControls.ElementAtOrDefault(20);
+                    ConceptualControl22 = loadedControls.ElementAtOrDefault(21);
+                    ConceptualControl23 = loadedControls.ElementAtOrDefault(22);
+                    ConceptualControl24 = loadedControls.ElementAtOrDefault(23);
+                    ConceptualControl25 = loadedControls.ElementAtOrDefault(24);
+                    ConceptualControl26 = loadedControls.ElementAtOrDefault(25);
+                    ConceptualControl27 = loadedControls.ElementAtOrDefault(26);
+                    ConceptualControl28 = loadedControls.ElementAtOrDefault(27);
+                    ConceptualControl29 = loadedControls.ElementAtOrDefault(28);
                 }
-
-                ToggleRMFStackPanelVisibility();
-
+            }
+            else
+            {
+                MessageBox.Show("Error: Invalid file format.");
             }
         }
+
+
+
+
+
         public void CreateNewFile(string framework)
         {
             SelectedFramework = framework;
-            DisposeCheckBoxCollection(); //clears checkboxes so new one can be loaded
+            ConceptualControls.Clear(); //clears checkboxes so new one can be loaded
             switch (framework)
             {
                 case "DoDI 8510.01":
@@ -399,13 +515,19 @@ namespace SWAN.ViewModels
             }
         }
 
-        private void OpenRecentFile(RecentFile recentFile)
+        private async void OpenRecentFile(RecentFile recentFile)
         {
             string filePath = recentFile.FilePath;
             if (System.IO.File.Exists(filePath))
             {
-                //open the file here
-                LoadStateFromCsv(filePath);
+                try
+                {
+                    await LoadStateAsync(filePath);
+                    ToggleRMFStackPanelVisibility();
+                    MessageBox.Show("File loaded successfully");
+                }
+                catch (Exception ex) { MessageBox.Show("$ex"); }
+                
             }
             else
             {
@@ -422,9 +544,9 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 1",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
                     new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = true }
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
                 }
             };
             ConceptualControl2 = new ConceptualCheckBox
@@ -434,9 +556,9 @@ namespace SWAN.ViewModels
                 CIA = "HHH",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
                     new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = true }
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
                 }
             };
             ConceptualControl3 = new ConceptualCheckBox
@@ -446,9 +568,9 @@ namespace SWAN.ViewModels
                 CIA = "HHH",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
-                    new PhysicalControl { Control = "Physical Control 1"    , Passed = true },
+                    new PhysicalControl { Control = "Physical Control 1"    , Passed = false },
                     new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = true }
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
                 }
             };
             ConceptualControl4 = new ConceptualCheckBox
@@ -458,9 +580,9 @@ namespace SWAN.ViewModels
                 CIA = "HHH",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
                     new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = true }
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
                 }
             };
             ConceptualControl5 = new ConceptualCheckBox
@@ -470,9 +592,9 @@ namespace SWAN.ViewModels
                 CIA = "HHH",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
                     new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = true }
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
                 }
             };
             ConceptualControl6 = new ConceptualCheckBox
@@ -482,9 +604,9 @@ namespace SWAN.ViewModels
                 CIA = "HHH",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
                     new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = true }
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
                 }
             };
             ConceptualControl7 = new ConceptualCheckBox
@@ -494,9 +616,9 @@ namespace SWAN.ViewModels
                 CIA = "HHH",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
                     new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = true }
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
                 }
             };
             ConceptualControl8 = new ConceptualCheckBox
@@ -506,9 +628,9 @@ namespace SWAN.ViewModels
                 CIA = "HHH",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
                     new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = true }
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
                 }
             };
             ConceptualControl9 = new ConceptualCheckBox
@@ -518,9 +640,9 @@ namespace SWAN.ViewModels
                 CIA = "HHH",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
                     new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = true }
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
                 }
             };
             ConceptualControl10 = new ConceptualCheckBox
@@ -530,9 +652,9 @@ namespace SWAN.ViewModels
                 CIA = "HHH",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
                     new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = true }
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
                 }
             };
             ConceptualControl11 = new ConceptualCheckBox
@@ -542,9 +664,9 @@ namespace SWAN.ViewModels
                 CIA = "HHH",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
                     new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = true }
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
                 }
             };
             ConceptualControl12 = new ConceptualCheckBox
@@ -554,9 +676,9 @@ namespace SWAN.ViewModels
                 CIA = "HHH",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = true },
+                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
                     new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = true }
+                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
                 }
             };
             ConceptualControl13 = new ConceptualCheckBox
@@ -566,9 +688,9 @@ namespace SWAN.ViewModels
                 CIA = "HHH",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -579,9 +701,9 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -592,9 +714,9 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -605,9 +727,9 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 16",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -618,9 +740,9 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -631,9 +753,9 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -644,9 +766,9 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -657,9 +779,9 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -670,9 +792,9 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -683,9 +805,9 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -696,9 +818,9 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -709,9 +831,9 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -722,9 +844,9 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
             ConceptualControl26 = new ConceptualCheckBox
@@ -734,9 +856,9 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -747,9 +869,9 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -760,9 +882,9 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
 
@@ -773,10 +895,22 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
-        new PhysicalControl { Control = "Physical Control 1", Passed = true },
+        new PhysicalControl { Control = "Physical Control 1", Passed = false },
         new PhysicalControl { Control = "Physical Control 2", Passed = false },
-        new PhysicalControl { Control = "Physical Control 3", Passed = true }
+        new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
+            };
+        
+            ConceptualControls = new ObservableCollection<ConceptualCheckBox>
+            {
+        ConceptualControl1, ConceptualControl2, ConceptualControl3, ConceptualControl4,
+        ConceptualControl5, ConceptualControl6, ConceptualControl7, ConceptualControl8,
+        ConceptualControl9, ConceptualControl10, ConceptualControl11, ConceptualControl12,
+        ConceptualControl13, ConceptualControl14, ConceptualControl15, ConceptualControl16,
+        ConceptualControl17, ConceptualControl18, ConceptualControl19, ConceptualControl20,
+        ConceptualControl21, ConceptualControl22, ConceptualControl23, ConceptualControl24,
+        ConceptualControl25, ConceptualControl26, ConceptualControl27, ConceptualControl28,
+        ConceptualControl29
             };
         }
 
