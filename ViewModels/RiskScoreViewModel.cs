@@ -9,24 +9,31 @@ namespace SWAN.ViewModels
 {
     public class RiskScoreViewModel
     {
+        // Observable collection to hold groups of controls
         public ObservableCollection<ControlGroup> ControlGroups { get; set; } = new ObservableCollection<ControlGroup>();
+
+        // Models for the graphs
         public PlotModel CyberControlBarGraphModel { get; set; } = new PlotModel();
         public PlotModel RiskSeverityModel { get; set; } = new PlotModel();
+
+        // Risk score value
         public double RiskScore { get; set; }
 
+        // Reference to the dashboard view model
         private readonly RMFDashboardViewModel _dashboardViewModel;
 
         public RiskScoreViewModel(RMFDashboardViewModel dashboardViewModel)
         {
             _dashboardViewModel = dashboardViewModel;
 
-            // Load controls from the dashboard
+            // Load controls from the selected dashboard
             _dashboardViewModel.LoadDoDICollection();
 
             // Fetch the control names from the dashboard
             FetchControlNames();
         }
 
+        // Method to fetch control names and organize them into groups
         private void FetchControlNames()
         {
             ControlGroups.Clear();
@@ -34,19 +41,37 @@ namespace SWAN.ViewModels
             // Fetch all conceptual controls from the dashboard
             var conceptualControls = GetSelectedDashboardControls();
 
+            // Check if any conceptual controls were retrieved
             if (conceptualControls == null || !conceptualControls.Any())
             {
                 return;
             }
 
-            foreach (var conceptualControl in conceptualControls)
+            // Severity ranking for sorting purposes
+            var severityOrder = new Dictionary<string, int>
+            {
+                { "High/High", 1 },
+                { "Med/Med", 2 },
+                { "Med/Low", 3 },
+                { "Low/Med", 4 },
+                { "Low/Low", 5 }
+            };
+
+            // Sort conceptual controls by their severity
+            var sortedConceptualControls = conceptualControls
+                .OrderBy(cc => severityOrder.TryGetValue(cc.Severity, out var order) ? order : int.MaxValue)
+                .ToList();
+
+            // Create control groups based on sorted conceptual controls
+            foreach (var conceptualControl in sortedConceptualControls)
             {
                 var group = new ControlGroup
                 {
                     MajorControlName = conceptualControl.Name
                 };
 
-                foreach (var physicalControl in conceptualControl.PhysicalControls.Where(pc => !pc.Passed)) // Filter only unchecked controls
+                // Add minor controls that are unchecked and attach severity
+                foreach (var physicalControl in conceptualControl.PhysicalControls.Where(pc => !pc.Passed))
                 {
                     group.MinorControls.Add(new MinorControlModel
                     {
@@ -56,17 +81,20 @@ namespace SWAN.ViewModels
                     });
                 }
 
-                ControlGroups.Add(group);
+                ControlGroups.Add(group); // Add the control group to the collection
             }
 
+            // Setup graphs after fetching control names
             SetupCyberControlBarGraph();
             SetupRiskSeverityModel();
         }
 
+        // Method to setup the cyber control bar graph
         private void SetupCyberControlBarGraph()
         {
             CyberControlBarGraphModel = new PlotModel { Title = "Failed Standards per Severity" };
 
+            // Group by severity and count the number of failures
             var severityGroups = ControlGroups
                 .SelectMany(group => group.MinorControls)
                 .GroupBy(control => control.Severity)
@@ -95,6 +123,7 @@ namespace SWAN.ViewModels
             });
         }
 
+        // Method to setup the risk severity pie chart
         private void SetupRiskSeverityModel()
         {
             RiskSeverityModel = new PlotModel { Title = "Vulnerabilities by Severity" };
@@ -107,6 +136,7 @@ namespace SWAN.ViewModels
                 StartAngle = 0
             };
 
+            // Add pie slices based on the count of controls by severity
             pieSeries.Slices.Add(new OxyPlot.Series.PieSlice("Low/Low", ControlGroups
                 .SelectMany(group => group.MinorControls)
                 .Count(c => c.Severity == "Low/Low"))
@@ -128,9 +158,10 @@ namespace SWAN.ViewModels
                 .Count(c => c.Severity == "Med/Low"))
             { Fill = OxyColors.GreenYellow });
 
-            RiskSeverityModel.Series.Add(pieSeries);
+            RiskSeverityModel.Series.Add(pieSeries); // Add the pie series to the model
         }
 
+        // Method to get the selected dashboard controls
         private IEnumerable<ConceptualCheckBox> GetSelectedDashboardControls()
         {
             return new List<ConceptualCheckBox>
@@ -171,13 +202,13 @@ namespace SWAN.ViewModels
     public class ControlGroup
     {
         public string MajorControlName { get; set; }
-        public ObservableCollection<MinorControlModel> MinorControls { get; set; } = new ObservableCollection<MinorControlModel>();
+        public ObservableCollection<MinorControlModel> MinorControls { get; set; } = new ObservableCollection<MinorControlModel>(); // List of minor controls
     }
 
     public class MinorControlModel
     {
-        public string ControlName { get; set; }
-        public string Severity { get; set; }
-        public string IsChecked { get; set; }
+        public string ControlName { get; set; } 
+        public string Severity { get; set; } 
+        public string IsChecked { get; set; } 
     }
 }
