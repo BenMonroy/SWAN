@@ -27,6 +27,8 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+            <!-- default bool to vis-->
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </UserControl.Resources>
 
         <Grid>
@@ -39,7 +41,7 @@
 
             <!-- Vertical StackPanel for the first column -->
             <StackPanel Grid.Column="0" Orientation="Vertical">
-            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl1}">
+            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl1}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -62,7 +64,7 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl4}">
+            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl4}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -85,7 +87,7 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl7}">
+            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl7}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -108,7 +110,7 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl10}">
+            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl10}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -131,7 +133,7 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl13}">
+            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl13}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -154,7 +156,7 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl16}">
+            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl16}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -177,7 +179,7 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl19}">
+            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl19}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -200,7 +202,7 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl22}">
+            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl22}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -223,7 +225,7 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl25}">
+            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl25}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -246,7 +248,7 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl28}">
+            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl28}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -274,7 +276,7 @@
 
             <!-- Vertical StackPanel for the second column -->
             <StackPanel Grid.Column="1" Orientation="Vertical">
-            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl2}">
+            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl2}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -297,7 +299,7 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl5}">
+            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl5}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -320,7 +322,7 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl8}">
+            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl8}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -343,7 +345,7 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl11}">
+            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl11}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -366,7 +368,7 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl14}">
+            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl14}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -389,7 +391,7 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl17}">
+            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl17}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -412,7 +414,7 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl20}">
+            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl20}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -435,7 +437,7 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl23}">
+            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl23}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -458,7 +460,7 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl26}">
+            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl26}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -481,7 +483,7 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl29}">
+            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl29}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -508,7 +510,7 @@
 
             <!-- Vertical StackPanel for the third column -->
             <StackPanel Grid.Column="2" Orientation="Vertical">
-            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl3}">
+            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl3}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -531,7 +533,7 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl6}">
+            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl6}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -554,7 +556,7 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl9}">
+            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl9}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -577,7 +579,7 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl12}">
+            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl12}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -600,7 +602,7 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl15}">
+            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl15}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -623,7 +625,30 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl18}">
+            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl18}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}" />
+                        <TextBlock Text=" Severity: " />
+                        <TextBlock Text="{Binding Severity}" />
+                    </StackPanel>
+                </Expander.Header>
+                <Grid>
+                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
+                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Expander>
+            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl21}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -646,7 +671,7 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl21}">
+            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl24}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -669,30 +694,7 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl24}">
-                <Expander.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Name}" />
-                        <TextBlock Text=" Severity: " />
-                        <TextBlock Text="{Binding Severity}" />
-                    </StackPanel>
-                </Expander.Header>
-                <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Grid>
-            </Expander>
-            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl27}">
+            <Expander Margin="5" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl27}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />

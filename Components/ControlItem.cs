@@ -18,8 +18,11 @@ namespace SWAN.Components
 
         [ObservableProperty]
         public bool allPassed;
-        public required string Severity { get; set; }
-        public required string CIA { get; set; }
+
+        [ObservableProperty]
+        public bool isVisible;
+        public string Severity { get; set; }
+        public string CIA { get; set; }
         public ObservableCollection<PhysicalControl> PhysicalControls { get; set; }  // Collection of physical controls
 
         // Constructor to initialize the collection
