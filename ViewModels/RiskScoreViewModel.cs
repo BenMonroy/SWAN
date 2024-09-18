@@ -59,7 +59,7 @@ namespace SWAN.ViewModels
         public void UpdateControls()
         {
             // Clear existing controls
-            AllControls.Clear();  
+            AllControls.Clear();
 
             // Sort the conceptual controls by severity
             var sortedControls = _dashboardViewModel.ConceptualControls

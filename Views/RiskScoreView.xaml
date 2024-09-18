@@ -10,6 +10,7 @@
     mc:Ignorable="d"
              Background="{DynamicResource WindowBackgroundColor}">
 
+    <!-- Declare the converter in resources -->
     <UserControl.Resources>
         <converters:BooleanToPassFailConverter x:Key="BooleanToPassFailConverter" />
     </UserControl.Resources>
@@ -84,7 +85,7 @@
                                                     <!-- Physical Control Name -->
                                                     <TextBlock Text="{Binding Control}" FontSize="14" Foreground="{DynamicResource PrimaryColor}" Grid.Column="0" />
 
-                                                    <!-- Severity -->
+                                                    <!-- Severity (from ConceptualControl) -->
                                                     <TextBlock Text="{Binding DataContext.Severity, RelativeSource={RelativeSource AncestorType=Expander}}" FontSize="14" Foreground="{DynamicResource PrimaryColor}" Grid.Column="1" />
 
                                                     <!-- Passed CheckBox Status (Pass/Fail) -->

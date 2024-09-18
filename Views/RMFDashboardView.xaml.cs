@@ -22,8 +22,8 @@ namespace SWAN.Views
             _viewModel = viewModel;
         }
 
-        public RMFDashboardView() 
-        { 
+        public RMFDashboardView()
+        {
         }
 
         public void ToggleAll(ItemsControl items, bool expand)
@@ -70,7 +70,7 @@ namespace SWAN.Views
 
             // Ensure RiskScoreViewModel updates its controls after the dashboard is populated
             var riskScoreView = new RiskScoreView(_viewModel);
-            riskScoreView.ViewModel.UpdateControls();  
+            riskScoreView.ViewModel.UpdateControls();
         }
 
 
