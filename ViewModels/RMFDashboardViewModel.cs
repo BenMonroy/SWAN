@@ -157,7 +157,8 @@ namespace SWAN.ViewModels
             CheckBoxesVisibility = Visibility.Visible;
         }
 
-
+        // Event to notify when controls are populated
+        public event Action OnControlsPopulated;
 
         private void Load80053Collection()
         {
@@ -166,6 +167,7 @@ namespace SWAN.ViewModels
                 Severity = "Low/Low",
                 CIA = "HHH",
                 Name = "Conceptual Control 1",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -178,6 +180,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 2",
                 Severity = "Low/Low",
                 CIA = "HHH",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -190,6 +193,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 3",
                 Severity = "High/High",
                 CIA = "HHH",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1"    , Passed = false },
@@ -202,6 +206,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 4",
                 Severity = "Med/Med",
                 CIA = "HHH",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -214,6 +219,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 5",
                 Severity = "Low/Med",
                 CIA = "HHH",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -225,6 +231,8 @@ namespace SWAN.ViewModels
             {
         ConceptualControl1, ConceptualControl2, ConceptualControl3, ConceptualControl4,
         ConceptualControl5 };
+            // Trigger the event to notify that the controls have been populated
+            OnControlsPopulated?.Invoke();
 
         }
 
@@ -235,6 +243,7 @@ namespace SWAN.ViewModels
                 Severity = "Low/Low",
                 CIA = "HHH",
                 Name = "Conceptual Control 1",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -247,6 +256,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 2",
                 Severity = "Low/Low",
                 CIA = "HHH",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -259,6 +269,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 3",
                 Severity = "High/High",
                 CIA = "HHH",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1"    , Passed = false },
@@ -271,6 +282,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 4",
                 Severity = "Med/Med",
                 CIA = "HHH",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -283,6 +295,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 5",
                 Severity = "Low/Med",
                 CIA = "HHH",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -294,6 +307,8 @@ namespace SWAN.ViewModels
             {
         ConceptualControl1, ConceptualControl2, ConceptualControl3, ConceptualControl4,
         ConceptualControl5 };
+            // Trigger the event to notify that the controls have been populated
+            OnControlsPopulated?.Invoke();
 
         }
         private void Load800160Collection()
@@ -303,6 +318,7 @@ namespace SWAN.ViewModels
                 Severity = "Low/Low",
                 CIA = "HHH",
                 Name = "Conceptual Control 1",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -315,6 +331,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 2",
                 Severity = "Low/Low",
                 CIA = "HHH",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -327,6 +344,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 3",
                 Severity = "High/High",
                 CIA = "HHH",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1"    , Passed = false },
@@ -339,6 +357,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 4",
                 Severity = "Med/Med",
                 CIA = "HHH",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -351,6 +370,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 5",
                 Severity = "Low/Med",
                 CIA = "HHH",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -362,6 +382,8 @@ namespace SWAN.ViewModels
             {
         ConceptualControl1, ConceptualControl2, ConceptualControl3, ConceptualControl4,
         ConceptualControl5 };
+            // Trigger the event to notify that the controls have been populated
+            OnControlsPopulated?.Invoke();
         }
         public RecentFile CreateRecentFile(string filePath)
         {
@@ -542,6 +564,7 @@ namespace SWAN.ViewModels
                 Severity = "Low/Low",
                 CIA = "HHH",
                 Name = "Conceptual Control 1",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -554,6 +577,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 2",
                 Severity = "Low/Low",
                 CIA = "HHH",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -566,6 +590,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 3",
                 Severity = "High/High",
                 CIA = "HHH",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1"    , Passed = false },
@@ -578,6 +603,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 4",
                 Severity = "Med/Med",
                 CIA = "HHH",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -590,6 +616,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 5",
                 Severity = "Low/Med",
                 CIA = "HHH",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -602,6 +629,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 6",
                 Severity = "High/High",
                 CIA = "HHH",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -614,6 +642,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 7",
                 Severity = "Low/Low",
                 CIA = "HHH",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -626,6 +655,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 8",
                 Severity = "Low/Low",
                 CIA = "HHH",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -638,6 +668,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 9",
                 Severity = "Low/Low",
                 CIA = "HHH",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -650,6 +681,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 10",
                 Severity = "Low/Low",
                 CIA = "HHH",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -662,6 +694,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 11",
                 Severity = "Low/Low",
                 CIA = "HHH",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -674,6 +707,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 12",
                 Severity = "Med/Low",
                 CIA = "HHH",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -686,6 +720,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 13",
                 Severity = "Med/Low",
                 CIA = "HHH",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -699,6 +734,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 14",
                 Severity = "Med/Low",
                 CIA = "LLL",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -712,6 +748,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 15",
                 Severity = "Med/Low",
                 CIA = "LLL",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -725,6 +762,7 @@ namespace SWAN.ViewModels
                 Severity = "Med/Low",
                 CIA = "LLL",
                 Name = "Conceptual Control 16",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -738,6 +776,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 17",
                 Severity = "Med/Low",
                 CIA = "LLL",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -751,6 +790,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 18",
                 Severity = "Med/Low",
                 CIA = "LLL",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -764,6 +804,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 19",
                 Severity = "Med/Low",
                 CIA = "LLL",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -777,6 +818,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 20",
                 Severity = "Med/Low",
                 CIA = "LLL",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -790,6 +832,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 21",
                 Severity = "Med/Low",
                 CIA = "LLL",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -803,6 +846,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 22",
                 Severity = "Med/Low",
                 CIA = "LLL",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -816,6 +860,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 23",
                 Severity = "High/High",
                 CIA = "LLL",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -829,6 +874,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 24",
                 Severity = "High/High",
                 CIA = "LLL",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -842,6 +888,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 25",
                 Severity = "High/High",
                 CIA = "LLL",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -854,6 +901,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 26",
                 Severity = "High/High",
                 CIA = "LLL",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -867,6 +915,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 27",
                 Severity = "High/High",
                 CIA = "LLL",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -880,6 +929,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 28",
                 Severity = "High/High",
                 CIA = "LLL",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -893,6 +943,7 @@ namespace SWAN.ViewModels
                 Name = "Conceptual Control 29",
                 Severity = "High/High",
                 CIA = "LLL",
+                IsVisible = true,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -912,6 +963,8 @@ namespace SWAN.ViewModels
         ConceptualControl25, ConceptualControl26, ConceptualControl27, ConceptualControl28,
         ConceptualControl29
             };
+            // Trigger the event to notify that the controls have been populated
+            OnControlsPopulated?.Invoke();
         }
 
 
