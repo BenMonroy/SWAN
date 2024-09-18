@@ -12,11 +12,7 @@ namespace SWAN.Views
         public RiskScoreView(RMFDashboardViewModel dashboardViewModel)
         {
             InitializeComponent();
-
-            // Initialize the ViewModel with the dashboard view model
-            ViewModel = new RiskScoreViewModel(dashboardViewModel);
-            Debug.WriteLine($"[DEBUG] RiskScoreView initialized with dashboard: {dashboardViewModel.SelectedFramework}");
-            DataContext = ViewModel;
+            DataContext = new RiskScoreViewModel(dashboardViewModel);
         }
 
         private void Expander_Expanded(object sender, RoutedEventArgs e)

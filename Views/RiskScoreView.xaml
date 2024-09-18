@@ -7,12 +7,13 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:oxy="http://oxyplot.org/wpf"
              xmlns:converters="clr-namespace:SWAN.Converters"
-    mc:Ignorable="d"
+             mc:Ignorable="d"
              Background="{DynamicResource WindowBackgroundColor}">
 
-    <!-- Declare the converter in resources -->
     <UserControl.Resources>
         <converters:BooleanToPassFailConverter x:Key="BooleanToPassFailConverter" />
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converters:ConceptualVisibilityConverter x:Key="ConceptualVisibilityConverter" />
     </UserControl.Resources>
 
     <Grid>
@@ -71,21 +72,21 @@
                     <ItemsControl ItemsSource="{Binding AllControls}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Expander Header="{Binding Name}" FontSize="16" Foreground="{DynamicResource PrimaryColor}">
+                                <Expander Header="{Binding Name}" FontSize="16" Foreground="{DynamicResource PrimaryColor}" Visibility="{Binding PhysicalControls, Converter={StaticResource ConceptualVisibilityConverter}}">
                                     <ItemsControl ItemsSource="{Binding PhysicalControls}">
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
-                                                <Grid Margin="10,0,0,0">
+                                                <Grid Visibility="{Binding Passed, Converter={StaticResource BooleanToVisibilityConverter}}">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="2*"/>
                                                         <ColumnDefinition Width="1*"/>
-                                                        <ColumnDefinition Width="1*"/>
+                                                        <ColumnDefinition Width="Auto"/>
                                                     </Grid.ColumnDefinitions>
 
                                                     <!-- Physical Control Name -->
                                                     <TextBlock Text="{Binding Control}" FontSize="14" Foreground="{DynamicResource PrimaryColor}" Grid.Column="0" />
 
-                                                    <!-- Severity (from ConceptualControl) -->
+                                                    <!-- Severity -->
                                                     <TextBlock Text="{Binding DataContext.Severity, RelativeSource={RelativeSource AncestorType=Expander}}" FontSize="14" Foreground="{DynamicResource PrimaryColor}" Grid.Column="1" />
 
                                                     <!-- Passed CheckBox Status (Pass/Fail) -->

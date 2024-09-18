@@ -9,17 +9,20 @@ namespace SWAN.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is bool booleanValue)
+            if (value is bool boolValue)
             {
-                return booleanValue ? Visibility.Collapsed : Visibility.Visible;
+                return boolValue ? Visibility.Collapsed : Visibility.Visible;
             }
-
             return Visibility.Visible;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            if (value is Visibility visibility)
+            {
+                return visibility == Visibility.Collapsed;
+            }
+            return false;
         }
     }
 }
