@@ -157,8 +157,7 @@ namespace SWAN.ViewModels
             CheckBoxesVisibility = Visibility.Visible;
         }
 
-        // Event to notify when controls are populated
-        public event Action OnControlsPopulated;
+
 
         private void Load80053Collection()
         {
@@ -231,8 +230,7 @@ namespace SWAN.ViewModels
             {
         ConceptualControl1, ConceptualControl2, ConceptualControl3, ConceptualControl4,
         ConceptualControl5 };
-            // Trigger the event to notify that the controls have been populated
-            OnControlsPopulated?.Invoke();
+            InitUnusedCheckBoxes();
 
         }
 
@@ -307,8 +305,7 @@ namespace SWAN.ViewModels
             {
         ConceptualControl1, ConceptualControl2, ConceptualControl3, ConceptualControl4,
         ConceptualControl5 };
-            // Trigger the event to notify that the controls have been populated
-            OnControlsPopulated?.Invoke();
+            InitUnusedCheckBoxes();
 
         }
         private void Load800160Collection()
@@ -382,8 +379,7 @@ namespace SWAN.ViewModels
             {
         ConceptualControl1, ConceptualControl2, ConceptualControl3, ConceptualControl4,
         ConceptualControl5 };
-            // Trigger the event to notify that the controls have been populated
-            OnControlsPopulated?.Invoke();
+            InitUnusedCheckBoxes();
         }
         public RecentFile CreateRecentFile(string filePath)
         {
@@ -453,6 +449,7 @@ namespace SWAN.ViewModels
                 }
                 SelectedFramework = jsonFramework;
 
+
                 // Retrieve and update the ConceptualControls
                 var loadedControls = JsonSerializer.Deserialize<ObservableCollection<ConceptualCheckBox>>(loadedData["ConceptualControls"].ToString());
 
@@ -495,15 +492,16 @@ namespace SWAN.ViewModels
                     ConceptualControl28 = loadedControls.ElementAtOrDefault(27);
                     ConceptualControl29 = loadedControls.ElementAtOrDefault(28);
                 }
+                if (SelectedFramework != "DoDI 8510.01") //remove or change this to other func depending on selectedFramework
+                {
+                    InitUnusedCheckBoxes();
+                }
             }
             else
             {
                 MessageBox.Show("Error: Invalid file format.");
             }
         }
-
-
-
 
 
         public void CreateNewFile(string framework)
@@ -963,10 +961,34 @@ namespace SWAN.ViewModels
         ConceptualControl25, ConceptualControl26, ConceptualControl27, ConceptualControl28,
         ConceptualControl29
             };
-            // Trigger the event to notify that the controls have been populated
-            OnControlsPopulated?.Invoke();
         }
 
-
+        public void InitUnusedCheckBoxes()
+        {
+            ConceptualControl6 = new ConceptualCheckBox();
+            ConceptualControl7 = new ConceptualCheckBox();
+            ConceptualControl8 = new ConceptualCheckBox();
+            ConceptualControl9 = new ConceptualCheckBox();
+            ConceptualControl10 = new ConceptualCheckBox();
+            ConceptualControl11 = new ConceptualCheckBox();
+            ConceptualControl12 = new ConceptualCheckBox();
+            ConceptualControl13 = new ConceptualCheckBox();
+            ConceptualControl14 = new ConceptualCheckBox();
+            ConceptualControl15 = new ConceptualCheckBox();
+            ConceptualControl16 = new ConceptualCheckBox();
+            ConceptualControl17 = new ConceptualCheckBox();
+            ConceptualControl18 = new ConceptualCheckBox();
+            ConceptualControl19 = new ConceptualCheckBox();
+            ConceptualControl20 = new ConceptualCheckBox();
+            ConceptualControl21 = new ConceptualCheckBox();
+            ConceptualControl22 = new ConceptualCheckBox();
+            ConceptualControl23 = new ConceptualCheckBox();
+            ConceptualControl24 = new ConceptualCheckBox();
+            ConceptualControl25 = new ConceptualCheckBox();
+            ConceptualControl26 = new ConceptualCheckBox();
+            ConceptualControl27 = new ConceptualCheckBox();
+            ConceptualControl28 = new ConceptualCheckBox();
+            ConceptualControl29 = new ConceptualCheckBox();
+        }
     }
 }

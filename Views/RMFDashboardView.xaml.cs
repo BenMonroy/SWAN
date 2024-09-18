@@ -1,6 +1,5 @@
 ﻿using SWAN.Components;
 using SWAN.ViewModels;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using Wpf.Ui.Controls;
@@ -15,6 +14,8 @@ namespace SWAN.Views
     {
         private RMFDashboardViewModel _viewModel;
 
+
+
         public RMFDashboardView(RMFDashboardViewModel viewModel) : this()
         {
             InitializeComponent();
@@ -25,6 +26,10 @@ namespace SWAN.Views
         public RMFDashboardView()
         {
         }
+
+
+
+
 
         public void ToggleAll(ItemsControl items, bool expand)
         {
@@ -40,6 +45,9 @@ namespace SWAN.Views
                     item.IsExpanded = expand;
             }
         }
+
+
+
         private void Create_Dashboard_Click(object sender, RoutedEventArgs e)
         {
             int selectedIndex = Framework_ComboBox.SelectedIndex;
@@ -66,11 +74,6 @@ namespace SWAN.Views
                     break;
             }
             _viewModel.ToggleRMFStackPanelVisibility();
-            Debug.WriteLine($"[DEBUG] ConceptualControls count: {_viewModel.ConceptualControls.Count}");
-
-            // Ensure RiskScoreViewModel updates its controls after the dashboard is populated
-            var riskScoreView = new RiskScoreView(_viewModel);
-            riskScoreView.ViewModel.UpdateControls();
         }
 
 
@@ -85,16 +88,13 @@ namespace SWAN.Views
                     _viewModel.ToggleRMFStackPanelVisibility();
                     System.Windows.MessageBox.Show("File loaded Successfully");
                 }
-                catch (Exception ex)
-                {
-                    System.Windows.MessageBox.Show($"Error: {ex.Message}");
-                    Debug.WriteLine($"[DEBUG] Exception: {ex}");
-                }
+                catch (Exception ex) { System.Windows.MessageBox.Show("$ex"); }
             }
             else
             {
                 System.Windows.MessageBox.Show("Error: Could not open file.");
             }
+
         }
     }
 }
