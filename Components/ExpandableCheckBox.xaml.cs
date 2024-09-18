@@ -29,9 +29,8 @@ namespace SWAN.Components
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            // Cast sender as CheckBox
+            
             var checkBox = sender as CheckBox;
-
             // Get the DataContext of the CheckBox, which is bound to PhysicalControl
             var dataContext = checkBox.DataContext as PhysicalControl;
 
@@ -50,8 +49,9 @@ namespace SWAN.Components
                     if (conceptualCheckBox == null) { MessageBox.Show("Conceptual Checkbox not found"); }
                     if (conceptualCheckBox != null)
                     {
-                        // Check if all PhysicalControl items are true
+                        // if all are passed set AllPassed to true
                         conceptualCheckBox.AllPassed = conceptualCheckBox.PhysicalControls.All(pc => pc.Passed);
+
                         //this is for testing, change this to be a style 
                        // if (conceptualCheckBox.AllPassed) {parentExpander.Background = Brushes.LightGreen; }
                        // if (!conceptualCheckBox.AllPassed) { parentExpander.Background = Brushes.Blue; }
