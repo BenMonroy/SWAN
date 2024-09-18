@@ -11,7 +11,6 @@
              Background="{DynamicResource WindowBackgroundColor}">
 
     <UserControl.Resources>
-        <converters:BooleanToPassFailConverter x:Key="BooleanToPassFailConverter" />
         <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converters:ConceptualVisibilityConverter x:Key="ConceptualVisibilityConverter" />
     </UserControl.Resources>
@@ -30,7 +29,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Risk Score -->
+            <!-- Risk Score Display -->
             <StackPanel Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top">
                 <TextBlock Text="Overall Risk Score" FontSize="18" FontWeight="Bold" Foreground="{DynamicResource PrimaryColor}"/>
                 <TextBlock Text="{Binding RiskScore}" FontSize="36" FontWeight="Bold" Foreground="{DynamicResource AccentColor}"/>
@@ -40,14 +39,14 @@
             <TextBlock Grid.Column="1" Text="Risk Score Dashboard" FontSize="28" FontWeight="Bold" Foreground="{DynamicResource PrimaryColor}" HorizontalAlignment="Center"/>
         </Grid>
 
-        <!-- Main Content -->
+        <!-- Main Content for Graphs -->
         <Grid Grid.Row="1" Margin="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Cyber Controls Graph -->
+            <!-- Cyber Controls Bar Graph -->
             <materialDesign:Card Grid.Column="0" Margin="10" Padding="10" UniformCornerRadius="10" Background="{DynamicResource CardBackgroundColor}" VerticalAlignment="Stretch">
                 <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <TextBlock Text="Failed Standards per Severity" FontSize="24" FontWeight="Bold" Foreground="{DynamicResource PrimaryColor}" Margin="0,0,0,10"/>
@@ -64,7 +63,7 @@
             </materialDesign:Card>
         </Grid>
 
-        <!-- Controls List -->
+        <!-- Failed Controls List -->
         <materialDesign:Card Grid.Row="2" Margin="10" Padding="10" UniformCornerRadius="10" Background="{DynamicResource CardBackgroundColor}">
             <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <TextBlock Text="Failed Controls" FontSize="24" FontWeight="Bold" Foreground="{DynamicResource PrimaryColor}" Margin="0,0,0,10"/>
@@ -72,25 +71,26 @@
                     <ItemsControl ItemsSource="{Binding AllControls}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Expander Header="{Binding Name}" FontSize="16" Foreground="{DynamicResource PrimaryColor}" Visibility="{Binding PhysicalControls, Converter={StaticResource ConceptualVisibilityConverter}}">
+                                <Expander Header="{Binding Name}" FontSize="16" Foreground="{DynamicResource PrimaryColor}"
+                                          Visibility="{Binding PhysicalControls, Converter={StaticResource ConceptualVisibilityConverter}}">
                                     <ItemsControl ItemsSource="{Binding PhysicalControls}">
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
-                                                <Grid Visibility="{Binding Passed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                <Grid Margin="10,0,0,0">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="2*"/>
                                                         <ColumnDefinition Width="1*"/>
-                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="1*"/>
                                                     </Grid.ColumnDefinitions>
 
                                                     <!-- Physical Control Name -->
                                                     <TextBlock Text="{Binding Control}" FontSize="14" Foreground="{DynamicResource PrimaryColor}" Grid.Column="0" />
 
-                                                    <!-- Severity -->
-                                                    <TextBlock Text="{Binding DataContext.Severity, RelativeSource={RelativeSource AncestorType=Expander}}" FontSize="14" Foreground="{DynamicResource PrimaryColor}" Grid.Column="1" />
-
-                                                    <!-- Passed CheckBox Status (Pass/Fail) -->
-                                                    <TextBlock Text="{Binding Passed, Converter={StaticResource BooleanToPassFailConverter}}" FontSize="14" Foreground="{DynamicResource PrimaryColor}" Grid.Column="2" />
+                                                    <!-- Visibility Control for Passed/Failed -->
+                                                    <Grid Visibility="{Binding Passed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                        <!-- Show this grid only if the control has failed -->
+                                                        <TextBlock Text="Failed" FontSize="14" Foreground="{DynamicResource PrimaryColor}" Grid.Column="2" />
+                                                    </Grid>
                                                 </Grid>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
