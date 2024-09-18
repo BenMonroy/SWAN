@@ -5,6 +5,7 @@ using SWAN.Components;
 using SWAN.Views;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -155,9 +156,10 @@ namespace SWAN.ViewModels
         {
             RmfStackPanelVisibility = Visibility.Hidden;
             CheckBoxesVisibility = Visibility.Visible;
-        } 
+        }
 
-      
+        // Event to notify when controls are populated
+        public event Action OnControlsPopulated;
 
         private void Load80053Collection()
         {
@@ -225,7 +227,8 @@ namespace SWAN.ViewModels
             {
         ConceptualControl1, ConceptualControl2, ConceptualControl3, ConceptualControl4,
         ConceptualControl5 };
-
+            // Trigger the event to notify that the controls have been populated
+            OnControlsPopulated?.Invoke();
         }
 
         private void Load80037Collection()
@@ -294,7 +297,8 @@ namespace SWAN.ViewModels
             {
         ConceptualControl1, ConceptualControl2, ConceptualControl3, ConceptualControl4,
         ConceptualControl5 };
-
+            // Trigger the event to notify that the controls have been populated
+            OnControlsPopulated?.Invoke();
         }
         private void Load800160Collection()
         {
@@ -362,6 +366,8 @@ namespace SWAN.ViewModels
             {
         ConceptualControl1, ConceptualControl2, ConceptualControl3, ConceptualControl4,
         ConceptualControl5 };
+            // Trigger the event to notify that the controls have been populated
+            OnControlsPopulated?.Invoke();
         }
         public RecentFile CreateRecentFile(string filePath)
         {
@@ -912,6 +918,8 @@ namespace SWAN.ViewModels
         ConceptualControl25, ConceptualControl26, ConceptualControl27, ConceptualControl28,
         ConceptualControl29
             };
+            // Trigger the event to notify that the controls have been populated
+            OnControlsPopulated?.Invoke();
         }
 
 

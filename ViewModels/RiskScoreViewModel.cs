@@ -1,134 +1,124 @@
-using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using OxyPlot;
+using OxyPlot.Axes;
 using OxyPlot.Series;
+using OxyPlot;
+using SWAN.Views;
+using SWAN.ViewModels;
+using System.Collections.ObjectModel;
+using System.Windows.Controls;
 using SWAN.Components;
+using System.Diagnostics;
+using System.ComponentModel;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace SWAN.ViewModels
 {
-    public class RiskScoreViewModel
+    public partial class RiskScoreViewModel : UserControl
     {
-        // Observable collection to hold groups of controls
-        public ObservableCollection<ControlGroup> ControlGroups { get; set; } = new ObservableCollection<ControlGroup>();
+        public PlotModel CyberControlBarGraphModel { get; private set; }
+        public PlotModel RiskSeverityModel { get; private set; }
+        public double RiskScore { get; private set; }
 
-        // Models for the graphs
-        public PlotModel CyberControlBarGraphModel { get; set; } = new PlotModel();
-        public PlotModel RiskSeverityModel { get; set; } = new PlotModel();
+        // ObservableCollection of all conceptual controls
+        public ObservableCollection<ConceptualCheckBox> AllControls { get; private set; }
 
-        // Risk score value
-        public double RiskScore { get; set; }
+        private RMFDashboardViewModel _dashboardViewModel;
 
-        // Reference to the dashboard view model
-        private readonly RMFDashboardViewModel _dashboardViewModel;
+        // Severity levels for sorting
+        private readonly Dictionary<string, int> severityOrder = new Dictionary<string, int>
+        {
+            { "High/High", 1 },
+            { "High/Med", 2 },
+            { "Med/Med", 3 },
+            { "Med/Low", 4 },
+            { "Low/Low", 5 }
+        };
 
+        // Receives RMFDashboardViewModel and subscribes to property change events
         public RiskScoreViewModel(RMFDashboardViewModel dashboardViewModel)
         {
+            DataContext = this;
+
+            // Initialize AllControls as an empty collection
+            AllControls = new ObservableCollection<ConceptualCheckBox>();
             _dashboardViewModel = dashboardViewModel;
 
-            // Load controls from the selected dashboard
-            _dashboardViewModel.LoadDoDICollection();
+            // Subscribe to the OnControlsPopulated event
+            _dashboardViewModel.OnControlsPopulated += UpdateControls;
 
-            // Fetch the control names from the dashboard
-            FetchControlNames();
-        }
+            // Calculate the CVSS risk score (dummy values for now)
+            CVSSCalculator calculator = new CVSSCalculator();
+            RiskScore = calculator.CalculateBaseScore(0.85, 0.77, 0.62, 0.85, 0.56, 0.56, 0.56);
 
-        // Method to fetch control names and organize them into groups
-        private void FetchControlNames()
-        {
-            ControlGroups.Clear();
-
-            // Fetch all conceptual controls from the dashboard
-            var conceptualControls = GetSelectedDashboardControls();
-
-            // Check if any conceptual controls were retrieved
-            if (conceptualControls == null || !conceptualControls.Any())
-            {
-                return;
-            }
-
-            // Severity ranking for sorting purposes
-            var severityOrder = new Dictionary<string, int>
-            {
-                { "High/High", 1 },
-                { "Med/Med", 2 },
-                { "Med/Low", 3 },
-                { "Low/Med", 4 },
-                { "Low/Low", 5 }
-            };
-
-            // Sort conceptual controls by their severity
-            var sortedConceptualControls = conceptualControls
-                .OrderBy(cc => severityOrder.TryGetValue(cc.Severity, out var order) ? order : int.MaxValue)
-                .ToList();
-
-            // Create control groups based on sorted conceptual controls
-            foreach (var conceptualControl in sortedConceptualControls)
-            {
-                var group = new ControlGroup
-                {
-                    MajorControlName = conceptualControl.Name
-                };
-
-                // Add minor controls that are unchecked and attach severity
-                foreach (var physicalControl in conceptualControl.PhysicalControls.Where(pc => !pc.Passed))
-                {
-                    group.MinorControls.Add(new MinorControlModel
-                    {
-                        ControlName = physicalControl.Control,
-                        Severity = conceptualControl.Severity,
-                        IsChecked = physicalControl.Passed ? "Passed" : "Failed"
-                    });
-                }
-
-                ControlGroups.Add(group); // Add the control group to the collection
-            }
-
-            // Setup graphs after fetching control names
+            // Setup graphs
             SetupCyberControlBarGraph();
             SetupRiskSeverityModel();
         }
 
-        // Method to setup the cyber control bar graph
-        private void SetupCyberControlBarGraph()
+        // Method to manually update AllControls when ConceptualControls are populated and sort them by severity
+        public void UpdateControls()
         {
-            CyberControlBarGraphModel = new PlotModel { Title = "Failed Standards per Severity" };
+            // Clear existing controls
+            AllControls.Clear();  
 
-            // Group by severity and count the number of failures
-            var severityGroups = ControlGroups
-                .SelectMany(group => group.MinorControls)
-                .GroupBy(control => control.Severity)
-                .Select(group => new OxyPlot.Series.BarItem
-                {
-                    Value = group.Count()
-                })
+            // Sort the conceptual controls by severity
+            var sortedControls = _dashboardViewModel.ConceptualControls
+                .OrderBy(control => severityOrder.ContainsKey(control.Severity) ? severityOrder[control.Severity] : int.MaxValue)
                 .ToList();
 
-            var barSeries = new OxyPlot.Series.BarSeries
+            foreach (var control in sortedControls)
             {
-                ItemsSource = severityGroups,
-                LabelPlacement = OxyPlot.Series.LabelPlacement.Inside,
+                AllControls.Add(control);
+            }
+            // Notify the UI about changed controls
+            OnPropertyChanged(nameof(AllControls));
+        }
+
+        // CVSSCalculator class for risk score calculation, will be changed
+        public class CVSSCalculator
+        {
+            public double CalculateBaseScore(double attackVector, double attackComplexity, double privilegesRequired, double userInteraction, double impactConfidentiality, double impactIntegrity, double impactAvailability)
+            {
+                double impact = 1 - (1 - impactConfidentiality) * (1 - impactIntegrity) * (1 - impactAvailability);
+                double exploitability = 8.22 * attackVector * attackComplexity * privilegesRequired * userInteraction;
+                double impactSubScore = 6.42 * impact;
+                double baseScore = Math.Min(impactSubScore + exploitability, 10.0);
+                return Math.Ceiling(baseScore * 10) / 10;
+            }
+        }
+
+        // Sets up the bar graph for cyber controls
+        private void SetupCyberControlBarGraph()
+        {
+            CyberControlBarGraphModel = new PlotModel { Title = "Failed Standards per Cyber Control" };
+            var barSeries = new BarSeries
+            {
+                ItemsSource = new[]
+                {
+                    new BarItem { Value = 10 },
+                    new BarItem { Value = 7 },
+                    new BarItem { Value = 8 },
+                    new BarItem { Value = 6 }
+                },
+                LabelPlacement = LabelPlacement.Inside,
                 LabelFormatString = "{0}"
             };
 
             CyberControlBarGraphModel.Series.Add(barSeries);
-            CyberControlBarGraphModel.Axes.Add(new OxyPlot.Axes.CategoryAxis
+            CyberControlBarGraphModel.Axes.Add(new CategoryAxis
             {
-                Position = OxyPlot.Axes.AxisPosition.Left,
-                ItemsSource = ControlGroups
-                    .SelectMany(group => group.MinorControls)
-                    .Select(control => control.Severity)
-                    .Distinct()
-                    .ToList()
+                Position = AxisPosition.Left,
+                Key = "CyberControlsAxis",
+                ItemsSource = new[] { "Control A", "Control B", "Control C", "Control D" }
             });
         }
 
-        // Method to setup the risk severity pie chart
+        // Sets up the pie chart for risk severity
         private void SetupRiskSeverityModel()
         {
             RiskSeverityModel = new PlotModel { Title = "Vulnerabilities by Severity" };
 
-            var pieSeries = new OxyPlot.Series.PieSeries
+            var pieSeries = new PieSeries
             {
                 StrokeThickness = 2.0,
                 InsideLabelPosition = 0.8,
@@ -136,79 +126,22 @@ namespace SWAN.ViewModels
                 StartAngle = 0
             };
 
-            // Add pie slices based on the count of controls by severity
-            pieSeries.Slices.Add(new OxyPlot.Series.PieSlice("Low/Low", ControlGroups
-                .SelectMany(group => group.MinorControls)
-                .Count(c => c.Severity == "Low/Low"))
-            { Fill = OxyColors.Green });
-            pieSeries.Slices.Add(new OxyPlot.Series.PieSlice("Med/Med", ControlGroups
-                .SelectMany(group => group.MinorControls)
-                .Count(c => c.Severity == "Med/Med"))
-            { Fill = OxyColors.Orange });
-            pieSeries.Slices.Add(new OxyPlot.Series.PieSlice("High/High", ControlGroups
-                .SelectMany(group => group.MinorControls)
-                .Count(c => c.Severity == "High/High"))
-            { Fill = OxyColors.Red });
-            pieSeries.Slices.Add(new OxyPlot.Series.PieSlice("Low/Med", ControlGroups
-                .SelectMany(group => group.MinorControls)
-                .Count(c => c.Severity == "Low/Med"))
-            { Fill = OxyColors.Yellow });
-            pieSeries.Slices.Add(new OxyPlot.Series.PieSlice("Med/Low", ControlGroups
-                .SelectMany(group => group.MinorControls)
-                .Count(c => c.Severity == "Med/Low"))
-            { Fill = OxyColors.GreenYellow });
+            // Adding slices for severity levels
+            pieSeries.Slices.Add(new PieSlice("Low", 20) { Fill = OxyColors.LightBlue });
+            pieSeries.Slices.Add(new PieSlice("Medium", 50) { Fill = OxyColors.Orange });
+            pieSeries.Slices.Add(new PieSlice("High", 20) { Fill = OxyColors.Red });
+            pieSeries.Slices.Add(new PieSlice("Critical", 10) { IsExploded = true, Fill = OxyColors.DarkRed });
 
-            RiskSeverityModel.Series.Add(pieSeries); // Add the pie series to the model
+            RiskSeverityModel.Series.Add(pieSeries);
         }
 
-        // Method to get the selected dashboard controls
-        private IEnumerable<ConceptualCheckBox> GetSelectedDashboardControls()
+        // Notify property changed if needed
+        protected void OnPropertyChanged(string propertyName)
         {
-            return new List<ConceptualCheckBox>
-            {
-                _dashboardViewModel.ConceptualControl1,
-                _dashboardViewModel.ConceptualControl2,
-                _dashboardViewModel.ConceptualControl3,
-                _dashboardViewModel.ConceptualControl4,
-                _dashboardViewModel.ConceptualControl5,
-                _dashboardViewModel.ConceptualControl6,
-                _dashboardViewModel.ConceptualControl7,
-                _dashboardViewModel.ConceptualControl8,
-                _dashboardViewModel.ConceptualControl9,
-                _dashboardViewModel.ConceptualControl10,
-                _dashboardViewModel.ConceptualControl11,
-                _dashboardViewModel.ConceptualControl12,
-                _dashboardViewModel.ConceptualControl13,
-                _dashboardViewModel.ConceptualControl14,
-                _dashboardViewModel.ConceptualControl15,
-                _dashboardViewModel.ConceptualControl16,
-                _dashboardViewModel.ConceptualControl17,
-                _dashboardViewModel.ConceptualControl18,
-                _dashboardViewModel.ConceptualControl19,
-                _dashboardViewModel.ConceptualControl20,
-                _dashboardViewModel.ConceptualControl21,
-                _dashboardViewModel.ConceptualControl22,
-                _dashboardViewModel.ConceptualControl23,
-                _dashboardViewModel.ConceptualControl24,
-                _dashboardViewModel.ConceptualControl25,
-                _dashboardViewModel.ConceptualControl26,
-                _dashboardViewModel.ConceptualControl27,
-                _dashboardViewModel.ConceptualControl28,
-                _dashboardViewModel.ConceptualControl29
-            };
+            var handler = PropertyChanged;
+            handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-    }
 
-    public class ControlGroup
-    {
-        public string MajorControlName { get; set; }
-        public ObservableCollection<MinorControlModel> MinorControls { get; set; } = new ObservableCollection<MinorControlModel>(); // List of minor controls
-    }
-
-    public class MinorControlModel
-    {
-        public string ControlName { get; set; } 
-        public string Severity { get; set; } 
-        public string IsChecked { get; set; } 
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

@@ -3,11 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:SWAN.Converters"
+             xmlns:local="clr-namespace:SWAN.Views"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:oxy="http://oxyplot.org/wpf"
-             mc:Ignorable="d"
+             xmlns:converters="clr-namespace:SWAN.Converters"
+    mc:Ignorable="d"
              Background="{DynamicResource WindowBackgroundColor}">
+
+    <UserControl.Resources>
+        <converters:BooleanToPassFailConverter x:Key="BooleanToPassFailConverter" />
+    </UserControl.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -62,28 +67,28 @@
             <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <TextBlock Text="Failed Controls" FontSize="24" FontWeight="Bold" Foreground="{DynamicResource PrimaryColor}" Margin="0,0,0,10"/>
                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Height="300">
-                    <ItemsControl ItemsSource="{Binding ControlGroups}">
+                    <ItemsControl ItemsSource="{Binding AllControls}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Expander Header="{Binding MajorControlName}" FontSize="16" Foreground="{DynamicResource PrimaryColor}">
-                                    <ItemsControl ItemsSource="{Binding MinorControls}">
+                                <Expander Header="{Binding Name}" FontSize="16" Foreground="{DynamicResource PrimaryColor}">
+                                    <ItemsControl ItemsSource="{Binding PhysicalControls}">
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <Grid Margin="10,0,0,0">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="2*"/>
                                                         <ColumnDefinition Width="1*"/>
-                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="1*"/>
                                                     </Grid.ColumnDefinitions>
 
-                                                    <!-- Minor control name -->
-                                                    <TextBlock Text="{Binding ControlName}" FontSize="14" Foreground="{DynamicResource PrimaryColor}" Grid.Column="0" />
+                                                    <!-- Physical Control Name -->
+                                                    <TextBlock Text="{Binding Control}" FontSize="14" Foreground="{DynamicResource PrimaryColor}" Grid.Column="0" />
 
                                                     <!-- Severity -->
-                                                    <TextBlock Text="{Binding Severity}" FontSize="14" Foreground="{DynamicResource PrimaryColor}" Grid.Column="1" />
+                                                    <TextBlock Text="{Binding DataContext.Severity, RelativeSource={RelativeSource AncestorType=Expander}}" FontSize="14" Foreground="{DynamicResource PrimaryColor}" Grid.Column="1" />
 
-                                                    <!-- Checked status -->
-                                                    <TextBlock Text="{Binding IsChecked}" FontSize="14" Foreground="{DynamicResource PrimaryColor}" Grid.Column="2" />
+                                                    <!-- Passed CheckBox Status (Pass/Fail) -->
+                                                    <TextBlock Text="{Binding Passed, Converter={StaticResource BooleanToPassFailConverter}}" FontSize="14" Foreground="{DynamicResource PrimaryColor}" Grid.Column="2" />
                                                 </Grid>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
