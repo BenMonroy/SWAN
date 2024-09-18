@@ -1,3 +1,5 @@
+using System.Diagnostics;
+using System.Windows;
 using System.Windows.Controls;
 using SWAN.ViewModels;
 
@@ -10,9 +12,16 @@ namespace SWAN.Views
         public RiskScoreView(RMFDashboardViewModel dashboardViewModel)
         {
             InitializeComponent();
-            // Initialize the ViewModel with the dashboard view model
-            ViewModel = new RiskScoreViewModel(dashboardViewModel);
-            DataContext = ViewModel;
+            DataContext = new RiskScoreViewModel(dashboardViewModel);
+        }
+
+        private void Expander_Expanded(object sender, RoutedEventArgs e)
+        {
+            var expander = sender as Expander;
+            if (expander != null)
+            {
+                Debug.WriteLine($"[DEBUG] Expander opened: {expander.Header}");
+            }
         }
     }
 }
