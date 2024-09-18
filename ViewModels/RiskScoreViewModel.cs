@@ -6,19 +6,30 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Controls;
+using CommunityToolkit.Mvvm.ComponentModel;
 
-public partial class RiskScoreViewModel : UserControl
+public partial class RiskScoreViewModel : ObservableObject
 {
-    public PlotModel CyberControlBarGraphModel { get; private set; }
-    public PlotModel RiskSeverityModel { get; private set; }
-    public double RiskScore { get; private set; }
+    // Automatically generates the property and OnPropertyChanged invocation for you
+    [ObservableProperty]
+    private PlotModel cyberControlBarGraphModel;
 
-    public ObservableCollection<ConceptualCheckBox> AllControls { get; private set; }
-    public ObservableCollection<PhysicalControl> AllPhysicalControls { get; private set; }
+    [ObservableProperty]
+    private PlotModel riskSeverityModel;
+
+    [ObservableProperty]
+    private double riskScore;
+
+    // ObservableCollection of all conceptual and physical controls
+    [ObservableProperty]
+    private ObservableCollection<ConceptualCheckBox> allControls;
+
+    [ObservableProperty]
+    private ObservableCollection<PhysicalControl> allPhysicalControls;
 
     private RMFDashboardViewModel _dashboardViewModel;
 
-    // Dictionary to sort by severity
+    // Severity levels for sorting
     private readonly Dictionary<string, int> severityOrder = new Dictionary<string, int>
     {
         { "High/High", 1 },
@@ -33,12 +44,11 @@ public partial class RiskScoreViewModel : UserControl
         Debug.WriteLine("[DEBUG] RiskScoreViewModel initialized.");
         Debug.WriteLine($"[DEBUG] Dashboard Selected: {dashboardViewModel.SelectedFramework}");
 
-        DataContext = this;
-
-        AllControls = new ObservableCollection<ConceptualCheckBox>();
-        AllPhysicalControls = new ObservableCollection<PhysicalControl>();
-
         _dashboardViewModel = dashboardViewModel;
+
+        // Initialize collections
+        AllControls = new ObservableCollection<ConceptualCheckBox>();
+        AllPhysicalControls = new ObservableCollection<PhysicalControl>(); // Initialize physical controls
 
         // Polling mechanism for checking when the dashboard is populated
         var timer = new System.Windows.Threading.DispatcherTimer();
@@ -57,19 +67,21 @@ public partial class RiskScoreViewModel : UserControl
         };
         timer.Start();
 
+        // Calculate the CVSS risk score (dummy values for now)
         CVSSCalculator calculator = new CVSSCalculator();
         RiskScore = calculator.CalculateBaseScore(0.85, 0.77, 0.62, 0.85, 0.56, 0.56, 0.56);
     }
 
     // Method to update both conceptual and physical controls when dashboard is populated
-    public void UpdateControls()
+    private void UpdateControls()
     {
         Debug.WriteLine($"[DEBUG] ConceptualControls count in dashboard view model: {_dashboardViewModel.ConceptualControls.Count}");
 
+        // Clear existing controls
         AllControls.Clear();
         AllPhysicalControls.Clear();
 
-        // Sort conceptual controls by severity using the dictionary
+        // Sort the conceptual controls by severity
         var sortedControls = _dashboardViewModel.ConceptualControls
             .OrderBy(control => severityOrder.ContainsKey(control.Severity) ? severityOrder[control.Severity] : int.MaxValue)
             .ToList();
@@ -77,24 +89,27 @@ public partial class RiskScoreViewModel : UserControl
         foreach (var conceptualControl in sortedControls)
         {
             Debug.WriteLine($"[DEBUG] Adding conceptual control: {conceptualControl.Name}");
-            AllControls.Add(conceptualControl);
+            AllControls.Add(conceptualControl);  // Add conceptual controls
 
-            // Add associated physical controls
+            // Add associated physical controls and filter passed ones
             foreach (var physicalControl in conceptualControl.PhysicalControls)
             {
-                Debug.WriteLine($"[DEBUG] Adding physical control: {physicalControl.Control}");
-                AllPhysicalControls.Add(physicalControl);
+                if (!physicalControl.Passed) // Only add controls that haven't passed
+                {
+                    Debug.WriteLine($"[DEBUG] Adding physical control: {physicalControl.Control}");
+                    AllPhysicalControls.Add(physicalControl);
+                }
             }
+
+            // Check if all physical controls are passed and hide conceptual control if needed
+            conceptualControl.IsVisible = conceptualControl.PhysicalControls.All(pc => !pc.Passed);
         }
 
         Debug.WriteLine($"[DEBUG] AllControls updated. New count: {AllControls.Count}");
         Debug.WriteLine($"[DEBUG] AllPhysicalControls updated. New count: {AllPhysicalControls.Count}");
-
-        OnPropertyChanged(nameof(AllControls));
-        OnPropertyChanged(nameof(AllPhysicalControls));
     }
 
-    // CVSSCalculator class for risk score calculation, need to edit
+    // CVSSCalculator class for risk score calculation
     public class CVSSCalculator
     {
         public double CalculateBaseScore(double attackVector, double attackComplexity, double privilegesRequired, double userInteraction, double impactConfidentiality, double impactIntegrity, double impactAvailability)
@@ -106,12 +121,4 @@ public partial class RiskScoreViewModel : UserControl
             return Math.Ceiling(baseScore * 10) / 10;
         }
     }
-
-    protected void OnPropertyChanged(string propertyName)
-    {
-        var handler = PropertyChanged;
-        handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-
-    public event PropertyChangedEventHandler PropertyChanged;
 }
