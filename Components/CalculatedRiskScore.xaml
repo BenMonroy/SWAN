@@ -35,7 +35,7 @@
                 <!-- Semi-Circle Gauge -->
                 <lvc:Gauge Margin="5"
                            From="0" To="10" Value="{Binding GaugeValue}"
-                           Grid.Row="1" Foreground="White">
+                           Grid.Row="1" Foreground="White" Visibility="{Binding ChartVisibility}">
                     <lvc:Gauge.GaugeActiveFill>
                         <LinearGradientBrush>
                             <!-- Default colors; will be adjusted by code -->

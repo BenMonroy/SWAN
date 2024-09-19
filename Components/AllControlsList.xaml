@@ -40,8 +40,8 @@
                 <!-- List of controls with ScrollViewer -->
                 <ScrollViewer VerticalScrollBarVisibility="Auto"
                               HorizontalScrollBarVisibility="Disabled"
-                              Grid.Row="1">
-                    <ItemsControl ItemsSource="{Binding AllControls}">
+                              Grid.Row="1" Visibility="{Binding ChartVisibility}">
+                    <ItemsControl ItemsSource="{Binding AllControls}" Visibility="{Binding ChartVisibility}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Grid Margin="5">

@@ -36,7 +36,8 @@
                 <lvc:PieChart Series="{Binding PieChartSeries}" 
                               LegendLocation="Right" 
                               Hoverable="True" 
-                            
+                              Foreground="White"
+                              Visibility="{Binding ChartVisibility}"
                               Grid.Row="1"/>
             </Grid>
         </Border>

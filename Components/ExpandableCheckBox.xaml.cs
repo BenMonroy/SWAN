@@ -49,7 +49,8 @@ namespace SWAN.Components
                     if (conceptualCheckBox == null) { MessageBox.Show("Conceptual Checkbox not found"); }
                     if (conceptualCheckBox != null)
                     {
-                        conceptualCheckBox.FailedCount--;
+                        conceptualCheckBox.FailedCount = conceptualCheckBox.PhysicalControls.Count(pc => !pc.Passed);
+
                         // if all are passed set AllPassed to true
                         conceptualCheckBox.AllPassed = conceptualCheckBox.PhysicalControls.All(pc => pc.Passed);
 
@@ -82,10 +83,11 @@ namespace SWAN.Components
                     if (conceptualCheckBox != null)
                     {
                         conceptualCheckBox.AllPassed = false;
-                        conceptualCheckBox.FailedCount++;
+                        conceptualCheckBox.FailedCount = conceptualCheckBox.PhysicalControls.Count(pc => !pc.Passed);
+
                     }
                     //for testing remove this and switch to a style
-                  //  if (!conceptualCheckBox.AllPassed) { parentExpander.Background = Brushes.Blue; };
+                    //  if (!conceptualCheckBox.AllPassed) { parentExpander.Background = Brushes.Blue; };
                 }
             }
         }
