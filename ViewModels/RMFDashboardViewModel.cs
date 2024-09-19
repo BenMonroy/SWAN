@@ -1,7 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.VisualBasic.FileIO;
 using SWAN.Components;
+using SWAN.Services;
 using SWAN.Views;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,8 +22,8 @@ namespace SWAN.ViewModels
     public partial class RMFDashboardViewModel : ObservableObject
 
     {
-        
-        //TODO add a binding visibility here for RMF stack panel, change other refeernces to stack panel to this property
+
+        private readonly IMessenger _messenger;
 
         [ObservableProperty]
         private Visibility _RmfStackPanelVisibility = Visibility.Visible;
@@ -130,12 +132,16 @@ namespace SWAN.ViewModels
         public ObservableCollection<ConceptualCheckBox> ConceptualControls { get; set; }
 
 
-        public RMFDashboardViewModel(RecentFilesView fileView)
+        public RMFDashboardViewModel(RecentFilesView fileView, IMessenger messenger)
         {
             FileView = fileView;
             RecentFiles = new ObservableCollection<RecentFile>(_recentFilesManager.LoadRecentFiles());
             ConceptualControls = new ObservableCollection<ConceptualCheckBox>();
-
+            _messenger = messenger;
+            ConceptualControls.CollectionChanged += (s, e) =>
+            {
+                _messenger.Send(new ConceptualControlsUpdatedMessage(ConceptualControls));
+            };
         }
 
 
@@ -167,6 +173,7 @@ namespace SWAN.ViewModels
                 CIA = "HHH",
                 Name = "Conceptual Control 1",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -185,7 +192,9 @@ namespace SWAN.ViewModels
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
                     new PhysicalControl { Control = "Physical Control 2", Passed = false },
                     new PhysicalControl { Control = "Physical Control 3", Passed = false }
-                }
+                },
+                FailedCount = 3,
+    
             };
             ConceptualControl3 = new ConceptualCheckBox
             {
@@ -193,6 +202,7 @@ namespace SWAN.ViewModels
                 Severity = "High/High",
                 CIA = "HHH",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1"    , Passed = false },
@@ -206,6 +216,7 @@ namespace SWAN.ViewModels
                 Severity = "Med/Med",
                 CIA = "HHH",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -219,6 +230,7 @@ namespace SWAN.ViewModels
                 Severity = "Low/Med",
                 CIA = "HHH",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -242,6 +254,7 @@ namespace SWAN.ViewModels
                 CIA = "HHH",
                 Name = "Conceptual Control 1",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -255,6 +268,7 @@ namespace SWAN.ViewModels
                 Severity = "Low/Low",
                 CIA = "HHH",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -268,6 +282,7 @@ namespace SWAN.ViewModels
                 Severity = "High/High",
                 CIA = "HHH",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1"    , Passed = false },
@@ -281,6 +296,7 @@ namespace SWAN.ViewModels
                 Severity = "Med/Med",
                 CIA = "HHH",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -294,6 +310,7 @@ namespace SWAN.ViewModels
                 Severity = "Low/Med",
                 CIA = "HHH",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -316,6 +333,7 @@ namespace SWAN.ViewModels
                 CIA = "HHH",
                 Name = "Conceptual Control 1",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -329,6 +347,7 @@ namespace SWAN.ViewModels
                 Severity = "Low/Low",
                 CIA = "HHH",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -342,6 +361,7 @@ namespace SWAN.ViewModels
                 Severity = "High/High",
                 CIA = "HHH",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1"    , Passed = false },
@@ -355,6 +375,7 @@ namespace SWAN.ViewModels
                 Severity = "Med/Med",
                 CIA = "HHH",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -368,6 +389,7 @@ namespace SWAN.ViewModels
                 Severity = "Low/Med",
                 CIA = "HHH",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -496,6 +518,9 @@ namespace SWAN.ViewModels
                 {
                     InitUnusedCheckBoxes();
                 }
+                //updates the filepath in ScaffoldViewModel
+                _messenger.Send(new FileOpenedMessage(filePath));
+                _messenger.Send(new ConceptualControlsUpdatedMessage(ConceptualControls));
             }
             else
             {
@@ -563,6 +588,7 @@ namespace SWAN.ViewModels
                 CIA = "HHH",
                 Name = "Conceptual Control 1",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -576,6 +602,7 @@ namespace SWAN.ViewModels
                 Severity = "Low/Low",
                 CIA = "HHH",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -589,6 +616,7 @@ namespace SWAN.ViewModels
                 Severity = "High/High",
                 CIA = "HHH",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1"    , Passed = false },
@@ -602,6 +630,7 @@ namespace SWAN.ViewModels
                 Severity = "Med/Med",
                 CIA = "HHH",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -615,6 +644,7 @@ namespace SWAN.ViewModels
                 Severity = "Low/Med",
                 CIA = "HHH",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -628,6 +658,7 @@ namespace SWAN.ViewModels
                 Severity = "High/High",
                 CIA = "HHH",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -641,6 +672,7 @@ namespace SWAN.ViewModels
                 Severity = "Low/Low",
                 CIA = "HHH",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -654,6 +686,7 @@ namespace SWAN.ViewModels
                 Severity = "Low/Low",
                 CIA = "HHH",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -667,6 +700,7 @@ namespace SWAN.ViewModels
                 Severity = "Low/Low",
                 CIA = "HHH",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -680,6 +714,7 @@ namespace SWAN.ViewModels
                 Severity = "Low/Low",
                 CIA = "HHH",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -693,6 +728,7 @@ namespace SWAN.ViewModels
                 Severity = "Low/Low",
                 CIA = "HHH",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -706,6 +742,7 @@ namespace SWAN.ViewModels
                 Severity = "Med/Low",
                 CIA = "HHH",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -719,6 +756,7 @@ namespace SWAN.ViewModels
                 Severity = "Med/Low",
                 CIA = "HHH",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -733,6 +771,7 @@ namespace SWAN.ViewModels
                 Severity = "Med/Low",
                 CIA = "LLL",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -747,6 +786,7 @@ namespace SWAN.ViewModels
                 Severity = "Med/Low",
                 CIA = "LLL",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -761,6 +801,7 @@ namespace SWAN.ViewModels
                 CIA = "LLL",
                 Name = "Conceptual Control 16",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -775,6 +816,7 @@ namespace SWAN.ViewModels
                 Severity = "Med/Low",
                 CIA = "LLL",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -789,6 +831,7 @@ namespace SWAN.ViewModels
                 Severity = "Med/Low",
                 CIA = "LLL",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -803,6 +846,7 @@ namespace SWAN.ViewModels
                 Severity = "Med/Low",
                 CIA = "LLL",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -817,6 +861,7 @@ namespace SWAN.ViewModels
                 Severity = "Med/Low",
                 CIA = "LLL",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -831,6 +876,7 @@ namespace SWAN.ViewModels
                 Severity = "Med/Low",
                 CIA = "LLL",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -845,6 +891,7 @@ namespace SWAN.ViewModels
                 Severity = "Med/Low",
                 CIA = "LLL",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -859,6 +906,7 @@ namespace SWAN.ViewModels
                 Severity = "High/High",
                 CIA = "LLL",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -873,6 +921,7 @@ namespace SWAN.ViewModels
                 Severity = "High/High",
                 CIA = "LLL",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -887,6 +936,7 @@ namespace SWAN.ViewModels
                 Severity = "High/High",
                 CIA = "LLL",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -900,6 +950,7 @@ namespace SWAN.ViewModels
                 Severity = "High/High",
                 CIA = "LLL",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -914,6 +965,7 @@ namespace SWAN.ViewModels
                 Severity = "High/High",
                 CIA = "LLL",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -928,6 +980,7 @@ namespace SWAN.ViewModels
                 Severity = "High/High",
                 CIA = "LLL",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
@@ -942,6 +995,7 @@ namespace SWAN.ViewModels
                 Severity = "High/High",
                 CIA = "LLL",
                 IsVisible = true,
+                FailedCount = 3,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "Physical Control 1", Passed = false },
