@@ -90,7 +90,7 @@
             <!-- Search Bar -->
             <ui:AutoSuggestBox Grid.Row="3"
             Icon="{ui:SymbolIcon Search24}"
-            OriginalItemsSource="{Binding RecentFiles}" DisplayMemberPath="Name"
+            OriginalItemsSource="{Binding RecentFiles}" DisplayMemberPath="Name" Width="600" HorizontalAlignment="left"
             PlaceholderText="Search..." SuggestionChosen="FileChosenFromSearch"  Visibility="{Binding RmfStackPanelVisibility}"/>
 
             <!-- Label for Recent Files -->

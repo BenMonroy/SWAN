@@ -4,9 +4,50 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:components="clr-namespace:SWAN.Components"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="400">
+             d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
-       
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <!-- New row for header and button -->
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Header and Button in the first row -->
+        <Grid Grid.ColumnSpan="2" Grid.Row="0" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <!-- Left-aligned header -->
+            <TextBlock Grid.Column="0" Text="Understanding Risk" Foreground="White"
+                       FontSize="24" FontWeight="Bold" VerticalAlignment="Center"/>
+            <!-- Right-aligned button -->
+            <Button Grid.Column="1" Content="Calculate Risk" 
+                    HorizontalAlignment="Right" VerticalAlignment="Center" 
+                    Padding="10,5" Margin="5" Command="{Binding UpdateRiskCommand}"/>
+        </Grid>
+
+        <!-- RiskBySeverity in Column 0, Row 1 -->
+        <components:RiskBySeverity Grid.Column="1" Grid.Row="1" Margin="10" />
+
+        <!-- MostSevere in Column 1, Row 1 -->
+        <components:MostSevere Grid.Column="1" Grid.Row="2" Margin="10" />
+
+        <!-- MostPrevalent in Column 0, Row 2 -->
+        <components:MostPrevalent Grid.Column="0" Grid.Row="2" Margin="10" />
+
+        <!-- CalculatedRiskScore in Column 1, Row 2 -->
+        <components:CalculatedRiskScore Grid.Column="0" Grid.Row="1" Margin="10" />
+
+        <!-- AllControlsList in Column 0, Row 3 -->
+        <components:AllControlsList Grid.Column="0" Grid.Row="3" Margin="10" />
     </Grid>
 </UserControl>

@@ -5,6 +5,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using SWAN.Services;
 using SWAN.ViewModels;
 using SWAN.Views;
 
@@ -32,9 +34,15 @@ namespace SWAN.ViewModels
         public ICommand SaveCommand => new RelayCommand(Save);
         public ICommand SaveAsCommand => new RelayCommand(SaveAs);
         public ICommand OpenFileCommand => new RelayCommand(OpenFile);
+
+        public ICommand OpenSettingsCommand = new RelayCommand(OpenSettingsMenu);
+
         public static ICommand TodoCommand => new RelayCommand(() => MessageBox.Show("not implemented!"));
 
+
+
         public ICommand HandleFrameworkSelectionCommand => new RelayCommand<string>(NewFile);
+        private readonly IMessenger _messenger;
 
 
 
@@ -43,7 +51,7 @@ namespace SWAN.ViewModels
         HistoryView historyView,
         IndexView indexView,
         RiskScoreView riskScoreView,
-        RMFDashboardView rmfDashboardView)
+        RMFDashboardView rmfDashboardView, IMessenger messenger)
         {
             DashboardViewModel = dashboardViewModel;
             _historyView = historyView;
@@ -51,6 +59,12 @@ namespace SWAN.ViewModels
             _riskScoreView = riskScoreView;
             _rmfDashboardView = rmfDashboardView;
             CurrentView = _rmfDashboardView;
+            _messenger = messenger;
+            //register/subscribe to the file opened in rmfdashboardviewmodel
+            _messenger.Register<ScaffoldViewModel, FileOpenedMessage>(this, (r, m) =>
+            {
+                r._currentFilePath = m.Value; // Save the file path
+            });
         }
 
         private void ChangePage(PageId nextPage)
@@ -126,8 +140,11 @@ namespace SWAN.ViewModels
             }
         }
 
+        private static void OpenSettingsMenu()
+        {
+            throw new NotImplementedException();
+        }
 
-     
         private void NewFile(string framework)
         {
             _currentFilePath = string.Empty;

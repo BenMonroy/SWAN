@@ -7,7 +7,22 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Components\AllControlsList.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Components\CalculatedRiskScore.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Components\MostSevere.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Components\DashboardNavigationBar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Components\MostPrevalent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Components\RiskBySeverity.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\HistoryView.xaml.cs">
@@ -30,7 +45,22 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Components\AllControlsList.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Components\CalculatedRiskScore.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Components\MostSevere.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Components\DashboardNavigationBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Components\MostPrevalent.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Components\RiskBySeverity.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">

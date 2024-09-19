@@ -161,9 +161,9 @@ namespace SWAN.ViewModels
         {
             RmfStackPanelVisibility = Visibility.Hidden;
             CheckBoxesVisibility = Visibility.Visible;
-        } 
+        }
 
-      
+
 
         private void Load80053Collection()
         {
@@ -470,7 +470,7 @@ namespace SWAN.ViewModels
                     return; // TODO do something here so that if open fails it does not load empty dashboard
                 }
                 SelectedFramework = jsonFramework;
-               
+
 
                 // Retrieve and update the ConceptualControls
                 var loadedControls = JsonSerializer.Deserialize<ObservableCollection<ConceptualCheckBox>>(loadedData["ConceptualControls"].ToString());
@@ -572,7 +572,7 @@ namespace SWAN.ViewModels
                     MessageBox.Show("File loaded successfully");
                 }
                 catch (Exception ex) { MessageBox.Show("$ex"); }
-                
+
             }
             else
             {
@@ -626,7 +626,7 @@ namespace SWAN.ViewModels
             };
             ConceptualControl4 = new ConceptualCheckBox
             {
-                Name = "Conceptual Control 4", 
+                Name = "Conceptual Control 4",
                 Severity = "Med/Med",
                 CIA = "HHH",
                 IsVisible = true,
@@ -640,7 +640,7 @@ namespace SWAN.ViewModels
             };
             ConceptualControl5 = new ConceptualCheckBox
             {
-                Name = "Conceptual Control 5", 
+                Name = "Conceptual Control 5",
                 Severity = "Low/Med",
                 CIA = "HHH",
                 IsVisible = true,
@@ -654,7 +654,7 @@ namespace SWAN.ViewModels
             };
             ConceptualControl6 = new ConceptualCheckBox
             {
-                Name = "Conceptual Control 6", 
+                Name = "Conceptual Control 6",
                 Severity = "High/High",
                 CIA = "HHH",
                 IsVisible = true,
@@ -668,7 +668,7 @@ namespace SWAN.ViewModels
             };
             ConceptualControl7 = new ConceptualCheckBox
             {
-                Name = "Conceptual Control 7", 
+                Name = "Conceptual Control 7",
                 Severity = "Low/Low",
                 CIA = "HHH",
                 IsVisible = true,
@@ -1003,7 +1003,7 @@ namespace SWAN.ViewModels
         new PhysicalControl { Control = "Physical Control 3", Passed = false }
     }
             };
-        
+
             ConceptualControls = new ObservableCollection<ConceptualCheckBox>
             {
         ConceptualControl1, ConceptualControl2, ConceptualControl3, ConceptualControl4,
@@ -1046,4 +1046,3 @@ namespace SWAN.ViewModels
         }
     }
 }
-

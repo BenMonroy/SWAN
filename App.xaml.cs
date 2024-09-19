@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SWAN.ViewModels;
 using SWAN.Views;
@@ -20,19 +21,24 @@ namespace SWAN
              .ConfigureServices((hostContext, services) => {
                  services.AddSingleton<MainWindow>();
 
-        
+                //add ViewModels
                  services.AddSingleton<ScaffoldViewModel>();
                  services.AddSingleton<RiskScoreViewModel>();
                  services.AddSingleton<RMFDashboardViewModel>();
                  services.AddSingleton<IndexViewModel>();
                  services.AddSingleton<HistoryViewModel>();
 
+                 //add views
                  services.AddSingleton<RecentFilesView>();
                  services.AddSingleton<HistoryView>();
                  services.AddSingleton<IndexView>();
                  services.AddSingleton<RiskScoreView>();
-                 services.AddSingleton<RMFDashboardView>(); 
-    
+                 services.AddSingleton<RMFDashboardView>();
+                 
+                 //add services
+                 services.AddSingleton<IMessenger>(WeakReferenceMessenger.Default);
+
+
              }).Build();
 
         }

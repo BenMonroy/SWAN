@@ -27,9 +27,9 @@ namespace SWAN.Views
         {
         }
 
-       
 
-       
+
+
 
         public void ToggleAll(ItemsControl items, bool expand)
         {
@@ -46,7 +46,7 @@ namespace SWAN.Views
             }
         }
 
-        
+
 
         private void Create_Dashboard_Click(object sender, RoutedEventArgs e)
         {

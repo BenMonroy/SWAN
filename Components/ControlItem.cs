@@ -22,6 +22,9 @@ namespace SWAN.Components
         [ObservableProperty]
         public bool isVisible;
         public string Severity { get; set; }
+
+        [ObservableProperty]
+        public int failedCount;
         public string CIA { get; set; }
         public ObservableCollection<PhysicalControl> PhysicalControls { get; set; }  // Collection of physical controls
 

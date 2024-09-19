@@ -51,18 +51,26 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="120"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <!-- Left-aligned SWAN TextBlock -->
-        <TextBlock Text="SWAN"
-                   VerticalAlignment="Center"
-                   Foreground="WhiteSmoke"
-                   FontFamily="Baskerville, Georgia"
-                   FontSize="45"
-                   Margin="10,0"
-                   Grid.Column="0"/>
+        <ui:Button HorizontalAlignment="Center"
+    Background="{StaticResource CardBackgroundColor}"
+    Content="Settings"
+    Foreground="White"
+    Padding="10,5,5,5"          
+            BorderBrush="White"
+            BorderThickness=".5"
+            Command="{Binding OpenSettingsCommand}">
+        
+            <ui:Button.Icon>
+                <ui:FontIcon Glyph="&#xE713;" FontFamily="Segoe Fluent Icons" FontSize="16" Foreground="White"/>
+            </ui:Button.Icon>
+
+        </ui:Button>
+
 
         <!-- TabControl for navigation -->
         <TabControl SelectionChanged="TabControl_SelectionChanged"
