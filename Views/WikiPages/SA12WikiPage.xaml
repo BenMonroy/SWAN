@@ -1,0 +1,146 @@
+﻿<Page x:Class="SWAN.Views.WikiPages.SA12WikiPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="WikiPage"
+      HorizontalAlignment="Stretch"
+      VerticalAlignment="Stretch">
+
+    <!-- Ensure FlowDocumentReader stretches to fill available space -->
+    <FlowDocumentScrollViewer x:Name="flowDocumentScrollViewer" Foreground="White" Width="auto" Height="auto" HorizontalContentAlignment="Stretch">
+        <FlowDocument x:Name="flowDocument" IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True">
+            <!-- Center-align the title to take up the entire frame width -->
+            <Paragraph FontSize="30">
+
+                <Run Text="SA-12: Supply Chain Protection" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+
+            <!-- Left-align content -->
+            <Paragraph TextAlignment="Left">
+                <Run Text="Severity :" FontWeight="ExtraBold"/>
+                <Run Text="High" FontWeight="ExtraBold" Foreground="Red"/>
+                <Run Text="-" FontWeight="ExtraBold" Foreground="Red"/>
+                <Run Text="High" FontWeight="ExtraBold" Foreground="Red"/>
+            </Paragraph>
+            <!-- Add more content as needed -->
+            <Paragraph FontSize="30">
+                <LineBreak></LineBreak>
+                <Run Text="Control Extension" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+
+
+
+            <Paragraph Margin="10,20,0,0" Tag="SA12numberone">
+                <Run Text="1." FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall employ countermeasures to protect against software/firmware supply chain threats by implementing security safeguards as part of a comprehensive, information security strategy.
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-000723"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization protects against supply chain threats to the information system, system component, or information system service by employing organization-defined security safeguards as part of a comprehensive, defense-in-breadth information security strategy.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed must identify and document in the Security Plan whether the system is a “covered system” IAW DoDI 5200.44. If it is a covered system, the organization must implement the requirements below: 1. Conduct a criticality analysis to identify mission critical functions and critical components and reduce the vulnerability of such functions and components through secure system design; 2. Request threat analysis of suppliers of critical components from the TSN focal point and manage access to and control of threat analysis products containing U.S. person information; 3. Engage TSN focal points for guidance on managing identified risk using DoD Components and Enterprise risk management resources; and 4. Apply TSN best practices, processes, techniques, and procurement tools prior to the acquisition of critical components or their integration into applicable systems, at any point in the system lifecycle. Such tools and practices include contract requirements and the SCRM key practices Guide.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment obtains and examines the Security Plan for the system to determine whether the system is a “covered system” IAW DoDI 5200.44. If it is a covered system, the organization conducting the inspection/assessment obtains and examines documentation of compliance with DoDI 5200.44, to ensure the organization being inspected/assessed has: 1. Conducted a criticality analysis to identify mission critical functions and critical components and reduced the vulnerability of such functions and components through secure system design; 2. Requested threat analysis of suppliers of critical components from the TSN focal point and managed access to and control of threat analysis products containing U.S. person information; 3. Engaged TSN focal points for guidance on managing identified risk using DoD Components and Enterprise risk management resources; and 4. Applied TSN best practices, processes, techniques, and procurement tools prior to the acquisition of critical components or their integration into applicable systems, at any point in the system lifecycle. Such tools and practices include contract requirements and the SCRM key practices Guide.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                1.) System security plan (SSP).
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                2.) System development life cycle (SDLC) documentation
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                3.) Continuous monitoring plan must show organization-defined protections against supply chain threats.
+            </Paragraph>
+
+            <Paragraph Margin="10,20,0,0" Tag="SA12numbertwo">
+                <Run Text="2." FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall document software/firmware supply chain countermeasures in the PPIP or equivalent document
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-000722"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization defines the security safeguards to employ to protect against supply chain threats to the information system, system component, or information system service.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                DoD has defined the requirements to protect against supply chain threats in DoDI 5200.44, "Protection of Mission Critical Functions to Achieve Trusted Systems and Networks (TSN).
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed is automatically compliant with this CCI because they are covered at the DoD level. DoD has defined the requirements to protect against supply chain threats in DoDI 5200.44, "Protection of Mission Critical Functions to Achieve Trusted Systems and Networks (TSN).
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                Automatically compliant per DoDI 5200.44.
+            </Paragraph>
+            
+
+
+            <Paragraph Margin="10,20,0,0" Tag="SA12numberthree">
+                <Run Text="3." FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall employ tailored acquisition strategies, contract tools, and procurement methods for the purchase of software/firmware, software/firmware components, or software/firmware services from suppliers.
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-000723"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization protects against supply chain threats to the information system, system component, or information system service by employing organization-defined security safeguards as part of a comprehensive, defense-in-breadth information security strategy.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed must identify and document in the Security Plan whether the system is a “covered system” IAW DoDI 5200.44. If it is a covered system, the organization must implement the requirements below: 1. Conduct a criticality analysis to identify mission critical functions and critical components and reduce the vulnerability of such functions and components through secure system design; 2. Request threat analysis of suppliers of critical components from the TSN focal point and manage access to and control of threat analysis products containing U.S. person information; 3. Engage TSN focal points for guidance on managing identified risk using DoD Components and Enterprise risk management resources; and 4. Apply TSN best practices, processes, techniques, and procurement tools prior to the acquisition of critical components or their integration into applicable systems, at any point in the system lifecycle. Such tools and practices include contract requirements and the SCRM key practices Guide.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment obtains and examines the Security Plan for the system to determine whether the system is a “covered system” IAW DoDI 5200.44. If it is a covered system, the organization conducting the inspection/assessment obtains and examines documentation of compliance with DoDI 5200.44, to ensure the organization being inspected/assessed has: 1. Conducted a criticality analysis to identify mission critical functions and critical components and reduced the vulnerability of such functions and components through secure system design; 2. Requested threat analysis of suppliers of critical components from the TSN focal point and managed access to and control of threat analysis products containing U.S. person information; 3. Engaged TSN focal points for guidance on managing identified risk using DoD Components and Enterprise risk management resources; and 4. Applied TSN best practices, processes, techniques, and procurement tools prior to the acquisition of critical components or their integration into applicable systems, at any point in the system lifecycle. Such tools and practices include contract requirements and the SCRM key practices Guide.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                1.) System security plan (SSP).
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                2.) System development life cycle (SDLC) documentation
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                3.) Continuous monitoring plan must show organization-defined protections against supply chain threats.
+            </Paragraph>
+        </FlowDocument>
+    </FlowDocumentScrollViewer>
+</Page>

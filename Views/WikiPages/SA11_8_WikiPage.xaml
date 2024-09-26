@@ -1,0 +1,153 @@
+﻿<Page x:Class="SWAN.Views.WikiPages.SA11_8_WikiPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="WikiPage"
+      HorizontalAlignment="Stretch"
+      VerticalAlignment="Stretch">
+
+    <!-- Ensure FlowDocumentReader stretches to fill available space -->
+    <FlowDocumentScrollViewer x:Name="flowDocumentScrollViewer" Foreground="White" Width="auto" Height="auto" HorizontalContentAlignment="Stretch">
+        <FlowDocument x:Name="flowDocument" IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True">
+            <!-- Center-align the title to take up the entire frame width -->
+            <Paragraph FontSize="30">
+
+                <Run Text="SA-11(8): Developer Security Testing and Evaluation: Dynamic Code Analysis" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+
+            <!-- Left-align content -->
+            <Paragraph TextAlignment="Left">
+                <Run Text="Severity :" FontWeight="ExtraBold"/>
+                <Run Text="High" FontWeight="ExtraBold" Foreground="Red"/>
+            </Paragraph>
+            <!-- Add more content as needed -->
+            <Paragraph FontSize="30">
+                <LineBreak></LineBreak>
+                <Run Text="Control Extension" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            
+            
+            
+            <Paragraph Margin="10,20,0,0" Tag="SA11_8_numberone">
+                <Run Text="1." FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall employ dynamic analysis tools to identify software/firmware weaknesses and vulnerabilities in developed and incorporated code (open source, commercial, or third-party developed code).
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-003196"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization requires the developer of the information system, system component, or information system service to employ dynamic code analysis tools to identify common flaws.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed requires within contracts/agreements that the developer of the information system, system component, or information system service employ dynamic code analysis tools to identify common flaws. Dynamic code analysis tools include fuzz testing, using simulation, and white and black box testing. Dynamic code analysis should be performed in conjunction with static code analysis to provide greater levels of analysis.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment obtains and examines the contracts/agreements to ensure the organization being inspected/assessed requires that the developer of the information system, system component, or information system service employ dynamic code analysis tools to identify common flaws.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                1.) System security plan (SSP).
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                2.) System development life cycle (SDLC) documentation.
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                3.) Continuous monitoring plan must document developer flaw tracking, and resolution using dynamic code analysis tools.
+            </Paragraph>
+
+
+            <Paragraph Margin="10,20,0,0" Tag="SA11_8_numbertwo">
+                <Run Text="2." FontWeight="ExtraBold" FontSize="30"></Run>
+                **FIX** The developer shall employ the following procedures as part of use/acceptance of incorporated code (open source, commercial, or third-party developed code):
+Incorporated code shall be analyzed for vulnerabilities using standard methods and
+tools.
+Incorporated code shall be implemented in a manner that supports security and 	product updates.
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-003196"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization requires the developer of the information system, system component, or information system service to employ dynamic code analysis tools to identify common flaws.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed requires within contracts/agreements that the developer of the information system, system component, or information system service employ dynamic code analysis tools to identify common flaws. Dynamic code analysis tools include fuzz testing, using simulation, and white and black box testing. Dynamic code analysis should be performed in conjunction with static code analysis to provide greater levels of analysis.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment obtains and examines the contracts/agreements to ensure the organization being inspected/assessed requires that the developer of the information system, system component, or information system service employ dynamic code analysis tools to identify common flaws.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                1.) System security plan (SSP).
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                2.) System development life cycle (SDLC) documentation.
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                3.) Continuous monitoring plan must document developer flaw tracking, and resolution using dynamic code analysis tools.
+            </Paragraph>
+
+
+            <Paragraph Margin="10,20,0,0" Tag="SA11_8_numberthree">
+                <Run Text="1." FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall document the detailed results of dynamic analysis in a SAER and summarize results in the SVAR
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-003197 and CDRLs SAER and SVAR"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization requires the developer of the information system, system component, or information system service to document the results of the dynamic code analysis.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed requires that the developer of the information system, system component, or information system service document the type of dynamic analysis that was performed and the results (including defects).
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment obtains and examines the contracts/agreements to ensure the organization being inspected/assessed requires that the developer of the information system, system component, or information system service document the results of the dynamic code analysis.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                1.) System security plan (SSP).
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                2.) System development life cycle (SDLC) documentation.
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                3.) Continuous monitoring plan must document developer flaw tracking, and resolution using dynamic code analysis tools.
+            </Paragraph>
+        </FlowDocument>
+    </FlowDocumentScrollViewer>
+</Page>

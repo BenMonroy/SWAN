@@ -49,6 +49,33 @@
     <Compile Update="Views\WikiPages\SA10WikiPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\WikiPages\SA11_1_WikiPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\WikiPages\SA11_2_WikiPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\WikiPages\SA11_3_WikiPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\WikiPages\SA11_4_WikiPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\WikiPages\SA11_5_WikiPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\WikiPages\SA11_6_WikiPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\WikiPages\SA11_7_WikiPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\WikiPages\SA11_8_WikiPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\WikiPages\SA12WikiPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\WikiPages\WikiPageTemplate.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

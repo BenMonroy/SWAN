@@ -88,6 +88,40 @@
                             <ListBoxItem Content="SA11numberone" HorizontalContentAlignment="Left"  x:Name="SA11numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
                             <ListBoxItem Content="SA11numbertwo" HorizontalContentAlignment="Left"  x:Name="SA11numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
                             <ListBoxItem Content="SA11numberthree" HorizontalContentAlignment="Left"  x:Name="SA11numberthreeItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                        <ListBoxItem Content="SA-11(1)" HorizontalContentAlignment="Left"/>
+                            <ListBoxItem Content="SA11_1_numberone" HorizontalContentAlignment="Left"  x:Name="SA11_1_numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SA11_1_numbertwo" HorizontalContentAlignment="Left"  x:Name="SA11_1_numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SA11_1_numberthree" HorizontalContentAlignment="Left"  x:Name="SA11_1_numberthreeItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                        <ListBoxItem Content="SA-11(2)" HorizontalContentAlignment="Left"/>
+                            <ListBoxItem Content="SA11_2_numberone" HorizontalContentAlignment="Left"  x:Name="SA11_2_numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SA11_2_numbertwo" HorizontalContentAlignment="Left"  x:Name="SA11_2_numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SA11_2_numberthree" HorizontalContentAlignment="Left"  x:Name="SA11_2_numberthreeItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SA11_2_numberfour" HorizontalContentAlignment="Left"  x:Name="SA11_2_numberfourItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                        <ListBoxItem Content="SA-11(3)" HorizontalContentAlignment="Left"/>
+                            <ListBoxItem Content="SA11_3_numberone" HorizontalContentAlignment="Left"  x:Name="SA11_3_numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SA11_3_numbertwo" HorizontalContentAlignment="Left"  x:Name="SA11_3_numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SA11_3_numberthree" HorizontalContentAlignment="Left"  x:Name="SA11_3_numberthreeItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SA11_3_numberfour" HorizontalContentAlignment="Left"  x:Name="SA11_3_numberfourItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                        <ListBoxItem Content="SA-11(4)" HorizontalContentAlignment="Left"/>
+                            <ListBoxItem Content="SA11_4_numberone" HorizontalContentAlignment="Left"  x:Name="SA11_4_numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SA11_4_numbertwo" HorizontalContentAlignment="Left"  x:Name="SA11_4_numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                        <ListBoxItem Content="SA-11(5)" HorizontalContentAlignment="Left"/>
+                            <ListBoxItem Content="SA11_5_numberone" HorizontalContentAlignment="Left"  x:Name="SA11_5_numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SA11_5_numbertwo" HorizontalContentAlignment="Left"  x:Name="SA11_5_numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                        <ListBoxItem Content="SA-11(6)" HorizontalContentAlignment="Left"/>
+                            <ListBoxItem Content="SA11_6_numberone" HorizontalContentAlignment="Left"  x:Name="SA11_6_numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SA11_6_numbertwo" HorizontalContentAlignment="Left"  x:Name="SA11_6_numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SA11_6_numberthree" HorizontalContentAlignment="Left"  x:Name="SA11_6_numberthreeItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                        <ListBoxItem Content="SA-11(7)" HorizontalContentAlignment="Left"/>
+                            <ListBoxItem Content="SA11_7_numberone" HorizontalContentAlignment="Left"  x:Name="SA11_7_numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                        <ListBoxItem Content="SA-11(8)" HorizontalContentAlignment="Left"/>
+                            <ListBoxItem Content="SA11_8_numberone" HorizontalContentAlignment="Left"  x:Name="SA11_8_numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SA11_8_numbertwo" HorizontalContentAlignment="Left"  x:Name="SA11_8_numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SA11_8_numberthree" HorizontalContentAlignment="Left"  x:Name="SA11_8_numberthreeItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                        <ListBoxItem Content="SA-12" HorizontalContentAlignment="Left"/>
+                            <ListBoxItem Content="SA12numberone" HorizontalContentAlignment="Left"  x:Name="SA12numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SA12numbertwo" HorizontalContentAlignment="Left"  x:Name="SA12numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SA12numberthree" HorizontalContentAlignment="Left"  x:Name="SA12numberthreeItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
                     </ListBox>
 
                     <!-- Frame for Content Display -->

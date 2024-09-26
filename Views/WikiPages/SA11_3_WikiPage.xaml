@@ -1,0 +1,183 @@
+﻿<Page x:Class="SWAN.Views.WikiPages.SA11_3_WikiPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="WikiPage"
+      HorizontalAlignment="Stretch"
+      VerticalAlignment="Stretch">
+
+    <!-- Ensure FlowDocumentReader stretches to fill available space -->
+    <FlowDocumentScrollViewer x:Name="flowDocumentScrollViewer" Foreground="White" Width="auto" Height="auto" HorizontalContentAlignment="Stretch">
+        <FlowDocument x:Name="flowDocument" IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True">
+            <!-- Center-align the title to take up the entire frame width -->
+            <Paragraph FontSize="30">
+
+                <Run Text="SA-11(3): Developer Security Testing and Evaluation: Independent Verification of Assessment Plans/Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+
+            <!-- Left-align content -->
+            <Paragraph TextAlignment="Left">
+                <Run Text="Severity :" FontWeight="ExtraBold"/>
+                <Run Text="High" FontWeight="ExtraBold" Foreground="Red"/>
+            </Paragraph>
+            <!-- Add more content as needed -->
+            <Paragraph FontSize="30">
+                <LineBreak></LineBreak>
+                <Run Text="Control Extension" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            
+            
+            
+            <Paragraph Margin="10,20,0,0" Tag="SA11_3_numberone">
+                <Run Text="1." FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall perform independent internal verification of developer software/firmware assessment plans and evidence. Developer personnel may perform this verification as long as independence is maintained. To maintain independence, the independent agent must be an entity that is not responsible for developing the product or performing the activity being evaluated.
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-003183"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization requires an independent agent satisfying organization-defined independence criteria to verify the correct implementation of the developer security assessment plan.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed requires within contracts/agreements that an independent agent satisfying independence criteria defined in SA-11 (3), CCI 3185 verify the correct implementation of the developer security assessment plan.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment obtains and examines the contracts/agreements to ensure the organization being inspected/assessed requires that an independent agent satisfying independence criteria defined in SA-11 (3), CCI 3185 verify the correct implementation of the developer security assessment plan.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                1.) System security plan (SSP).
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                2.) System development life cycle (SDLC) documentation must require an independent agent to verify the correct implementation of the developer-created Security Assessment Plan.
+            </Paragraph>
+
+
+
+
+            <Paragraph Margin="10,20,0,0" Tag="SA11_3_numbertwo">
+                <Run Text="2." FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall document independence criteria directly or by reference in a SDP, FDP, test plan, or equivalent documents.
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-003185"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization defines the independence criteria the independent agent must satisfy prior to verifying the correct implementation of the developer security assessment plan and the evidence produced during security testing/evaluation.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed defines and documents the independence criteria the independent agent must satisfy prior to verifying the correct implementation of the developer security assessment plan and the evidence produced during security testing/evaluation. DoD has determined the independence criteria is not appropriate to define at the Enterprise level.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment obtains and examines the documented independence criteria to ensure the organization being inspected/assessed defines the independence criteria the independent agent must satisfy prior to verifying the correct implementation of the developer security assessment plan and the evidence produced during security testing/evaluation. DoD has determined the independence criteria is not appropriate to define at the Enterprise level.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                1.) System security plan (SSP).
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                2.) System development life cycle (SDLC) documentation must define the independence criteria the independent agent must satisfy prior to verifying the correct implementation of the developer-created security assessment plan and the evidence produced during security testing/evaluation.
+            </Paragraph>
+
+
+
+            <Paragraph Margin="10,20,0,0" Tag="SA11_3_numberthree">
+                <Run Text="3." FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall document independent internal verification of software/firmware assessment plans and evidence and shall provide to the Government upon request.
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-003184"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization requires an independent agent satisfying organization-defined independence criteria to verify the evidence produced during security testing/evaluation.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed requires within contracts/agreements that an independent agent satisfying independence criteria defined in SA-11 (3), CCI 3185 verify the evidence produced during security testing/evaluation.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment obtains and examines the contracts/agreements to ensure the organization being inspected/assessed requires that an independent agent satisfying independence criteria defined in SA-11 (3), CCI 3185 verify the evidence produced during security testing/evaluation.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                1.) System security plan (SSP).
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                2.) System development life cycle (SDLC) documentation must require an independent agent to verify the evidence produced during security testing/evaluation
+            </Paragraph>
+
+
+
+            <Paragraph Margin="10,20,0,0" Tag="SA11_3_numberfour">
+                <Run Text="4." FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall ensure that the independent agent is provided with sufficient information to complete the verification process or granted the authority to obtain such information.
+
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-003186"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization ensures that the independent agent either is provided with sufficient information to complete the verification process or has been granted the authority to obtain such information.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed provides the independent agent with sufficient information and access/authority to complete the verification process. The organization must maintain a record of information provided.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment obtains and examines the record of information provided to ensure the organization being inspected/assessed provides the independent agent with sufficient information and access/authority to complete the verification process.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                1.) System security plan (SSP).
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                2.) System development life cycle (SDLC) documentation must require organization to ensure the independent agent is provided with sufficient information to complete verification process or has been granted the authority to obtain such information.
+            </Paragraph>
+        </FlowDocument>
+    </FlowDocumentScrollViewer>
+</Page>
