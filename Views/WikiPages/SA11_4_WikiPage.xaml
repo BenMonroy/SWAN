@@ -1,0 +1,115 @@
+﻿<Page x:Class="SWAN.Views.WikiPages.SA11_4_WikiPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="WikiPage"
+      HorizontalAlignment="Stretch"
+      VerticalAlignment="Stretch">
+
+    <!-- Ensure FlowDocumentReader stretches to fill available space -->
+    <FlowDocumentScrollViewer x:Name="flowDocumentScrollViewer" Foreground="White" Width="auto" Height="auto" HorizontalContentAlignment="Stretch">
+        <FlowDocument x:Name="flowDocument" IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True">
+            <!-- Center-align the title to take up the entire frame width -->
+            <Paragraph FontSize="30">
+
+                <Run Text="SA-11(4): Developer Security Testing and Evaluation: Manual Code Reviews" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+
+            <!-- Left-align content -->
+            <Paragraph TextAlignment="Left">
+                <Run Text="Severity :" FontWeight="ExtraBold"/>
+                <Run Text="Low" FontWeight="ExtraBold" Foreground="Green"/>
+                <Run Text="-" FontWeight="ExtraBold" Foreground="Green"/>
+                <Run Text="Low" FontWeight="ExtraBold" Foreground="Green"/>
+            </Paragraph>
+            <!-- Add more content as needed -->
+            <Paragraph FontSize="30">
+                <LineBreak></LineBreak>
+                <Run Text="Control Extension" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            
+            
+            
+            <Paragraph Margin="10,20,0,0" Tag="SA11_4_numberone">
+                <Run Text="1." FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall use processes, procedures, and techniques to perform manual code reviews to identify weaknesses and vulnerabilities in software/firmware components. Manual code review activities shall include peer reviews of developed code, manual review of analysis tool results, and manual analysis of code that cannot be analyzed by analysis tools.        
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-003189"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization defines the processes, procedures, and/or techniques to be used by the developer of the information system, system component, or information system service to perform a manual code review of organization-defined specific code.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed requires in contracts/agreements that the developer define and document the processes, procedures, and/or techniques to be used to perform a manual code review of organization-defined specific code. Manual code reviews identify weaknesses which are generally unavailable to more automated analytic tools and techniques such as static or dynamic analysis. Manual code reviews should be performed in conjunction with automated testing, such as static or dynamic analysis, to provide greater levels of analysis. DoD has determined the processes, procedures, and/or techniques are not appropriate to define at the Enterprise level.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment obtains and examines the documented processes, procedures, and/or techniques to ensure the organization being inspected/assessed defines the processes, procedures, and/or techniques to be used by the developer of the information system, system component, or information system service to perform a manual code review of organization-defined specific code. DoD has determined the processes, procedures, and/or techniques are not appropriate to define at the Enterprise level.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                1.) System security plan (SSP).
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                2.) System development life cycle (SDLC) documentation.
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                3.) Continuous monitoring plan must require developer to define the processes, procedures, and/or techniques to be used to perform a manual code review of organization-defined specific code.
+            </Paragraph>
+
+
+
+            <Paragraph Margin="10,20,0,0" Tag="SA11_4_numbertwo">
+                <Run Text="2." FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall document the detailed results of manual code reviews in a SAER, and summarize in the SVAR
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-003189 and CDRL’s for SAER and SVAR"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization defines the processes, procedures, and/or techniques to be used by the developer of the information system, system component, or information system service to perform a manual code review of organization-defined specific code.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed requires in contracts/agreements that the developer define and document the processes, procedures, and/or techniques to be used to perform a manual code review of organization-defined specific code. Manual code reviews identify weaknesses which are generally unavailable to more automated analytic tools and techniques such as static or dynamic analysis. Manual code reviews should be performed in conjunction with automated testing, such as static or dynamic analysis, to provide greater levels of analysis. DoD has determined the processes, procedures, and/or techniques are not appropriate to define at the Enterprise level.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment obtains and examines the documented processes, procedures, and/or techniques to ensure the organization being inspected/assessed defines the processes, procedures, and/or techniques to be used by the developer of the information system, system component, or information system service to perform a manual code review of organization-defined specific code. DoD has determined the processes, procedures, and/or techniques are not appropriate to define at the Enterprise level.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                1.) System security plan (SSP).
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                2.) System development life cycle (SDLC) documentation
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                3.) Continuous monitoring plan must require developer to define the processes, procedures, and/or techniques to be used to perform a manual code review of organization-defined specific code.
+            </Paragraph>
+
+
+        </FlowDocument>
+    </FlowDocumentScrollViewer>
+</Page>

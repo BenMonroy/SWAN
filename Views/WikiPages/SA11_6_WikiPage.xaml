@@ -1,0 +1,146 @@
+﻿<Page x:Class="SWAN.Views.WikiPages.SA11_6_WikiPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="WikiPage"
+      HorizontalAlignment="Stretch"
+      VerticalAlignment="Stretch">
+
+    <!-- Ensure FlowDocumentReader stretches to fill available space -->
+    <FlowDocumentScrollViewer x:Name="flowDocumentScrollViewer" Foreground="White" Width="auto" Height="auto" HorizontalContentAlignment="Stretch">
+        <FlowDocument x:Name="flowDocument" IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True">
+            <!-- Center-align the title to take up the entire frame width -->
+            <Paragraph FontSize="30">
+
+                <Run Text="SA-11(6): Developer Security Testing and Evaluation: Attack Surface Reviews" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+
+            <!-- Left-align content -->
+            <Paragraph TextAlignment="Left">
+                <Run Text="Severity :" FontWeight="ExtraBold"/>
+                <Run Text="High" FontWeight="ExtraBold" Foreground="Red"/>
+            </Paragraph>
+            <!-- Add more content as needed -->
+            <Paragraph FontSize="30">
+                <LineBreak></LineBreak>
+                <Run Text="Control Extension" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            
+            
+            
+            <Paragraph Margin="10,20,0,0" Tag="SA11_6_numberone">
+                <Run Text="1." FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall perform software/firmware attack surface analysis and reviews to identify and evaluate software/firmware attack vectors during the design and implementation phases of the SDLC.
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-003193"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization requires the developer of the information system, system component, or information system service to perform attack surface reviews.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed requires within contracts/agreements that the developer perform and document attack surface reviews to uncover any accessible areas where weaknesses or deficiencies in the design and functionality of information systems (including the hardware, software, and firmware components) provide opportunities for adversaries to exploit vulnerabilities. Attack surface reviews may include: 1. Analyzing both design and implementation changes to information systems; 2. Testing the system with debug options off, or making the debug capabilities inaccessible to unauthorized users; 3. Mitigating attack vectors generated as a result of the changes. Correction of identified flaws includes, for example, deprecation of unsafe functions; and 4. Using configuration documents that describe how to configure OTS elements to limit their functionality or increase their security. These include DISA Security Technical Implementation Guides (STIGs) and NSA Security configuration guides. Perform this as early in the lifecycle as possible, so that unnecessary or dangerous functionality is not depended upon or does not go unnoticed.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment obtains and examines the contracts/agreements to ensure the organization being inspected/assessed requires that the developer of the information system, system component, or information system service perform and document attack surface reviews.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                1.) System security plan (SSP).
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                2.) System development life cycle (SDLC) documentation
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                3.) Continuous monitoring plan must require developer to perform attack surface reviews.
+            </Paragraph>
+
+
+
+            <Paragraph Margin="10,20,0,0" Tag="SA11_6_numbertwo">
+            <Run Text="2." FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall document the results of software/firmware attack surface analysis and reviews in a Software Attack Surface Analysis Report (SASAR).
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CDRL SASAR"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                MAPS TO DESCRIPTION
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                Implementation guide description
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                Validation Proc Description
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                Evidence Description
+            </Paragraph>
+
+
+
+            <Paragraph Margin="10,20,0,0" Tag="SA11_6_numberthree">
+                <Run Text="3." FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall conduct attack surface reduction activities based upon results of software/firmware attack surface analysis and reviews
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-003193"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization requires the developer of the information system, system component, or information system service to perform attack surface reviews.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed requires within contracts/agreements that the developer perform and document attack surface reviews to uncover any accessible areas where weaknesses or deficiencies in the design and functionality of information systems (including the hardware, software, and firmware components) provide opportunities for adversaries to exploit vulnerabilities. Attack surface reviews may include: 1. Analyzing both design and implementation changes to information systems; 2. Testing the system with debug options off, or making the debug capabilities inaccessible to unauthorized users; 3. Mitigating attack vectors generated as a result of the changes. Correction of identified flaws includes, for example, deprecation of unsafe functions; and 4. Using configuration documents that describe how to configure OTS elements to limit their functionality or increase their security. These include DISA Security Technical Implementation Guides (STIGs) and NSA Security configuration guides. Perform this as early in the lifecycle as possible, so that unnecessary or dangerous functionality is not depended upon or does not go unnoticed.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment obtains and examines the contracts/agreements to ensure the organization being inspected/assessed requires that the developer of the information system, system component, or information system service perform and document attack surface reviews.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                1.) System security plan (SSP).
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                2.) System development life cycle (SDLC) documentation.
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                3.) Continuous monitoring plan must require developer to perform attack surface reviews.
+            </Paragraph>
+        </FlowDocument>
+    </FlowDocumentScrollViewer>
+</Page>
