@@ -38,5 +38,9 @@ namespace SWAN.Components
             }
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

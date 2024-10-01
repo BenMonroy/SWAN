@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SWAN.Components;
 using SWAN.ViewModels;
 using SWAN.Views;
 using System.Windows;
@@ -27,6 +28,7 @@ namespace SWAN
                  services.AddSingleton<RMFDashboardViewModel>();
                  services.AddSingleton<IndexViewModel>();
                  services.AddSingleton<HistoryViewModel>();
+                 services.AddSingleton<SettingsViewModel>();
 
                  //add views
                  services.AddSingleton<RecentFilesView>();
@@ -34,6 +36,7 @@ namespace SWAN
                  services.AddSingleton<IndexView>();
                  services.AddSingleton<RiskScoreView>();
                  services.AddSingleton<RMFDashboardView>();
+                 services.AddSingleton<SettingsScreen>();
                  
                  //add services
                  services.AddSingleton<IMessenger>(WeakReferenceMessenger.Default);
@@ -47,7 +50,6 @@ namespace SWAN
             await AppHost!.StartAsync();
             var startupWindow = AppHost.Services.GetRequiredService<MainWindow>();
             startupWindow.Show(); 
-
             base.OnStartup(e);
         }
         

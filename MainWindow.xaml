@@ -1,4 +1,4 @@
-﻿<Window x:Class="SWAN.MainWindow"
+﻿<ui:FluentWindow x:Class="SWAN.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -12,15 +12,15 @@
         Title="Software Assurance Navigator" 
         Height="450" 
         Width="800"
-        Background="{StaticResource WindowBackgroundColor}"
-        >
+        Background="{DynamicResource ApplicationBackgroundBrush}"
+        Foreground="{DynamicResource TextFillColorPrimaryBrush}">
 
     <Window.Resources>
         <!-- Defines a style for buttons with a MouseOver trigger -->
         <Style x:Key="TitleBarButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="WhiteSmoke"/>
             <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -85,9 +85,10 @@
         </ContextMenu>
         <!--  Styling for the context menus (file, help, edit dropdown box)  -->
         <Style TargetType="ContextMenu">
-            <Setter Property="Background" Value="#333"/>
+         
             <Setter Property="BorderBrush" Value="#444"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="{DynamicResource ApplicationBackgroundBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}"/>
             <Setter Property="Padding" Value="10"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -140,9 +141,9 @@
                          ContextMenu="{StaticResource HelpContextMenu}" Click="TitleBarButton_Click"/>
             </WrapPanel>
             <!-- Title -->
-            <TextBlock Grid.Column="1" Text="Software Assurance Navigator" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="WhiteSmoke"  FontSize="14" Width="auto"/>
+            <TextBlock Grid.Column="1" Text="Software Assurance Navigator" VerticalAlignment="Center" HorizontalAlignment="Center"  FontSize="14" Width="auto"/>
             <!-- Right side buttons -->
-            <StackPanel Grid.Column="2" Background="{StaticResource WindowBackgroundColor}" Orientation="Horizontal" HorizontalAlignment="Right">
+            <StackPanel Grid.Column="2"  Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Content="-" Width="30" Height="30" Click="MinimizeOnClick" Style="{StaticResource TitleBarButtonStyle}"/>
                 <Button Content="🗖" Width="30" Height="30" Click="MaximizeOnClick" Style="{StaticResource TitleBarButtonStyle}"/>
                 <Button Content="X" Width="30" Name="CloseButton" Height="30" Click="CloseOnClick" Style="{StaticResource TitleBarButtonStyle}"/>
@@ -152,4 +153,4 @@
         <!-- ScaffoldView in the second row -->
         <views:ScaffoldView Grid.Row="1" />
     </Grid>
-</Window>
+</ui:FluentWindow>

@@ -6,6 +6,7 @@ using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using SWAN.Components;
 using SWAN.Services;
 using SWAN.ViewModels;
 using SWAN.Views;
@@ -25,9 +26,11 @@ namespace SWAN.ViewModels
         private readonly IndexView _indexView;
         private readonly RiskScoreView _riskScoreView;
 
-     
+        [ObservableProperty]
+        private Visibility settingsScreenVisibility = Visibility.Hidden;
         private string _currentFilePath = string.Empty;
-       
+        [ObservableProperty]
+        private UserControl settingsView;
 
 
         public ICommand ChangePageCommand => new RelayCommand<PageId>(ChangePage);
@@ -35,7 +38,7 @@ namespace SWAN.ViewModels
         public ICommand SaveAsCommand => new RelayCommand(SaveAs);
         public ICommand OpenFileCommand => new RelayCommand(OpenFile);
 
-        public ICommand OpenSettingsCommand = new RelayCommand(OpenSettingsMenu);
+        public ICommand ToggleSettingsCommand => new RelayCommand(ToggleSettingsMenu);
 
         public static ICommand TodoCommand => new RelayCommand(() => MessageBox.Show("not implemented!"));
 
@@ -51,7 +54,7 @@ namespace SWAN.ViewModels
         HistoryView historyView,
         IndexView indexView,
         RiskScoreView riskScoreView,
-        RMFDashboardView rmfDashboardView, IMessenger messenger)
+        RMFDashboardView rmfDashboardView, SettingsScreen settingsView, IMessenger messenger)
         {
             DashboardViewModel = dashboardViewModel;
             _historyView = historyView;
@@ -60,6 +63,7 @@ namespace SWAN.ViewModels
             _rmfDashboardView = rmfDashboardView;
             CurrentView = _rmfDashboardView;
             _messenger = messenger;
+            SettingsView = settingsView;
             //register/subscribe to the file opened in rmfdashboardviewmodel
             _messenger.Register<ScaffoldViewModel, FileOpenedMessage>(this, (r, m) =>
             {
@@ -140,11 +144,12 @@ namespace SWAN.ViewModels
             }
         }
 
-        private static void OpenSettingsMenu()
+        private void ToggleSettingsMenu()
         {
-            throw new NotImplementedException();
+            SettingsScreenVisibility = SettingsScreenVisibility == Visibility.Visible
+                ? Visibility.Hidden
+                : Visibility.Visible;
         }
-
         private void NewFile(string framework)
         {
             _currentFilePath = string.Empty;

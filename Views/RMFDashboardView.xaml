@@ -9,10 +9,11 @@
              xmlns:components="clr-namespace:SWAN.Components"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             Background="{StaticResource WindowBackgroundColor}">
+             Background="{DynamicResource ApplicationBackgroundBrush}"
+             Foreground="{DynamicResource TextFillColorPrimaryBrush}">
 
 
-    <Border CornerRadius="10" Padding="10" Background="{StaticResource WindowBackgroundColor}">
+    <Border CornerRadius="10" Padding="10" >
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -31,7 +32,7 @@
 
             <!-- TextBlock for Selected Framework -->
             <TextBlock x:Name="RMFTextBlock" Grid.Row="0" Grid.Column="0" 
-                       Foreground="{StaticResource SecondaryColor}" 
+                       
                        Text="{Binding SelectedFramework}" 
                        FontSize="50" VerticalAlignment="Center"/>
 
@@ -62,7 +63,7 @@
 
             <!-- New Dashboard Label -->
             <TextBlock Text="New Dashboard" Grid.Row="1" Grid.Column="0" 
-                       VerticalAlignment="Center" FontSize="20" Foreground="White" Visibility="{Binding RmfStackPanelVisibility}"/>
+                       VerticalAlignment="Center" FontSize="20" Visibility="{Binding RmfStackPanelVisibility}"/>
 
             <!-- Grid with middle aligned text boxes -->
             <Grid Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" Visibility="{Binding RmfStackPanelVisibility}">
@@ -95,7 +96,7 @@
 
             <!-- Label for Recent Files -->
             <TextBlock Text="Recent Files" Grid.Row="4" Grid.Column="0" 
-                       VerticalAlignment="Center" FontSize="20" Foreground="White" Margin="10" Visibility="{Binding RmfStackPanelVisibility}"/>
+                       VerticalAlignment="Center" FontSize="20"  Margin="10" Visibility="{Binding RmfStackPanelVisibility}"/>
 
             <!-- RecentFilesView ContentControl -->
             <ContentControl Grid.Row="5" Content="{Binding FileView}" Visibility="{Binding RmfStackPanelVisibility}"/>

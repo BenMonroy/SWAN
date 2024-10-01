@@ -11,13 +11,31 @@
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
 
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <!-- Left-aligned column -->
+            <ColumnDefinition Width="*"/>
+            <!-- Main content area -->
+        </Grid.ColumnDefinitions>
 
-	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="auto"/>
-			<RowDefinition Height="*"/>
-		</Grid.RowDefinitions>
-		<components:DashboardNavigationBar Grid.Row="0"/>
-        <ContentControl Grid.Row="1" Content="{Binding CurrentView}"/>
+        <!-- Dashboard Navigation Bar -->
+        <components:DashboardNavigationBar Grid.Row="0" Grid.ColumnSpan="2"/>
+
+        <!-- Main content view -->
+        <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Content="{Binding CurrentView}"/>
+
+        <!-- Settings screen, initially hidden, aligned to the left -->
+        <ContentControl
+            Grid.Row="1" 
+            Grid.Column="0" 
+            Visibility="{Binding SettingsScreenVisibility}" 
+            Content="{Binding SettingsView}"
+            Width="300" />
+        <!-- Adjust width to fit your design -->
     </Grid>
 </UserControl>

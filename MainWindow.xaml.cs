@@ -5,13 +5,19 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Interop;
+using Wpf.Ui.Controls;
+using Button = System.Windows.Controls.Button;
+using MessageBox = System.Windows.MessageBox;
+using MessageBoxResult = System.Windows.MessageBoxResult;
+
+
 
 namespace SWAN
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : FluentWindow
     {
         // Change this when choosing a file
         private string currentFilePath = string.Empty;
@@ -22,6 +28,14 @@ namespace SWAN
             InitializeComponent();
             this.DataContext = viewModel;
             _viewModel = viewModel;
+            Loaded += (sender, args) =>
+            {
+                Wpf.Ui.Appearance.SystemThemeWatcher.Watch(
+                    this,                                    // Window class
+                    Wpf.Ui.Controls.WindowBackdropType.Mica, // Background type
+                    true                                     // Whether to change accents automatically
+                );
+            };
         }
         private void Window_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -58,7 +72,7 @@ namespace SWAN
         //Todo must be some try/catch block with a popup if already in an active dashboard
         private void NewFileMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var menuItem = sender as MenuItem;
+            var menuItem = sender as System.Windows.Controls.MenuItem;
             if(emptyChangeDashboard()){
                 string selectedFramework = menuItem.Header.ToString();
                 _viewModel.HandleFrameworkSelectionCommand.Execute(menuItem.Header.ToString());
@@ -67,7 +81,7 @@ namespace SWAN
             {
                 var result = MessageBox.Show("You have unsaved changes. Do you want to discard them and create a new file?",
                                            "Unsaved Changes",
-                                           MessageBoxButton.YesNo,
+                                           System.Windows.MessageBoxButton.YesNo,
                                            MessageBoxImage.Warning);
                 // Perform actions based on the user's choice
                 if (result == MessageBoxResult.Yes)

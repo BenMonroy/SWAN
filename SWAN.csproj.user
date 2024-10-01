@@ -25,6 +25,9 @@
     <Compile Update="Components\RiskBySeverity.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Components\SettingsScreen.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\HistoryView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -61,6 +64,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Components\RiskBySeverity.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Components\SettingsScreen.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">

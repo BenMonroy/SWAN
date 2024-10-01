@@ -63,7 +63,7 @@
     Padding="10,5,5,5"          
             BorderBrush="White"
             BorderThickness=".5"
-            Command="{Binding OpenSettingsCommand}">
+            Command="{Binding ToggleSettingsCommand}" Click="Button_Click">
         
             <ui:Button.Icon>
                 <ui:FontIcon Glyph="&#xE713;" FontFamily="Segoe Fluent Icons" FontSize="16" Foreground="White"/>
@@ -79,9 +79,9 @@
             VerticalAlignment="Bottom"
             Grid.Column="1">
             <TabItem Header="Index" Style="{StaticResource tabItemStyle}" Tag="{x:Static local:PageId.IndexView}" />
-            <TabItem Header="Dashboard" Style="{StaticResource tabItemStyle}" Tag="{x:Static local:PageId.RMFDashboardView}" />
-            <TabItem Header="Risk Score" Style="{StaticResource tabItemStyle}" Tag="{x:Static local:PageId.RiskScoreView}" />
-            <TabItem Header="History" Style="{StaticResource tabItemStyle}" Tag="{x:Static local:PageId.HistoryView}" />
+            <TabItem Header="Dashboard" Style="{StaticResource tabItemStyle}" Tag="{x:Static local:PageId.RMFDashboardView}"/>
+            <TabItem Header="Risk Score" Style="{StaticResource tabItemStyle}" Tag="{x:Static local:PageId.RiskScoreView}"/>
+            <TabItem Header="History" Style="{StaticResource tabItemStyle}" Tag="{x:Static local:PageId.HistoryView}"/>
         </TabControl>
 
     </Grid>
