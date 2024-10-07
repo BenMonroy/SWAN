@@ -27,7 +27,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <!-- Left-aligned header -->
-            <TextBlock Grid.Column="0" Text="Understanding Risk" Foreground="White"
+            <TextBlock Grid.Column="0" Text="Understanding Risk" Foreground="{DynamicResource TextFillColorPrimaryBrush}"
                        FontSize="24" FontWeight="Bold" VerticalAlignment="Center"/>
             <!-- Right-aligned button -->
             <Button Grid.Column="1" Content="Calculate Risk" 
