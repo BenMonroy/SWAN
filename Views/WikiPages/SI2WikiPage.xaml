@@ -1,0 +1,245 @@
+﻿<Page x:Class="SWAN.Views.WikiPages.SI2WikiPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="WikiPage"
+      HorizontalAlignment="Stretch"
+      VerticalAlignment="Stretch"  
+      Background="{DynamicResource ApplicationBackgroundBrush}"
+      Foreground="{DynamicResource TextFillColorPrimaryBrush}">
+
+    <!-- Ensure FlowDocumentReader stretches to fill available space -->
+    <FlowDocumentScrollViewer x:Name="flowDocumentScrollViewer" Width="auto" Height="auto" HorizontalContentAlignment="Stretch">
+        <FlowDocument x:Name="flowDocument" IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True">
+            <!-- Center-align the title to take up the entire frame width -->
+            <Paragraph FontSize="30">
+
+                <Run Text="SI-2: Flaw Remediation" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+
+            <!-- Left-align content -->
+            <Paragraph TextAlignment="Left">
+                <Run Text="Severity :" FontWeight="ExtraBold"/>
+                <Run Text="Mod" FontWeight="ExtraBold" Foreground="Orange"/>
+                <Run Text="-" FontWeight="ExtraBold" Foreground="Orange"/>
+                <Run Text="Mod" FontWeight="ExtraBold" Foreground="Orange"/>
+            </Paragraph>
+            <!-- Add more content as needed -->
+            <Paragraph FontSize="30">
+                <LineBreak></LineBreak>
+                <Run Text="Control Extension" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            
+            
+            
+            <Paragraph Margin="10,20,0,0" Tag="SI2numberone">
+                <Run Text="1." FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall implement a flaw remediation process to identify, report, and manage all software and firmware flaws.
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-001225, CCI-001226"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization identifies information system flaws.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed documents and implements a process to identify information system flaws. The process shall include review of the system through automated scans and manual checks to determine the existence of flaws such as IAVM, CVE, or other resources
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment obtains and examines the documented process to ensure the organization being inspected/assessed identifies information system flaws.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                1.) Signed and dated System security plan (SSP) with a reference to the section that pertains to how information system flaws are to be identified (scans, manual checks, integrity monitor, etc.…)
+            </Paragraph>
+
+            <Paragraph Margin="10,20,0,0" Tag="SI2numbertwo">
+                <Run Text="2." FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall document the flaw remediation process directly or by reference in a SDP, FDP, or equivalent documents
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-001225, CCI-001226"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization identifies information system flaws.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed documents and implements a process to identify information system flaws. The process shall include review of the system through automated scans and manual checks to determine the existence of flaws such as IAVM, CVE, or other resources
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment obtains and examines the documented process to ensure the organization being inspected/assessed identifies information system flaws.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                1.) Signed and dated System security plan (SSP) with a reference to the section that pertains to how information system flaws are to be identified (scans, manual checks, integrity monitor, etc.…)
+            </Paragraph>
+
+            <Paragraph Margin="10,20,0,0" Tag="SI2numberthree">
+                <Run Text="3." FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall manage all software/firmware vulnerabilities identified through source and binary static analysis in accordance with the developer’s flaw remediation process.
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-001225, CCI-001226"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization identifies information system flaws.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed documents and implements a process to identify information system flaws. The process shall include review of the system through automated scans and manual checks to determine the existence of flaws such as IAVM, CVE, or other resources
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment obtains and examines the documented process to ensure the organization being inspected/assessed identifies information system flaws.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                1.) Signed and dated System security plan (SSP) with a reference to the section that pertains to how information system flaws are to be identified (scans, manual checks, integrity monitor, etc.…)
+            </Paragraph>
+
+            <Paragraph Margin="10,20,0,0" Tag="SI2numberfour">
+                <Run Text="4." FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall address all identified software weaknesses and vulnerabilities. If a weakness is determined to be an exploitable vulnerability, the developer must correct the software/firmware to eliminate the vulnerability, mitigate the vulnerability by other means, or document and manage the risk associated with the vulnerability.
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-001227"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+The organization corrects information system flaws.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed corrects information system flaws within the time period directed by an authoritative source (e.g. IAVM, CTOs, DTMs, STIGs). The organization documents the corrections on their POA and M. DoD has defined the time period as within the time period directed by an authoritative source (e.g. IAVM, CTOs, DTMs, STIGs).
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment obtains and examines the information system POA and M and examines the information system to ensure the organization being inspected/assessed corrects information system flaws
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                1.) Signed and dated System security plan (SSP) with a reference to the section that pertains to how system flaws are fixed or mitigated.
+            </Paragraph>
+
+            <Paragraph Margin="10,20,0,0" Tag="SI2numberfive">
+                <Run Text="5." FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall test/regression-test software and firmware updates related to flaw remediation for effectiveness and potential side effects before installation.
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-001228, CCI-001229, CCI-002602, CCI-002603"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization tests software updates related to flaw remediation for effectiveness before installation.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed documents and implements a process to test software updates related to flaw remediation for effectiveness before installation. If the software update is being provided by a vendor who has documented the effectiveness of the update in fixing the affected IAVM/CVE, further testing by the organization may not be required.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment obtains and examines the documented process and test results to ensure the organization being inspected/assessed tests software updates related to flaw remediation for effectiveness before installation.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                1.) Signed and dated System security plan (SSP). 
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                2.) Continuous monitoring plan. 
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                3.) Reference to system security plan and continuous monitoring plan sections pertaining to the process for testing software updates.
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                4.) Signed and dated testing process logs.
+            </Paragraph>
+
+            <Paragraph Margin="10,20,0,0" Tag="SI2numbersix">
+                <Run Text="6." FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall manage and incorporate flaw remediation into the organizational configuration management process.
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-001230"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization incorporates flaw remediation into the organizational configuration management process.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed documents within their configuration management plan, flaw remediation processes.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment obtains and examines the configuration management plan to ensure that it incorporates flaw remediation.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                1.) Signed and dated continuous monitoring plan. 
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                2.) Reference to continuous monitoring plan section that refers to the flaw remediation process (identification, reporting, fixing)
+            </Paragraph>
+        </FlowDocument>
+    </FlowDocumentScrollViewer>
+</Page>

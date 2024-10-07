@@ -129,6 +129,42 @@
     <Page Update="Views\WikiPages\SA12WikiPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\WikiPages\SA12_5_WikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\SA12_8_WikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\SA12_9_WikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\SA15WikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\SA16WikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\SA17WikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\SA22WikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\SI2FRWikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\SI2WikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\SI3WikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\SI3_10_WikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\SI7WikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\WikiPages\WikiPageTemplate.xaml">
       <SubType>Designer</SubType>
     </Page>

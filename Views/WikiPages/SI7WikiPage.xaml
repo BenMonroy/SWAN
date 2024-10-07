@@ -1,4 +1,4 @@
-﻿<Page x:Class="SWAN.Views.WikiPages.SA11_5_WikiPage"
+﻿<Page x:Class="SWAN.Views.WikiPages.SI7WikiPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       Title="WikiPage"
@@ -13,13 +13,15 @@
             <!-- Center-align the title to take up the entire frame width -->
             <Paragraph FontSize="30">
 
-                <Run Text="SA-11(5): Developer Security Testing and Evaluation: Penetration Testing/Analysis" FontWeight="Bold" FontSize="30" />
+                <Run Text="SI-7: Software, Firmware, and Information Integrity" FontWeight="Bold" FontSize="30" />
             </Paragraph>
 
             <!-- Left-align content -->
             <Paragraph TextAlignment="Left">
                 <Run Text="Severity :" FontWeight="ExtraBold"/>
-                <Run Text="High" FontWeight="ExtraBold" Foreground="Red"/>
+                <Run Text="Very High" FontWeight="ExtraBold" Foreground="IndianRed"/>
+                <Run Text="-" FontWeight="ExtraBold" Foreground="IndianRed"/>
+                <Run Text="Very High" FontWeight="ExtraBold" Foreground="IndianRed"/>
             </Paragraph>
             <!-- Add more content as needed -->
             <Paragraph FontSize="30">
@@ -29,78 +31,73 @@
             
             
             
-            <Paragraph Margin="10,20,0,0" Tag="SA11_5_numberone">
+            <Paragraph Margin="10,20,0,0" Tag="SI7numberone">
                 <Run Text="1." FontWeight="ExtraBold" FontSize="30"></Run>
-                The developer shall perform penetration and fuzz testing to identify software/firmware vulnerabilities in executable code
+                The developer shall employ integrity verification processes to detect unauthorized changes to software and firmware
             </Paragraph>
             <Paragraph TextAlignment="Left" Margin="50,20,0,0">
                 <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
-                <Run Text="CCI-003190, 003191, 003192"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-002704"  FontWeight="Bold" FontSize="15" ></Run>
             </Paragraph>
             <Paragraph Margin="70,20,0,0">
-                The organization requires the developer of the information system, system component, or information system service to perform penetration testing at an organization-defined breadth/depth and with organization-defined constraints.
+                The organization employs integrity verification tools to detect unauthorized changes to organization-defined software, firmware, and information.
             </Paragraph>
             <Paragraph Margin="50,20,0,0">
                 <LineBreak></LineBreak>
                 <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
             </Paragraph>
             <Paragraph Margin="70,20,0,0">
-                The organization being inspected/assessed requires within contracts/agreements that the developer of the information system, system component, or information system service perform penetration testing at a breadth/depth defined in SA-11 (5), CCI 3191 and with constraints defined in SA-11 (5), CCI 3192.
+                The organization being inspected/assessed designs the information system to employ integrity verification tools to detect unauthorized changes to software, firmware, and information defined in SI-7, CCI 2703.
             </Paragraph>
             <Paragraph Margin="50,20,0,0">
                 <LineBreak></LineBreak>
                 <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
             </Paragraph>
             <Paragraph Margin="70,20,0,0">
-                The organization conducting the inspection/assessment obtains and examines the contracts/agreements to ensure the organization being inspected/assessed requires that the developer of the information system, system component, or information system service perform penetration testing at a breadth/depth defined in SA-11 (5), CCI 3191 and with constraints defined in SA-11 (5), CCI 3192.
+                The organization conducting the inspection/assessment obtains and examines the hardware/software lists and any other documentation applicable to integrity verification tools to ensure the organization being inspected/assessed employs integrity verification tools to detect unauthorized changes to software, firmware, and information defined in SI-7, CCI 2703.
             </Paragraph>
             <Paragraph Margin="50,20,0,0">
                 <LineBreak></LineBreak>
                 <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
             </Paragraph>
             <Paragraph Margin="70,20,0,0">
-                1.) System security plan (SSP).
+                1.) Signed and dated System security plan defines the software, firmware and information which will be subjected to integrity verification tools to check for unauthorized changes. 
             </Paragraph>
             <Paragraph Margin="70,20,0,0">
-                2.) System development life cycle (SDLC) documentation.
+                2.) Implementation documentation of integrity verification tools that will check the firmware for unauthorized changes.
             </Paragraph>
-            <Paragraph Margin="70,20,0,0">
-                3.) Continuous monitoring plan must require developer to perform penetration testing at organization-defined breadth/depth and with organization-defined constraints defined in SA-11 (5), CCI 3191 and with constraints defined in SA-11 (5), CCI 3192.
-            </Paragraph>
-
-
-
-            <Paragraph Margin="10,20,0,0" Tag="SA11_5_numbertwo">
+            
+            <Paragraph Margin="10,20,0,0" Tag="SI7numbertwo">
                 <Run Text="2." FontWeight="ExtraBold" FontSize="30"></Run>
-                The developer shall document the detailed results of penetration and fuzz testing activities in a SAER, and summarize in the SVAR.
+                The developer shall document the use of integrity verification processes directly or by reference in a SDP, FDP, PPIP, or equivalent documents
             </Paragraph>
             <Paragraph TextAlignment="Left" Margin="50,20,0,0">
                 <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
-                <Run Text="CDRL’s for SAER and SVAR"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-002703, CCI-002704"  FontWeight="Bold" FontSize="15" ></Run>
             </Paragraph>
             <Paragraph Margin="70,20,0,0">
-                MAPS TO DESCRIPTION
+                The organization defines the boundary protection device to be used to connect organization-defined unclassified, national security systems to an external network.
             </Paragraph>
             <Paragraph Margin="50,20,0,0">
                 <LineBreak></LineBreak>
                 <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
             </Paragraph>
             <Paragraph Margin="70,20,0,0">
-                Implementation guide description
+                The organization being inspected/assessed defines and documents the boundary protection device to be used to connect organization-defined unclassified, national security systems to an external network. DoD has determined the boundary protection device is not appropriate to define at the Enterprise level.
             </Paragraph>
             <Paragraph Margin="50,20,0,0">
                 <LineBreak></LineBreak>
                 <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
             </Paragraph>
             <Paragraph Margin="70,20,0,0">
-                Validation Proc Description
+                The organization conducting the inspection/assessment obtains and examines the documented boundary protection device to ensure the organization being inspected/assessed defines the boundary protection device to be used to connect organization-defined unclassified, national security systems to an external network. DoD has determined the boundary protection device is not appropriate to define at the Enterprise level.
             </Paragraph>
             <Paragraph Margin="50,20,0,0">
                 <LineBreak></LineBreak>
                 <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
             </Paragraph>
             <Paragraph Margin="70,20,0,0">
-                Evidence Description
+                1.) Signed and dated Security Assessment Plan or Interconnection Security Agreement documenting that boundary protection is used to connect to organization-defined unclassified and NSS to an external network.
             </Paragraph>
         </FlowDocument>
     </FlowDocumentScrollViewer>

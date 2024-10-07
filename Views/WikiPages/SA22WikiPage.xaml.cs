@@ -19,9 +19,9 @@ namespace SWAN.Views.WikiPages
     /// <summary>
     /// Interaction logic for Page1.xaml
     /// </summary>
-    public partial class WikiPageTemplate : Page
+    public partial class SA22WikiPage : Page
     {
-        public WikiPageTemplate()
+        public SA22WikiPage()
         {
             InitializeComponent();
 
