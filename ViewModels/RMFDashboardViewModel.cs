@@ -131,17 +131,64 @@ namespace SWAN.ViewModels
 
         public ObservableCollection<ConceptualCheckBox> ConceptualControls { get; set; }
 
+        [ObservableProperty]
+        public UserControl checkBoxView;
+        private int _checkBoxWidth;
 
-        public RMFDashboardViewModel(RecentFilesView fileView, IMessenger messenger)
+       //make this one variable and just reassign it
+        private UserControl Width1;
+        private UserControl Width2;
+        private UserControl Width3;
+        private UserControl Width4;
+        private UserControl Width5;
+        public RMFDashboardViewModel(RecentFilesView fileView, IMessenger messenger, SettingsViewModel settings, ExpandableCheckBox4 width4, ExpandableCheckBox3 width3, ExpandableCheckBox1 width1, ExpandableCheckBox2 width2)
         {
             FileView = fileView;
             RecentFiles = new ObservableCollection<RecentFile>(_recentFilesManager.LoadRecentFiles());
             ConceptualControls = new ObservableCollection<ConceptualCheckBox>();
             _messenger = messenger;
+            Width2 = width2;
+            Width3 = width3;
+            Width4 = width4;
+            Width1 = width1;
             ConceptualControls.CollectionChanged += (s, e) =>
             {
                 _messenger.Send(new ConceptualControlsUpdatedMessage(ConceptualControls));
             };
+            int initialCheckBoxWidth = settings.CheckBoxesPerRow;
+            UpdateCheckBoxView(initialCheckBoxWidth);
+            //make this listen for the width being changed
+            _messenger.Register<RMFDashboardViewModel, WidthUpdatedMessage>(this, (r, m) =>
+            {
+                r._checkBoxWidth = m.Value; // Save the file path
+                r.UpdateCheckBoxView(_checkBoxWidth);
+            });
+        }
+
+        private void UpdateCheckBoxView(int numPerRow)
+        {
+            switch (numPerRow)
+            {
+                case 1:
+                    CheckBoxView = Width1;
+                    break;
+                case 2:
+                    CheckBoxView = Width2;
+                    break;
+                case 3:
+                    CheckBoxView = Width3;
+                    break;
+                case 4:
+                    CheckBoxView = Width4;
+                    break;
+                default:
+                    MessageBox.Show("Error: Invalid Number of CheckBoxes per Row.");
+                    CheckBoxView = Width3;
+                    break;
+            }
+
+            // Notify the UI that CheckBoxView has changed (if needed, depending on your data binding setup)
+            OnPropertyChanged(nameof(CheckBoxView));
         }
 
 

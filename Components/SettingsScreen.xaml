@@ -9,6 +9,7 @@
              Background="{DynamicResource ApplicationBackgroundBrush}">
     <UserControl.Resources>
         <converters:ThemeToIndexConverter x:Key="ThemeToIndexConverter" />
+        <converters:IndexToWidthConverter x:Key="IndexToWidthConverter"/>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -19,8 +20,22 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" HorizontalAlignment="Stretch" LastChildFill="True">
+            <TextBlock Text="Appearance" FontSize="20" DockPanel.Dock="Left" />
 
-        <TextBlock Text="Appearance" Foreground="White" FontSize="20" Grid.Row="0"/>
+            <!-- Add the IconButton -->
+            <ui:Button
+        DockPanel.Dock="Right"
+        IsEnabled="True"
+        Background="Transparent"
+        BorderBrush="Transparent"
+        Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+        Icon="{ui:SymbolIcon ArrowLeft16}"
+        HorizontalAlignment="Right"
+        FontSize="22"
+        VerticalAlignment="Center"
+        Width="50" Height="40" />
+        </DockPanel>
         <ui:CardControl Margin="0,0,0,12" Icon="{ui:SymbolIcon Color24}" Grid.Row="1">
             <ui:CardControl.Header>
                 <Grid>
@@ -47,18 +62,24 @@
                 <ComboBoxItem Content="High Contrast" />
             </ComboBox>
         </ui:CardControl>
-        <TextBlock Text="CheckBoxes per Row" Foreground="White" FontSize="20" Grid.Row="2"/>
         <StackPanel Grid.Row="3">
-            <RadioButton
-                        Content="2"
-                        GroupName="radio_group_one"
-                        IsChecked="True"/>
-            <RadioButton
-                        Content="3"
-                        GroupName="radio_group_one"/>
-            <RadioButton
-             Content="4"
-             GroupName="radio_group_one"/>
+            <ui:CardControl Margin="0,0,0,12" Icon="{ui:SymbolIcon AlignSpaceEvenlyVertical20}" Grid.Row="4">
+                <ui:CardControl.Header>
+                    <ui:TextBlock
+      Grid.Row="0"
+      FontTypography="Body"
+      Text="CheckBoxes per Row" />
+                </ui:CardControl.Header>
+                <ComboBox
+  Grid.Column="1"
+  MinWidth="200"
+  SelectedIndex="{Binding CheckBoxesPerRow, Converter={StaticResource IndexToWidthConverter}}">
+                    <ComboBoxItem Content="1" />
+                    <ComboBoxItem Content="2" />
+                    <ComboBoxItem Content="3" />
+                    <ComboBoxItem Content="4" />
+                </ComboBox>
+            </ui:CardControl>
         </StackPanel>
         <ui:CardControl Margin="0,0,0,12" Icon="{ui:SymbolIcon AlignSpaceEvenlyVertical20}" Grid.Row="4">
             <ui:CardControl.Header>

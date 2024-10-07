@@ -25,5 +25,10 @@ namespace SWAN.Views
         {
             InitializeComponent();
         }
+
+        private void RecentFilesDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

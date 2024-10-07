@@ -37,7 +37,11 @@ namespace SWAN
                  services.AddSingleton<RiskScoreView>();
                  services.AddSingleton<RMFDashboardView>();
                  services.AddSingleton<SettingsScreen>();
-                 
+                 services.AddSingleton<ExpandableCheckBox3>();
+                 services.AddSingleton<ExpandableCheckBox4>();
+                 services.AddSingleton<ExpandableCheckBox1>();
+                 services.AddSingleton<ExpandableCheckBox2>();  
+
                  //add services
                  services.AddSingleton<IMessenger>(WeakReferenceMessenger.Default);
 

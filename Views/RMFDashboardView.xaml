@@ -54,7 +54,7 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" 
                           Grid.ColumnSpan="2" Grid.RowSpan ="5" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
                           Visibility="{Binding CheckBoxesVisibility}">
-                <components:ExpandableCheckBox x:Name="CheckBoxes" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                <ContentControl Content="{Binding CheckBoxView}"  x:Name="CheckBoxes" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
             </ScrollViewer>
 
 
