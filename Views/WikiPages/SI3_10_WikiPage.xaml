@@ -1,4 +1,4 @@
-﻿<Page x:Class="SWAN.Views.WikiPages.SA11_7_WikiPage"
+﻿<Page x:Class="SWAN.Views.WikiPages.SI3_10_WikiPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       Title="WikiPage"
@@ -13,13 +13,13 @@
             <!-- Center-align the title to take up the entire frame width -->
             <Paragraph FontSize="30">
 
-                <Run Text="SA-11(7): Developer Security Testing and Evaluation: Verify Scope of Evaluation/Testing " FontWeight="Bold" FontSize="30" />
+                <Run Text=" SI-3(10): Malicious Code Protection: Malicious Code Analysis" FontWeight="Bold" FontSize="30" />
             </Paragraph>
 
             <!-- Left-align content -->
             <Paragraph TextAlignment="Left">
                 <Run Text="Severity :" FontWeight="ExtraBold"/>
-                <Run Text="High" FontWeight="ExtraBold" Foreground="Red"/>
+                <Run Text="Very High" FontWeight="ExtraBold" Foreground="IndianRed"/>
             </Paragraph>
             <!-- Add more content as needed -->
             <Paragraph FontSize="30">
@@ -29,46 +29,41 @@
             
             
             
-            <Paragraph Margin="10,20,0,0" Tag="SA11_7_numberone">
+            <Paragraph Margin="10,20,0,0" Tag="SI3_10_numberone">
                 <Run Text="1." FontWeight="ExtraBold" FontSize="30"></Run>
-                The developer shall verify that the scope of software/firmware security testing/evaluation provides complete coverage of software/firmware security requirements.
+                The developer shall analyze the characteristics and behavior of malicious code and shall incorporate the results of analysis into incident response and flaw remediation processes.
             </Paragraph>
             <Paragraph TextAlignment="Left" Margin="50,20,0,0">
                 <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
-                <Run Text="CCI-003194, 003195"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-002639, 002640"  FontWeight="Bold" FontSize="15" ></Run>
             </Paragraph>
             <Paragraph Margin="70,20,0,0">
-                The organization requires the developer of the information system, system component, or information system service to verify that the scope of security testing/evaluation provides complete coverage of required security controls at an organization-defined depth of testing/evaluation.
+                The organization incorporates the results from malicious code analysis into organizational incident response processes.
             </Paragraph>
             <Paragraph Margin="50,20,0,0">
                 <LineBreak></LineBreak>
                 <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
             </Paragraph>
             <Paragraph Margin="70,20,0,0">
-                The organization being inspected/assessed requires within contracts/agreements that the developer of the information system, system component, or information system service verify that the scope of security testing/evaluation provides complete coverage of required security controls at the depth of testing/evaluation defined in SA-11 (7), CCI 3195.
+                The organization being inspected/assessed incorporates the results from malicious code analysis into organizational incident response processes.
             </Paragraph>
             <Paragraph Margin="50,20,0,0">
                 <LineBreak></LineBreak>
                 <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
             </Paragraph>
             <Paragraph Margin="70,20,0,0">
-                The organization conducting the inspection/assessment obtains and examines the contracts/agreements to ensure the organization being inspected/assessed requires that the developer of the information system, system component, or information system service verify that the scope of security testing/evaluation provides complete coverage of required security controls at the depth of testing/evaluation defined in SA-11 (7), CCI 3195.
+                The organization conducting the inspection/assessment obtains and examines the organizational incident response processes to ensure the organization being inspected/assessed incorporates the results from malicious code analysis into organizational incident response processes.
             </Paragraph>
             <Paragraph Margin="50,20,0,0">
                 <LineBreak></LineBreak>
                 <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
             </Paragraph>
             <Paragraph Margin="70,20,0,0">
-                1.) System security plan (SSP).
+                1.) Signed and dated system security plan.            
             </Paragraph>
             <Paragraph Margin="70,20,0,0">
-                2.) System development life cycle (SDLC) documentation
+                2.) Incident response processes that incorporate the results from malicious code analysis into organizational incident response processes.
             </Paragraph>
-            <Paragraph Margin="70,20,0,0">
-                3.) Continuous monitoring plan showing scope of security testing/evaluation provides complete coverage of required security controls.
-            </Paragraph>
-
-
         </FlowDocument>
     </FlowDocumentScrollViewer>
 </Page>

@@ -7,26 +7,24 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" 
              d:DesignWidth="800"
-             Background="{StaticResource WindowBackgroundColor}">
+             Background="{DynamicResource ApplicationBackgroundBrush}"
+             Foreground="{DynamicResource TextFillColorPrimaryBrush}">
     <UserControl.Resources>
         <!-- Style for Parent Items -->
         <Style x:Key="ParentItemStyle" TargetType="ListBoxItem">
-            <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontWeight" Value="ExtraBold"/>
             <Setter Property="FontSize" Value="14"/>
         </Style>
         <!-- Style for Subnavigation Items -->
         <Style x:Key="SubItemStyle" TargetType="ListBoxItem">
-            <Setter Property="Foreground" Value="white"/>
             <Setter Property="FontStyle" Value="Italic"/>
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="Margin" Value="20,0,0,0"/>
-            <Setter Property="Background" Value="#555555"/>
             <Setter Property="Padding" Value="4"/>
         </Style>
     </UserControl.Resources>
     <!-- Main Grid for the entire control layout -->
-    <Grid Background="{StaticResource WindowBackgroundColor}">
+    <Grid>
         <Grid.RowDefinitions>
             <!-- Row for TabControl -->
             <RowDefinition Height="*"/>
@@ -37,7 +35,7 @@
             <!-- Define individual TabItems -->
             <TabItem Header="RMF1">
                 <!-- Content for Tab 1 -->
-                <Grid Background="{StaticResource WindowBackgroundColor}">
+                <Grid>
                     <Grid.ColumnDefinitions>
                         <!-- Sidebar column with a fixed width -->
                         <ColumnDefinition Width="150"/>
@@ -50,7 +48,6 @@
                              SelectionMode="Single" 
                              x:Name="sidebar" 
                              Margin="0" 
-                             Foreground="White"
                              BorderThickness="0"
                              VerticalAlignment="Stretch"
                              HorizontalContentAlignment="Left"
@@ -122,6 +119,46 @@
                             <ListBoxItem Content="SA12numberone" HorizontalContentAlignment="Left"  x:Name="SA12numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
                             <ListBoxItem Content="SA12numbertwo" HorizontalContentAlignment="Left"  x:Name="SA12numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
                             <ListBoxItem Content="SA12numberthree" HorizontalContentAlignment="Left"  x:Name="SA12numberthreeItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                        <ListBoxItem Content="SA-12(5)" HorizontalContentAlignment="Left"/>
+                            <ListBoxItem Content="SA12_5_numberone" HorizontalContentAlignment="Left"  x:Name="SA12_5_numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                        <ListBoxItem Content="SA-12(8)" HorizontalContentAlignment="Left"/>
+                            <ListBoxItem Content="SA12_8_numberone" HorizontalContentAlignment="Left"  x:Name="SA12_8_numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+
+                        <ListBoxItem Content="SA-12(9)" HorizontalContentAlignment="Left"/>
+                            <ListBoxItem Content="SA12_9_numberone" HorizontalContentAlignment="Left"  x:Name="SA12_9_numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                        <ListBoxItem Content="SA-15" HorizontalContentAlignment="Left"/>
+                            <ListBoxItem Content="SA15numberone" HorizontalContentAlignment="Left"  x:Name="SA15numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SA15numbertwo" HorizontalContentAlignment="Left"  x:Name="SA15numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SA15numberthree" HorizontalContentAlignment="Left"  x:Name="SA15numberthreeItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SA15numberfour" HorizontalContentAlignment="Left"  x:Name="SA15numberfourItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                        <ListBoxItem Content="SA-16" HorizontalContentAlignment="Left"/>
+                            <ListBoxItem Content="SA16numberone" HorizontalContentAlignment="Left"  x:Name="SA16numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+
+                        <ListBoxItem Content="SA-17" HorizontalContentAlignment="Left"/>
+                            <ListBoxItem Content="SA17numberone" HorizontalContentAlignment="Left"  x:Name="SA17numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SA17numbertwo" HorizontalContentAlignment="Left"  x:Name="SA17numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                        <ListBoxItem Content="SA-22" HorizontalContentAlignment="Left"/>
+                            <ListBoxItem Content="SA22numberone" HorizontalContentAlignment="Left"  x:Name="SA22numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+
+                        <ListBoxItem Content="SI-2" HorizontalContentAlignment="Left"/>
+                            <ListBoxItem Content="SI2numberone" HorizontalContentAlignment="Left"  x:Name="SI2numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SI2numbertwo" HorizontalContentAlignment="Left"  x:Name="SI2numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SI2numberthree" HorizontalContentAlignment="Left"  x:Name="SI2numberthreeItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SI2numberfour" HorizontalContentAlignment="Left"  x:Name="SI2numberfourItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SI2numberfive" HorizontalContentAlignment="Left"  x:Name="SI2numberfiveItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SI2numbersix" HorizontalContentAlignment="Left"  x:Name="SI2numbersixItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                        <ListBoxItem Content="SI-2: FR" HorizontalContentAlignment="Left"/>
+                            <ListBoxItem Content="SI2FRnumberone" HorizontalContentAlignment="Left"  x:Name="SI2FRnumberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+
+                        <ListBoxItem Content="SI-3" HorizontalContentAlignment="Left"/>
+                            <ListBoxItem Content="SI3numberone" HorizontalContentAlignment="Left"  x:Name="SI3numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SI3numbertwo" HorizontalContentAlignment="Left"  x:Name="SI3numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SI3numberthree" HorizontalContentAlignment="Left"  x:Name="SI3numberthreeItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                        <ListBoxItem Content="SI-3(10)" HorizontalContentAlignment="Left"/>
+                            <ListBoxItem Content="SI3_10_FRnumberone" HorizontalContentAlignment="Left"  x:Name="SI3_10_numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                        <ListBoxItem Content="SI-7" HorizontalContentAlignment="Left"/>
+                            <ListBoxItem Content="SI7numberone" HorizontalContentAlignment="Left"  x:Name="SI7numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
+                            <ListBoxItem Content="SI7numbertwo" HorizontalContentAlignment="Left"  x:Name="SI7numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
                     </ListBox>
 
                     <!-- Frame for Content Display -->

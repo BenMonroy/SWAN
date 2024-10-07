@@ -24,6 +24,11 @@ namespace SWAN.Views
         private List<ListBoxItem> sa11_6SubItems;
         private List<ListBoxItem> sa11_8SubItems;
         private List<ListBoxItem> sa12SubItems;
+        private List<ListBoxItem> sa15SubItems;
+        private List<ListBoxItem> sa17SubItems;
+        private List<ListBoxItem> si2SubItems;
+        private List<ListBoxItem> si3SubItems;
+        private List<ListBoxItem> si7SubItems;
         public IndexView()
         {
             InitializeComponent();
@@ -115,7 +120,27 @@ namespace SWAN.Views
                 SA12numbertwoItem,
                 SA12numberthreeItem,
             };
-            
+            sa15SubItems = new List<ListBoxItem>
+            {
+                SA15numberoneItem, SA15numbertwoItem, SA15numberthreeItem, SA15numberfourItem
+            };
+            sa17SubItems = new List<ListBoxItem>
+            {
+                SA17numberoneItem, SA17numbertwoItem
+            };
+            si2SubItems = new List<ListBoxItem>
+            {
+                SI2numberoneItem, SI2numbertwoItem, SI2numberthreeItem, SI2numberfourItem, SI2numberfiveItem, SI2numbersixItem
+            };
+            si3SubItems = new List<ListBoxItem>
+            {
+                SI3numberoneItem, SI3numbertwoItem, SI3numberthreeItem
+            };
+            si7SubItems = new List<ListBoxItem>
+            {
+                SI7numberoneItem, SI7numbertwoItem
+            };
+
             sidebar.SelectedIndex = 0;
             sidebar2.SelectedIndex = 0;
             sidebar3.SelectedIndex = 0;
@@ -508,6 +533,156 @@ namespace SWAN.Views
                             item.Visibility = Visibility.Visible;
                         }
                         break;
+                    case "SA-12(5)":
+                        ContentFrame.Navigate(new System.Uri("Views/WikiPages/SA12_5_WikiPage.xaml", System.UriKind.Relative));
+                        SA12_5_numberoneItem.Visibility = Visibility.Visible;
+                        break;
+                    case "SA12_5_numberone":
+                        Application.Current.Properties["SubsectionName"] = selectedText;
+                        ContentFrame.Navigate(new SWAN.Views.WikiPages.SA12_5_WikiPage());
+                        SA12_5_numberoneItem.Visibility = Visibility.Visible;
+                        break;
+                    case "SA-12(8)":
+                        ContentFrame.Navigate(new System.Uri("Views/WikiPages/SA12_8_WikiPage.xaml", System.UriKind.Relative));
+                        SA12_8_numberoneItem.Visibility = Visibility.Visible;
+                        break;
+                    case "SA12_8_numberone":
+                        Application.Current.Properties["SubsectionName"] = selectedText;
+                        ContentFrame.Navigate(new SWAN.Views.WikiPages.SA12_8_WikiPage());
+                        SA12_8_numberoneItem.Visibility = Visibility.Visible;
+                        break;
+                    case "SA-12(9)":
+                        ContentFrame.Navigate(new System.Uri("Views/WikiPages/SA12_9_WikiPage.xaml", System.UriKind.Relative));
+                        SA12_9_numberoneItem.Visibility = Visibility.Visible;
+                        break;
+                    case "SA12_9_numberone":
+                        Application.Current.Properties["SubsectionName"] = selectedText;
+                        ContentFrame.Navigate(new SWAN.Views.WikiPages.SA12_9_WikiPage());
+                        SA12_9_numberoneItem.Visibility = Visibility.Visible;
+                        break;
+                    case "SA-15":
+                        ContentFrame.Navigate(new System.Uri("Views/WikiPages/SA15WikiPage.xaml", System.UriKind.Relative));
+                        foreach (var item in sa15SubItems)
+                        {
+                            item.Visibility = Visibility.Visible;
+                        }
+                        break;
+                    case "SA15numberone":
+                    case "SA15numbertwo":
+                    case "SA15numberthree":
+                    case "SA15numberfour":
+                        Application.Current.Properties["SubsectionName"] = selectedText;
+                        ContentFrame.Navigate(new SWAN.Views.WikiPages.SA15WikiPage());
+                        foreach (var item in sa15SubItems)
+                        {
+                            item.Visibility = Visibility.Visible;
+                        }
+                        break;
+                    case "SA-16":
+                        ContentFrame.Navigate(new System.Uri("Views/WikiPages/SA16WikiPage.xaml", System.UriKind.Relative));
+                        SA16numberoneItem.Visibility = Visibility.Visible;
+                        break;
+                    case "SA16numberone":
+                        Application.Current.Properties["SubsectionName"] = selectedText;
+                        ContentFrame.Navigate(new SWAN.Views.WikiPages.SA16WikiPage());
+                        SA16numberoneItem.Visibility = Visibility.Visible;
+                        break;
+                    case "SA-17":
+                        ContentFrame.Navigate(new System.Uri("Views/WikiPages/SA17WikiPage.xaml", System.UriKind.Relative));
+                        foreach (var item in sa17SubItems)
+                        {
+                            item.Visibility = Visibility.Visible;
+                        }
+                        break;
+                    case "SA17numberone":
+                    case "SA17numbertwo":
+                        Application.Current.Properties["SubsectionName"] = selectedText;
+                        ContentFrame.Navigate(new SWAN.Views.WikiPages.SA17WikiPage());
+                        foreach (var item in sa17SubItems)
+                        {
+                            item.Visibility = Visibility.Visible;
+                        }
+                        break;
+                    case "SA-22":
+                        ContentFrame.Navigate(new System.Uri("Views/WikiPages/SA22WikiPage.xaml", System.UriKind.Relative));
+                        SA22numberoneItem.Visibility = Visibility.Visible;
+                        break;
+                    case "SA22numberone":
+                        Application.Current.Properties["SubsectionName"] = selectedText;
+                        ContentFrame.Navigate(new SWAN.Views.WikiPages.SA22WikiPage());
+                        SA22numberoneItem.Visibility = Visibility.Visible;
+                        break;
+                    case "SI-2":
+                        ContentFrame.Navigate(new System.Uri("Views/WikiPages/SI2WikiPage.xaml", System.UriKind.Relative));
+                        foreach (var item in si2SubItems)
+                        {
+                            item.Visibility = Visibility.Visible;
+                        }
+                        break;
+                    case "SI2numberone":
+                    case "SI2numbertwo":
+                    case "SI2numberthree":
+                    case "SI2numberfour":
+                    case "SI2numberfive":
+                    case "SI2numbersix":
+                        Application.Current.Properties["SubsectionName"] = selectedText;
+                        ContentFrame.Navigate(new SWAN.Views.WikiPages.SI2WikiPage());
+                        foreach (var item in si2SubItems)
+                        {
+                            item.Visibility = Visibility.Visible;
+                        }
+                        break;
+                    case "SI-2: FR":
+                        ContentFrame.Navigate(new System.Uri("Views/WikiPages/SI2FRWikiPage.xaml", System.UriKind.Relative));
+                        SI2FRnumberoneItem.Visibility = Visibility.Visible;
+                        break;
+                    case "SI2FRnumberone":
+                        Application.Current.Properties["SubsectionName"] = selectedText;
+                        ContentFrame.Navigate(new SWAN.Views.WikiPages.SI2FRWikiPage());
+                        SI2FRnumberoneItem.Visibility = Visibility.Visible;
+                        break;
+                    case "SI-3":
+                        ContentFrame.Navigate(new System.Uri("Views/WikiPages/SI3WikiPage.xaml", System.UriKind.Relative));
+                        foreach (var item in si3SubItems)
+                        {
+                            item.Visibility = Visibility.Visible;
+                        }
+                        break;
+                    case "SI3numberone":
+                    case "SI3numbertwo":
+                    case "SI3numberthree":
+                        Application.Current.Properties["SubsectionName"] = selectedText;
+                        ContentFrame.Navigate(new SWAN.Views.WikiPages.SI3WikiPage());
+                        foreach (var item in si3SubItems)
+                        {
+                            item.Visibility = Visibility.Visible;
+                        }
+                        break;
+                    case "SI-3(10)":
+                        ContentFrame.Navigate(new System.Uri("Views/WikiPages/SI3_10_WikiPage.xaml", System.UriKind.Relative));
+                        SI3_10_numberoneItem.Visibility = Visibility.Visible;
+                        break;
+                    case "SI3_10_numberone":
+                        Application.Current.Properties["SubsectionName"] = selectedText;
+                        ContentFrame.Navigate(new SWAN.Views.WikiPages.SI3_10_WikiPage());
+                        SI3_10_numberoneItem.Visibility = Visibility.Visible;
+                        break;
+                    case "SI-7":
+                        ContentFrame.Navigate(new System.Uri("Views/WikiPages/SI7WikiPage.xaml", System.UriKind.Relative));
+                        foreach (var item in si7SubItems)
+                        {
+                            item.Visibility = Visibility.Visible;
+                        }
+                        break;
+                    case "SI7numberone":
+                    case "SI7numbertwo":
+                        Application.Current.Properties["SubsectionName"] = selectedText;
+                        ContentFrame.Navigate(new SWAN.Views.WikiPages.SI7WikiPage());
+                        foreach (var item in si7SubItems)
+                        {
+                            item.Visibility = Visibility.Visible;
+                        }
+                        break;
                     default:
                         ContentFrame.Navigate(new System.Uri("Views/WikiPages/CM1WikiPage.xaml", System.UriKind.Relative));
                         break;
@@ -621,9 +796,36 @@ namespace SWAN.Views
             {
                 item.Visibility = Visibility.Collapsed;
             }
+            foreach (var item in sa15SubItems)
+            {
+                item.Visibility = Visibility.Collapsed;
+            }
+            foreach (var item in sa17SubItems)
+            {
+                item.Visibility = Visibility.Collapsed;
+            }
+            foreach (var item in si2SubItems)
+            {
+                item.Visibility = Visibility.Collapsed;
+            }
+            foreach (var item in si3SubItems)
+            {
+                item.Visibility = Visibility.Collapsed;
+            }
+            foreach (var item in si7SubItems)
+            {
+                item.Visibility = Visibility.Collapsed;
+            }
+            
             CM1numberoneItem.Visibility = Visibility.Collapsed; 
             SA8numberoneItem.Visibility = Visibility.Collapsed;
             SA11_7_numberoneItem.Visibility = Visibility.Collapsed;
+            SA12_5_numberoneItem.Visibility = Visibility.Collapsed;
+            SA12_8_numberoneItem.Visibility = Visibility.Collapsed;
+            SA12_9_numberoneItem.Visibility = Visibility.Collapsed;
+            SA16numberoneItem.Visibility = Visibility.Collapsed;
+            SA22numberoneItem.Visibility = Visibility.Collapsed;
+            SI2FRnumberoneItem.Visibility = Visibility.Collapsed;
         }
     }
 }

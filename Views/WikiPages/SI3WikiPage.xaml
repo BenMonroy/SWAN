@@ -1,0 +1,145 @@
+﻿<Page x:Class="SWAN.Views.WikiPages.SI3WikiPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="WikiPage"
+      HorizontalAlignment="Stretch"
+      VerticalAlignment="Stretch"  
+      Background="{DynamicResource ApplicationBackgroundBrush}"
+      Foreground="{DynamicResource TextFillColorPrimaryBrush}">
+
+    <!-- Ensure FlowDocumentReader stretches to fill available space -->
+    <FlowDocumentScrollViewer x:Name="flowDocumentScrollViewer" Width="auto" Height="auto" HorizontalContentAlignment="Stretch">
+        <FlowDocument x:Name="flowDocument" IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True">
+            <!-- Center-align the title to take up the entire frame width -->
+            <Paragraph FontSize="30">
+
+                <Run Text="SI-3: Malicious Code Protection" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+
+            <!-- Left-align content -->
+            <Paragraph TextAlignment="Left">
+                <Run Text="Severity :" FontWeight="ExtraBold"/>
+                <Run Text="High" FontWeight="ExtraBold" Foreground="Red"/>
+                <Run Text="-" FontWeight="ExtraBold" Foreground="Red"/>
+                <Run Text="High" FontWeight="ExtraBold" Foreground="Red"/>
+            </Paragraph>
+            <!-- Add more content as needed -->
+            <Paragraph FontSize="30">
+                <LineBreak></LineBreak>
+                <Run Text="Control Extension" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            
+            
+            
+            <Paragraph Margin="10,20,0,0" Tag="SI3numberone">
+                <Run Text="1." FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall employ malicious code protection mechanisms for the development environment and support malicious code protection for the deployed system.
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-001241, CCI-001242, CCI-01243, CCI-001244, CCI-001245, CCI-002619, CCI-002620, CCI-002621, CCI-002622, CCI-002624"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization configures malicious code protection mechanisms to perform periodic scans of the information system on an organization-defined frequency.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed configures malicious code protection mechanisms to perform periodic scans of the information system on every 7 days. For information system components that have applicable STIGs or SRGs, the organization being inspected/assessed must comply with the STIG/SRG guidance that pertains to CCI 1241. DoD has defined the frequency as every 7 days.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment obtains and examines the documented process as well as the audit trail of flaw identification and flaw remediation to ensure the organization being inspected/assessed measures the time between flaw identification and flaw remediation.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                1.) Signed and dated system security plan with section that pertains to frequency with which scans for malicious code are performed (7 days is DoD recommendation).            
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                2.) Protection software logs (logs must contain accurate date/time stamps).            
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                3.) Applicable STIG/SRG checks pertaining to CCI 1241.
+            </Paragraph>
+
+
+            <Paragraph Margin="10,20,0,0" Tag="SI3numbertwo">
+                <Run Text="2." FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall document malicious code protection mechanisms in a PPIP or equivalent document.
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-002619, CCI-002620"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization employs malicious code protection mechanisms at information system entry points to detect malicious code.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed identifies and documents the information system entry points and implements malicious code protection mechanisms at those entry points to detect malicious code. Information system entry and exit points include, for example, firewalls, electronic mail servers, web servers, proxy servers, remote-access servers, workstations, notebook computers, and mobile devices. Malicious code protection mechanisms include, for example, anti-virus signature definitions and reputation-based technologies.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment examines the information system architecture as well as the organization's documentation of information system entry points and verifies that malicious code protection mechanisms are implemented.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                1.) Signed and dated system security plan that documents all entry points for information system (Reviewer [Scan/Network] will confirm actual entry points match documentation) and malicious code protections being used, as well as frequency by which protection signatures are updated (Reviewer [Network/HBSS] will validate that protections are being used and signatures are current).
+            </Paragraph>
+
+            <Paragraph Margin="10,20,0,0" Tag="SI3numberthree">
+                <Run Text="3." FontWeight="ExtraBold" FontSize="30"></Run>
+                The developer shall update malicious code protection mechanisms whenever new releases are available in accordance with organizational configuration management policy and procedures
+            </Paragraph>
+            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                <Run Text="CCI-001240, CCI-002623"  FontWeight="Bold" FontSize="15" ></Run>
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization updates malicious code protection mechanisms whenever new releases are available in accordance with organizational configuration management policy and procedures.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization being inspected/assessed configures the information system to update malicious code protection mechanisms whenever new releases are available in accordance with organizational configuration management policy and procedures. For information system components that have applicable STIGs or SRGs, the organization being inspected/assessed must comply with the STIG/SRG guidance that pertains to CCI 1240.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                The organization conducting the inspection/assessment examines the information system to ensure the organization being inspected/assessed configures the information system to update malicious code protection mechanisms whenever new releases are available in accordance with organizational configuration management policy and procedures. For information system components that have applicable STIGs or SRGs, the organization conducting the inspection/assessment evaluates the components to ensure that the organization being inspected/assessed has configured the information system in compliance with the applicable STIGs and SRGs pertaining to CCI 1240.
+            </Paragraph>
+            <Paragraph Margin="50,20,0,0">
+                <LineBreak></LineBreak>
+                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+            </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                1.) Signed and dated system security plan.             </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                2.) Continuous monitoring plan.             </Paragraph>
+            <Paragraph Margin="70,20,0,0">
+                3.) Reference to system security plan and continuous monitoring plan sections pertaining to how information system obtains, verifies and applies updates to malicious code protection mechanisms.
+            </Paragraph>
+        </FlowDocument>
+    </FlowDocumentScrollViewer>
+</Page>
