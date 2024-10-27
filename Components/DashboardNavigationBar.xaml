@@ -56,12 +56,11 @@
         <ui:Button HorizontalAlignment="Center"
                    Content="Settings"
                    Padding="10,5,5,5"
-                   BorderBrush="White"
                    BorderThickness=".5"
                    Command="{Binding ToggleSettingsCommand}"
                    Click="Button_Click">
             <ui:Button.Icon>
-                <ui:FontIcon Glyph="&#xE713;" FontFamily="Segoe Fluent Icons" FontSize="16"/>
+                <ui:SymbolIcon Symbol="Settings32" />
             </ui:Button.Icon>
         </ui:Button>
 

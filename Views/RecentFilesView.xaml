@@ -43,7 +43,6 @@
             <!-- DataGrid Columns -->
             <ui:DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="2*"/>
-                <DataGridTextColumn Header="RMF Type" Binding="{Binding RmfType}" Width="1.5*"/>
                 <DataGridTextColumn Header="Date Modified" Binding="{Binding LastOpened, StringFormat=\{0:MMM dd\}}" Width="1*"/>
                 
                 <!-- Actions Column with Buttons -->

@@ -48,7 +48,7 @@
         <!-- Menu for the file button-->
         <ContextMenu x:Key="FileContextMenu">
             <MenuItem Header="New File" >
-                <MenuItem Header="DoDI 8510.01" Click="NewFileMenuItem_Click"/>
+                <MenuItem Header="Software Assurance Overlay" Click="NewFileMenuItem_Click"/>
                 <MenuItem Header="NIST SP 800.53 Rev. 5" Click="NewFileMenuItem_Click"/>
                 <MenuItem Header="NIST SP 800-37 Rev. 2" Click="NewFileMenuItem_Click"/>
                 <MenuItem Header="NIST SP 800-160 Vol. 1" Click="NewFileMenuItem_Click"/>

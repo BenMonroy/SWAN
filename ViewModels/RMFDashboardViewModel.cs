@@ -503,7 +503,7 @@ namespace SWAN.ViewModels
             {
                 var validFrameworks = new List<string>
         {
-            "DoDI 8510.01",
+            "Software Assurance Overlay",
             "NIST SP 800.53 Rev. 5",
             "NIST SP 800-37 Rev. 2",
             "NIST SP 800-160 Vol. 1"
@@ -561,7 +561,7 @@ namespace SWAN.ViewModels
                     ConceptualControl28 = loadedControls.ElementAtOrDefault(27);
                     ConceptualControl29 = loadedControls.ElementAtOrDefault(28);
                 }
-                if (SelectedFramework != "DoDI 8510.01") //remove or change this to other func depending on selectedFramework
+                if (SelectedFramework != "Software Assurance Overlay") //remove or change this to other func depending on selectedFramework
                 {
                     InitUnusedCheckBoxes();
                 }
@@ -582,7 +582,7 @@ namespace SWAN.ViewModels
             ConceptualControls.Clear(); //clears checkboxes so new one can be loaded
             switch (framework)
             {
-                case "DoDI 8510.01":
+                case "Software Assurance Overlay":
                     LoadDoDICollection();
                     break;
                 case "NIST SP 800.53 Rev. 5":
