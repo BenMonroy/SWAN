@@ -21,27 +21,45 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <ui:NavigationView
-                        x:Name="NavigationView"
-                        Grid.Column="0"
-                        Padding="42,0,42,0"
-                        BreadcrumbBar="{Binding ElementName=BreadcrumbBar}"
-                        EnableDebugMessages="True"
-                        FooterMenuItemsSource="{Binding FooterMenuItems, Mode=OneWay}"
-                        FrameMargin="0"
-                        IsBackButtonVisible="Visible"
-                        IsPaneToggleVisible="True"
-                        ScrollViewer.CanContentScroll="True"
-                        OpenPaneLength="310"
-                        PaneDisplayMode="Left"
-                        SelectionChanged="OnNavigationSelectionChanged"
-                        TitleBar="{Binding ElementName=TitleBar, Mode=OneWay}"
-                        Transition="FadeInWithSlide">
+                    <ui:NavigationView x:Name="NavigationView"
+                       Grid.Column="0"
+                       Padding="42,0,42,0"
+                       EnableDebugMessages="True"
+                       FooterMenuItemsSource="{Binding FooterMenuItems, Mode=OneWay}"
+                       FrameMargin="0"
+                       IsBackButtonVisible="Collapsed"
+                       IsPaneToggleVisible="True"
+                       OpenPaneLength="310"
+                       PaneDisplayMode="Left"
+                       SelectionChanged="OnNavigationSelectionChanged"
+                       TitleBar="{Binding ElementName=TitleBar, Mode=OneWay}"
+                       Transition="FadeInWithSlide">
                         <ui:NavigationView.MenuItems>
-                            <ui:NavigationViewItem Content="CM-1" TargetPageType="{x:Type pages:CM1WikiPage}" HorizontalContentAlignment="Left"/>
-                            <ui:NavigationViewItem Content="SA-3" TargetPageType="{x:Type pages:SA3WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="CM-1" TargetPageType="{x:Type pages:CM1WikiPage}" HorizontalContentAlignment="Left" />
+                            <ui:NavigationViewItem Content="SA-3" TargetPageType="{x:Type pages:SA3WikiPage}" HorizontalContentAlignment="Left" />
                             <ui:NavigationViewItem Content="SA-4" TargetPageType="{x:Type pages:SA4WikiPage}" HorizontalContentAlignment="Left"/>
                             <ui:NavigationViewItem Content="SA-4(2)" TargetPageType="{x:Type pages:SA4_2_WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-4(3)" TargetPageType="{x:Type pages:SA4_3_WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-8" TargetPageType="{x:Type pages:SA8WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-10" TargetPageType="{x:Type pages:SA10WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-11" TargetPageType="{x:Type pages:SA11WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-11(1)" TargetPageType="{x:Type pages:SA11_1_WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-11(2)" TargetPageType="{x:Type pages:SA11_2_WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-11(3)" TargetPageType="{x:Type pages:SA11_3_WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-11(4)" TargetPageType="{x:Type pages:SA11_4_WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-11(5)" TargetPageType="{x:Type pages:SA11_5_WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-11(6)" TargetPageType="{x:Type pages:SA11_6_WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-11(7)" TargetPageType="{x:Type pages:SA11_7_WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-11(8)" TargetPageType="{x:Type pages:SA11_8_WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-12" TargetPageType="{x:Type pages:SA12WikiPage}" HorizontalContentAlignment="Left"/>
+
+
+
+
+
+
+
+
                         </ui:NavigationView.MenuItems>
                     
 

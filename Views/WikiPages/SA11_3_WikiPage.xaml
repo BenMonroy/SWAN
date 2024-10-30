@@ -6,7 +6,7 @@
       VerticalAlignment="Stretch">
 
     <!-- Ensure FlowDocumentReader stretches to fill available space -->
-    <FlowDocumentScrollViewer x:Name="flowDocumentScrollViewer" Foreground="White" Width="auto" Height="auto" HorizontalContentAlignment="Stretch">
+    <FlowDocumentScrollViewer x:Name="flowDocumentScrollViewer" Foreground="White" Width="auto" Height="auto" HorizontalContentAlignment="Stretch" PreviewMouseWheel="flowDocumentScrollViewer_PreviewMouseWheel">
         <FlowDocument x:Name="flowDocument" IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True">
             <!-- Center-align the title to take up the entire frame width -->
             <Paragraph FontSize="30">
