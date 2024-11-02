@@ -49,9 +49,6 @@
         <ContextMenu x:Key="FileContextMenu">
             <MenuItem Header="New File" >
                 <MenuItem Header="Software Assurance Overlay" Click="NewFileMenuItem_Click"/>
-                <MenuItem Header="NIST SP 800.53 Rev. 5" Click="NewFileMenuItem_Click"/>
-                <MenuItem Header="NIST SP 800-37 Rev. 2" Click="NewFileMenuItem_Click"/>
-                <MenuItem Header="NIST SP 800-160 Vol. 1" Click="NewFileMenuItem_Click"/>
             </MenuItem>
             <MenuItem Header="Open File" Command="{Binding OpenFileCommand}"/>
             <MenuItem Header="Save" Command="{Binding SaveCommand}"/>

@@ -135,6 +135,8 @@ namespace SWAN.ViewModels
         public UserControl checkBoxView;
         private int _checkBoxWidth;
 
+        private string _filePath; //update this for all file operations
+
        //make this one variable and just reassign it
         private UserControl Width1;
         private UserControl Width2;
@@ -193,13 +195,12 @@ namespace SWAN.ViewModels
 
 
         public ICommand LoadDoDICommand => new RelayCommand(LoadDoDICollection);
-        public ICommand Load80053Command => new RelayCommand(Load80053Collection);
-        public ICommand Load80037Command => new RelayCommand(Load80037Collection);
-        public ICommand Load800160Command => new RelayCommand(Load800160Collection);
         public ICommand NewFileCommand => new RelayCommand<string>(CreateNewFile);
         public ICommand OpenRecentFileCommand => new RelayCommand<RecentFile>(OpenRecentFile);
         public ICommand RemoveFileCommand => new RelayCommand<RecentFile>(RemoveFile);
 
+        //public ICommand SaveFileCommand => new RelayCommand<_>
+        //make this a command to save the dashboard from the button
 
 
 
@@ -212,244 +213,8 @@ namespace SWAN.ViewModels
 
 
 
-        private void Load80053Collection()
-        {
-            ConceptualControl1 = new ConceptualCheckBox
-            {
-                Severity = "Low/Low",
-                CIA = "HHH",
-                Name = "Conceptual Control 1",
-                IsVisible = true,
-                FailedCount = 3,
-                PhysicalControls = new ObservableCollection<PhysicalControl>
-                {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
-                }
-            };
-            ConceptualControl2 = new ConceptualCheckBox
-            {
-                Name = "Conceptual Control 2",
-                Severity = "Low/Low",
-                CIA = "HHH",
-                IsVisible = true,
-                PhysicalControls = new ObservableCollection<PhysicalControl>
-                {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
-                },
-                FailedCount = 3,
-    
-            };
-            ConceptualControl3 = new ConceptualCheckBox
-            {
-                Name = "Conceptual Control 3",
-                Severity = "High/High",
-                CIA = "HHH",
-                IsVisible = true,
-                FailedCount = 3,
-                PhysicalControls = new ObservableCollection<PhysicalControl>
-                {
-                    new PhysicalControl { Control = "Physical Control 1"    , Passed = false },
-                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
-                }
-            };
-            ConceptualControl4 = new ConceptualCheckBox
-            {
-                Name = "Conceptual Control 4",
-                Severity = "Med/Med",
-                CIA = "HHH",
-                IsVisible = true,
-                FailedCount = 3,
-                PhysicalControls = new ObservableCollection<PhysicalControl>
-                {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
-                }
-            };
-            ConceptualControl5 = new ConceptualCheckBox
-            {
-                Name = "Conceptual Control 5",
-                Severity = "Low/Med",
-                CIA = "HHH",
-                IsVisible = true,
-                FailedCount = 3,
-                PhysicalControls = new ObservableCollection<PhysicalControl>
-                {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
-                }
-            };
-            ConceptualControls = new ObservableCollection<ConceptualCheckBox>
-            {
-        ConceptualControl1, ConceptualControl2, ConceptualControl3, ConceptualControl4,
-        ConceptualControl5 };
-            InitUnusedCheckBoxes();
+       
 
-        }
-
-        private void Load80037Collection()
-        {
-            ConceptualControl1 = new ConceptualCheckBox
-            {
-                Severity = "Low/Low",
-                CIA = "HHH",
-                Name = "Conceptual Control 1",
-                IsVisible = true,
-                FailedCount = 3,
-                PhysicalControls = new ObservableCollection<PhysicalControl>
-                {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
-                }
-            };
-            ConceptualControl2 = new ConceptualCheckBox
-            {
-                Name = "Conceptual Control 2",
-                Severity = "Low/Low",
-                CIA = "HHH",
-                IsVisible = true,
-                FailedCount = 3,
-                PhysicalControls = new ObservableCollection<PhysicalControl>
-                {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
-                }
-            };
-            ConceptualControl3 = new ConceptualCheckBox
-            {
-                Name = "Conceptual Control 3",
-                Severity = "High/High",
-                CIA = "HHH",
-                IsVisible = true,
-                FailedCount = 3,
-                PhysicalControls = new ObservableCollection<PhysicalControl>
-                {
-                    new PhysicalControl { Control = "Physical Control 1"    , Passed = false },
-                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
-                }
-            };
-            ConceptualControl4 = new ConceptualCheckBox
-            {
-                Name = "Conceptual Control 4",
-                Severity = "Med/Med",
-                CIA = "HHH",
-                IsVisible = true,
-                FailedCount = 3,
-                PhysicalControls = new ObservableCollection<PhysicalControl>
-                {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
-                }
-            };
-            ConceptualControl5 = new ConceptualCheckBox
-            {
-                Name = "Conceptual Control 5",
-                Severity = "Low/Med",
-                CIA = "HHH",
-                IsVisible = true,
-                FailedCount = 3,
-                PhysicalControls = new ObservableCollection<PhysicalControl>
-                {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
-                }
-            };
-            ConceptualControls = new ObservableCollection<ConceptualCheckBox>
-            {
-        ConceptualControl1, ConceptualControl2, ConceptualControl3, ConceptualControl4,
-        ConceptualControl5 };
-            InitUnusedCheckBoxes();
-
-        }
-        private void Load800160Collection()
-        {
-            ConceptualControl1 = new ConceptualCheckBox
-            {
-                Severity = "Low/Low",
-                CIA = "HHH",
-                Name = "Conceptual Control 1",
-                IsVisible = true,
-                FailedCount = 3,
-                PhysicalControls = new ObservableCollection<PhysicalControl>
-                {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
-                }
-            };
-            ConceptualControl2 = new ConceptualCheckBox
-            {
-                Name = "Conceptual Control 2",
-                Severity = "Low/Low",
-                CIA = "HHH",
-                IsVisible = true,
-                FailedCount = 3,
-                PhysicalControls = new ObservableCollection<PhysicalControl>
-                {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
-                }
-            };
-            ConceptualControl3 = new ConceptualCheckBox
-            {
-                Name = "Conceptual Control 3",
-                Severity = "High/High",
-                CIA = "HHH",
-                IsVisible = true,
-                FailedCount = 3,
-                PhysicalControls = new ObservableCollection<PhysicalControl>
-                {
-                    new PhysicalControl { Control = "Physical Control 1"    , Passed = false },
-                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
-                }
-            };
-            ConceptualControl4 = new ConceptualCheckBox
-            {
-                Name = "Conceptual Control 4",
-                Severity = "Med/Med",
-                CIA = "HHH",
-                IsVisible = true,
-                FailedCount = 3,
-                PhysicalControls = new ObservableCollection<PhysicalControl>
-                {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
-                }
-            };
-            ConceptualControl5 = new ConceptualCheckBox
-            {
-                Name = "Conceptual Control 5",
-                Severity = "Low/Med",
-                CIA = "HHH",
-                IsVisible = true,
-                FailedCount = 3,
-                PhysicalControls = new ObservableCollection<PhysicalControl>
-                {
-                    new PhysicalControl { Control = "Physical Control 1", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 2", Passed = false },
-                    new PhysicalControl { Control = "Physical Control 3", Passed = false }
-                }
-            };
-            ConceptualControls = new ObservableCollection<ConceptualCheckBox>
-            {
-        ConceptualControl1, ConceptualControl2, ConceptualControl3, ConceptualControl4,
-        ConceptualControl5 };
-            InitUnusedCheckBoxes();
-        }
         public RecentFile CreateRecentFile(string filePath)
         {
             // Ensure the file exists
@@ -490,12 +255,12 @@ namespace SWAN.ViewModels
             _recentFilesManager.AddRecentFile(recent);
         }
 
-        public async Task LoadStateAsync(string filePath)
+        public async Task<int> LoadStateAsync(string filePath)
         {
             if (string.IsNullOrEmpty(filePath))
             {
                 MessageBox.Show("Error: Attempted to open file with empty filepath.");
-                return;
+                return -1;
             }
             string json = await File.ReadAllTextAsync(filePath);
             var loadedData = JsonSerializer.Deserialize<Dictionary<string, object>>(json);
@@ -504,9 +269,6 @@ namespace SWAN.ViewModels
                 var validFrameworks = new List<string>
         {
             "Software Assurance Overlay",
-            "NIST SP 800.53 Rev. 5",
-            "NIST SP 800-37 Rev. 2",
-            "NIST SP 800-160 Vol. 1"
         };
 
                 var jsonFramework = loadedData["SelectedFramework"]?.ToString();
@@ -514,7 +276,7 @@ namespace SWAN.ViewModels
                 if (!validFrameworks.Contains(jsonFramework))
                 {
                     MessageBox.Show($"Error: Invalid or unsupported framework '{jsonFramework}'.");
-                    return; // TODO do something here so that if open fails it does not load empty dashboard
+                    return -2; // TODO do something here so that if open fails it does not load empty dashboard
                 }
                 SelectedFramework = jsonFramework;
 
@@ -568,10 +330,14 @@ namespace SWAN.ViewModels
                 //updates the filepath in ScaffoldViewModel
                 _messenger.Send(new FileOpenedMessage(filePath));
                 _messenger.Send(new ConceptualControlsUpdatedMessage(ConceptualControls));
+                ToggleRMFStackPanelVisibility();
+                MessageBox.Show("File loaded successfully.");
+                return 0;
             }
             else
             {
                 MessageBox.Show("Error: Invalid file format.");
+                return -3;
             }
         }
 
@@ -580,22 +346,7 @@ namespace SWAN.ViewModels
         {
             SelectedFramework = framework;
             ConceptualControls.Clear(); //clears checkboxes so new one can be loaded
-            switch (framework)
-            {
-                case "Software Assurance Overlay":
-                    LoadDoDICollection();
-                    break;
-                case "NIST SP 800.53 Rev. 5":
-                    Load80053Collection();
-                    break;
-                case "NIST SP 800-37 Rev. 2":
-                    Load80037Collection();
-                    break;
-                case "NIST SP 800-160 Vol. 1":
-                    Load800160Collection();
-                    break;
-            }
-            //TODO fix this so stack panel goes invisible
+            LoadDoDICollection();
             ToggleRMFStackPanelVisibility();
         }
         private void RemoveFile(RecentFile recentFile)
@@ -615,8 +366,6 @@ namespace SWAN.ViewModels
                 try
                 {
                     await LoadStateAsync(filePath);
-                    ToggleRMFStackPanelVisibility();
-                    MessageBox.Show("File loaded successfully");
                 }
                 catch (Exception ex) { MessageBox.Show("$ex"); }
 
