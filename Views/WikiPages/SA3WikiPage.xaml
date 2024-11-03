@@ -1,136 +1,147 @@
-﻿<Page x:Class="SWAN.Views.WikiPages.SA3WikiPage"
+<Page x:Class="SWAN.Views.WikiPages.SA3WikiPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="WikiPage"  Background="{DynamicResource ApplicationBackgroundBrush}"
-  Foreground="{DynamicResource TextFillColorPrimaryBrush}">
+      Title="WikiPage"
+      FocusManager.FocusedElement="{Binding ElementName=flowDocumentScrollViewer}">
+    <Grid 
+        
+        Background="Transparent" >
+        <FlowDocumentScrollViewer x:Name="flowDocumentScrollViewer"
+                          Foreground="White"
+                          Width="Auto"
+                          Height="Auto"
+                          HorizontalContentAlignment="Stretch"
+                          ScrollViewer.CanContentScroll="True"
+                          Focusable="True"
+                          IsTabStop="True"
+                          PreviewMouseWheel="flowDocumentScrollViewer_PreviewMouseWheel">
 
-    <!-- Ensure FlowDocumentReader stretches to fill available space -->
-    <FlowDocumentScrollViewer x:Name="flowDocumentScrollViewer" Width="auto" Height="auto" HorizontalContentAlignment="Stretch">
-        <FlowDocument x:Name="flowDocument" IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True">
-            <!-- Center-align the title to take up the entire frame width -->
-            <Paragraph FontSize="30">
+            <FlowDocument x:Name="flowDocument" IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True">
+                <!-- Center-align the title to take up the entire frame width -->
+                <Paragraph FontSize="30">
 
-                <Run Text="SA-3: System Development Life Cycle " FontWeight="Bold" FontSize="30" />
-            </Paragraph>
+                    <Run Text="SA-3: System Development Life Cycle " FontWeight="Bold" FontSize="30" />
+                </Paragraph>
 
-            <!-- Left-align content -->
-            <Paragraph TextAlignment="Left">
-                <Run Text="Severity :" FontWeight="ExtraBold"/>
-                <Run Text="High" FontWeight="ExtraBold" Foreground="Red"/>
-                <Run Text="-" FontWeight="ExtraBold" Foreground="Red"/>
-                <Run Text="High" FontWeight="ExtraBold" Foreground="Red"/>
-            </Paragraph>
-            <!-- Add more content as needed -->
-            <Paragraph FontSize="30">
-                <LineBreak></LineBreak>
-                <Run Text="Control Extension" FontWeight="Bold" FontSize="30" />
-            </Paragraph>
+                <!-- Left-align content -->
+                <Paragraph TextAlignment="Left">
+                    <Run Text="Severity :" FontWeight="ExtraBold"/>
+                    <Run Text="High" FontWeight="ExtraBold" Foreground="Red"/>
+                    <Run Text="-" FontWeight="ExtraBold" Foreground="Red"/>
+                    <Run Text="High" FontWeight="ExtraBold" Foreground="Red"/>
+                </Paragraph>
+                <!-- Add more content as needed -->
+                <Paragraph FontSize="30">
+                    <LineBreak></LineBreak>
+                    <Run Text="Control Extension" FontWeight="Bold" FontSize="30" />
+                </Paragraph>
 
-            <Paragraph Margin="10,20,0,0" Tag="SA3numberone">
-                <Run Text="1." FontWeight="ExtraBold" FontSize="30"></Run>
-                The developer shall incorporate software/firmware security considerations into the SDLC
-            </Paragraph>
+                <Paragraph Margin="10,20,0,0" Tag="SA3numberone">
+                    <Run Text="1." FontWeight="ExtraBold" FontSize="30"></Run>
+                    The developer shall incorporate software/firmware security considerations into the SDLC
+                </Paragraph>
 
-            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
-                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
-                <Run Text="CCI-000615"  FontWeight="Bold" FontSize="15" ></Run>
-            </Paragraph>
-            <Paragraph Margin="70,20,0,0">
-                The organization manages the information system using an organization-defined system development life cycle that incorporates information security considerations
-            </Paragraph>
-            <Paragraph Margin="50,20,0,0">
-                <LineBreak></LineBreak>
-                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
-            </Paragraph>
-            <Paragraph Margin="70,20,0,0">
-                The organization being inspected/assessed documents and implements a process to manage the information system using the system development life cycle defined in SA-3, CCI 3092 that incorporates information security considerations IAW DoDI 8580.1.
-            </Paragraph>
-            <Paragraph Margin="50,20,0,0">
-                <LineBreak></LineBreak>
-                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
-            </Paragraph>
-            <Paragraph Margin="70,20,0,0">
-                The organization conducting the inspection/assessment obtains and examines the documented process and artifacts of the system development life cycle process to ensure the organization being inspected/assessed manages the information system using the system development life cycle defined in SA-3, CCI 3092 that incorporates information security considerations IAW DoDI 8580.1.
-            </Paragraph>
-            <Paragraph Margin="50,20,0,0">
-                <LineBreak></LineBreak>
-                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
-            </Paragraph>
-            <Paragraph Margin="70,20,0,0">
-                1.) System security plan (SSP)
-            </Paragraph>
-            <Paragraph Margin="70,20,0,0">
-                2.) System Development Life Cycle (SDLC) documentation defines processes to incorporate information security considerations.
-            </Paragraph>
-
-
-            <Paragraph Margin="10,20,0,0" Tag="SA3numbertwo">
-                <Run Text="2." FontWeight="ExtraBold" FontSize="30"></Run>
-                The developer shall document the secure SDLC directly or by reference in a SDP, FDP, Program Protection Implementation Plan (PPIP), or equivalent documents
-            </Paragraph>
-            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
-                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
-                <Run Text="CCI-003092"  FontWeight="Bold" FontSize="15" ></Run>
-            </Paragraph>
-            <Paragraph Margin="70,20,0,0">
-                The organization defines a system development life cycle that is used to manage the information system.
-            </Paragraph>
-            <Paragraph Margin="50,20,0,0">
-                <LineBreak></LineBreak>
-                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
-            </Paragraph>
-            <Paragraph Margin="70,20,0,0">
-                The organization being inspected/assessed defines and documents a system development life cycle that is used to manage the information system. DoD has determined the system development life cycle is not appropriate to define at the Enterprise level.
-            </Paragraph>
-            <Paragraph Margin="50,20,0,0">
-                <LineBreak></LineBreak>
-                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
-            </Paragraph>
-            <Paragraph Margin="70,20,0,0">
-                The organization conducting the inspection/assessment obtains and examines the documented system development life cycle to ensure the organization being inspected/assessed defines a system development life cycle that is used to manage the information system. DoD has determined the system development life cycle is not appropriate to define at the Enterprise level.
-            </Paragraph>
-            <Paragraph Margin="50,20,0,0">
-                <LineBreak></LineBreak>
-                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
-            </Paragraph>
-            <Paragraph Margin="70,20,0,0">
-                1.) System Development Life Cycle (SDLC) documentation used to manage the information system.
-            </Paragraph>
+                <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                    <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                    <Run Text="CCI-000615"  FontWeight="Bold" FontSize="15" ></Run>
+                </Paragraph>
+                <Paragraph Margin="70,20,0,0">
+                    The organization manages the information system using an organization-defined system development life cycle that incorporates information security considerations
+                </Paragraph>
+                <Paragraph Margin="50,20,0,0">
+                    <LineBreak></LineBreak>
+                    <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+                </Paragraph>
+                <Paragraph Margin="70,20,0,0">
+                    The organization being inspected/assessed documents and implements a process to manage the information system using the system development life cycle defined in SA-3, CCI 3092 that incorporates information security considerations IAW DoDI 8580.1.
+                </Paragraph>
+                <Paragraph Margin="50,20,0,0">
+                    <LineBreak></LineBreak>
+                    <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+                </Paragraph>
+                <Paragraph Margin="70,20,0,0">
+                    The organization conducting the inspection/assessment obtains and examines the documented process and artifacts of the system development life cycle process to ensure the organization being inspected/assessed manages the information system using the system development life cycle defined in SA-3, CCI 3092 that incorporates information security considerations IAW DoDI 8580.1.
+                </Paragraph>
+                <Paragraph Margin="50,20,0,0">
+                    <LineBreak></LineBreak>
+                    <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+                </Paragraph>
+                <Paragraph Margin="70,20,0,0">
+                    1.) System security plan (SSP)
+                </Paragraph>
+                <Paragraph Margin="70,20,0,0">
+                    2.) System Development Life Cycle (SDLC) documentation defines processes to incorporate information security considerations.
+                </Paragraph>
 
 
+                <Paragraph Margin="10,20,0,0" Tag="SA3numbertwo">
+                    <Run Text="2." FontWeight="ExtraBold" FontSize="30"></Run>
+                    The developer shall document the secure SDLC directly or by reference in a SDP, FDP, Program Protection Implementation Plan (PPIP), or equivalent documents
+                </Paragraph>
+                <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                    <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                    <Run Text="CCI-003092"  FontWeight="Bold" FontSize="15" ></Run>
+                </Paragraph>
+                <Paragraph Margin="70,20,0,0">
+                    The organization defines a system development life cycle that is used to manage the information system.
+                </Paragraph>
+                <Paragraph Margin="50,20,0,0">
+                    <LineBreak></LineBreak>
+                    <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+                </Paragraph>
+                <Paragraph Margin="70,20,0,0">
+                    The organization being inspected/assessed defines and documents a system development life cycle that is used to manage the information system. DoD has determined the system development life cycle is not appropriate to define at the Enterprise level.
+                </Paragraph>
+                <Paragraph Margin="50,20,0,0">
+                    <LineBreak></LineBreak>
+                    <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+                </Paragraph>
+                <Paragraph Margin="70,20,0,0">
+                    The organization conducting the inspection/assessment obtains and examines the documented system development life cycle to ensure the organization being inspected/assessed defines a system development life cycle that is used to manage the information system. DoD has determined the system development life cycle is not appropriate to define at the Enterprise level.
+                </Paragraph>
+                <Paragraph Margin="50,20,0,0">
+                    <LineBreak></LineBreak>
+                    <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+                </Paragraph>
+                <Paragraph Margin="70,20,0,0">
+                    1.) System Development Life Cycle (SDLC) documentation used to manage the information system.
+                </Paragraph>
 
-            <Paragraph Margin="10,20,0,0" Tag="SA3numberthree">
-                <Run Text="3." FontWeight="ExtraBold" FontSize="30"></Run>
-                The developer shall document software/firmware security roles and responsibilities directly or by reference in a SDP, FDP, PPIP, or equivalent documents
-            </Paragraph>
-            <Paragraph TextAlignment="Left" Margin="50,20,0,0">
-                <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
-                <Run Text="CCI-000616"  FontWeight="Bold" FontSize="15" ></Run>
-            </Paragraph>
-            <Paragraph Margin="70,20,0,0">
-                The organization defines and documents information system security roles and responsibilities throughout the system development life cycle.
-            </Paragraph>
-            <Paragraph Margin="50,20,0,0">
-                <LineBreak></LineBreak>
-                <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
-            </Paragraph>
-            <Paragraph Margin="70,20,0,0">
-                The organization being inspected/assessed defines and documents information system security roles and responsibilities throughout the system development life cycle IAW DoDI 8580.1 .
-            </Paragraph>
-            <Paragraph Margin="50,20,0,0">
-                <LineBreak></LineBreak>
-                <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
-            </Paragraph>
-            <Paragraph Margin="70,20,0,0">
-                The organization conducting the inspection/assessment obtains and examines the information system security roles and responsibilities to ensure the organization being inspected/assessed defines and documents information system security roles and responsibilities throughout the system development life cycle IAW DoDI 8580.1.
-            </Paragraph>
-            <Paragraph Margin="50,20,0,0">
-                <LineBreak></LineBreak>
-                <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
-            </Paragraph>
-            <Paragraph Margin="70,20,0,0">
-                1.) System Development Life Cycle (SDLC) documentation used to manage the information system defines security roles and responsibilities through the SDLC.
-            </Paragraph>
-        </FlowDocument>
-    </FlowDocumentScrollViewer>
+
+
+                <Paragraph Margin="10,20,0,0" Tag="SA3numberthree">
+                    <Run Text="3." FontWeight="ExtraBold" FontSize="30"></Run>
+                    The developer shall document software/firmware security roles and responsibilities directly or by reference in a SDP, FDP, PPIP, or equivalent documents
+                </Paragraph>
+                <Paragraph TextAlignment="Left" Margin="50,20,0,0">
+                    <Run Text="Maps To:"  FontWeight="Bold" FontSize="15" ></Run>
+                    <Run Text="CCI-000616"  FontWeight="Bold" FontSize="15" ></Run>
+                </Paragraph>
+                <Paragraph Margin="70,20,0,0">
+                    The organization defines and documents information system security roles and responsibilities throughout the system development life cycle.
+                </Paragraph>
+                <Paragraph Margin="50,20,0,0">
+                    <LineBreak></LineBreak>
+                    <Run Text="Implementation Guidance" FontWeight="Bold" FontSize="30" />
+                </Paragraph>
+                <Paragraph Margin="70,20,0,0">
+                    The organization being inspected/assessed defines and documents information system security roles and responsibilities throughout the system development life cycle IAW DoDI 8580.1 .
+                </Paragraph>
+                <Paragraph Margin="50,20,0,0">
+                    <LineBreak></LineBreak>
+                    <Run Text="Validation Procedures" FontWeight="Bold" FontSize="30" />
+                </Paragraph>
+                <Paragraph Margin="70,20,0,0">
+                    The organization conducting the inspection/assessment obtains and examines the information system security roles and responsibilities to ensure the organization being inspected/assessed defines and documents information system security roles and responsibilities throughout the system development life cycle IAW DoDI 8580.1.
+                </Paragraph>
+                <Paragraph Margin="50,20,0,0">
+                    <LineBreak></LineBreak>
+                    <Run Text="Compelling Evidence" FontWeight="Bold" FontSize="30" />
+                </Paragraph>
+                <Paragraph Margin="70,20,0,0">
+                    1.) System Development Life Cycle (SDLC) documentation used to manage the information system defines security roles and responsibilities through the SDLC.
+                </Paragraph>
+            </FlowDocument>
+        </FlowDocumentScrollViewer>
+    </Grid>
 </Page>

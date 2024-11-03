@@ -1,14 +1,12 @@
-﻿<Page x:Class="SWAN.Views.WikiPages.SA11_8_WikiPage"
+<Page x:Class="SWAN.Views.WikiPages.SA11_8_WikiPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       Title="WikiPage"
       HorizontalAlignment="Stretch"
-      VerticalAlignment="Stretch"  
-      Background="{DynamicResource ApplicationBackgroundBrush}"
-  Foreground="{DynamicResource TextFillColorPrimaryBrush}">
+      VerticalAlignment="Stretch">
 
     <!-- Ensure FlowDocumentReader stretches to fill available space -->
-    <FlowDocumentScrollViewer x:Name="flowDocumentScrollViewer" Width="auto" Height="auto" HorizontalContentAlignment="Stretch">
+    <FlowDocumentScrollViewer x:Name="flowDocumentScrollViewer" Foreground="White" Width="auto" Height="auto" HorizontalContentAlignment="Stretch" PreviewMouseWheel="flowDocumentScrollViewer_PreviewMouseWheel">
         <FlowDocument x:Name="flowDocument" IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True">
             <!-- Center-align the title to take up the entire frame width -->
             <Paragraph FontSize="30">

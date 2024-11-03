@@ -1,186 +1,86 @@
-﻿<UserControl x:Class="SWAN.Views.IndexView"
+<UserControl x:Class="SWAN.Views.IndexView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:pages="clr-namespace:SWAN.Views.WikiPages"
+                
              mc:Ignorable="d" 
              d:DesignHeight="450" 
              d:DesignWidth="800"
-             Background="{DynamicResource ApplicationBackgroundBrush}"
-             Foreground="{DynamicResource TextFillColorPrimaryBrush}">
-    <UserControl.Resources>
-        <!-- Style for Parent Items -->
-        <Style x:Key="ParentItemStyle" TargetType="ListBoxItem">
-            <Setter Property="FontWeight" Value="ExtraBold"/>
-            <Setter Property="FontSize" Value="14"/>
-        </Style>
-        <!-- Style for Subnavigation Items -->
-        <Style x:Key="SubItemStyle" TargetType="ListBoxItem">
-            <Setter Property="FontStyle" Value="Italic"/>
-            <Setter Property="FontSize" Value="12"/>
-            <Setter Property="Margin" Value="20,0,0,0"/>
-            <Setter Property="Padding" Value="4"/>
-        </Style>
-    </UserControl.Resources>
-    <!-- Main Grid for the entire control layout -->
-    <Grid>
+             Background="{StaticResource WindowBackgroundColor}">
+    <Grid Background="{StaticResource WindowBackgroundColor}">
         <Grid.RowDefinitions>
-            <!-- Row for TabControl -->
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- TabControl at the top of the UserControl -->
         <TabControl x:Name="MainTabControl" Margin="0,0,0,10">
-            <!-- Define individual TabItems -->
             <TabItem Header="RMF1">
-                <!-- Content for Tab 1 -->
-                <Grid>
+                <Grid Background="{StaticResource WindowBackgroundColor}">
                     <Grid.ColumnDefinitions>
-                        <!-- Sidebar column with a fixed width -->
-                        <ColumnDefinition Width="150"/>
-                        <!-- Main content area with flexible width -->
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
+                    <ui:NavigationView x:Name="NavigationView"
+                       Grid.Column="0"
+                       Padding="42,0,42,0"
+                       EnableDebugMessages="True"
+                       FooterMenuItemsSource="{Binding FooterMenuItems, Mode=OneWay}"
+                       FrameMargin="0"
+                       IsBackButtonVisible="Collapsed"
+                       IsPaneToggleVisible="True"
+                       OpenPaneLength="310"
+                       PaneDisplayMode="Left"
+                       SelectionChanged="OnNavigationSelectionChanged"
+                       TitleBar="{Binding ElementName=TitleBar, Mode=OneWay}"
+                       Transition="FadeInWithSlide">
+                        <ui:NavigationView.MenuItems>
+                            <ui:NavigationViewItem Content="CM-1" TargetPageType="{x:Type pages:CM1WikiPage}" HorizontalContentAlignment="Left" />
+                            <ui:NavigationViewItem Content="SA-3" TargetPageType="{x:Type pages:SA3WikiPage}" HorizontalContentAlignment="Left" />
+                            <ui:NavigationViewItem Content="SA-4" TargetPageType="{x:Type pages:SA4WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-4(2)" TargetPageType="{x:Type pages:SA4_2_WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-4(3)" TargetPageType="{x:Type pages:SA4_3_WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-8" TargetPageType="{x:Type pages:SA8WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-10" TargetPageType="{x:Type pages:SA10WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-11" TargetPageType="{x:Type pages:SA11WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-11(1)" TargetPageType="{x:Type pages:SA11_1_WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-11(2)" TargetPageType="{x:Type pages:SA11_2_WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-11(3)" TargetPageType="{x:Type pages:SA11_3_WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-11(4)" TargetPageType="{x:Type pages:SA11_4_WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-11(5)" TargetPageType="{x:Type pages:SA11_5_WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-11(6)" TargetPageType="{x:Type pages:SA11_6_WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-11(7)" TargetPageType="{x:Type pages:SA11_7_WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-11(8)" TargetPageType="{x:Type pages:SA11_8_WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-12" TargetPageType="{x:Type pages:SA12WikiPage}" HorizontalContentAlignment="Left"/>
 
-                    <!-- ListBox for Navigation Sidebar -->
-                    <ListBox Grid.Column="0" 
-                             SelectionMode="Single" 
-                             x:Name="sidebar" 
-                             Margin="0" 
-                             BorderThickness="0"
-                             VerticalAlignment="Stretch"
-                             HorizontalContentAlignment="Left"
-                             SelectionChanged="Sidebar_SelectionChangedRMF1"
-                             ScrollViewer.VerticalScrollBarVisibility="Auto">
-                        <!-- ListBoxItems for Navigation -->
-                        <ListBoxItem Content="CM-1" HorizontalContentAlignment="Left"/>
-                            <ListBoxItem Content="CM1numberone" HorizontalContentAlignment="Left"  x:Name="CM1numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                        <ListBoxItem Content="SA-3" HorizontalContentAlignment="Left"/>
-                            <ListBoxItem Content="SA3numberone" HorizontalContentAlignment="Left"  x:Name="SA3numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SA3numbertwo" HorizontalContentAlignment="Left"  x:Name="SA3numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SA3numberthree" HorizontalContentAlignment="Left"  x:Name="SA3numberthreeItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                        <ListBoxItem Content="SA-4" HorizontalContentAlignment="Left"/>
-                            <ListBoxItem Content="SA4numberone" HorizontalContentAlignment="Left"  x:Name="SA4numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SA4numbertwo" HorizontalContentAlignment="Left"  x:Name="SA4numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                        <ListBoxItem Content="SA-4(2)" HorizontalContentAlignment="Left"/>
-                            <ListBoxItem Content="SA4_2_numberone" HorizontalContentAlignment="Left"  x:Name="SA4_2_numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SA4_2_numbertwo" HorizontalContentAlignment="Left"  x:Name="SA4_2_numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SA4_2_numberthree" HorizontalContentAlignment="Left"  x:Name="SA4_2_numberthreeItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SA4_2_numberfour" HorizontalContentAlignment="Left"  x:Name="SA4_2_numberfourItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                        <ListBoxItem Content="SA-4(3)" HorizontalContentAlignment="Left"/>
-                            <ListBoxItem Content="SA4_3_numberone" HorizontalContentAlignment="Left"  x:Name="SA4_3_numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SA4_3_numbertwo" HorizontalContentAlignment="Left"  x:Name="SA4_3_numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>   
-                        <ListBoxItem Content="SA-8" HorizontalContentAlignment="Left"/>
-                            <ListBoxItem Content="SA8numberone" HorizontalContentAlignment="Left"  x:Name="SA8numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                        <ListBoxItem Content="SA-10" HorizontalContentAlignment="Left" />
-                            <ListBoxItem Content="numberone" HorizontalContentAlignment="Left"  x:Name="numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="numbertwo" HorizontalContentAlignment="Left"  x:Name="numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="numberthree" HorizontalContentAlignment="Left"  x:Name="numberthreeItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="numberfour" HorizontalContentAlignment="Left"  x:Name="numberfourItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="numberfive" HorizontalContentAlignment="Left"  x:Name="numberfiveItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="numbersix" HorizontalContentAlignment="Left"  x:Name="numbersixItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="numberseven" HorizontalContentAlignment="Left"  x:Name="numbersevenItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                        <ListBoxItem Content="SA-11" HorizontalContentAlignment="Left"/>
-                            <ListBoxItem Content="SA11numberone" HorizontalContentAlignment="Left"  x:Name="SA11numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SA11numbertwo" HorizontalContentAlignment="Left"  x:Name="SA11numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SA11numberthree" HorizontalContentAlignment="Left"  x:Name="SA11numberthreeItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                        <ListBoxItem Content="SA-11(1)" HorizontalContentAlignment="Left"/>
-                            <ListBoxItem Content="SA11_1_numberone" HorizontalContentAlignment="Left"  x:Name="SA11_1_numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SA11_1_numbertwo" HorizontalContentAlignment="Left"  x:Name="SA11_1_numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SA11_1_numberthree" HorizontalContentAlignment="Left"  x:Name="SA11_1_numberthreeItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                        <ListBoxItem Content="SA-11(2)" HorizontalContentAlignment="Left"/>
-                            <ListBoxItem Content="SA11_2_numberone" HorizontalContentAlignment="Left"  x:Name="SA11_2_numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SA11_2_numbertwo" HorizontalContentAlignment="Left"  x:Name="SA11_2_numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SA11_2_numberthree" HorizontalContentAlignment="Left"  x:Name="SA11_2_numberthreeItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SA11_2_numberfour" HorizontalContentAlignment="Left"  x:Name="SA11_2_numberfourItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                        <ListBoxItem Content="SA-11(3)" HorizontalContentAlignment="Left"/>
-                            <ListBoxItem Content="SA11_3_numberone" HorizontalContentAlignment="Left"  x:Name="SA11_3_numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SA11_3_numbertwo" HorizontalContentAlignment="Left"  x:Name="SA11_3_numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SA11_3_numberthree" HorizontalContentAlignment="Left"  x:Name="SA11_3_numberthreeItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SA11_3_numberfour" HorizontalContentAlignment="Left"  x:Name="SA11_3_numberfourItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                        <ListBoxItem Content="SA-11(4)" HorizontalContentAlignment="Left"/>
-                            <ListBoxItem Content="SA11_4_numberone" HorizontalContentAlignment="Left"  x:Name="SA11_4_numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SA11_4_numbertwo" HorizontalContentAlignment="Left"  x:Name="SA11_4_numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                        <ListBoxItem Content="SA-11(5)" HorizontalContentAlignment="Left"/>
-                            <ListBoxItem Content="SA11_5_numberone" HorizontalContentAlignment="Left"  x:Name="SA11_5_numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SA11_5_numbertwo" HorizontalContentAlignment="Left"  x:Name="SA11_5_numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                        <ListBoxItem Content="SA-11(6)" HorizontalContentAlignment="Left"/>
-                            <ListBoxItem Content="SA11_6_numberone" HorizontalContentAlignment="Left"  x:Name="SA11_6_numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SA11_6_numbertwo" HorizontalContentAlignment="Left"  x:Name="SA11_6_numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SA11_6_numberthree" HorizontalContentAlignment="Left"  x:Name="SA11_6_numberthreeItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                        <ListBoxItem Content="SA-11(7)" HorizontalContentAlignment="Left"/>
-                            <ListBoxItem Content="SA11_7_numberone" HorizontalContentAlignment="Left"  x:Name="SA11_7_numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                        <ListBoxItem Content="SA-11(8)" HorizontalContentAlignment="Left"/>
-                            <ListBoxItem Content="SA11_8_numberone" HorizontalContentAlignment="Left"  x:Name="SA11_8_numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SA11_8_numbertwo" HorizontalContentAlignment="Left"  x:Name="SA11_8_numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SA11_8_numberthree" HorizontalContentAlignment="Left"  x:Name="SA11_8_numberthreeItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                        <ListBoxItem Content="SA-12" HorizontalContentAlignment="Left"/>
-                            <ListBoxItem Content="SA12numberone" HorizontalContentAlignment="Left"  x:Name="SA12numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SA12numbertwo" HorizontalContentAlignment="Left"  x:Name="SA12numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SA12numberthree" HorizontalContentAlignment="Left"  x:Name="SA12numberthreeItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                        <ListBoxItem Content="SA-12(5)" HorizontalContentAlignment="Left"/>
-                            <ListBoxItem Content="SA12_5_numberone" HorizontalContentAlignment="Left"  x:Name="SA12_5_numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                        <ListBoxItem Content="SA-12(8)" HorizontalContentAlignment="Left"/>
-                            <ListBoxItem Content="SA12_8_numberone" HorizontalContentAlignment="Left"  x:Name="SA12_8_numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
 
-                        <ListBoxItem Content="SA-12(9)" HorizontalContentAlignment="Left"/>
-                            <ListBoxItem Content="SA12_9_numberone" HorizontalContentAlignment="Left"  x:Name="SA12_9_numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                        <ListBoxItem Content="SA-15" HorizontalContentAlignment="Left"/>
-                            <ListBoxItem Content="SA15numberone" HorizontalContentAlignment="Left"  x:Name="SA15numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SA15numbertwo" HorizontalContentAlignment="Left"  x:Name="SA15numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SA15numberthree" HorizontalContentAlignment="Left"  x:Name="SA15numberthreeItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SA15numberfour" HorizontalContentAlignment="Left"  x:Name="SA15numberfourItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                        <ListBoxItem Content="SA-16" HorizontalContentAlignment="Left"/>
-                            <ListBoxItem Content="SA16numberone" HorizontalContentAlignment="Left"  x:Name="SA16numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
 
-                        <ListBoxItem Content="SA-17" HorizontalContentAlignment="Left"/>
-                            <ListBoxItem Content="SA17numberone" HorizontalContentAlignment="Left"  x:Name="SA17numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SA17numbertwo" HorizontalContentAlignment="Left"  x:Name="SA17numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                        <ListBoxItem Content="SA-22" HorizontalContentAlignment="Left"/>
-                            <ListBoxItem Content="SA22numberone" HorizontalContentAlignment="Left"  x:Name="SA22numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
 
-                        <ListBoxItem Content="SI-2" HorizontalContentAlignment="Left"/>
-                            <ListBoxItem Content="SI2numberone" HorizontalContentAlignment="Left"  x:Name="SI2numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SI2numbertwo" HorizontalContentAlignment="Left"  x:Name="SI2numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SI2numberthree" HorizontalContentAlignment="Left"  x:Name="SI2numberthreeItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SI2numberfour" HorizontalContentAlignment="Left"  x:Name="SI2numberfourItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SI2numberfive" HorizontalContentAlignment="Left"  x:Name="SI2numberfiveItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SI2numbersix" HorizontalContentAlignment="Left"  x:Name="SI2numbersixItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                        <ListBoxItem Content="SI-2: FR" HorizontalContentAlignment="Left"/>
-                            <ListBoxItem Content="SI2FRnumberone" HorizontalContentAlignment="Left"  x:Name="SI2FRnumberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
 
-                        <ListBoxItem Content="SI-3" HorizontalContentAlignment="Left"/>
-                            <ListBoxItem Content="SI3numberone" HorizontalContentAlignment="Left"  x:Name="SI3numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SI3numbertwo" HorizontalContentAlignment="Left"  x:Name="SI3numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SI3numberthree" HorizontalContentAlignment="Left"  x:Name="SI3numberthreeItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                        <ListBoxItem Content="SI-3(10)" HorizontalContentAlignment="Left"/>
-                            <ListBoxItem Content="SI3_10_FRnumberone" HorizontalContentAlignment="Left"  x:Name="SI3_10_numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                        <ListBoxItem Content="SI-7" HorizontalContentAlignment="Left"/>
-                            <ListBoxItem Content="SI7numberone" HorizontalContentAlignment="Left"  x:Name="SI7numberoneItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                            <ListBoxItem Content="SI7numbertwo" HorizontalContentAlignment="Left"  x:Name="SI7numbertwoItem" Visibility="Collapsed" Style="{StaticResource SubItemStyle}"/>
-                    </ListBox>
 
-                    <!-- Frame for Content Display -->
-                    <Frame Grid.Column="1" 
+
+
+                        </ui:NavigationView.MenuItems>
+                    
+
+                    </ui:NavigationView>
+
+                    <!--<Frame Grid.Column="1" 
                            Foreground="White"
                            x:Name="ContentFrame" 
                            NavigationUIVisibility="Hidden"
                            HorizontalAlignment="Stretch" 
-                           VerticalAlignment="Stretch"/>
+                           VerticalAlignment="Stretch"/>-->
                 </Grid>
             </TabItem>
 
             <TabItem Header="RMF2">
                 <Grid Background="{StaticResource WindowBackgroundColor}">
                     <Grid.ColumnDefinitions>
-                        <!-- Sidebar column with a fixed width -->
                         <ColumnDefinition Width="150"/>
-                        <!-- Main content area with flexible width -->
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <!-- ListBox for Navigation Sidebar -->
                     <ListBox Grid.Column="0" 
                              SelectionMode="Single" 
                              x:Name="sidebar2" 
@@ -191,13 +91,11 @@
                              HorizontalContentAlignment="Left"
                              SelectionChanged="Sidebar_SelectionChangedRMF2"
                              ScrollViewer.VerticalScrollBarVisibility="Auto">
-                        <!-- ListBoxItems for Navigation -->
                         <ListBoxItem Content="Page 1" HorizontalContentAlignment="Left"/>
                         <ListBoxItem Content="Page 2" HorizontalContentAlignment="Left"/>
                         <ListBoxItem Content="Page 3" HorizontalContentAlignment="Left"/>
                     </ListBox>
 
-                    <!-- Frame for Content Display -->
                     <Frame Grid.Column="1" 
                            Foreground="White"
                            x:Name="ContentFrame2" 
@@ -208,16 +106,12 @@
             </TabItem>
 
             <TabItem Header="RMF3">
-                <!-- Content for Tab 3 -->
                 <Grid Background="{StaticResource WindowBackgroundColor}">
                     <Grid.ColumnDefinitions>
-                        <!-- Sidebar column with a fixed width -->
                         <ColumnDefinition Width="150"/>
-                        <!-- Main content area with flexible width -->
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <!-- ListBox for Navigation Sidebar -->
                     <ListBox Grid.Column="0" 
                              SelectionMode="Single" 
                              x:Name="sidebar3" 
@@ -228,13 +122,11 @@
                              HorizontalContentAlignment="Left"
                              SelectionChanged="Sidebar_SelectionChangedRMF3"
                              ScrollViewer.VerticalScrollBarVisibility="Auto">
-                        <!-- ListBoxItems for Navigation -->
                         <ListBoxItem Content="Page 1" HorizontalContentAlignment="Left"/>
                         <ListBoxItem Content="Page 2" HorizontalContentAlignment="Left"/>
                         <ListBoxItem Content="Page 3" HorizontalContentAlignment="Left"/>
                     </ListBox>
 
-                    <!-- Frame for Content Display -->
                     <Frame Grid.Column="1" 
                            Foreground="White"
                            x:Name="ContentFrame3" 
