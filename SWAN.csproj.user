@@ -13,6 +13,15 @@
     <Compile Update="Components\CalculatedRiskScore.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Components\ExpandableCheckBox1.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Components\ExpandableCheckBox2.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Components\ExpandableCheckbox4.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Components\MostSevere.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -52,6 +61,15 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Components\CalculatedRiskScore.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Components\ExpandableCheckbox1.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Components\ExpandableCheckBox2.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Components\ExpandableCheckbox4.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Components\MostSevere.xaml">
@@ -127,6 +145,42 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\WikiPages\SA12WikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\SA12_5_WikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\SA12_8_WikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\SA12_9_WikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\SA15WikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\SA16WikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\SA17WikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\SA22WikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\SI2FRWikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\SI2WikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\SI3WikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\SI3_10_WikiPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\WikiPages\SI7WikiPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\WikiPages\WikiPageTemplate.xaml">

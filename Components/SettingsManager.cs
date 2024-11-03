@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace SWAN.Components
 {
@@ -55,19 +56,20 @@ namespace SWAN.Components
             {
                 var json = JsonConvert.SerializeObject(settings, Formatting.Indented);
                 File.WriteAllText(_filePath, json);
+               // MessageBox.Show("Saved Settings");
             }
             catch (Exception ex)
             {
-                // Log or handle the exception as needed
-                Console.WriteLine($"Error saving settings: {ex.Message}");
+                MessageBox.Show("${ex}");
             }
         }
     }
 
     public class AppSettings
     {
-        public string Theme { get; set; } = "Light"; // Default to light theme
-        public int CheckboxWidth { get; set; } = 3;  // Default width of checkboxes
+        public string Theme { get; set; } 
+        public  int CheckboxWidth { get; set; }  
+        public string NavigationStyle {  get; set; }
     }
 
 }

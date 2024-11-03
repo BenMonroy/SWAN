@@ -171,12 +171,15 @@ namespace SWAN.ViewModels
 
             if (result == true)
             {
-                _currentFilePath = dialog.FileName;
+                var newFilePath = dialog.FileName;
                 try
                 {
-                    await DashboardViewModel.LoadStateAsync(_currentFilePath);
-                    DashboardViewModel.ToggleRMFStackPanelVisibility();
-                    MessageBox.Show("File loaded successfully.");
+                    int res = await DashboardViewModel.LoadStateAsync(newFilePath);
+                    if (res == 0)
+                    {
+                        _currentFilePath = newFilePath;
+                    }
+                  
                 }
                 catch (Exception ex)
                 {

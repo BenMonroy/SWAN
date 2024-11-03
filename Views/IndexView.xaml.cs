@@ -1,4 +1,4 @@
-﻿using System.Windows;
+using System.Windows;
 using System.Windows.Controls;
 using SWAN.ViewModels;
 using Wpf.Ui.Controls; // Namespace for NavigationView

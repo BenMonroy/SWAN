@@ -1,4 +1,4 @@
-﻿<Page x:Class="SWAN.Views.WikiPages.WikiPageTemplate"
+<Page x:Class="SWAN.Views.WikiPages.WikiPageTemplate"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       Title="WikiPage"

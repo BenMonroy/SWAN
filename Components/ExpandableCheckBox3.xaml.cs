@@ -20,9 +20,9 @@ namespace SWAN.Components
     /// <summary>
     /// Interaction logic for ExpandableCheckBox.xaml
     /// </summary>
-    public partial class ExpandableCheckBox : UserControl
+    public partial class ExpandableCheckBox3 : UserControl
     {
-        public ExpandableCheckBox()
+        public ExpandableCheckBox3()
         {
             InitializeComponent();
         }

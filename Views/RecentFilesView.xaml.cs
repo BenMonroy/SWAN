@@ -1,4 +1,5 @@
-﻿using SWAN.ViewModels;
+﻿using SWAN.Components;
+using SWAN.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +22,12 @@ namespace SWAN.Views
     /// </summary>
     public partial class RecentFilesView : UserControl
     {
+        
         public RecentFilesView()
         {
             InitializeComponent();
         }
+
+       
     }
 }
