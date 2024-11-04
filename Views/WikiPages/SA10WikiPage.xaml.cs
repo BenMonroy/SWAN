@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Threading;
 using System.Windows.Media;
+using System.Windows.Input;
 
 namespace SWAN.Views.WikiPages
 {
@@ -17,7 +18,32 @@ namespace SWAN.Views.WikiPages
                 ScrollToSubsection();
             }), DispatcherPriority.Loaded);
         }
+        private void flowDocumentScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if (!e.Handled)
+            {
+                e.Handled = true;
 
+                var eventArg = new MouseWheelEventArgs(e.MouseDevice, e.Timestamp, e.Delta)
+                {
+                    RoutedEvent = UIElement.MouseWheelEvent,
+                    Source = sender
+                };
+
+                // Traverse up the visual tree to find the parent ScrollViewer
+                var parent = VisualTreeHelper.GetParent((DependencyObject)sender);
+                while (parent != null && !(parent is ScrollViewer))
+                {
+                    parent = VisualTreeHelper.GetParent(parent);
+                }
+
+                // Raise the event on the parent ScrollViewer
+                if (parent != null)
+                {
+                    ((UIElement)parent).RaiseEvent(eventArg);
+                }
+            }
+        }
         private void ScrollToSubsection()
         {
             string subsectionName = Application.Current.Properties["SubsectionName"] as string;
