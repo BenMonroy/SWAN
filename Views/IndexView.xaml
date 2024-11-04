@@ -9,15 +9,16 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" 
              d:DesignWidth="800"
-             Background="{StaticResource WindowBackgroundColor}">
-    <Grid Background="{StaticResource WindowBackgroundColor}">
+             Background="{DynamicResource ApplicationBackgroundBrush}"
+             Foreground="{DynamicResource TextFillColorPrimaryBrush}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TabControl x:Name="MainTabControl" Margin="0,0,0,10">
-            <TabItem Header="RMF1">
-                <Grid Background="{StaticResource WindowBackgroundColor}">
+        <!--<TabControl x:Name="MainTabControl" Margin="0,0,0,10">
+            <TabItem Header="RMF1">-->
+                <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
@@ -28,8 +29,8 @@
                        FooterMenuItemsSource="{Binding FooterMenuItems, Mode=OneWay}"
                        FrameMargin="0"
                        IsBackButtonVisible="Collapsed"
-                       IsPaneToggleVisible="True"
-                       OpenPaneLength="310"
+                       IsPaneToggleVisible="False"
+                       OpenPaneLength="110"
                        PaneDisplayMode="Left"
                        SelectionChanged="OnNavigationSelectionChanged"
                        TitleBar="{Binding ElementName=TitleBar, Mode=OneWay}"
@@ -52,27 +53,25 @@
                             <ui:NavigationViewItem Content="SA-11(7)" TargetPageType="{x:Type pages:SA11_7_WikiPage}" HorizontalContentAlignment="Left"/>
                             <ui:NavigationViewItem Content="SA-11(8)" TargetPageType="{x:Type pages:SA11_8_WikiPage}" HorizontalContentAlignment="Left"/>
                             <ui:NavigationViewItem Content="SA-12" TargetPageType="{x:Type pages:SA12WikiPage}" HorizontalContentAlignment="Left"/>
-
-
-
-
-
-
-
-
+                            <ui:NavigationViewItem Content="SA-12(5)" TargetPageType="{x:Type pages:SA12_5_WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-12(8)" TargetPageType="{x:Type pages:SA12_8_WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-12(9)" TargetPageType="{x:Type pages:SA12_9_WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-15" TargetPageType="{x:Type pages:SA15WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-16" TargetPageType="{x:Type pages:SA16WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-17" TargetPageType="{x:Type pages:SA17WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SA-22" TargetPageType="{x:Type pages:SA22WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SI-2" TargetPageType="{x:Type pages:SI2WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SI-2 FR" TargetPageType="{x:Type pages:SI2FRWikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SI-3" TargetPageType="{x:Type pages:SI3WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SI-3(10)" TargetPageType="{x:Type pages:SI3_10_WikiPage}" HorizontalContentAlignment="Left"/>
+                            <ui:NavigationViewItem Content="SI-7" TargetPageType="{x:Type pages:SI7WikiPage}" HorizontalContentAlignment="Left"/>
                         </ui:NavigationView.MenuItems>
                     
 
                     </ui:NavigationView>
 
-                    <!--<Frame Grid.Column="1" 
-                           Foreground="White"
-                           x:Name="ContentFrame" 
-                           NavigationUIVisibility="Hidden"
-                           HorizontalAlignment="Stretch" 
-                           VerticalAlignment="Stretch"/>-->
                 </Grid>
-            </TabItem>
+            <!--</TabItem>
 
             <TabItem Header="RMF2">
                 <Grid Background="{StaticResource WindowBackgroundColor}">
@@ -135,6 +134,6 @@
                            VerticalAlignment="Stretch"/>
                 </Grid>
             </TabItem>
-        </TabControl>
+        </TabControl>-->
     </Grid>
 </UserControl>

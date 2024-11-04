@@ -3,10 +3,10 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       Title="WikiPage"
       HorizontalAlignment="Stretch"
-      VerticalAlignment="Stretch">
+      VerticalAlignment="Stretch"  Foreground="{DynamicResource TextFillColorPrimaryBrush}">
 
     <!-- Ensure FlowDocumentReader stretches to fill available space -->
-    <FlowDocumentScrollViewer x:Name="flowDocumentScrollViewer" Foreground="White" Width="auto" Height="auto" HorizontalContentAlignment="Stretch" PreviewMouseWheel="flowDocumentScrollViewer_PreviewMouseWheel">
+    <FlowDocumentScrollViewer x:Name="flowDocumentScrollViewer" HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="True" PreviewMouseWheel="flowDocumentScrollViewer_PreviewMouseWheel">
         <FlowDocument x:Name="flowDocument" IsOptimalParagraphEnabled="True" IsHyphenationEnabled="True">
             <!-- Center-align the title to take up the entire frame width -->
             <Paragraph FontSize="30">
