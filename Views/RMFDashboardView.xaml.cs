@@ -1,4 +1,6 @@
-﻿using SWAN.Components;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using SWAN.Components;
+using SWAN.Services;
 using SWAN.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,13 +16,16 @@ namespace SWAN.Views
     {
         private RMFDashboardViewModel _viewModel;
 
+        private IMessenger _messenger;
 
 
-        public RMFDashboardView(RMFDashboardViewModel viewModel) : this()
+
+        public RMFDashboardView(RMFDashboardViewModel viewModel, IMessenger messenger) : this()
         {
             InitializeComponent();
             this.DataContext = viewModel;
             _viewModel = viewModel;
+            _messenger = messenger;
         }
 
         public RMFDashboardView()
@@ -67,9 +72,9 @@ namespace SWAN.Views
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-
+            _messenger.Send(new SaveButtonClickedMessage());
         }
     }
 }

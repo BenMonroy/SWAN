@@ -69,6 +69,9 @@ namespace SWAN.ViewModels
             {
                 r._currentFilePath = m.Value; // Save the file path
             });
+
+            _messenger.Register<SaveButtonClickedMessage>(this, (r, m) => Save());
+            _messenger.Register<CloseSettingsButtonClickedMessage>(this, (r, m) => ToggleSettingsMenu());
         }
 
         private void ChangePage(PageId nextPage)

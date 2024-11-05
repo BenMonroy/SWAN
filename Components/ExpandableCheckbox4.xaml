@@ -1,42 +1,47 @@
-﻿<UserControl x:Class="SWAN.Components.ExpandableCheckBox4"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SWAN.Components"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+﻿<UserControl
+    x:Class="SWAN.Components.ExpandableCheckBox4"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SWAN.Components"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
 
     <UserControl.Resources>
-        <!-- Style for Severity column cells with color coding -->
+        <!--  Style for Severity column cells with color coding  -->
         <Style x:Key="SeverityCellStyle" TargetType="DataGridCell">
-            <!-- Default text color for all cells -->
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
+            <!--  Default text color for all cells  -->
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontWeight" Value="SemiBold" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Content.Text}" Value="Low/Low">
-                    <Setter Property="Background" Value="Yellow"/>
+                    <Setter Property="Background" Value="Yellow" />
                 </DataTrigger>
                 <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Content.Text}" Value="Med/Med">
-                    <Setter Property="Background" Value="Orange"/>
+                    <Setter Property="Background" Value="Orange" />
                 </DataTrigger>
                 <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Content.Text}" Value="High/High">
-                    <Setter Property="Background" Value="Red"/>
+                    <Setter Property="Background" Value="Red" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        <!-- default expander style-->
-        <Style x:Key="ExpanderAllPassedStyle" TargetType="Expander" BasedOn="{StaticResource {x:Type Expander}}">
-            <Setter Property="IsExpanded" Value="True"/>
-            <!-- Default to collapsed -->
+        <!--  default expander style  -->
+        <Style
+            x:Key="ExpanderAllPassedStyle"
+            BasedOn="{StaticResource {x:Type Expander}}"
+            TargetType="Expander">
+            <Setter Property="IsExpanded" Value="True" />
+            <!--  Default to collapsed  -->
             <Style.Triggers>
                 <DataTrigger Binding="{Binding AllPassed}" Value="True">
                     <Setter Property="IsExpanded" Value="False" />
-                    <!-- Expand if AllPassed is True -->
+                    <!--  Expand if AllPassed is True  -->
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        <!-- default bool to vis-->
+        <!--  default bool to vis  -->
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </UserControl.Resources>
     <Grid>
@@ -47,9 +52,14 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <!--1st stack panel-->
+        <!--  1st stack panel  -->
         <StackPanel Grid.Column="0" Orientation="Vertical">
-            <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl1}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Expander
+                Margin="5"
+                VerticalAlignment="Stretch"
+                DataContext="{Binding ConceptualControl1}"
+                Style="{StaticResource ExpanderAllPassedStyle}"
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -58,13 +68,36 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
+                    <DataGrid
+                        Height="Auto"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding PhysicalControls}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                            <DataGridTemplateColumn
+                                Width="2*"
+                                Header="Physical Control"
+                                IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                        <TextBlock Text="{Binding Control}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Passed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Passed}"
+                                            Unchecked="CheckBox_Unchecked" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -72,7 +105,12 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl5}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Expander
+                Margin="5"
+                VerticalAlignment="Stretch"
+                DataContext="{Binding ConceptualControl5}"
+                Style="{StaticResource ExpanderAllPassedStyle}"
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -81,13 +119,36 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
+                    <DataGrid
+                        Height="Auto"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding PhysicalControls}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                            <DataGridTemplateColumn
+                                Width="2*"
+                                Header="Physical Control"
+                                IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                        <TextBlock Text="{Binding Control}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Passed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Passed}"
+                                            Unchecked="CheckBox_Unchecked" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -95,7 +156,12 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl9}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Expander
+                Margin="5"
+                VerticalAlignment="Stretch"
+                DataContext="{Binding ConceptualControl9}"
+                Style="{StaticResource ExpanderAllPassedStyle}"
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -104,13 +170,36 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
+                    <DataGrid
+                        Height="Auto"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding PhysicalControls}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                            <DataGridTemplateColumn
+                                Width="2*"
+                                Header="Physical Control"
+                                IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                        <TextBlock Text="{Binding Control}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Passed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Passed}"
+                                            Unchecked="CheckBox_Unchecked" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -118,7 +207,12 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl13}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Expander
+                Margin="5"
+                VerticalAlignment="Stretch"
+                DataContext="{Binding ConceptualControl13}"
+                Style="{StaticResource ExpanderAllPassedStyle}"
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -127,13 +221,36 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
+                    <DataGrid
+                        Height="Auto"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding PhysicalControls}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                            <DataGridTemplateColumn
+                                Width="2*"
+                                Header="Physical Control"
+                                IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                        <TextBlock Text="{Binding Control}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Passed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Passed}"
+                                            Unchecked="CheckBox_Unchecked" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -141,7 +258,12 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl17}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Expander
+                Margin="5"
+                VerticalAlignment="Stretch"
+                DataContext="{Binding ConceptualControl17}"
+                Style="{StaticResource ExpanderAllPassedStyle}"
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -150,13 +272,36 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
+                    <DataGrid
+                        Height="Auto"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding PhysicalControls}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                            <DataGridTemplateColumn
+                                Width="2*"
+                                Header="Physical Control"
+                                IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                        <TextBlock Text="{Binding Control}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Passed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Passed}"
+                                            Unchecked="CheckBox_Unchecked" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -164,7 +309,12 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl21}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Expander
+                Margin="5"
+                VerticalAlignment="Stretch"
+                DataContext="{Binding ConceptualControl21}"
+                Style="{StaticResource ExpanderAllPassedStyle}"
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -173,13 +323,36 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
+                    <DataGrid
+                        Height="Auto"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding PhysicalControls}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                            <DataGridTemplateColumn
+                                Width="2*"
+                                Header="Physical Control"
+                                IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                        <TextBlock Text="{Binding Control}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Passed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Passed}"
+                                            Unchecked="CheckBox_Unchecked" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -187,7 +360,12 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl25}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Expander
+                Margin="5"
+                VerticalAlignment="Stretch"
+                DataContext="{Binding ConceptualControl25}"
+                Style="{StaticResource ExpanderAllPassedStyle}"
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -196,13 +374,36 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
+                    <DataGrid
+                        Height="Auto"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding PhysicalControls}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                            <DataGridTemplateColumn
+                                Width="2*"
+                                Header="Physical Control"
+                                IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                        <TextBlock Text="{Binding Control}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Passed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Passed}"
+                                            Unchecked="CheckBox_Unchecked" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -210,7 +411,12 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl29}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Expander
+                Margin="5"
+                VerticalAlignment="Stretch"
+                DataContext="{Binding ConceptualControl29}"
+                Style="{StaticResource ExpanderAllPassedStyle}"
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -219,13 +425,36 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
+                    <DataGrid
+                        Height="Auto"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding PhysicalControls}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                            <DataGridTemplateColumn
+                                Width="2*"
+                                Header="Physical Control"
+                                IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                        <TextBlock Text="{Binding Control}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Passed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Passed}"
+                                            Unchecked="CheckBox_Unchecked" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -234,9 +463,14 @@
                 </Grid>
             </Expander>
         </StackPanel>
-        <!--2nd stack panel-->
+        <!--  2nd stack panel  -->
         <StackPanel Grid.Column="1" Orientation="Vertical">
-            <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl2}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Expander
+                Margin="5"
+                VerticalAlignment="Stretch"
+                DataContext="{Binding ConceptualControl2}"
+                Style="{StaticResource ExpanderAllPassedStyle}"
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -245,13 +479,36 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
+                    <DataGrid
+                        Height="Auto"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding PhysicalControls}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                            <DataGridTemplateColumn
+                                Width="2*"
+                                Header="Physical Control"
+                                IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                        <TextBlock Text="{Binding Control}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Passed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Passed}"
+                                            Unchecked="CheckBox_Unchecked" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -259,7 +516,12 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl6}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Expander
+                Margin="5"
+                VerticalAlignment="Stretch"
+                DataContext="{Binding ConceptualControl6}"
+                Style="{StaticResource ExpanderAllPassedStyle}"
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -268,13 +530,36 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
+                    <DataGrid
+                        Height="Auto"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding PhysicalControls}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                            <DataGridTemplateColumn
+                                Width="2*"
+                                Header="Physical Control"
+                                IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                        <TextBlock Text="{Binding Control}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Passed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Passed}"
+                                            Unchecked="CheckBox_Unchecked" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -282,7 +567,12 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl10}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Expander
+                Margin="5"
+                VerticalAlignment="Stretch"
+                DataContext="{Binding ConceptualControl10}"
+                Style="{StaticResource ExpanderAllPassedStyle}"
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -291,13 +581,36 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
+                    <DataGrid
+                        Height="Auto"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding PhysicalControls}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                            <DataGridTemplateColumn
+                                Width="2*"
+                                Header="Physical Control"
+                                IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                        <TextBlock Text="{Binding Control}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Passed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Passed}"
+                                            Unchecked="CheckBox_Unchecked" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -305,7 +618,12 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl14}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Expander
+                Margin="5"
+                VerticalAlignment="Stretch"
+                DataContext="{Binding ConceptualControl14}"
+                Style="{StaticResource ExpanderAllPassedStyle}"
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -314,13 +632,36 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
+                    <DataGrid
+                        Height="Auto"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding PhysicalControls}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                            <DataGridTemplateColumn
+                                Width="2*"
+                                Header="Physical Control"
+                                IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                        <TextBlock Text="{Binding Control}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Passed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Passed}"
+                                            Unchecked="CheckBox_Unchecked" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -328,7 +669,12 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl18}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Expander
+                Margin="5"
+                VerticalAlignment="Stretch"
+                DataContext="{Binding ConceptualControl18}"
+                Style="{StaticResource ExpanderAllPassedStyle}"
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -337,13 +683,36 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
+                    <DataGrid
+                        Height="Auto"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding PhysicalControls}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                            <DataGridTemplateColumn
+                                Width="2*"
+                                Header="Physical Control"
+                                IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                        <TextBlock Text="{Binding Control}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Passed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Passed}"
+                                            Unchecked="CheckBox_Unchecked" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -351,7 +720,12 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl22}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Expander
+                Margin="5"
+                VerticalAlignment="Stretch"
+                DataContext="{Binding ConceptualControl22}"
+                Style="{StaticResource ExpanderAllPassedStyle}"
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -360,13 +734,36 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
+                    <DataGrid
+                        Height="Auto"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding PhysicalControls}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                            <DataGridTemplateColumn
+                                Width="2*"
+                                Header="Physical Control"
+                                IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                        <TextBlock Text="{Binding Control}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Passed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Passed}"
+                                            Unchecked="CheckBox_Unchecked" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -374,7 +771,12 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl26}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Expander
+                Margin="5"
+                VerticalAlignment="Stretch"
+                DataContext="{Binding ConceptualControl26}"
+                Style="{StaticResource ExpanderAllPassedStyle}"
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -383,13 +785,36 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
+                    <DataGrid
+                        Height="Auto"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding PhysicalControls}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                            <DataGridTemplateColumn
+                                Width="2*"
+                                Header="Physical Control"
+                                IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                        <TextBlock Text="{Binding Control}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Passed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Passed}"
+                                            Unchecked="CheckBox_Unchecked" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -397,11 +822,16 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-           
+
         </StackPanel>
-        <!-- 3rd stack panel-->
+        <!--  3rd stack panel  -->
         <StackPanel Grid.Column="2" Orientation="Vertical">
-            <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl3}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Expander
+                Margin="5"
+                VerticalAlignment="Stretch"
+                DataContext="{Binding ConceptualControl3}"
+                Style="{StaticResource ExpanderAllPassedStyle}"
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -410,13 +840,36 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
+                    <DataGrid
+                        Height="Auto"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding PhysicalControls}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                            <DataGridTemplateColumn
+                                Width="2*"
+                                Header="Physical Control"
+                                IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                        <TextBlock Text="{Binding Control}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Passed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Passed}"
+                                            Unchecked="CheckBox_Unchecked" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -424,7 +877,12 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl7}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Expander
+                Margin="5"
+                VerticalAlignment="Stretch"
+                DataContext="{Binding ConceptualControl7}"
+                Style="{StaticResource ExpanderAllPassedStyle}"
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -433,13 +891,36 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
+                    <DataGrid
+                        Height="Auto"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding PhysicalControls}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                            <DataGridTemplateColumn
+                                Width="2*"
+                                Header="Physical Control"
+                                IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                        <TextBlock Text="{Binding Control}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Passed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Passed}"
+                                            Unchecked="CheckBox_Unchecked" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -447,7 +928,12 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl11}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Expander
+                Margin="5"
+                VerticalAlignment="Stretch"
+                DataContext="{Binding ConceptualControl11}"
+                Style="{StaticResource ExpanderAllPassedStyle}"
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -456,13 +942,36 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
+                    <DataGrid
+                        Height="Auto"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding PhysicalControls}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                            <DataGridTemplateColumn
+                                Width="2*"
+                                Header="Physical Control"
+                                IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                        <TextBlock Text="{Binding Control}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Passed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Passed}"
+                                            Unchecked="CheckBox_Unchecked" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -470,7 +979,12 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl15}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Expander
+                Margin="5"
+                VerticalAlignment="Stretch"
+                DataContext="{Binding ConceptualControl15}"
+                Style="{StaticResource ExpanderAllPassedStyle}"
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -479,13 +993,36 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
+                    <DataGrid
+                        Height="Auto"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding PhysicalControls}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                            <DataGridTemplateColumn
+                                Width="2*"
+                                Header="Physical Control"
+                                IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                        <TextBlock Text="{Binding Control}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Passed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Passed}"
+                                            Unchecked="CheckBox_Unchecked" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -493,7 +1030,12 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl19}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Expander
+                Margin="5"
+                VerticalAlignment="Stretch"
+                DataContext="{Binding ConceptualControl19}"
+                Style="{StaticResource ExpanderAllPassedStyle}"
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -502,13 +1044,36 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
+                    <DataGrid
+                        Height="Auto"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding PhysicalControls}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                            <DataGridTemplateColumn
+                                Width="2*"
+                                Header="Physical Control"
+                                IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                        <TextBlock Text="{Binding Control}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Passed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Passed}"
+                                            Unchecked="CheckBox_Unchecked" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -516,7 +1081,12 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl23}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Expander
+                Margin="5"
+                VerticalAlignment="Stretch"
+                DataContext="{Binding ConceptualControl23}"
+                Style="{StaticResource ExpanderAllPassedStyle}"
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -525,13 +1095,36 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
+                    <DataGrid
+                        Height="Auto"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding PhysicalControls}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                            <DataGridTemplateColumn
+                                Width="2*"
+                                Header="Physical Control"
+                                IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                        <TextBlock Text="{Binding Control}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Passed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Passed}"
+                                            Unchecked="CheckBox_Unchecked" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -539,7 +1132,12 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl27}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Expander
+                Margin="5"
+                VerticalAlignment="Stretch"
+                DataContext="{Binding ConceptualControl27}"
+                Style="{StaticResource ExpanderAllPassedStyle}"
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -548,13 +1146,36 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
+                    <DataGrid
+                        Height="Auto"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding PhysicalControls}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                            <DataGridTemplateColumn
+                                Width="2*"
+                                Header="Physical Control"
+                                IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                        <TextBlock Text="{Binding Control}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Passed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Passed}"
+                                            Unchecked="CheckBox_Unchecked" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -563,9 +1184,14 @@
                 </Grid>
             </Expander>
         </StackPanel>
-        <!--4th stack panel-->
+        <!--  4th stack panel  -->
         <StackPanel Grid.Column="3" Orientation="Vertical">
-            <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl4}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Expander
+                Margin="5"
+                VerticalAlignment="Stretch"
+                DataContext="{Binding ConceptualControl4}"
+                Style="{StaticResource ExpanderAllPassedStyle}"
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -574,13 +1200,36 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
+                    <DataGrid
+                        Height="Auto"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding PhysicalControls}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                            <DataGridTemplateColumn
+                                Width="2*"
+                                Header="Physical Control"
+                                IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                        <TextBlock Text="{Binding Control}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Passed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Passed}"
+                                            Unchecked="CheckBox_Unchecked" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -588,7 +1237,12 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl8}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Expander
+                Margin="5"
+                VerticalAlignment="Stretch"
+                DataContext="{Binding ConceptualControl8}"
+                Style="{StaticResource ExpanderAllPassedStyle}"
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -597,13 +1251,36 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
+                    <DataGrid
+                        Height="Auto"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding PhysicalControls}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                            <DataGridTemplateColumn
+                                Width="2*"
+                                Header="Physical Control"
+                                IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                        <TextBlock Text="{Binding Control}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Passed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Passed}"
+                                            Unchecked="CheckBox_Unchecked" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -611,7 +1288,12 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl12}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Expander
+                Margin="5"
+                VerticalAlignment="Stretch"
+                DataContext="{Binding ConceptualControl12}"
+                Style="{StaticResource ExpanderAllPassedStyle}"
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -620,13 +1302,36 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
+                    <DataGrid
+                        Height="Auto"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding PhysicalControls}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                            <DataGridTemplateColumn
+                                Width="2*"
+                                Header="Physical Control"
+                                IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                        <TextBlock Text="{Binding Control}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Passed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Passed}"
+                                            Unchecked="CheckBox_Unchecked" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -634,7 +1339,12 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl16}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Expander
+                Margin="5"
+                VerticalAlignment="Stretch"
+                DataContext="{Binding ConceptualControl16}"
+                Style="{StaticResource ExpanderAllPassedStyle}"
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -643,13 +1353,36 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
+                    <DataGrid
+                        Height="Auto"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding PhysicalControls}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                            <DataGridTemplateColumn
+                                Width="2*"
+                                Header="Physical Control"
+                                IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                        <TextBlock Text="{Binding Control}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Passed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Passed}"
+                                            Unchecked="CheckBox_Unchecked" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -657,7 +1390,12 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl20}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Expander
+                Margin="5"
+                VerticalAlignment="Stretch"
+                DataContext="{Binding ConceptualControl20}"
+                Style="{StaticResource ExpanderAllPassedStyle}"
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -666,13 +1404,36 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
+                    <DataGrid
+                        Height="Auto"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding PhysicalControls}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                            <DataGridTemplateColumn
+                                Width="2*"
+                                Header="Physical Control"
+                                IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                        <TextBlock Text="{Binding Control}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Passed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Passed}"
+                                            Unchecked="CheckBox_Unchecked" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -680,7 +1441,12 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl24}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Expander
+                Margin="5"
+                VerticalAlignment="Stretch"
+                DataContext="{Binding ConceptualControl24}"
+                Style="{StaticResource ExpanderAllPassedStyle}"
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -689,13 +1455,36 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
+                    <DataGrid
+                        Height="Auto"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding PhysicalControls}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                            <DataGridTemplateColumn
+                                Width="2*"
+                                Header="Physical Control"
+                                IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                        <TextBlock Text="{Binding Control}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Passed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Passed}"
+                                            Unchecked="CheckBox_Unchecked" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -703,7 +1492,12 @@
                     </DataGrid>
                 </Grid>
             </Expander>
-            <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch" DataContext="{Binding ConceptualControl28}" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Expander
+                Margin="5"
+                VerticalAlignment="Stretch"
+                DataContext="{Binding ConceptualControl28}"
+                Style="{StaticResource ExpanderAllPassedStyle}"
+                Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
@@ -712,13 +1506,36 @@
                     </StackPanel>
                 </Expander.Header>
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5" ItemsSource="{Binding PhysicalControls}" CanUserAddRows="False">
+                    <DataGrid
+                        Height="Auto"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding PhysicalControls}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Physical Control" Binding="{Binding Control}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTemplateColumn  Header="Passed" Width="*">
+                            <DataGridTemplateColumn
+                                Width="2*"
+                                Header="Physical Control"
+                                IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Passed}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                        <TextBlock Text="{Binding Control}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" Header="Passed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Passed}"
+                                            Unchecked="CheckBox_Unchecked" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
