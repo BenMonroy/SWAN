@@ -45,44 +45,51 @@
                     AutoGenerateColumns="False"
                     CanUserAddRows="False"
                     GridLinesVisibility="All"
-                    HorizontalGridLinesBrush="Gray"
                     HorizontalScrollBarVisibility="Auto"
+                    IsReadOnly="True"
                     ItemsSource="{Binding AllControls}"
-                    VerticalGridLinesBrush="Gray"
+                    MinRowHeight="40"
                     VerticalScrollBarVisibility="Auto">
                     <!--  Define Columns  -->
                     <DataGrid.Columns>
-                        <!--  Name Column  -->
+                        <!--  Name Column with text wrapping  -->
                         <DataGridTextColumn
-                            Width="2*"
+                            Width="4*"
                             Binding="{Binding Name}"
                             Header="Name">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="TextAlignment" Value="Left" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
 
                         <!--  Status Column  -->
                         <DataGridTextColumn
-                            Width="1*"
+                            Width="2*"
                             Binding="{Binding AllPassed, Converter={StaticResource BooleanToPassFailConverter}}"
                             Header="Status">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Foreground" Value="{Binding AllPassed, Converter={StaticResource BooleanToColorConverter}}" />
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="TextAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
 
                         <!--  Action Column  -->
-                        <DataGridTemplateColumn Header="Action">
+                        <DataGridTemplateColumn Width="*" Header="Action">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button
-                                        Width="60"
-                                        Height="20"
+                                        Width="80"
+                                        Height="30"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Background="Transparent"
                                         Content="View" />
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>

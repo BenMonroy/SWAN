@@ -38,11 +38,14 @@ namespace SWAN.ViewModels
 
         private static readonly Dictionary<int, string> RiskLevelMap = new()
         {
-        { 5, "High/High" },
-        { 4, "Med/Med" },
-        { 3, "Med/Low" },
-        { 2, "Low/Med" },
-        { 1, "Low/Low" }
+        { 10, "Very High - Very High"},
+        { 7, "Very High"},
+        { 6, "High - High" },
+        { 5 , "High" },
+        { 4 , "Mod - Mod" },
+        { 3 , "Moderate" },
+        { 2 , "Low - Low" },
+        { 1 , "Low"     }
         };
         public RiskScoreViewModel( RMFDashboardViewModel dash, IMessenger messenger)
         {
@@ -71,7 +74,7 @@ namespace SWAN.ViewModels
             UpdateSeveritySortedControls();
             UpdateRiskScore();
             UpdatePrevalenceSortedControls();
-           // ShowAllControlsInMessageBox();
+            //ShowAllControlsInMessageBox();
         }
 
         private void UpdatePrevalenceSortedControls()
