@@ -34,6 +34,8 @@ namespace SWAN.ViewModels
         private ObservableCollection<ConceptualCheckBox> prevalenceSortedControls;
         public SeriesCollection PieChartSeries { get; set; }
 
+        private IMessenger _messenger;
+
         private static readonly Dictionary<int, string> RiskLevelMap = new()
         {
         { 5, "High/High" },
@@ -42,7 +44,7 @@ namespace SWAN.ViewModels
         { 2, "Low/Med" },
         { 1, "Low/Low" }
         };
-        public RiskScoreViewModel( RMFDashboardViewModel dash)
+        public RiskScoreViewModel( RMFDashboardViewModel dash, IMessenger messenger)
         {
             // Initialize the AllControls collection
             AllControls = new ObservableCollection<ConceptualCheckBox>();
@@ -50,13 +52,16 @@ namespace SWAN.ViewModels
             PrevalenceSortedControls = new ObservableCollection<ConceptualCheckBox>();
             _dash = dash;
             // Listen for the updated controls message
-          
-
+            _messenger = messenger;
             // Initialize the pie chart series
             PieChartSeries = new SeriesCollection();
 
             // Initially populate the pie chart with the existing data
             UpdatePieChart();
+            _messenger.Register<RiskScoreViewModel, MetricsNavigatedMessage>(this, (r, m) =>
+            {
+                r.UpdateRisk();
+            });
         }
         private void UpdateRisk()
         {
@@ -66,7 +71,7 @@ namespace SWAN.ViewModels
             UpdateSeveritySortedControls();
             UpdateRiskScore();
             UpdatePrevalenceSortedControls();
-            //ShowAllControlsInMessageBox();
+           // ShowAllControlsInMessageBox();
         }
 
         private void UpdatePrevalenceSortedControls()
@@ -98,11 +103,14 @@ namespace SWAN.ViewModels
             // Define the risk level map (weight for each severity level)
             var riskLevelWeights = new Dictionary<string, double>
     {
-        { "High/High", 10.0 },
-        { "Med/Med", 7.0 },
-        { "Med/Low", 5.0 },
-        { "Low/Med", 3.0 },
-        { "Low/Low", 1.0 }
+        { "Very High - Very High", 10.0 },
+        { "Very High", 9.0 },
+        { "High - High", 8.0 },
+        { "High", 7.0 },
+        { "Mod - Mod", 5.0 },
+        { "Moderate", 4.0 },
+        { "Low - Low", 2.0 },
+        { "Low", 1.0 }
     };
 
             // Filter out controls that have AllPassed = false
@@ -112,7 +120,7 @@ namespace SWAN.ViewModels
                 .ToList();
 
             // Check if there is any control with High severity
-            if (failedControls.Any(c => c.Severity == "High/High"))
+            if (failedControls.Any(c => c.Severity == "Very High - Very High"))
             {
                 // If any control has High severity, set the risk score to 10
                 GaugeValue = 10.0;
@@ -170,13 +178,10 @@ namespace SWAN.ViewModels
         {
             var message = new StringBuilder();
 
-            foreach (var control in SeveritySortedControls)
+            foreach (var control in AllControls)
             {
                 message.AppendLine($"Name: {control.Name}, Severity: {control.Severity}, CIA: {control.CIA}, All Passed: {control.AllPassed}");
-                foreach (var physicalControl in control.PhysicalControls)
-                {
-                    message.AppendLine($"\tPhysical Control: {physicalControl.Control}, Passed: {physicalControl.Passed}");
-                }
+                
             }
 
             // Show the message in a MessageBox

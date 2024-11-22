@@ -83,6 +83,7 @@ namespace SWAN.ViewModels
                     break;
                 case PageId.RiskScoreView:
                     CurrentView = _riskScoreView;
+                    _messenger.Send(new MetricsNavigatedMessage());
                     break;
                 case PageId.IndexView:
                     CurrentView = _indexView;

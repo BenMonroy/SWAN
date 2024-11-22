@@ -40,11 +40,22 @@
                         <Expander Margin="5" Style="{StaticResource ExpanderAllPassedStyle}" VerticalAlignment="Stretch"
                       Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <Expander.Header>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Name}" />
-                                    <TextBlock Text=" Severity: " />
-                                    <TextBlock Text="{Binding Severity}" />
-                                </StackPanel>
+                                <Grid>
+                                    <!-- Define two rows for the header -->
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <!-- Name in the first row -->
+                                    <TextBlock Grid.Row="0" Text="{Binding Name}" TextWrapping="Wrap" />
+
+                                    <!-- Severity in the second row, right-aligned -->
+                                    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
+                                        <TextBlock Text="Severity: " TextWrapping="Wrap" />
+                                        <TextBlock Text="{Binding Severity}" TextWrapping="Wrap" />
+                                    </StackPanel>
+                                </Grid>
                             </Expander.Header>
                             <Grid>
                                 <DataGrid AutoGenerateColumns="False" Height="Auto" Margin="5"

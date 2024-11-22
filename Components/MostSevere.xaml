@@ -1,59 +1,78 @@
-﻿<UserControl x:Class="SWAN.Components.MostSevere"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SWAN.Components"
-             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+﻿<UserControl
+    x:Class="SWAN.Components.MostSevere"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SWAN.Components"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
     <Grid>
-        <Border  
-                BorderBrush="{DynamicResource TextFillColorPrimaryBrush}" 
-                BorderThickness="2" 
-                CornerRadius="8" 
-                Padding="10" 
-                Margin="10">
+        <Border
+            Margin="10"
+            Padding="10"
+            BorderBrush="{DynamicResource TextFillColorPrimaryBrush}"
+            BorderThickness="2"
+            CornerRadius="8">
             <Grid>
-                <!-- Define Row Definitions -->
+                <!--  Define Row Definitions  -->
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <!-- For the header -->
+                    <RowDefinition Height="Auto" />
+                    <!--  For the header  -->
                     <RowDefinition Height="*" />
-                    <!-- For the DataGrid with scrolling -->
+                    <!--  For the DataGrid with scrolling  -->
                 </Grid.RowDefinitions>
 
-                <!-- Header -->
-                <TextBlock Text="Most Severe" 
-                           FontSize="18" 
-                           FontWeight="Bold" 
-                           Padding="5" 
-                           HorizontalAlignment="Left"
-                           Grid.Row="0"/>
+                <!--  Header  -->
+                <TextBlock
+                    Grid.Row="0"
+                    Padding="5"
+                    HorizontalAlignment="Left"
+                    FontSize="18"
+                    FontWeight="Bold"
+                    Text="Most Severe" />
 
-                <!-- DataGrid with ScrollViewer -->
-                <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="5" Grid.Row="1">
-                    <ui:DataGrid AutoGenerateColumns="False" 
-                                 ItemsSource="{Binding SeveritySortedControls}" 
-                                 CanUserAddRows="False"
-                                 VerticalAlignment="Stretch">
+                <!--  DataGrid with ScrollViewer  -->
+                <ScrollViewer
+                    Grid.Row="1"
+                    Margin="5"
+                    VerticalScrollBarVisibility="Auto">
+                    <ui:DataGrid
+                        VerticalAlignment="Stretch"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding SeveritySortedControls}">
 
-                        <!-- Define DataGrid Columns -->
+                        <!--  Define DataGrid Columns  -->
                         <DataGrid.Columns>
-                            <!-- Name Column -->
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="2*" IsReadOnly="True"/>
+                            <!--  Name Column with Text Wrapping  -->
+                            <DataGridTemplateColumn Width="2*" Header="Name">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Margin="5,0"
+                                            VerticalAlignment="Center"
+                                            Text="{Binding Name}"
+                                            TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
 
-                            <!-- Severity Column -->
-                            <DataGridTextColumn Header="Severity" 
-                                                Binding="{Binding Severity}" 
-                                                Width="*"
-                                                IsReadOnly="True"/>
+                            <!--  Severity Column  -->
+                            <DataGridTextColumn
+                                Width="*"
+                                Binding="{Binding Severity}"
+                                Header="Severity"
+                                IsReadOnly="True" />
 
-                            <!-- Failed Count Column -->
-                            <DataGridTextColumn Header="Failed Count" 
-                                                Binding="{Binding FailedCount}" 
-                                                Width="*"
-                                                IsReadOnly="True"/>
+                            <!--  Failed Count Column  -->
+                            <DataGridTextColumn
+                                Width="*"
+                                Binding="{Binding FailedCount}"
+                                Header="Failed Count"
+                                IsReadOnly="True" />
                         </DataGrid.Columns>
                     </ui:DataGrid>
                 </ScrollViewer>

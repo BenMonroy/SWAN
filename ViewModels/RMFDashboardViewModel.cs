@@ -139,7 +139,12 @@ namespace SWAN.ViewModels
         public UserControl checkBoxView;
         private int _checkBoxWidth;
 
-        private string _filePath; //update this for all file operations
+        [ObservableProperty]
+        public string fileName; //update this for all file operations
+
+
+        private string _filePath;
+
 
        //make this one variable and just reassign it
         private UserControl Width1;
@@ -257,6 +262,8 @@ namespace SWAN.ViewModels
             // Add the file to recent files
             var recent = CreateRecentFile(filePath);
             _recentFilesManager.AddRecentFile(recent);
+            _filePath = filePath;
+            FileName = Path.GetFileName(filePath);
         }
 
         public async Task<int> LoadStateAsync(string filePath)
@@ -336,6 +343,7 @@ namespace SWAN.ViewModels
                 _messenger.Send(new ConceptualControlsUpdatedMessage(ConceptualControls));
                 ToggleRMFStackPanelVisibility();
                 MessageBox.Show("File loaded successfully.");
+                FileName = Path.GetFileName(filePath);
                 return 0;
             }
             else
@@ -352,6 +360,7 @@ namespace SWAN.ViewModels
             ConceptualControls.Clear(); //clears checkboxes so new one can be loaded
             LoadDoDICollection();
             ToggleRMFStackPanelVisibility();
+            FileName = string.Empty;
         }
         private void RemoveFile(RecentFile recentFile)
         {
@@ -370,6 +379,8 @@ namespace SWAN.ViewModels
                 try
                 {
                     await LoadStateAsync(filePath);
+                    _filePath = filePath;
+                    FileName = Path.GetFileName(filePath);
                 }
                 catch (Exception ex) { MessageBox.Show("$ex"); }
 
@@ -384,11 +395,11 @@ namespace SWAN.ViewModels
         {
             ConceptualControl1 = new ConceptualCheckBox
             {
-                Severity = "Low/Low",
+                Severity = "Low - Low",
                 CIA = "HHH",
                 Name = "CM-1: Configuration Management Policy and Procedures",
                 IsVisible = true,
-                FailedCount = 3,
+                FailedCount = 1,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "The developer shall document the configuration management process directly or by reference in a Software Development Plan (SDP), Firmware Development Plan (FDP), or equivalent documents.", Passed = false },
@@ -398,7 +409,7 @@ namespace SWAN.ViewModels
             ConceptualControl2 = new ConceptualCheckBox
             {
                 Name = "SA-3: System Development Life Cycle",
-                Severity = "Low/Low",
+                Severity = "High - High",
                 CIA = "HHH",
                 IsVisible = true,
                 FailedCount = 3,
@@ -412,10 +423,10 @@ namespace SWAN.ViewModels
             ConceptualControl3 = new ConceptualCheckBox
             {
                 Name = "SA-4: Acquisition Process",
-                Severity = "High/High",
+                Severity = "High - High",
                 CIA = "HHH",
                 IsVisible = true,
-                FailedCount = 3,
+                FailedCount = 2,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "The developer shall document the software/firmware security requirements in a Software Requirements Specification or equivalent document."    , Passed = false },
@@ -426,7 +437,7 @@ namespace SWAN.ViewModels
             ConceptualControl4 = new ConceptualCheckBox
             {
                 Name = "SA-4(2): Acquisition Process: Design/Implementation Information for Security Controls",
-                Severity = "Med/Med",
+                Severity = "Mod - Mod",
                 CIA = "HHH",
                 IsVisible = true,
                 FailedCount = 3,
@@ -440,10 +451,10 @@ namespace SWAN.ViewModels
             ConceptualControl5 = new ConceptualCheckBox
             {
                 Name = "SA-4(3): Acquisition Process: Development",
-                Severity = "Low/Med",
+                Severity = "Mod - Mod",
                 CIA = "HHH",
                 IsVisible = true,
-                FailedCount = 3,
+                FailedCount = 2,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "The developer shall document software/firmware security engineering methods, software/firmware development methods, testing/evaluation/validation techniques, and quality control processes directly or by reference in a SDP, FDP, PPIP, or equivalent documents.", Passed = false },
@@ -454,10 +465,10 @@ namespace SWAN.ViewModels
             ConceptualControl6 = new ConceptualCheckBox
             {
                 Name = "SA-8: Security Engineering Principles",
-                Severity = "High/High",
+                Severity = "Mod - Mod",
                 CIA = "HHH",
                 IsVisible = true,
-                FailedCount = 3,
+                FailedCount = 1,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "The developer shall apply software/firmware security engineering principles in the specification, design, development, implementation, and modification of system software and firmware.", Passed = false },
@@ -467,10 +478,10 @@ namespace SWAN.ViewModels
             ConceptualControl7 = new ConceptualCheckBox
             {
                 Name = "SA-10: Developer Configuration Management",
-                Severity = "Low/Low",
+                Severity = "Mod - Mod",
                 CIA = "HHH",
                 IsVisible = true,
-                FailedCount = 3,
+                FailedCount = 7,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "The developer shall execute configuration management of software and firmware configuration items.", Passed = false },
@@ -485,7 +496,7 @@ namespace SWAN.ViewModels
             ConceptualControl8 = new ConceptualCheckBox
             {
                 Name = "SA-11: Developer Security Testing and Evaluation",
-                Severity = "Low/Low",
+                Severity = "Moderate",
                 CIA = "HHH",
                 IsVisible = true,
                 FailedCount = 3,
@@ -499,7 +510,7 @@ namespace SWAN.ViewModels
             ConceptualControl9 = new ConceptualCheckBox
             {
                 Name = "SA-11(1): Developer Security Testing and Evaluation: Static Code Analysis",
-                Severity = "Low/Low",
+                Severity = "High",
                 CIA = "HHH",
                 IsVisible = true,
                 FailedCount = 3,
@@ -513,10 +524,10 @@ namespace SWAN.ViewModels
             ConceptualControl10 = new ConceptualCheckBox
             {
                 Name = "SA-11(2): Developer Security Testing and Evaluation: Threat and Vulnerability Analysis",
-                Severity = "Low/Low",
+                Severity = "High",
                 CIA = "HHH",
                 IsVisible = true,
-                FailedCount = 3,
+                FailedCount = 4,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "The developer shall perform threat analysis to identify, quantify, and address the software and firmware security risks during the design and implementation phases of the SDLC.", Passed = false },
@@ -528,10 +539,10 @@ namespace SWAN.ViewModels
             ConceptualControl11 = new ConceptualCheckBox
             {
                 Name = "SA-11(3): Developer Security Testing and Evaluation: Independent Verification of Assessment Plans/Evidence",
-                Severity = "Low/Low",
+                Severity = "High",
                 CIA = "HHH",
                 IsVisible = true,
-                FailedCount = 3,
+                FailedCount = 4,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "The developer shall perform independent internal verification of developer software/firmware assessment plans and evidence. Developer personnel may perform this verification as long as independence is maintained. To maintain independence, the independent agent must be an entity that is not responsible for developing the product or performing the activity being evaluated.", Passed = false },
@@ -543,10 +554,10 @@ namespace SWAN.ViewModels
             ConceptualControl12 = new ConceptualCheckBox
             {
                 Name = "SA-11(4): Developer Security Testing and Evaluation: Manual Code Reviews",
-                Severity = "Med/Low",
+                Severity = "Low - Low",
                 CIA = "HHH",
                 IsVisible = true,
-                FailedCount = 3,
+                FailedCount = 2,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "The developer shall use processes, procedures, and techniques to perform manual code reviews to identify weaknesses and vulnerabilities in software/firmware components. Manual code review activities shall include peer reviews of developed code, manual review of analysis tool results, and manual analysis of code that cannot be analyzed by analysis tools.", Passed = false },
@@ -555,11 +566,11 @@ namespace SWAN.ViewModels
             };
             ConceptualControl13 = new ConceptualCheckBox
             {
-                Name = "CSA-11(5): Developer Security Testing and Evaluation: Penetration Testing/Analysis",
-                Severity = "Med/Low",
+                Name = "SA-11(5): Developer Security Testing and Evaluation: Penetration Testing/Analysis",
+                Severity = "High",
                 CIA = "HHH",
                 IsVisible = true,
-                FailedCount = 3,
+                FailedCount = 2,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "The developer shall perform penetration and fuzz testing to identify software/firmware vulnerabilities in executable code.", Passed = false },
@@ -570,7 +581,7 @@ namespace SWAN.ViewModels
             ConceptualControl14 = new ConceptualCheckBox
             {
                 Name = "SA-11(6): Developer Security Testing and Evaluation: Attack Surface Reviews",
-                Severity = "Med/Low",
+                Severity = "High",
                 CIA = "LLL",
                 IsVisible = true,
                 FailedCount = 3,
@@ -585,10 +596,10 @@ namespace SWAN.ViewModels
             ConceptualControl15 = new ConceptualCheckBox
             {
                 Name = "SA-11(7): Developer Security Testing and Evaluation: Verify Scope of Evaluation/Testing",
-                Severity = "Med/Low",
+                Severity = "High",
                 CIA = "LLL",
                 IsVisible = true,
-                FailedCount = 3,
+                FailedCount = 1,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "The developer shall verify that the scope of software/firmware security testing/evaluation provides complete coverage of software/firmware security requirements.", Passed = false }
@@ -597,7 +608,7 @@ namespace SWAN.ViewModels
 
             ConceptualControl16 = new ConceptualCheckBox
             {
-                Severity = "Med/Low",
+                Severity = "High",
                 CIA = "LLL",
                 Name = "SA-11(8): Developer Security Testing and Evaluation: Dynamic Code Analysis",
                 IsVisible = true,
@@ -613,7 +624,7 @@ namespace SWAN.ViewModels
             ConceptualControl17 = new ConceptualCheckBox
             {
                 Name = "SA-12: Supply Chain Protection",
-                Severity = "Med/Low",
+                Severity = "High - High",
                 CIA = "LLL",
                 IsVisible = true,
                 FailedCount = 3,
@@ -628,10 +639,10 @@ namespace SWAN.ViewModels
             ConceptualControl18 = new ConceptualCheckBox
             {
                 Name = "SA-12(5): Supply Chain Protection: Limitation of Harm",
-                Severity = "Med/Low",
+                Severity = "Low",   
                 CIA = "LLL",
                 IsVisible = true,
-                FailedCount = 3,
+                FailedCount = 1,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "The developer shall employ security safeguards to limit harm from potential adversaries identifying and targeting the organizational supply chain.", Passed = false },
@@ -641,10 +652,10 @@ namespace SWAN.ViewModels
             ConceptualControl19 = new ConceptualCheckBox
             {
                 Name = "SA-12(8): Supply Chain Protection: Use of All-Source Intelligence",
-                Severity = "Med/Low",
+                Severity = "Low",
                 CIA = "LLL",
                 IsVisible = true,
-                FailedCount = 3,
+                FailedCount = 1,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "The developer shall use all-source intelligence analysis of suppliers and potential suppliers of software/firmware, software/firmware components, or software/firmware services.", Passed = false }
@@ -654,10 +665,10 @@ namespace SWAN.ViewModels
             ConceptualControl20 = new ConceptualCheckBox
             {
                 Name = "SA-12(9): Supply Chain Protection: Operations Security",
-                Severity = "Med/Low",
+                Severity = "Low",
                 CIA = "LLL",
                 IsVisible = true,
-                FailedCount = 3,
+                FailedCount = 1,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "The developer shall employ OPSEC safeguards to be implemented in accordance with classification guides to protect supply chain-related information for software/firmware, software/firmware components, or software/firmware services.", Passed = false }
@@ -667,7 +678,7 @@ namespace SWAN.ViewModels
             ConceptualControl21 = new ConceptualCheckBox
             {
                 Name = "SA-15: Development Process, Standards and Tools",
-                Severity = "Med/Low",
+                Severity = "Mod - Mod",
                 CIA = "LLL",
                 IsVisible = true,
                 FailedCount = 3,
@@ -682,10 +693,10 @@ namespace SWAN.ViewModels
             ConceptualControl22 = new ConceptualCheckBox
             {
                 Name = "SA-16: Development-Provided Training",
-                Severity = "Med/Low",
+                Severity = "Low",
                 CIA = "LLL",
                 IsVisible = true,
-                FailedCount = 3,
+                FailedCount = 1,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "The developer shall ensure personnel are adequately trained on software/firmware security processes and considerations.", Passed = false }
@@ -695,10 +706,10 @@ namespace SWAN.ViewModels
             ConceptualControl23 = new ConceptualCheckBox
             {
                 Name = "SA-17: Developer Security Architecture and Design",
-                Severity = "High/High",
+                Severity = "High - High",
                 CIA = "LLL",
                 IsVisible = true,
-                FailedCount = 3,
+                FailedCount = 2,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "The developer shall implement a software/firmware security architecture and design that provides the required security functionality; allocates security controls among physical and logical components; and integrates individual security functions, mechanisms, and services together to provide required security capabilities and a unified approach to protection.", Passed = false },
@@ -710,10 +721,10 @@ namespace SWAN.ViewModels
             ConceptualControl24 = new ConceptualCheckBox
             {
                 Name = "SA-22: Developer Security Architecture and Design",
-                Severity = "High/High",
+                Severity = "High - High",
                 CIA = "LLL",
                 IsVisible = true,
-                FailedCount = 3,
+                FailedCount = 1,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
                 {
                     new PhysicalControl { Control = "The developer shall provide justification and document approval for the continued use of any unsupported software / firmware components required to satisfy mission / business needs.", Passed = false },
@@ -723,10 +734,10 @@ namespace SWAN.ViewModels
             ConceptualControl25 = new ConceptualCheckBox
             {
                 Name = "SI-2: Flaw Remediation",
-                Severity = "High/High",
+                Severity = "Mod - Mod",
                 CIA = "LLL",
                 IsVisible = true,
-                FailedCount = 3,
+                FailedCount = 6,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = " The developer shall implement a flaw remediation process to identify, report, and manage all software and firmware flaws.", Passed = false },
@@ -740,10 +751,10 @@ namespace SWAN.ViewModels
             ConceptualControl26 = new ConceptualCheckBox
             {
                 Name = "SI-2: Flaw Remediation: Time to Remediate Flaws/Benchmarks for Corrective Actions",
-                Severity = "High/High",
+                Severity = "Moderate",
                 CIA = "LLL",
                 IsVisible = true,
-                FailedCount = 3,
+                FailedCount = 1,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "The developer shall collect metrics related to flaw identification and flaw remediation and shall make available to the Government upon request.", Passed = false },
@@ -753,7 +764,7 @@ namespace SWAN.ViewModels
             ConceptualControl27 = new ConceptualCheckBox
             {
                 Name = "SI-3: Malicious Code Protection",
-                Severity = "High/High",
+                Severity = "High - High",
                 CIA = "LLL",
                 IsVisible = true,
                 FailedCount = 3,
@@ -768,10 +779,10 @@ namespace SWAN.ViewModels
             ConceptualControl28 = new ConceptualCheckBox
             {
                 Name = " SI-3(10): Malicious Code Protection: Malicious Code Analysis",
-                Severity = "High/High",
+                Severity = "Very High",
                 CIA = "LLL",
                 IsVisible = true,
-                FailedCount = 3,
+                FailedCount = 1,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "The developer shall analyze the characteristics and behavior of malicious code and shall incorporate the results of analysis into incident response and flaw remediation processes.", Passed = false },
@@ -781,10 +792,10 @@ namespace SWAN.ViewModels
             ConceptualControl29 = new ConceptualCheckBox
             {
                 Name = "SI-7: Software, Firmware, and Information Integrity",
-                Severity = "High/High",
+                Severity = "Very High - Very High",
                 CIA = "LLL",
                 IsVisible = true,
-                FailedCount = 3,
+                FailedCount = 2,
                 PhysicalControls = new ObservableCollection<PhysicalControl>
     {
         new PhysicalControl { Control = "The developer shall employ integrity verification processes to detect unauthorized changes to software and firmware.", Passed = false },

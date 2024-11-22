@@ -35,7 +35,7 @@
             Grid.Column="0" 
             Visibility="{Binding SettingsScreenVisibility}" 
             Content="{Binding SettingsView}"
-            HorizontalAlignment="Stretch" Width="400"/>
+            HorizontalAlignment="Stretch" Width="500"/>
         <!-- Adjust width to fit your design -->
     </Grid>
 </UserControl>

@@ -5,7 +5,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-    
     d:DesignHeight="450"
     d:DesignWidth="800"
     Background="{DynamicResource ApplicationBackgroundBrush}"
@@ -40,8 +39,28 @@
                 Text="{Binding SelectedFramework}" />
 
             <!--  StackPanel for framework selection and dashboard creation  -->
-            <StackPanel  Grid.Row="1" Grid.Column="1" Width="200" Orientation="Horizontal" Visibility="{Binding CheckBoxesVisibility}">
-                <ui:Button Icon="{ui:SymbolIcon Symbol=Save24}" FontSize="20" Padding="0"  Width="30" Height="30" Click="SaveButton_Click"/>
+            <StackPanel
+                Grid.Row="1"
+                Grid.Column="1"
+                Width="200"
+                Orientation="Horizontal"
+                Visibility="{Binding CheckBoxesVisibility}">
+                <ui:Button
+                    Width="30"
+                    Height="30"
+                    Padding="0"
+                    Click="SaveButton_Click"
+                    FontSize="20"
+                    Icon="{ui:SymbolIcon Symbol=Save24}" />
+                <ui:TextBlock
+                    VerticalAlignment="Center"
+                    Text="{Binding FileName}"
+                    TextTrimming="CharacterEllipsis"
+                    ToolTip="{Binding FileName}"
+                    Visibility="{Binding CheckBoxesVisibility}" 
+                    MaxWidth="145"
+                    Padding="5,0,0,0"
+                    />
             </StackPanel>
 
             <!--  New Checkboxes  -->
